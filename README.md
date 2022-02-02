@@ -14,3 +14,6 @@ All calls have been tested except raw sends.
 There is much to do. If you would like to help out with some PHP skills feel free to contribute.
 
 Have fun!
+
+All functions within the class use the same naming convention and input as the Harmony Node Api which you can browse through here: https://api.hmny.io/
+
