@@ -12,7 +12,9 @@ All calls have been tested except raw sends.
 There is much to do. If you would like to help out with some PHP skills feel free to contribute.
 
 # WHAT IS PHPH1?
-PHPH1 is a PHP class that bridges the Harmony ONE Node API to PHP. The goal is to implement every Node API and make it simple for a dev to input the data and retrieve the results in an easy to use data array.
+PHPH1 is a PHP class that bridges the Harmony ONE Node API to PHP.
+
+The goal is to implement every Node API request and make it simple for a dev to input the data and retrieve the results in an easy to use data array.
 
 # USAGE
 All functions within the class use the same naming convention and input as the Harmony Node Api which you can browse through here: https://api.hmny.io/
