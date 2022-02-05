@@ -15,8 +15,8 @@ ALWAYS wrap your output code in this: if($validoutput ==1){   YOURCODEGOESHERE  
 */
 $validinput = 0;
 
-require_once('inc/config.php');
-require_once('inc/phph1.php');
+require_once('config.php');
+require_once('phph1.php');
 
 $phph1 = new phph1($apiaddr, $phph1_debug);
 
