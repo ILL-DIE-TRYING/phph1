@@ -1,8 +1,10 @@
 # PHPH1 :: A PHP Class to query the Harmony ONE Node API
+NOTE: I'm not a PHP developer. I wrote PHP database applications for a living from 2001 to 2012 so my code is currently OLD SCHOOL. I'm trying to catch up as much as possible.
+
 PHPH1 is a PHP class that bridges the Harmony ONE Node API to PHP. The goal is to implement every Node API and make it simple for a dev to input the data and retrieve the results in an easy to use data array.
 
 There are three files:
-config.php : COnfiguration settings for the PHPH1 class
+config.php : Configuration settings for the PHPH1 class
 phph1.php : The PHPH1 class itself
 example_gettransactions.php : An example that gets all transactions available for a ONE address
 
