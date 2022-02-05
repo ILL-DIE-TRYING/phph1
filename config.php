@@ -30,24 +30,24 @@ $phph1_shard = 0;
 
 if($usemainnet == 1){
 	echo "<h4 style='background-color:red;color:white;'>USING MAINNET SHARD:".$phph1_shard."</h4>";
-	if($phph1_shard = 0){
+	if($phph1_shard == 0){
 		$apiaddr = 'https://a.api.s0.t.hmny.io/';
-	}elseif($phph1_shard = 1){
+	}elseif($phph1_shard == 1){
 		$apiaddr = 'https://rpc.s1.t.hmny.io/';		
-	}elseif($phph1_shard = 2){
+	}elseif($phph1_shard == 2){
 		$apiaddr = 'https://rpc.s2.t.hmny.io/';		
-	}elseif($phph1_shard = 3){
+	}elseif($phph1_shard == 3){
 		$apiaddr = 'https://rpc.s3.t.hmny.io/';	
 	}
 }else{
 	echo "<h4 style='background-color:green;color:white;'>USING TESTNET</h4>";
-	if($phph1_shard = 0){
+	if($phph1_shard == 0){
 		$apiaddr = 'https://rpc.s0.b.hmny.io/';
-	}elseif($phph1_shard = 1){
+	}elseif($phph1_shard == 1){
 		$apiaddr = 'https://rpc.s1.b.hmny.io/';		
-	}elseif($phph1_shard = 2){
+	}elseif($phph1_shard == 2){
 		$apiaddr = 'https://rpc.s2.b.hmny.io/';		
-	}elseif($phph1_shard = 3){
+	}elseif($phph1_shard == 3){
 		$apiaddr = 'https://rpc.s3.b.hmny.io/';	
 	}
 }
@@ -57,5 +57,8 @@ Default number of results per page
 */
 $def_pagesize = 10;
 
-
+/*
+Maximum number of results per page
+*/
+$max_pagesize = 20;
 ?>
