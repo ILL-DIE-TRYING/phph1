@@ -1,4 +1,4 @@
-# phph1
+# PHPH1 :: A PHP Class to query the Harmony ONE Node API
 PHPH1 is a PHP class that bridges the Harmony ONE Node API to PHP. The goal is to implement every Node API and make it simple for a dev to input the data and retrieve the results in an easy to use data array.
 
 File is uploaded. I will put up an example use.
