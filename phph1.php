@@ -5,6 +5,7 @@
 // It needs to be worked on so we have all shard addresses and shard selection
 
 // Which net to use. 0 = testnet, 1 = mainnet
+/*
 $usemainnet = 0;
 if($usemainnet == 1){
 	echo "<h4 style='background-color:red;color:white;'>USING MAINNET</h4>";
@@ -17,7 +18,7 @@ if($usemainnet == 1){
 	$apiaddr = 'https://rpc.s0.b.hmny.io/';
 	###################
 }
-
+*/
 
 /*
 
@@ -47,9 +48,7 @@ ETH ADDRESS: 0x71b6810fdd93a1fc8e0ad8bc63ed6f874f91a983
 [v] => 0xc6afa5e4
 [value] => 1.0E+19
 
-### DUMMY STAKING TRANSACTION DATA (FROM OTHER TEST WALLET) ###
-
-## PAY ATTENTION! THE SECOND WALLET ADDRESS! USE one1wxmgzr7ajwslers2mz7x8mt0sa8er2vr7qwn08 ##
+### DUMMY STAKING TRANSACTION DATA (FROM TEST WALLET) ###
 
 [blockHash] => 0xfd2af250314ac90ec610a68e4274c73d821e5173f41ac0dd1fc57c8d961bee99
 [blockNumber] => 20913185
@@ -89,15 +88,13 @@ class phph1{
 	public ?string $apiaddr;
 	public ?string $blockaddr;
 	public ?string $oneaddr;
-	public ?int $debug;
+	public ?int $phph1_debug;
 	public $methods;
+	public ?int $maxpagesize;
 	
-	function __construct(?string $apiaddr = null,?string $blockaddr = null,?string $oneaddr = null, ?int $debug = 0, $methods = null ){
+	function __construct(?string $apiaddr = null, ?int $phph1_debug = 0 ){
 		$this->apiaddr = $apiaddr;
-		$this->blockaddr = $blockaddr;
-		$this->oneaddr = $oneaddr;
-		$this->debug = $debug;
-		$this->methods = $methods;
+		$this->phph1_debug = $phph1_debug;
 	}
 	
 	function docurlrequest($thisjson){
@@ -123,14 +120,13 @@ class phph1{
 	}
 	
 	function genjsonrequest($method, $paramsarr){
-		if($this->debug == 1){
+		if($this->phph1_debug == 1){
 			echo "<p style='color:green;'>";
 			print_r($paramsarr);
 			echo "</p>";
 		}
 		
 		if(!empty($paramsarr)){
-			#echo "ONE";
 			$rdata = array(
 				'jsonrpc' => "2.0",
 				'id' => 1,
@@ -138,7 +134,6 @@ class phph1{
 				'params' => $paramsarr
 			);
 		}else{
-			#echo "TWO";
 			$rdata = array(
 				'jsonrpc' => "2.0",
 				'id' => 1,
@@ -147,7 +142,7 @@ class phph1{
 			);
 		}
 		
-		if($this->debug == 1){
+		if($this->phph1_debug == 1){
 			echo "<p style='color:green;'>";
 			print_r($rdata);
 			echo "</p>";
@@ -155,7 +150,7 @@ class phph1{
 		
 		$thisjson = json_encode($rdata);
 		
-		if($this->debug == 1){
+		if($this->phph1_debug == 1){
 			echo "<p style='color:green;'>";
 			print_r($thisjson);
 			echo "</p>";
@@ -357,7 +352,7 @@ class phph1{
 		return $this->docurlrequest($thisjson);
 	}
 	
-	function hmyv2_getTransactionsCount($oneaddr,$trtype = 'ALL'){
+	function hmyv2_getTransactionsCount($oneaddr,?string $trtype = 'ALL'){
 		/*
 		Params:
 		$oneaddr = The ONE address
@@ -449,18 +444,18 @@ class phph1{
 	}
 	
 
-	function hmyv2_getTransactionsHistory($oneaddress,$page = 1,$pagesize=10,$txtype='ALL',$order='DESC', $fulltx = true){
+	function hmyv2_getTransactionsHistory($oneaddr,?int $page = 1,?int $pagesize = 10, ?bool $fulltx = TRUE, ?string $txtype = 'ALL', ?string $order = 'DESC'){
 		/*
 		Params:
-		$oneaddress = The ONE Address
+		$oneaddr = The ONE Address
 		$page = The Page number of requests (use the REAL page number, our pages never start at 0)
 		$order = The order of the results by date. Options are ASC (ascending) or DESC (descending)
 		$txtype = The transaction direction. Options are SENT (returns transactions sent by ONE address), RECEIVED (returns transactions sent by ONE address), or ALL (Get all transactions)
 		*/
 		$method = "hmyv2_getTransactionsHistory";
 		$params = array(
-				[
-					'address' => $oneaddress,
+					[
+					'address' => $oneaddr,
 					'pageIndex' => $page-1,
 					'pageSize' => $pagesize,
 					'fullTx' => $fulltx,
@@ -471,6 +466,7 @@ class phph1{
 					#echo "<br />"; 
 					#print_r($params);
 		$thisjson = $this->genjsonrequest($method, $params);
+		#print_r($thisjson);
 		return $this->docurlrequest($thisjson);
 	}
 
@@ -803,7 +799,7 @@ class phph1{
 		}
 	}
 	
-	function chkblockaddr($blockaddr){
+	function val_blockaddr($blockaddr){
 		if(isset($blockaddr) && preg_match( '/^[0-9]+$/', $blockaddr) && strlen($blockaddr) <= 20){
 			return 1;
 		}else{
@@ -813,6 +809,21 @@ class phph1{
 	
 	function chkblocknum($blocknum){
 		if(isset($blocknum) && preg_match( '/^[0-9]+$/', $blocknum) && strlen($blocknum) <= 20){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+	
+	function val_getTransactionsHistory($oneaddr,$page,$pagesize,$fulltx,$txtype,$order){
+		$notvalid = 0;
+		if(isset($page) && !preg_match( '/^[0-9]+$/', $page)){$notvalid = 1; echo '<br />$page:'.$page;}
+		if(isset($pagesize) && !preg_match( '/^[0-9]+$/', $pagesize) && $pagesize <= 50){$notvalid = 1; echo '<br />$pagesize:'.$pagesize;}
+		if(isset($txtype) && $txtype != 'SENT' && $txtype != 'RECEIVED' && $txtype != 'ALL'){$notvalid = 1; echo '<br />$txtype:'.$txtype;}
+		if(isset($order) && $order != 'DESC' && $order != 'ASC'){$notvalid = 1; echo '<br />$order:'.$order;}
+		if(isset($fulltx) && $fulltx != TRUE && $fulltx != FALSE){$notvalid = 1; echo '<br />$fulltx:'.$fulltx;}
+		
+		if($notvalid == 0){
 			return 1;
 		}else{
 			return 0;
