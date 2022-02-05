@@ -20,8 +20,11 @@ The goal is to implement every Node API request and make it simple for a dev to 
 All functions within the class use the same naming convention and input as the Harmony Node Api which you can browse through here: https://api.hmny.io/
 
 There are three files:
+
 config.php : Configuration settings for the PHPH1 class
+
 phph1.php : The PHPH1 class itself
+
 example_gettransactions.php : An example that gets all transactions available for a ONE address
 
 Have fun!
