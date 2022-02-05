@@ -8,20 +8,13 @@ DO NOT LEAVE DEBUGGING ON IN A PRODUCTION ENVIRONMENT!
 */
 $phph1_debug = 0;
 
-/*
-Show the $_GET request data
-BE CAREFUL!
-DO NOT LEAVE DEBUGGING ON IN A PRODUCTION ENVIRONMENT!
-A malicious request could result in an attack on your server
-*/ 
+// SHOW WARNING IF DEBUGGING IS ON
 if($phph1_debug == 1){
-	echo "<pre>";
-	print_r($_GET);
-	echo "</pre>";
+	echo "<h2 style='color:red;'>DEBUGGING IS ON!<br />DO NOT ALLOW PUBLIC ACCESS WHILE DEBUGGING IS ON!!</h2>";
 }
 
 // Which net to use. 0 = testnet, 1 = mainnet
-$usemainnet = 0;
+$usemainnet = 1;
 
 // Which shard to use
 // This should become Dynamic via a form return

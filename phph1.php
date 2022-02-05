@@ -1,5 +1,75 @@
 <?php
+
+
+// This stuff would usually go into a config.php or similar file
+// It needs to be worked on so we have all shard addresses and shard selection
+
+// Which net to use. 0 = testnet, 1 = mainnet
 /*
+$usemainnet = 0;
+if($usemainnet == 1){
+	echo "<h4 style='background-color:red;color:white;'>USING MAINNET</h4>";
+	##### MAINNET SHARD 0 #####
+	$apiaddr = 'https://a.api.s0.t.hmny.io';
+	###################
+}else{
+	echo "<h4 style='background-color:green;color:white;'>USING TESTNET</h4>";
+	##### TESTNET SHARD 0 #####
+	$apiaddr = 'https://rpc.s0.b.hmny.io/';
+	###################
+}
+*/
+
+/*
+
+### DUMMY TEST WALLET ###
+
+ONE ADDRESS: one1wumxurmevpqxxksz5azvlhsswx6qj5uc9gt8j3
+ETH ADDRESS: 0x71b6810fdd93a1fc8e0ad8bc63ed6f874f91a983
+
+### DUMMY TRANSACTION DATA (FROM TEST WALLET) ###
+
+[blockHash] => 0x1dd65e4247d630cb07efc40e8a86cb3148a3c4602f33401f23defc1577312a72
+[blockNumber] => 20898901
+[ethHash] => 0x3a8b906d3048bb7b45f43ffc5c9fb3665166d2484fa89a795f53e328ce80e49d
+[from] => one1wumxurmevpqxxksz5azvlhsswx6qj5uc9gt8j3
+[gas] => 21000
+[gasPrice] => 30000000000
+[hash] => 0xe090e89a5f1fb360950e4284ef1fa91634b14b419ef7c5a2962a9e59cd15974a
+[input] => 0x
+[nonce] => 0
+[r] => 0x290cc51b32e64fd73d77be58f0c0c79bee966fb8373cf9851edc19627f2b6f57
+[s] => 0x69f171643028216a55b5ecfcabd2789f9ea23b90aa34273116ea3b9dfbef0107
+[shardID] => 0
+[timestamp] => 1643722860
+[to] => one1wxmgzr7ajwslers2mz7x8mt0sa8er2vr7qwn08
+[toShardID] => 0
+[transactionIndex] => 0
+[v] => 0xc6afa5e4
+[value] => 1.0E+19
+
+### DUMMY STAKING TRANSACTION DATA (FROM TEST WALLET) ###
+
+[blockHash] => 0xfd2af250314ac90ec610a68e4274c73d821e5173f41ac0dd1fc57c8d961bee99
+[blockNumber] => 20913185
+[from] => one1wxmgzr7ajwslers2mz7x8mt0sa8er2vr7qwn08
+[gas] => 45000
+[gasPrice] => 30000000000
+[hash] => 0xa90c6a4ed102f615c1f85ba88608d4ff163d38a0b2310a6ae7ea06ad8905fbf6
+[msg] => Array
+		(
+		[amount] => 1.01E+20
+		[delegatorAddress] => one1wxmgzr7ajwslers2mz7x8mt0sa8er2vr7qwn08
+		[validatorAddress] => one1xjanr7lgulc0fqyc8dmfp6jfwuje2d94xfnzyd
+		)
+
+[nonce] => 0
+[r] => 0xc7df9ce01919f5d012b1c880085d46e4820e96baec36e470a2a898605813160c
+[s] => 0xc290411b3395ce196b3b935458741b12dde7e3fea8ff6c8fbd7ca4541186cbe
+[timestamp] => 1643751676
+[transactionIndex] => 0
+[type] => Delegate
+[v] => 0x27
 
 ### A NODE API FUNCTION TEMPLATE ###
 
@@ -12,16 +82,15 @@ function REPLACEME($oneaddr){
 	$thisjson = $this->genjsonrequest($method, $params);
 	return $this->docurlrequest($thisjson);
 }
-
 */
-
 class phph1{
 	
 	public ?string $apiaddr;
 	public ?string $blockaddr;
+	public ?string $blocknum;
 	public ?string $oneaddr;
 	public ?int $phph1_debug;
-	public $methods;
+	public ?array $methods;
 	public ?int $maxpagesize;
 	
 	function __construct(?string $apiaddr = null, ?int $phph1_debug = 0 ){
@@ -53,9 +122,9 @@ class phph1{
 	
 	function genjsonrequest($method, $paramsarr){
 		if($this->phph1_debug == 1){
-			echo "<p style='color:green;'>";
+			echo "<pre style='color:blue;'>PHPH1 FUNCTION genjsonrequest paramsarr: <br/>";
 			print_r($paramsarr);
-			echo "</p>";
+			echo "</pre>";
 		}
 		
 		if(!empty($paramsarr)){
@@ -75,17 +144,17 @@ class phph1{
 		}
 		
 		if($this->phph1_debug == 1){
-			echo "<p style='color:green;'>";
+			echo "<pre style='color:blue;'>PHPH1 FUNCTION genjsonrequest rdata: <br/>";
 			print_r($rdata);
-			echo "</p>";
+			echo "</pre>";
 		}
 		
 		$thisjson = json_encode($rdata);
 		
 		if($this->phph1_debug == 1){
-			echo "<p style='color:green;'>";
+			echo "<pre style='color:blue;'>PHPH1 FUNCTION genjsonrequest thisjson: <br />";
 			print_r($thisjson);
-			echo "</p>";
+			echo "</pre>";
 		}
 		
 		return $thisjson;
@@ -137,26 +206,41 @@ class phph1{
 	##################################
 	
 	
-	function hmyv2_getBlockByNumber($blocknum,$fulltxt = true,$withsigners = false,$inclstaking = false){
+	function hmyv2_getBlockByNumber($blocknum, $fulltx=true, $incltx=false, $withsigners=false, $inclstaking=false){
 		/*
 		Params:
 		$blocknum = The block number
-		$fulltxt = To show full tx or not (TRUE or FALSE)
-		$withsigners = Include block signers in blocks or not (TRUE or FALSE)
-		$inclstaking = To show staking txs or not (TRUE or FALSE)
+		$fulltx = To show full tx or not (TRUE or FALSE)
+		$incltx = Include block signers in blocks or not (TRUE or FALSE)
+		$inclstaking =  Include regular transactions (TRUE or FALSE)
 		*/
+		//echo "withsigners:".$withsigners;
+		
 		$method = "hmyv2_getBlockByNumber";
 		$params = [
 				$blocknum,
 				[
-				'fullText' => $fulltxt,
-				'inclTx' => $withsigners,
-				'inclStaking' => $inclstaking
+				'fullTx' => $fulltx,
+				'inclTx' => $incltx,
+				'inclStaking' => $inclstaking,
+				'withSigners' => $withsigners
 				]
 				];
-		#print_r($xtraparams);
+		
+		if($this->phph1_debug == 1){
+			echo "<pre style='color:blue;'><br />hmyv2_getBlockByNumber PARAMS ARRAY:<br />";
+			print_r($params);
+			echo "</pre>";
+		}
+		
 		$thisjson = $this->genjsonrequest($method, $params);
-		#print_r($thisjson);
+		
+		if($this->phph1_debug == 1){
+			echo "<pre style='color:blue;'><br />hmyv2_getBlockByNumber JSON REQUEST:<br />";
+			echo $thisjson;
+			echo "</pre>";
+		}
+		
 		return $this->docurlrequest($thisjson);
 	}
 	
@@ -722,7 +806,7 @@ class phph1{
 	function convertsci($scinum){
 		return ($scinum / 1e+18);
 	}
-
+	
 	function chkoneaddr($addr){
 		if(isset($addr) && preg_match( '/^[a-z0-9]+$/', $addr) && substr($addr, 0, 4) == "one1" && strlen($addr) == 42){
 			return 1;
@@ -754,6 +838,21 @@ class phph1{
 		if(isset($txtype) && $txtype != 'SENT' && $txtype != 'RECEIVED' && $txtype != 'ALL'){$notvalid = 1; echo '<br />$txtype:'.$txtype;}
 		if(isset($order) && $order != 'DESC' && $order != 'ASC'){$notvalid = 1; echo '<br />$order:'.$order;}
 		if(isset($fulltx) && $fulltx != TRUE && $fulltx != FALSE){$notvalid = 1; echo '<br />$fulltx:'.$fulltx;}
+		
+		if($notvalid == 0){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+	
+	function val_getBlockByNumber($blocknum,$fulltx,$incltx,$withsigners,$inclstaking){
+		$notvalid = 0;
+		//if(isset($blocknum) && !preg_match( '/^[0-9]+$/', $blocknum)){$notvalid = 1; echo '<br />$blocknum:'.$blocknum;}
+		if(isset($fulltx) && $fulltx != TRUE && $fulltx != FALSE && !is_bool($fulltx)){$notvalid = 1; echo '<br />$fulltx:'.$fulltx;}
+		if(isset($incltx) && $incltx != TRUE && $incltx != FALSE && !is_bool($incltx)){$notvalid = 1; echo '<br />$incltx:'.$incltx;}
+		if(isset($inclstaking) && $inclstaking != TRUE && $inclstaking != FALSE && !is_bool($inclstaking)){$notvalid = 1; echo '<br />$inclstaking:'.$inclstaking;}
+		if(isset($withsigners) && $withsigners != TRUE && $withsigners != FALSE && !is_bool($withsigners)){$notvalid = 1; echo '<br />$withsigners:'.$withsigners;}
 		
 		if($notvalid == 0){
 			return 1;
