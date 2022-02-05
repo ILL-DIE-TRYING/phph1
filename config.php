@@ -21,7 +21,7 @@ if($phph1_debug == 1){
 }
 
 // Which net to use. 0 = testnet, 1 = mainnet
-$usemainnet = 1;
+$usemainnet = 0;
 
 // Which shard to use
 // This should become Dynamic via a form return
