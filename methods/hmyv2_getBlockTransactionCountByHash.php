@@ -1,4 +1,4 @@
-<h3>Get Wallet Balance ( hmyv2_getBalance )</h3>
+<h3>Get Block Transaction Count By Block Hash ( hmyv2_getBlockTransactionCountByHash )</h3>
 <?php
 
 
@@ -34,15 +34,13 @@ if($phph1_debug == 1){
 }
 
 
-// Check what core information we have. Validate it and set it
-// This one validates the ONE address
-// These items could probably be put in an include to keep this page shorter
-if(isset($_GET['oneaddr']) && $phph1_boothandle->val_oneaddr($_GET['oneaddr']) && isset($_GET['do']) && $_GET['do'] == 1){
+// Validate Block Hash
+if(isset($_GET['blockhash']) && $phph1_boothandle->val_blockhash($_GET['blockhash']) && isset($_GET['do']) && $_GET['do'] == 1){
 	$validinput = 1;
 	// This is the handle that actually gets used in the page
 	$phph1 = new phph1($apiaddr,$phph1_debug);
-	$phph1->oneaddr = $_GET['oneaddr'];
-	$oneaddr = $phph1->oneaddr;
+	$phph1->blockhash = $_GET['blockhash'];
+	$blockhash = $phph1->blockhash;
 }
 
 // unset the boothandle
@@ -52,8 +50,8 @@ unset($phph1_boothandle);
 if($validinput == 1){
 
 	// Validate the input and run our call if the data is good
-	if($phph1->hmyv2_getBalance($oneaddr)){
-		$hmyv2_getBalance_data = $phph1->hmyv2_getBalance($oneaddr);
+	if($phph1->hmyv2_getBlockTransactionCountByHash($blockhash)){
+		$hmyv2_getBlockTransactionCountByHash_data = $phph1->hmyv2_getBlockTransactionCountByHash($blockhash);
 	}else{
 		$validinput = 0;
 		echo "<p>INVALID INPUT</p>";
@@ -66,6 +64,16 @@ if($phph1_debug == 1){
 	
 	echo "<br />DO WE HAVE VALID INPUT?: ".$validinput."<br />";
 	
+	echo "<br />VARIABLE TYPES FOR THIS REQUEST:";
+	echo "<br />fulltx: ".gettype($fulltx);
+	echo "<br />inclstaking: ".gettype($inclstaking);
+	echo "<br />withsigners: ".gettype($withsigners)."<br />";
+	
+	echo "<br />VARIABLE VALUES (NOTE: FALSE BOOLEANS WILL SHOW UP EMPTY):";
+	echo "<br />fulltx:".$fulltx;
+	echo "<br />inclstaking:".$inclstaking;
+	echo "<br />withsigners:".$withsigners;
+	
 	echo "</p>";
 }
 
@@ -73,9 +81,10 @@ if($phph1_debug == 1){
 ?>
 
 <form method="GET">
-	<p><label for="oneaddr">Wallet Address: </label><input type="text" id="oneaddr" name="oneaddr"  size="60" maxlength="42" value="<?php if(isset($oneaddr)){ echo $oneaddr; } ?>" /></p>	
+	<p><label for="blockhash">Block Hash: </label><input type="text" id="blockhash" name="blockhash"  size="60" maxlength="100" value="<?php if(isset($blockhash)){ echo $blockhash; } ?>" /></p>
+	
 	<p><input type="hidden" id="do" name="do" value="1" />
-	<input type="hidden" id="method" name="method" value="hmyv2_getBalance" />
+	<input type="hidden" id="method" name="method" value="hmyv2_getBlockTransactionCountByHash" />
 	<input type='submit' name='Submit' /></p>
 </form>
 
@@ -85,12 +94,12 @@ if($phph1_debug == 1){
 if($validinput == 1){
 	
 	// You can view the raw array here
-	echo "<h2>WALLET BALANCE ARRAY</h2>";
+	echo "<h2>BLOCK TRANSACTION COUNT BY HASH ARRAY</h2>";
 	if(isset($phph1->lastjson)){
 		echo "<p style='color:green;'>This JSON RPC Request:<br />".$phph1->lastjson."</p>";
 	}
 	echo "<pre>";
-	print_r($hmyv2_getBalance_data);
+	print_r($hmyv2_getBlockTransactionCountByHash_data);
 	echo "</pre>";
 	
 }

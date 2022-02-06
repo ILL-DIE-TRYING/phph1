@@ -96,6 +96,9 @@ if($validinput == 1){
 	
 	// You can view the raw array here
 	echo "<h2>WALLET BALANCE ARRAY</h2>";
+	if(isset($phph1->lastjson)){
+		echo "<p style='color:green;'>This JSON RPC Request:<br />".$phph1->lastjson."</p>";
+	}
 	echo "<pre>";
 	print_r($hmyv2_getBalance_data);
 	echo "</pre>";

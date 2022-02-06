@@ -1,4 +1,4 @@
-<h3>Get Block By Block Number ( hmyv2_getBlockByNumber )</h3>
+<h3>Get Block By Block Hash ( hmyv2_getBlockByHash )</h3>
 <?php
 
 
@@ -35,12 +35,12 @@ if($phph1_debug == 1){
 
 
 // Validate Block Number
-if(isset($_GET['blocknum']) && $phph1_boothandle->val_blocknum($_GET['blocknum']) && isset($_GET['do']) && $_GET['do'] == 1){
+if(isset($_GET['blockhash']) && $phph1_boothandle->val_blockhash($_GET['blockhash']) && isset($_GET['do']) && $_GET['do'] == 1){
 	$validinput = 1;
 	// This is the handle that actually gets used in the page
 	$phph1 = new phph1($apiaddr,$phph1_debug);
-	$phph1->blocknum = $_GET['blocknum'];
-	$blocknum = $phph1->blocknum;
+	$phph1->blockhash = $_GET['blockhash'];
+	$blockhash = $phph1->blockhash;
 }
 
 // unset the boothandle
@@ -94,8 +94,8 @@ if($validinput == 1){
 	}
 
 	// Validate the input and run our call if the data is good
-	if($phph1->val_getBlockByNumber($blocknum,$fulltx,$incltx,$withsigners,$inclstaking)){
-		$getBlockByNumber_data = $phph1->hmyv2_getBlockByNumber($blocknum,$fulltx,$incltx,$withsigners,$inclstaking);
+	if($phph1->val_getBlockByHash($blockhash,$fulltx,$incltx,$withsigners,$inclstaking)){
+		$hmyv2_getBlockByHash_data = $phph1->hmyv2_getBlockByHash($blockhash,$fulltx,$incltx,$withsigners,$inclstaking);
 	}else{
 		$validinput = 0;
 		echo "<p>INVALID INPUT</p>";
@@ -110,13 +110,11 @@ if($phph1_debug == 1){
 	
 	echo "<br />VARIABLE TYPES FOR THIS REQUEST:";
 	echo "<br />fulltx: ".gettype($fulltx);
-	echo "<br />incltx: ".gettype($incltx);
 	echo "<br />inclstaking: ".gettype($inclstaking);
 	echo "<br />withsigners: ".gettype($withsigners)."<br />";
 	
 	echo "<br />VARIABLE VALUES (NOTE: FALSE BOOLEANS WILL SHOW UP EMPTY):";
 	echo "<br />fulltx:".$fulltx;
-	echo "<br />incltx:".$incltx;
 	echo "<br />inclstaking:".$inclstaking;
 	echo "<br />withsigners:".$withsigners;
 	
@@ -127,7 +125,7 @@ if($phph1_debug == 1){
 ?>
 
 <form method="GET">
-	<p><label for="blocknum">Block Number: </label><input type="text" id="blocknum" name="blocknum"  size="60" maxlength="100" value="<?php if(isset($blocknum)){ echo $blocknum; } ?>" /></p>
+	<p><label for="blockhash">Block Hash: </label><input type="text" id="blockhash" name="blockhash"  size="60" maxlength="100" value="<?php if(isset($blockhash)){ echo $blockhash; } ?>" /></p>
 	
 	<p><label for="fulltx">Show Full Transaction Data:</label>
 	<select name="fulltx" id="fulltx" data-bind="booleanValue: state">
@@ -160,7 +158,7 @@ if($phph1_debug == 1){
 
 	
 	<p><input type="hidden" id="do" name="do" value="1" />
-	<input type="hidden" id="method" name="method" value="hmyv2_getBlockByNumber" />
+	<input type="hidden" id="method" name="method" value="hmyv2_getBlockByHash" />
 	<input type='submit' name='Submit' /></p>
 </form>
 
@@ -175,7 +173,7 @@ if($validinput == 1){
 		echo "<p style='color:green;'>This JSON RPC Request:<br />".$phph1->lastjson."</p>";
 	}
 	echo "<pre>";
-	print_r($getBlockByNumber_data);
+	print_r($hmyv2_getBlockByHash_data);
 	echo "</pre>";
 	
 }
