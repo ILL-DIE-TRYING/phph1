@@ -24,7 +24,7 @@ I highly suggest running this under SSL
 # USAGE
 All functions within the class use the same naming convention and input as the Harmony Node Api which you can browse through here: https://api.hmny.io/
 
-Download everything, drop it in a web directory where PHP is enabled and browse to index.php.
+Download everything, drop it in a web directory where PHP (with PHP_CURL) is enabled and browse to index.php.
 
 Have fun!
 
