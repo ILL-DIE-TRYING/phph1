@@ -16,16 +16,15 @@ PHPH1 is a PHP class that bridges the Harmony ONE Node API to PHP.
 
 The goal is to implement every Node API request and make it simple for a dev to input the data and retrieve the results in an easy to use data array.
 
+# REQUIREMENTS
+You must have PHP_CURL module enabled.
+
+I highly suggest running this under SSL
+
 # USAGE
 All functions within the class use the same naming convention and input as the Harmony Node Api which you can browse through here: https://api.hmny.io/
 
-There are three files:
-
-config.php : Configuration settings for the PHPH1 class
-
-phph1.php : The PHPH1 class itself
-
-example_gettransactions.php : An example that gets all transactions available for a ONE address
+Download everything, drop it in a web directory where PHP is enabled and browse to index.php.
 
 Have fun!
 
