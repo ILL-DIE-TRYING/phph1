@@ -54,4 +54,13 @@ $def_pagesize = 10;
 Maximum number of results per page
 */
 $max_pagesize = 20;
+
+/* Array of available methods */
+
+$hmyv2_methods = array(
+	'hmyv2_getTransactionsHistory',
+	'hmyv2_getBlockByNumber',
+	'hmyv2_getBalance',
+	'hmyv2_getBalanceByBlockNumber'
+	);
 ?>
