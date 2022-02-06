@@ -44,6 +44,7 @@
   overflow: auto;
   border: 1px solid #ddd;
   z-index: 1;
+  height:300px;
 }
 
 .dropdown-content a {
@@ -51,6 +52,7 @@
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  
 }
 
 .dropdown a:hover {background-color: #ddd;}
@@ -119,6 +121,7 @@ function filterMethodInput() {
 </script>
 
 <?php
+#echo 'methods/'.$hmyv2_include_page.'.php';
 include('methods/'.$hmyv2_include_page.'.php');
 ?>
 

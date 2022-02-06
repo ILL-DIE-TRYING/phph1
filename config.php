@@ -61,6 +61,21 @@ $hmyv2_methods = array(
 	'hmyv2_getTransactionsHistory',
 	'hmyv2_getBlockByNumber',
 	'hmyv2_getBalance',
-	'hmyv2_getBalanceByBlockNumber'
+	'hmyv2_getBalanceByBlockNumber',
+	'hmyv2_getTransactionsCount',
+	'hmyv2_protocolVersion',
+	'hmyv2_getEpoch',
+	'hmyv2_gasPrice',
+	'hmyv2_getBlockByHash',
+	'hmyv2_getBlocks',
+	'hmyv2_getBlockTransactionCountByHash',
+	'hmyv2_getBlockTransactionCountByNumber',
+	'hmyv2_latestHeader',
+	'hmyv2_blockNumber',
+	'hmyv2_getTransactionByHash',
+	'hmyv2_getTransactionReceipt',
+	'hmyv2_getTransactionByBlockNumberAndIndex',
+	'hmyv2_getTransactionByBlockHashAndIndex',
+	'hmyv2_pendingTransactions'
 	);
 ?>

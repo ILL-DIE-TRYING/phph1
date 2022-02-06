@@ -5,7 +5,11 @@ class phph1{
 	public ?string $apiaddr;
 	public ?string $blockaddr;
 	public ?string $blocknum;
+	public ?string $blocknum2;
+	public ?string $blockhash;
+	public ?string $hash;
 	public ?string $oneaddr;
+	public ?string $lastjson;
 	public ?int $phph1_debug;
 	public ?array $methods;
 	public ?int $maxpagesize;
@@ -68,6 +72,7 @@ class phph1{
 		
 		$thisjson = json_encode($rdata);
 		
+		$this->lastjson = $thisjson;
 		if($this->phph1_debug == 1){
 			echo "<pre style='color:blue;'>PHPH1 FUNCTION genjsonrequest thisjson: <br />";
 			print_r($thisjson);
@@ -161,7 +166,7 @@ class phph1{
 		return $this->docurlrequest($thisjson);
 	}
 	
-	function hmyv2_getBlockByHash($blockhash,$fulltxt = true,$withsigners = false,$inclstaking = false){
+	function hmyv2_getBlockByHash($blockhash,$fulltx = true,$incltx=false,$withsigners = false,$inclstaking = false){
 		/*
 		Params:
 		$blocknum = The block hash
@@ -170,12 +175,14 @@ class phph1{
 		$inclstaking = To show staking txs or not (TRUE or FALSE)
 		*/
 		#$xparams = array($fulltxt,$withsigners,$inclstaking);
+		
 		$method = "hmyv2_getBlockByHash";
 		$params = [
 				$blockhash,
 				[
-				'fullText' => $fulltxt,
-				'inclTx' => $withsigners,
+				'fullTx' => $fulltx,
+				'inclTx' => $incltx,
+				'withSigners' => $withsigners,
 				'inclStaking' => $inclstaking
 				]
 				];
@@ -199,8 +206,8 @@ class phph1{
 				$strtblocknum,
 				$endblocknum,
 				[
-				'fullText' => $fulltxt,
-				'inclTx' => $withsigners,
+				'fullTx' => $fulltxt,
+				'withSigners' => $withsigners,
 				'inclStaking' => $inclstaking
 				]
 			];
@@ -748,6 +755,22 @@ class phph1{
 		}
 	}
 	
+	function val_blockhash($blockhash){
+		if(isset($blockhash) && preg_match( '/^[a-z0-9]+$/', $blockhash) && strlen($blockhash) <= 100){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+	
+	function val_hash($hash){
+		if(isset($hash) && preg_match( '/^[a-z0-9]+$/', $hash) && strlen($hash) <= 100){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+	
 	function val_getTransactionsHistory($oneaddr,$page,$pagesize,$fulltx,$txtype,$order){
 		$notvalid = 0;
 		if(isset($page) && !preg_match( '/^[0-9]+$/', $page)){$notvalid = 1; echo '<br />$page:'.$page;}
@@ -777,6 +800,59 @@ class phph1{
 			return 0;
 		}
 	}
+	
+	function val_getBlocks($blocknum1,$blocknum2,$fulltx,$withsigners,$inclstaking){
+		$notvalid = 0;
+		//if(isset($blocknum) && !preg_match( '/^[0-9]+$/', $blocknum)){$notvalid = 1; echo '<br />$blocknum:'.$blocknum;}
+		if(isset($fulltx) && $fulltx != TRUE && $fulltx != FALSE && !is_bool($fulltx)){$notvalid = 1; echo '<br />$fulltx:'.$fulltx;}
+		//if(isset($incltx) && $incltx != TRUE && $incltx != FALSE && !is_bool($incltx)){$notvalid = 1; echo '<br />$incltx:'.$incltx;}
+		if(isset($inclstaking) && $inclstaking != TRUE && $inclstaking != FALSE && !is_bool($inclstaking)){$notvalid = 1; echo '<br />$inclstaking:'.$inclstaking;}
+		if(isset($withsigners) && $withsigners != TRUE && $withsigners != FALSE && !is_bool($withsigners)){$notvalid = 1; echo '<br />$withsigners:'.$withsigners;}
+		
+		if($notvalid == 0){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+	
+	function val_getBlockByHash($blockhash,$fulltx,$inclTx,$withsigners,$inclstaking){
+		$notvalid = 0;
+		if(isset($fulltx) && $fulltx != TRUE && $fulltx != FALSE && !is_bool($fulltx)){$notvalid = 1; echo '<br />$fulltx:'.$fulltx;}
+		if(isset($incltx) && $incltx != TRUE && $incltx != FALSE && !is_bool($incltx)){$notvalid = 1; echo '<br />$incltx:'.$incltx;}
+		if(isset($inclstaking) && $inclstaking != TRUE && $inclstaking != FALSE && !is_bool($inclstaking)){$notvalid = 1; echo '<br />$inclstaking:'.$inclstaking;}
+		if(isset($withsigners) && $withsigners != TRUE && $withsigners != FALSE && !is_bool($withsigners)){$notvalid = 1; echo '<br />$withsigners:'.$withsigners;}
+		
+		if($notvalid == 0){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+	
+	
+	function val_getTransactionByBlockNumberAndIndex($blocknum,$tindex){
+		$notvalid = 0;
+		if(isset($tindex) && is_numeric($tindex) &&  !preg_match( '/^[0-9]+$/', $tindex)){$notvalid = 1; echo '<br />$tindex:'.$tindex;}
+		
+		if($notvalid == 0){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+	
+	function val_getTransactionByBlockHashAndIndex($blockhash,$tindex){
+		$notvalid = 0;
+		if(isset($tindex) && is_numeric($tindex) &&  !preg_match( '/^[0-9]+$/', $tindex)){$notvalid = 1; echo '<br />$tindex:'.$tindex;}
+		
+		if($notvalid == 0){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+	
 }
 
 ?>
