@@ -119,7 +119,7 @@ function filterMethodInput() {
 </script>
 
 <?php
-include($hmyv2_include_page.'.php');
+include('methods/'.$hmyv2_include_page.'.php');
 ?>
 
 </body>
