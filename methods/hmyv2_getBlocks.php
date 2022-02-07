@@ -1,4 +1,3 @@
-<h3>Get Blocks Between Two Block Numbers ( hmyv2_getBlocks )</h3>
 <?php
 
 

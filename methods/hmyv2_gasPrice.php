@@ -1,4 +1,3 @@
-<h3>Get Harmony Gas Price ( hmyv2_gasPrice )</h3>
 <?php
 
 

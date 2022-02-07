@@ -1,4 +1,3 @@
-<h3>Get Harmony Latest Header ( hmyv2_latestHeader )</h3>
 <?php
 
 

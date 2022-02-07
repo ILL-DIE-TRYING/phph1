@@ -1,15 +1,17 @@
 <?php
 
+
 /*
 Nothing to validate here so set this to 1
 */
 $validinput = 1;
 
+
 // unset the boothandle
 unset($phph1_boothandle);
 
 // Get the transactions
-$hmyv2_getEpoch_data = $phph1->hmyv2_getEpoch();
+$hmyv2_getCurrentStakingErrorSink_data = $phph1->hmyv2_getCurrentStakingErrorSink();
 
 if($phph1_debug == 1){
 	
@@ -31,12 +33,12 @@ if($phph1_debug == 1){
 if($validinput == 1){
 	
 	// You can view the raw array here
-	echo "<h2>HARMONY CURRENT EPOCH ARRAY</h2>";
+	echo "<h2>GET CURRENT STAKING ERROR SINK ARRAY</h2>";
 	if(isset($phph1->lastjson)){
 		echo "<p style='color:green;'>This JSON RPC Request:<br />".$phph1->lastjson."</p>";
 	}
 	echo "<pre>";
-	print_r($hmyv2_getEpoch_data);
+	print_r($hmyv2_getCurrentStakingErrorSink_data);
 	echo "</pre>";
 	
 }

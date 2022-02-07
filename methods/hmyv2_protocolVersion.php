@@ -1,4 +1,3 @@
-<h3>Get Harmony Protocol Version ( hmyv2_protocolVersion )</h3>
 <?php
 
 

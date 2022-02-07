@@ -1,4 +1,3 @@
-<h3>Get Harmony Pending Transactions ( hmyv2_pendingTransactions )</h3>
 <?php
 
 

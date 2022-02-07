@@ -1,20 +1,22 @@
 <?php
 
-// Validate Block Number
-if(isset($_GET['hash']) && $phph1_boothandle->val_hash($_GET['hash']) && isset($_GET['do']) && $_GET['do'] == 1){
+/*
+Validate the one address
+*/
+if(isset($_GET['epoch']) && $phph1->val_epoch($_GET['epoch']) && isset($_GET['do']) && $_GET['do'] == 1){
 	$validinput = 1;
 	// This is the handle that actually gets used in the page
 	$phph1 = new phph1($apiaddr,$phph1_debug);
-	$phph1->hash = $_GET['hash'];
-	$hash = $phph1->hash;
+	$epoch = $_GET['epoch'];
 }
+
 
 // unset the boothandle
 unset($phph1_boothandle);
 
 // Get the transactions
 if($validinput == 1){
-	$hmyv2_getTransactionByHash_data = $phph1->hmyv2_getTransactionByHash($hash);
+	$hmyv2_getValidators_data = $phph1->hmyv2_getValidators($epoch);
 }elseif(isset($_GET['do']) && $_GET['do'] == 1){
 	$validinput = 0;
 	echo "<p>INVALID INPUT</p>";
@@ -33,10 +35,9 @@ if($phph1_debug == 1){
 ?>
 
 <form method="GET">
-	<p><label for="hash">Hash: </label><input type="text" id="hash" name="hash"  size="60" maxlength="100" value="<?php if(isset($hash)){ echo $hash; } ?>" /></p>
-
+	<p><label for="epoch">Epoch: </label><input type="text" id="epoch" name="epoch"  size="60" maxlength="42" value="<?php if(isset($epoch)){ echo $epoch; } ?>" /></p>	
 	<p><input type="hidden" id="do" name="do" value="1" />
-	<input type="hidden" id="method" name="method" value="hmyv2_getTransactionByHash" />
+	<input type="hidden" id="method" name="method" value="hmyv2_getValidators" />
 	<input type='submit' name='Submit' /></p>
 </form>
 
@@ -46,12 +47,12 @@ if($phph1_debug == 1){
 if($validinput == 1){
 	
 	// You can view the raw array here
-	echo "<h2>TRANSACTION INFORMATION ARRAY</h2>";
+	echo "<h2>VALIDATORS ARRAY</h2>";
 	if(isset($phph1->lastjson)){
 		echo "<p style='color:green;'>This JSON RPC Request:<br />".$phph1->lastjson."</p>";
 	}
 	echo "<pre>";
-	print_r($hmyv2_getTransactionByHash_data);
+	print_r($hmyv2_getValidators_data);
 	echo "</pre>";
 	
 }

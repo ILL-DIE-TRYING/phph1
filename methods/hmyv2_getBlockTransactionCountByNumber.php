@@ -1,4 +1,3 @@
-<h3>Get Block By Block Number ( hmyv2_getBlockByNumber )</h3>
 <?php
 
 

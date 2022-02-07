@@ -1,4 +1,3 @@
-<h3>Get Transaction Receipt ( hmyv2_getTransactionReceipt )</h3>
 <?php
 
 
@@ -49,7 +48,7 @@ unset($phph1_boothandle);
 // Get the transactions
 if($validinput == 1){
 	$hmyv2_getTransactionReceipt_data = $phph1->hmyv2_getTransactionReceipt($hash);
-}else{
+}elseif(isset($_GET['do']) && $_GET['do'] == 1){
 	$validinput = 0;
 	echo "<p>INVALID INPUT</p>";
 }

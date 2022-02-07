@@ -1,4 +1,3 @@
-<h3>Get Block Transaction Count By Block Hash ( hmyv2_getBlockTransactionCountByHash )</h3>
 <?php
 
 

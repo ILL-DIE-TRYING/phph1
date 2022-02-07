@@ -1,4 +1,3 @@
-<h3>Get Block By Block Hash ( hmyv2_getBlockByHash )</h3>
 <?php
 
 

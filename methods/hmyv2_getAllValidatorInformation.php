@@ -10,7 +10,18 @@ ALWAYS wrap your output code in this: if($validoutput ==1){   YOURCODEGOESHERE  
 */
 $validinput = 1;
 
+require_once('config.php');
+require_once('phph1.php');
+
 $phph1 = new phph1($apiaddr, $phph1_debug);
+
+/*
+This handle is temporary and is used to validate
+the variables for the $phph1 handle to successfully and safely load
+it will get destroyed once we have the real handle
+*/
+$phph1_boothandle = new phph1($apiaddr,$phph1_debug);
+
 
 // Show the raw GET request BE CAREFULL!
 // IF DEBUGGING IS TURNED ON IN PRODUCTION 
@@ -22,8 +33,11 @@ if($phph1_debug == 1){
 }
 
 
+// unset the boothandle
+unset($phph1_boothandle);
+
 // Get the transactions
-$hmyv2_latestHeader_data = $phph1->hmyv2_blockNumber();
+$hmyv2_getAllValidatorInformation_data = $phph1->hmyv2_getAllValidatorInformation();
 
 if($phph1_debug == 1){
 	
@@ -45,12 +59,12 @@ if($phph1_debug == 1){
 if($validinput == 1){
 	
 	// You can view the raw array here
-	echo "<h2>HARMONY CURRENT BLOCK ARRAY</h2>";
+	echo "<h2>HARMONY PENDING TRANSACTIONS ARRAY</h2>";
 	if(isset($phph1->lastjson)){
 		echo "<p style='color:green;'>This JSON RPC Request:<br />".$phph1->lastjson."</p>";
 	}
 	echo "<pre>";
-	print_r($hmyv2_latestHeader_data);
+	print_r($hmyv2_getAllValidatorInformation_data);
 	echo "</pre>";
 	
 }

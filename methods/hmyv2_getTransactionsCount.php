@@ -1,4 +1,3 @@
-<h3>Get Wallet Transaction Count ( hmyv2_getTransactionsCount )</h3>
 <?php
 
 

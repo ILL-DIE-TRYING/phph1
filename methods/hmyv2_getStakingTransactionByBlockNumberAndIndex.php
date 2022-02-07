@@ -26,7 +26,7 @@ if($validinput == 1){
 	
 	// Validate the input and run our call if the data is good
 	if($phph1->val_getTransactionByBlockNumberAndIndex($blocknum,$txindex)){
-		$hmyv2_getTransactionByBlockNumberAndIndex_data = $phph1->hmyv2_getTransactionByBlockNumberAndIndex($blocknum,$txindex);
+		$hmyv2_getStakingTransactionByBlockNumberAndIndex_data = $phph1->hmyv2_getStakingTransactionByBlockNumberAndIndex($blocknum,$txindex);
 	}else{
 		$validinput = 0;
 		echo "<p>INVALID INPUT</p>";
@@ -49,7 +49,7 @@ if($phph1_debug == 1){
 	<p><label for="blocknum">Block Number: </label><input type="text" id="blocknum" name="blocknum"  size="60" maxlength="100" value="<?php if(isset($blocknum)){ echo $blocknum; } ?>" /></p>
 	<p><label for="txindex">Transaction Index: </label><input type="text" id="txindex" name="txindex"  size="20" maxlength="20" value="<?php if(isset($txindex)){ echo $txindex; } ?>" /></p>
 	<p><input type="hidden" id="do" name="do" value="1" />
-	<input type="hidden" id="method" name="method" value="hmyv2_getTransactionByBlockNumberAndIndex" />
+	<input type="hidden" id="method" name="method" value="hmyv2_getStakingTransactionByBlockNumberAndIndex" />
 	<input type='submit' name='Submit' /></p>
 </form>
 
@@ -64,7 +64,7 @@ if($validinput == 1){
 		echo "<p style='color:green;'>This JSON RPC Request:<br />".$phph1->lastjson."</p>";
 	}
 	echo "<pre>";
-	print_r($hmyv2_getTransactionByBlockNumberAndIndex_data);
+	print_r($hmyv2_getStakingTransactionByBlockNumberAndIndex_data);
 	echo "</pre>";
 	
 }

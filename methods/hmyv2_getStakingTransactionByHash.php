@@ -8,48 +8,28 @@ if(isset($_GET['blockhash']) && $phph1_boothandle->val_blockhash($_GET['blockhas
 	$blockhash = $phph1->blockhash;
 }
 
-
 // unset the boothandle
 unset($phph1_boothandle);
 
 // Get the transactions
 if($validinput == 1){
-	/*
-	If txindex isn't set then we will set it to 0 by default
-	*/
-	if(isset($_GET['txindex']) && !empty($_GET['txindex'])){
-		// We have to do this on boolean items to convert the GET data to a PHP boolean value
-		$txindex = $_GET['txindex'];
-	}else{
-		$txindex = 0;
-	}
-	
+
 	// Validate the input and run our call if the data is good
-	if($phph1->val_getTransactionByBlockHashAndIndex($blockhash,$txindex)){
-		$hmyv2_getTransactionByBlockHashAndIndex_data = $phph1->hmyv2_getTransactionByBlockHashAndIndex($blockhash,$txindex);
+	if($phph1->hmyv2_getStakingTransactionByHash($blockhash)){
+		$hmyv2_getStakingTransactionByHash_data = $phph1->hmyv2_getStakingTransactionByHash($blockhash);
 	}else{
 		$validinput = 0;
 		echo "<p>INVALID INPUT</p>";
 	}
 }
 
-if($phph1_debug == 1){
-	
-	echo "<p style='color:blue;'>";
-	
-	echo "<br />DO WE HAVE VALID INPUT?: ".$validinput."<br />";
-	
-	echo "</p>";
-}
-
-
 ?>
 
 <form method="GET">
 	<p><label for="blockhash">Block Hash: </label><input type="text" id="blockhash" name="blockhash"  size="60" maxlength="100" value="<?php if(isset($blockhash)){ echo $blockhash; } ?>" /></p>
-	<p><label for="txindex">Transaction Index: </label><input type="text" id="txindex" name="txindex"  size="20" maxlength="20" value="<?php if(isset($txindex)){ echo $txindex; } ?>" /></p>
+	
 	<p><input type="hidden" id="do" name="do" value="1" />
-	<input type="hidden" id="method" name="method" value="hmyv2_getTransactionByBlockHashAndIndex" />
+	<input type="hidden" id="method" name="method" value="hmyv2_getStakingTransactionByHash" />
 	<input type='submit' name='Submit' /></p>
 </form>
 
@@ -59,12 +39,12 @@ if($phph1_debug == 1){
 if($validinput == 1){
 	
 	// You can view the raw array here
-	echo "<h2>TRANSACTION ARRAY</h2>";
+	echo "<h2>GET STAKING TRANSACTION BY HASH ARRAY</h2>";
 	if(isset($phph1->lastjson)){
 		echo "<p style='color:green;'>This JSON RPC Request:<br />".$phph1->lastjson."</p>";
 	}
 	echo "<pre>";
-	print_r($hmyv2_getTransactionByBlockHashAndIndex_data);
+	print_r($hmyv2_getStakingTransactionByHash_data);
 	echo "</pre>";
 	
 }

@@ -1,5 +1,3 @@
-<h3>Get Wallet Transactions History ( hmyv2_getTransactionsHistory )</h3>
-
 <?php
 /*
 We start with a default of no input is good input

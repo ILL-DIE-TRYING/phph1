@@ -1,4 +1,3 @@
-<h3>Get Wallet Balance by Block Number ( hmyv2_getBalanceByBlockNumber )</h3>
 <?php
 
 
