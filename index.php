@@ -62,8 +62,8 @@
 </head>
 <body>
 <?php
-	include('config.php');
-	include('phph1.php');
+	require_once('config.php');
+	require_once('phph1.php');
 	if(isset($hmyv2_methods) && isset($_GET['method']) && in_array($_GET['method'], $hmyv2_methods)){
 		$hmyv2_include_page = $_GET['method'];
 	}
@@ -121,8 +121,42 @@ function filterMethodInput() {
 </script>
 
 <?php
-#echo 'methods/'.$hmyv2_include_page.'.php';
-include('methods/'.$hmyv2_include_page.'.php');
+if(isset($hmyv2_include_page)){
+	/*
+	We start with a default of no input is good input
+	This way we have to explicitely tell it that it is okay to run the calls (security)
+	there are val_ requests at the bottom of the class.
+	NEVER remove/comment this line
+	ALWAYS wrap your output code in this: if($validoutput ==1){   YOURCODEGOESHERE   };
+	*/
+	$validinput = 0;
+
+	require_once('config.php');
+	require_once('phph1.php');
+
+	$phph1 = new phph1($apiaddr, $phph1_debug);
+
+	/*
+	This handle is temporary and is used to validate
+	the variables for the $phph1 handle to successfully and safely load
+	it will get destroyed once we have the real handle
+	*/
+	$phph1_boothandle = new phph1($apiaddr,$phph1_debug);
+
+
+	// Show the raw GET request BE CAREFULL!
+	// IF DEBUGGING IS TURNED ON IN PRODUCTION 
+	// AN ATTACKER COULD POTENTIALLY INJECT CODE INTO THE PAGE
+	if($phph1_debug == 1){
+		echo "<pre style='color:blue;'><br />GET DATA:<br />";
+		print_r($_GET);
+		echo "<br /></pre>";
+	}
+	echo "<h3>".$hmyv2_include_page."</h3>";
+	include('methods/'.$hmyv2_include_page.'.php');
+}else{
+	require_once('index_body.php');
+}	
 ?>
 
 </body>

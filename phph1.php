@@ -418,7 +418,7 @@ class phph1{
 	### STAKING->VALIDATOR REQUESTS ###
 	###################################
 	
-	function hmyv2_getValidators($epoch = 1){
+	function hmyv2_getValidators(?int $epoch = 1){
 		/*
 		Params:
 		$epoch = 		
@@ -757,6 +757,14 @@ class phph1{
 	
 	function val_blockhash($blockhash){
 		if(isset($blockhash) && preg_match( '/^[a-z0-9]+$/', $blockhash) && strlen($blockhash) <= 100){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+	
+	function val_epoch($epoch){
+		if(isset($epoch) && preg_match( '/^[0-9]+$/', $epoch) && strlen($epoch) <= 100){
 			return 1;
 		}else{
 			return 0;

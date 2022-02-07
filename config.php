@@ -56,7 +56,6 @@ Maximum number of results per page
 $max_pagesize = 20;
 
 /* Array of available methods */
-
 $hmyv2_methods = array(
 	'hmyv2_getTransactionsHistory',
 	'hmyv2_getBlockByNumber',
@@ -76,6 +75,27 @@ $hmyv2_methods = array(
 	'hmyv2_getTransactionReceipt',
 	'hmyv2_getTransactionByBlockNumberAndIndex',
 	'hmyv2_getTransactionByBlockHashAndIndex',
-	'hmyv2_pendingTransactions'
+	'hmyv2_pendingTransactions',
+	'hmyv2_getValidators',
+	'hmyv2_getAllValidatorAddresses',
+	'hmyv2_getAllValidatorInformation',
+	'hmyv2_getElectedValidatorAddresses',
+	'hmyv2_getValidatorInformation',
+	'hmyv2_isBlockSigner',
+	'hmyv2_getDelegationsByValidator',
+	'hmyv2_getDelegationsByDelegator',
+	'hmyv2_getStakingTransactionByHash',
+	'hmyv2_getStakingTransactionByBlockNumberAndIndex',
+	'hmyv2_getStakingTransactionByBlockHashAndIndex',
+	'hmyv2_getCurrentUtilityMetrics',
+	'hmyv2_getSuperCommittees',
+	'hmyv2_getStakingNetworkInfo',
+	'hmyv2_getMedianRawStakeSnapshot',
+	'hmyv2_getCirculatingSupply',
+	'hmyv2_getTotalSupply',
+	'hmyv2_getCurrentStakingErrorSink',
+	'hmyv2_getPendingCXReceipts',
+	'hmyv2_getCXReceiptByHash',
+	'hmyv2_getBlockSigners'
 	);
 ?>
