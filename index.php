@@ -2,63 +2,9 @@
 <html lang="us">
 <head>
 <meta charset="utf-8">
-<title>PHPH1 EXAMPLE EXPLORER</title>
+<title>PHPH1 :: A Harmony ONE Node API PHP Class</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-.dropbtn {
-  background-color: #04AA6D;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #3e8e41;
-}
-
-#myInput {
-  box-sizing: border-box;
-  background-image: url('searchicon.png');
-  background-position: 14px 12px;
-  background-repeat: no-repeat;
-  font-size: 16px;
-  padding: 14px 20px 12px 45px;
-  border: none;
-  border-bottom: 1px solid #ddd;
-}
-
-#myInput:focus {outline: 3px solid #ddd;}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f6f6f6;
-  min-width: 230px;
-  overflow: auto;
-  border: 1px solid #ddd;
-  z-index: 1;
-  height:300px;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  
-}
-
-.dropdown a:hover {background-color: #ddd;}
-
-.show {display: block;}
-</style>
+<link rel="stylesheet" href="phph1.css">
 </head>
 <body>
 <?php
@@ -68,39 +14,47 @@
 		$hmyv2_include_page = $_GET['method'];
 	}
 ?>
-<h1><a href="index.php">PHPH1 HOME</a></h1>
+<h1><a href="index.php">PHPH1</a></h1>
+<h2>A Harmony ONE Node API PHP Class</h2>
 
 <div class="dropdown">
-  <button onclick="LoadMethod()" class="dropbtn">METHODS</button>
+  <button onclick="LoadMethod()" onblur="startListener()" class="dropbtn" id="dropbtn">METHOD EXPLORER</button>
   <div id="LoadMethodDropdown" class="dropdown-content">
-    <input type="text" placeholder="Search.." id="LoadMethodInput" onkeyup="filterMethodInput()">
-	<?php
-	
-	foreach($hmyv2_methods as $amethod){
-		echo '<a href="/?method='.$amethod.'">'.$amethod.'</a>';
-	}
-	?>
-	<!--
-    <a href="/?method=hmyv2_getTransactionsHistory">hmyv2_getTransactionsHistory</a>
-    <a href="/?method=hmyv2_getBlockByNumber">hmyv2_getBlockByNumber</a>
-    <a href="/?method=hmyv2_getBalance">hmyv2_getBalance</a>
-    <a href="/?method=hmyv2_getBalanceByBlockNumber">hmyv2_getBalanceByBlockNumber</a>
-	-->
+	<div class="dropdown-header">
+    <input type="text" placeholder="Search.." id="LoadMethodInput" class="searchbox" onkeyup="filterMethodInput()">
+	</div>
+	<div class="dropdown-list">
+	<?php foreach($hmyv2_methods as $amethod){ echo '<a href="/?method='.$amethod.'">'.$amethod.'</a>';}?>
+	</div>
   </div>
 </div>
-
-<!--
-<p><a href="hmyv2_getTransactionsHistory.php">Get Wallet Transactions History</a></p>
-<p><a href="hmyv2_getBlockByNumber.php">Get Block By Block Number</a></p>
-<p><a href="hmyv2_getBalance.php">Get Wallet Balance</a></p>
-<p><a href="hmyv2_getBalanceByBlockNumber.php">Get Wallet Balance by Block Number</a></p>
--->
 
 <script>
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
 function LoadMethod() {
   document.getElementById("LoadMethodDropdown").classList.toggle("show");
+}
+
+function startListener() {
+  document.documentElement.addEventListener('click', closeMenuOnBodyClick);
+}
+
+function closeMenu(){
+  document.getElementById("LoadMethodDropdown").classList.remove('show');
+  // remove event listener from the html element
+  document.documentElement.removeEventListener('click', closeMenuOnBodyClick);
+}
+
+function closeMenuOnBodyClick(event){
+  // get the event path
+  const path = event.composedPath();
+  // check if it has the menu element
+  if (path.some(elem => elem.id === 'LoadMethodDropdown')) {
+    // terminate this function if it does
+    return;
+  }
+  closeMenu();
 }
 
 function filterMethodInput() {
@@ -143,15 +97,6 @@ if(isset($hmyv2_include_page)){
 	*/
 	$phph1_boothandle = new phph1($apiaddr,$phph1_debug);
 
-
-	// Show the raw GET request BE CAREFULL!
-	// IF DEBUGGING IS TURNED ON IN PRODUCTION 
-	// AN ATTACKER COULD POTENTIALLY INJECT CODE INTO THE PAGE
-	if($phph1_debug == 1){
-		echo "<pre style='color:blue;'><br />GET DATA:<br />";
-		print_r($_GET);
-		echo "<br /></pre>";
-	}
 	echo "<h3>".$hmyv2_include_page."</h3>";
 	include('methods/'.$hmyv2_include_page.'.php');
 }else{
