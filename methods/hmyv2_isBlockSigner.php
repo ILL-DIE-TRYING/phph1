@@ -1,73 +1,109 @@
 <?php
-/*
-Validate the one address
-*/
-if(isset($_GET['oneaddr']) && $phph1_boothandle->val_oneaddr($_GET['oneaddr']) && isset($_GET['do']) && $_GET['do'] == 1){
-	$validaddr = 1;
-	// This is the handle that actually gets used in the page
-	$phph1 = new phph1($apiaddr,$phph1_debug);
-	$phph1->oneaddr = $_GET['oneaddr'];
-	$oneaddr = $phph1->oneaddr;
-}
+if(isset($valid_blocknum) && $valid_blocknum == 1 && isset($valid_oneaddr) && $valid_oneaddr == 1){
+	if($phph1->phph1_debug == 1){
+		echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
+	}
 
-// Validate Block Number
-if(isset($_GET['blocknum']) && $phph1_boothandle->val_blocknum($_GET['blocknum']) && isset($_GET['do']) && $_GET['do'] == 1){
-	$validbn = 1;
-	// This is the handle that actually gets used in the page
-	$phph1 = new phph1($apiaddr,$phph1_debug);
-	$phph1->blocknum = $_GET['blocknum'];
-	$blocknum = $phph1->blocknum;
-}
-
-if(isset($validaddr) && isset($validbn) && $validaddr == 1 && $validbn == 1){
+	/*
+	* We are already validated in advance
+	*/
 	$validinput = 1;
-}
-
-// unset the boothandle
-unset($phph1_boothandle);
-
-// Get the transactions
-if($validinput == 1){
-	$hmyv2_isBlockSigner_data = $phph1->hmyv2_isBlockSigner($oneaddr,$blocknum);
-}elseif(isset($_GET['do']) && $_GET['do'] == 1){
-		echo "<p>INVALID INPUT</p>";
-}
-
-if($phph1_debug == 1){
 	
-	echo "<p style='color:blue;'>";
-	
-	echo "<br />DO WE HAVE VALID INPUT?: ".$validinput."<br />";
-	
-	echo "</p>";
-}
+	$hmyv2_data = $phph1->hmyv2_isBlockSigner($oneaddr,$blocknum);
 
+	/**
+	* End debug info display area
+	*/
+	if($phph1->phph1_debug == 1){
+			echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>";
+	}
+
+/**
+* Show our errors if we have them
+*/
+}elseif(isset($_GET['do'])){
+		echo '<div class="error_div">';
+		echo '<p class="hmyv2_errors">Error:';
+		$errnum = 1;
+		foreach($phph1->errors as $anerror){
+			if($errnum == 1){
+				echo ' <span class="hmyv2_error">'.$anerror.'</span>';
+				$errnum=0;
+			}else{
+				echo '<span class="hmyv2_error">, '.$anerror.'</span>';
+			}
+		}
+		echo '</p></div>';
+}
+	
+/**
+* Check if this is a RPC call
+* If not show the html output of the method explorer
+*/
+if($phph1->rpc_call != 1){
 
 ?>
+<div class="info_container" >
+		<div class="infoRow">
+			<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
+			<div id="infoContent" class="infoContent">
 
-<form method="GET">
-	<p><label for="oneaddr">Validator Address: </label><input type="text" id="oneaddr" name="oneaddr"  size="60" maxlength="42" value="<?php if(isset($oneaddr)){ echo $oneaddr; } ?>" /></p>	
-	<p><label for="blocknum">Block Number: </label><input type="text" id="blocknum" name="blocknum"  size="60" maxlength="100" value="<?php if(isset($blocknum)){ echo $blocknum; } ?>" /></p>
-	<p><input type="hidden" id="do" name="do" value="1" />
-	<input type="hidden" id="method" name="method" value="hmyv2_isBlockSigner" />
-	
-	<input type='submit' name='Submit' /></p>
-</form>
+				<h3 class="infoHeader">Parameters</h3>
+				<ul class="infoObjects" >
+				
+					<li><div class="ioobjectWrap"><span>address</span> - <span >String</span> :</div>
+					<div class="iodefWrap">Validator address</div></li>
+					
+					<li><div class="ioobjectWrap"><span >blocknum</span> - <span >Number</span>:</div>
+					<div class="iodefWrap">Block number.</div></li>
+					
+				</ul>
+				
+				<h3 class="infoHeader">Returns</h3>
+				<ul class="infoObjects">
+					<li><div class="ioobjectWrap"><span >FIXME</span></div> 
+					<div class="iodefWrap">FIXME.</div></li>
+				</ul>
+			</div>
+		</div>
+	</div>
 
+<div class="form_container">
+		<div id="formcontent">
+		<form method="get">
+			<div class="row">
+				<div class="col-25">
+					<label for="oneaddr">Wallet Address: </label>
+				</div><div class="col-75">
+					<input style="background: orange;" type="text" id="oneaddr" name="oneaddr" maxlength="42" value="<?php if(isset($oneaddr)){ echo $oneaddr; } ?>" />
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-25">
+					<label for="blocknum">Block Number: </label>
+				</div><div class="col-75">
+					<input style="background: orange;" type="text" id="blocknum" name="blocknum" maxlength="42" value="<?php if(isset($blocknum)){ echo $blocknum; } ?>" />
+				</div>
+			</div>
+			
+			<div class="row">
+				<input type="hidden" id="do" name="do" value="1" />
+				<input type="hidden" id="method" name="method" value="hmyv2_isBlockSigner" />
+				<input type='submit' name='Submit' class="form_submit" />
+			</div>
+			
+			</form>
+		</div>
+	</div>
 <br />
 
 <?php
-if($validinput == 1){
-	
-	// You can view the raw array here
-	echo "<h2>IS BLOCK SIGNER ARRAY</h2>";
-	if(isset($phph1->lastjson)){
-		echo "<p style='color:green;'>This JSON RPC Request:<br />".$phph1->lastjson."</p>";
-	}
-	echo "<pre>";
-	print_r($hmyv2_isBlockSigner_data);
-	echo "</pre>";
-	
+/**
+* ends the rpc call check
+*/
 }
+
+require_once('inc/output.php');
 ?>
 

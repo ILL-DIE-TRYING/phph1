@@ -1,0 +1,214 @@
+@media screen and (min-width: 500px)/* and (max-width: 699px)*/ and (min-height: 400px) {
+	#wrapper{
+		width:100%;
+		font-size: .8em;
+	}
+	
+	.tagline {
+		font-size: 1.5em;
+	}
+
+	.dropdown-content {
+		display: 			none;
+		position: 			absolute;
+		background-color: #000000;
+		border: 2px solid #000000;
+		border-bottom: 6px solid #777777;
+		left: 99%;
+		transform: translateX(-99%);
+		width: 				300px;
+		z-index: 			1;
+		height: 330px;
+		overflow-y: hidden;
+		overflow-x: hidden;
+		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+	}
+
+	.input_txt {
+		width: 400px;
+	}
+
+	.dropdown-list {
+		overflow-y: scroll;
+		overflow-x: hidden;
+		height: 280px;
+		z-index: 			1;
+	}
+
+	.dropdown-list a{
+		overflow-y: scroll;
+		overflow-x: hidden;
+		z-index: 			1;
+		font-size: 0.9em;
+	}
+	
+	/* Style the submit button */
+	input[type=submit] {
+	  background:			rgb(50, 50, 50);
+	  background: 		linear-gradient(rgb(50, 50, 50), rgb(70, 70, 70), rgb(50, 50, 50));
+	  color: white;
+	  padding: 12px 20px;
+	  border: none;
+	  border-radius: 4px;
+	  cursor: pointer;
+	  float: right;
+	  width: 100%;
+	  box-shadow: 3px 3px 6px #888888;
+	  margin:20px 0px 20px 0px;
+	}
+
+	/* Style the submit button */
+	input:hover[type=submit] {
+	  background:	linear-gradient(rgb(30, 65, 95), rgb(47, 93, 131), rgb(30, 65, 95));
+	  color: white;
+	  padding: 12px 20px;
+	  border: none;
+	  border-radius: 4px;
+	  cursor: pointer;
+	  float: right;
+	}
+	
+	
+	/* SETTINGS FORM */
+	/* Style inputs, select elements and textareas */
+	input[type=text], select, textarea{
+	  width: 100%;
+	  padding: 12px;
+	  border: 1px solid #ccc;
+	  border-radius: 4px;
+	  box-sizing: border-box;
+	  resize: vertical;
+	}
+	
+		
+	/* Style the container */
+	.container {
+	  border-radius: 5px;
+	  background-color: #f2f2f2;
+	  padding: 20px;
+	}
+	
+	/* Style the container */
+	.form_container {
+		background:#bbbbbb;
+		width:100%;
+		z-index: 0;
+		overflow: auto;
+		border-radius: 5px;
+		float:left;
+		margin-bottom:10px;
+	}
+	
+	/* Style the container */
+	.info_container {
+		background:#bbbbbb;
+		width:100%;
+		z-index: 0;
+		overflow: auto;
+		border-radius: 5px;
+		float:left;
+		margin-bottom:10px;
+	}
+
+	/* Floating column for labels: 25% width */
+	.col-25 {
+	  float: left;
+	  width: 20%;
+	  margin-top: 3px;
+	}
+
+	/* Floating column for inputs: 75% width */
+	.col-75 {
+	  float: left;
+	  width: 75%;
+	  margin-top: 3px;
+	}
+
+	/* Style the label to display next to the inputs */
+	label {
+	  padding: 12px 12px 12px 0;
+	  display: inline-block;
+	}
+	
+	.settingsbar {
+		float:left;
+		position:absolute;
+		background:			rgb(30, 65, 95);
+		background: 	linear-gradient(rgb(30, 65, 95),  rgb(30, 65, 95), rgb(47, 93, 131));
+		padding:3px;
+		color:white;
+		font-size:1em;
+		width:150px;
+		left: 10px;
+		margin: 0 auto;
+		box-shadow: 3px 3px 6px #888888;
+		text-align:center;
+		border-radius: 0px 0px 5px 5px;
+	}
+	
+
+}
+
+/*
+@media screen and (min-width: 700px) and (min-height: 400px) {
+	
+		#wrapper{
+		width:100%;
+		font-size: .8em;
+	}
+	
+	.tagline {
+		font-size: 1.5em;
+	}
+
+	.dropdown-content {
+		display: 			none;
+		position: 			absolute;
+		background-color: #000000;
+		border: 2px solid #000000;
+		border-bottom: 6px solid #777777;
+		left: 99%;
+		transform: translateX(-99%);
+		width: 				300px;
+		z-index: 			1;
+		height: 330px;
+		overflow-y: hidden;
+		overflow-x: hidden;
+		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+	}
+
+	.input_txt {
+		width: 400px;
+	}
+
+	.dropdown-list {
+		overflow-y: scroll;
+		overflow-x: hidden;
+		height: 280px;
+		z-index: 			1;
+	}
+
+	.dropdown-list a{
+		overflow-y: scroll;
+		overflow-x: hidden;
+		z-index: 			1;
+		font-size: 0.9em;
+	}
+	
+	.settingsbar {
+		float:left;
+		position:absolute;
+		background:			rgb(30, 65, 95);
+		background: 	linear-gradient(rgb(30, 65, 95),  rgb(30, 65, 95), rgb(47, 93, 131));
+		padding:3px;
+		color:white;
+		font-size:1em;
+		width:150px;
+		left: 10px;
+		margin: 0 auto;
+		box-shadow: 3px 3px 6px #888888;
+		text-align:center;
+	}
+	
+}
+*/

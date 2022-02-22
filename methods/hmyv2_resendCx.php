@@ -1,49 +1,100 @@
 <?php
+if(isset($valid_blockhash) && $valid_blockhash == 1){
+	/**
+	* Start debug info display area
+	*/
+	if($phph1->phph1_debug == 1){
+		echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
+	}
 
-// Validate Block Hash
-if(isset($_GET['blockhash']) && $phph1_boothandle->val_blockhash($_GET['blockhash']) && isset($_GET['do']) && $_GET['do'] == 1){
+	/*
+	* We are already validated in advance
+	*/
 	$validinput = 1;
-	// This is the handle that actually gets used in the page
-	$phph1 = new phph1($apiaddr,$phph1_debug);
-	$phph1->blockhash = $_GET['blockhash'];
-	$blockhash = $phph1->blockhash;
+
+	$hmyv2_data = $phph1->hmyv2_resendCx($blockhash);
+
+	
+	/**
+	* End debug info display area
+	*/
+	if($phph1->phph1_debug == 1){
+			echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>";
+	}
+
+/**
+* Show our errors if we have them
+*/
+}elseif(isset($_GET['do'])){
+		echo '<div class="error_div">';
+		echo '<p class="hmyv2_errors">Error:';
+		$errnum = 1;
+		foreach($phph1->errors as $anerror){
+			if($errnum == 1){
+				echo ' <span class="hmyv2_error">'.$anerror.'</span>';
+				$errnum=0;
+			}else{
+				echo '<span class="hmyv2_error">, '.$anerror.'</span>';
+			}
+		}
+		echo '</p></div>';
 }
 
-// unset the boothandle
-unset($phph1_boothandle);
-
-// Get the transactions
-if($validinput == 1){
-	$hmyv2_resendCx_data = $phph1->hmyv2_resendCx($blockhash);
-}else{
-	$validinput = 0;
-	echo "<p>INVALID INPUT</p>";
-}
+/**
+* Check if this is a RPC call
+* If not show the html output of the method explorer
+*/
+if($phph1->rpc_call != 1){
 
 ?>
+<div class="info_container" >
+		<div class="infoRow">
+			<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
+			<div id="infoContent" class="infoContent">
+			
+				<h3 class="infoHeader">Parameters</h3>
+				<ul class="infoObjects" >
+
+					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span >String</span> :</div>
+					<div class="iodefWrap">CX hash.</div></li>
+				
+				</ul>
+				<ul class="infoObjects" >
+					<h3 class="infoHeader">Returns</h3>
+					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span>Bool</span>:</div> 
+					<div class="iodefWrap">If cross shard receipt was successfully resent or not</div></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
 
 <form method="GET">
-	<p><label for="blockhash">CX Hash: </label><input type="text" id="blockhash" name="blockhash"  size="60" maxlength="100" value="<?php if(isset($blockhash)){ echo $blockhash; } ?>" /></p>
 	
-	<p><input type="hidden" id="do" name="do" value="1" />
+<div class="row">
+	<div class="col-25">
+		<label for="blockhash">CX Hash: </label>
+	</div><div class="col-75">
+		<input style="background: orange;" type="text" id="blockhash" name="blockhash" maxlength="66" value="<?php if(isset($blockhash)){ echo $blockhash; } ?>" />
+	</div>
+</div>
+
+<div class="row">
+	<input type="hidden" id="do" name="do" value="1" />
 	<input type="hidden" id="method" name="method" value="hmyv2_resendCx" />
-	<input type='submit' name='Submit' /></p>
+	<input type='submit' name='Submit' />
+</div>
+
 </form>
 
-<br />
-
 <?php
-if($validinput == 1){
-	
-	// You can view the raw array here
-	echo "<h2>RESEND CX ARRAY</h2>";
-	if(isset($phph1->lastjson)){
-		echo "<p style='color:green;'>This JSON RPC Request:<br />".$phph1->lastjson."</p>";
-	}
-	echo "<pre>";
-	print_r($hmyv2_resendCx_data);
-	echo "</pre>";
-	
+
+/**
+* ends the rpc call check
+*/
 }
+
+require_once('inc/output.php');
 ?>
+
 

@@ -1,72 +1,125 @@
 <?php
-
+/**
+* Start debug info display area
+*/
+if($phph1->phph1_debug == 1){
+	echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
+}
 
 /*
-We start with a default of no input is good input
-This way we have to explicitely tell it that it is okay to run the calls (security)
-there are val_ requests at the bottom of the class.
-NEVER remove/comment this line
-ALWAYS wrap your output code in this: if($validoutput ==1){   YOURCODEGOESHERE   };
+Nothing to validate here so set this to 1
 */
 $validinput = 1;
 
-require_once('config.php');
-require_once('phph1.php');
-
-$phph1 = new phph1($apiaddr, $phph1_debug);
-
-/*
-This handle is temporary and is used to validate
-the variables for the $phph1 handle to successfully and safely load
-it will get destroyed once we have the real handle
-*/
-$phph1_boothandle = new phph1($apiaddr,$phph1_debug);
-
-
-// Show the raw GET request BE CAREFULL!
-// IF DEBUGGING IS TURNED ON IN PRODUCTION 
-// AN ATTACKER COULD POTENTIALLY INJECT CODE INTO THE PAGE
-if($phph1_debug == 1){
-	echo "<pre style='color:blue;'><br />GET DATA:<br />";
-	print_r($_GET);
-	echo "<br /></pre>";
-}
-
-
-// unset the boothandle
-unset($phph1_boothandle);
-
 // Get the transactions
-$hmyv2_latestHeader_data = $phph1->hmyv2_latestHeader();
+$hmyv2_data = $phph1->hmyv2_latestHeader();
 
-if($phph1_debug == 1){
-	
-	echo "<p style='color:blue;'>";
-	
-	echo "<br />DO WE HAVE VALID INPUT?: ".$validinput."<br />";
-	
-	echo "</p>";
+/**
+* End debug info display area
+*/
+if($phph1->phph1_debug == 1){
+		echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>";
 }
 
+/**
+* Check if this is a RPC call
+* If not show the html output of the method explorer
+*/
+if($phph1->rpc_call != 1){
 
 ?>
 
-<p>NO INPUTS REQUIRED</p>
+<div class="info_container" >
+		<div class="infoRow">
+			<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
+			<div id="infoContent" class="infoContent">
+			
+				<h3 class="infoHeader">Parameters</h3>
+				<ul class="infoObjects" >
+					<li class="infoObjectNoBul"><h4>No Parameters Required</h4></li>
+				</ul>
+				
+				<h3 class="infoHeader">Returns</h3>
+				<ul class="infoObjects">
+					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span>Object</span></div></li>
+					
+					<li><div class="ioobjectWrap"><span>blockHash</span> - <span >String</span> :</div>
+					<div class="iodefWrap">Block hash</div></li>
+					
+					<li><div class="ioobjectWrap"><span>blockNumber</span> - <span >Number</span> :</div>
+					<div class="iodefWrap">Block number</div></li>
+					
+					<li><div class="ioobjectWrap"><span>crossLinks</span> - <span >Array</span></li>
+					
+					<ul class="infoObjects2">
+						
+						<li><div class="ioobjectWrap"><span>block-number</span> - <span >Number</span> :</div>
+						<div class="iodefWrap">Block number</div></li>
+						
+						<li><div class="ioobjectWrap"><span>epoch-number</span> - <span >Number</span> :</div>
+						<div class="iodefWrap">Epoch number</div></li>
+						
+						<li><div class="ioobjectWrap"><span>hash</span> - <span >String</span> :</div>
+						<div class="iodefWrap">FIXME</div></li>
+						
+						<li><div class="ioobjectWrap"><span>shard-id</span> - <span >Number</span> :</div>
+						<div class="iodefWrap">Shard ID</div></li>
+						
+						<li><div class="ioobjectWrap"><span>signature</span> - <span >String</span> :</div>
+						<div class="iodefWrap">FIXME</div></li>
+						
+						<li><div class="ioobjectWrap"><span>signature-bitmap</span> - <span >String</span> :</div>
+						<div class="iodefWrap">FIXME</div></li>
+						
+						<li><div class="ioobjectWrap"><span>view-id</span> - <span >Number</span> :</div>
+						<div class="iodefWrap">FIXME</div></li>
+						
+					</ul>
+					
+					<li><div class="ioobjectWrap"><span>epoch</span> - <span >Number</span> :</div>
+					<div class="iodefWrap">Epoch of block</div></li>
+					
+					<li><div class="ioobjectWrap"><span>lastCommitBitmap</span> - <span >String</span> :</div>
+					<div class="iodefWrap">Hex representatino of the aggregated signature bitmap of the previous block</div></li>
+					
+					<li><div class="ioobjectWrap"><span>lastCommitSig</span> - <span >String</span> :</div>
+					<div class="iodefWrap">Hex representation of aggregated signatures of the previous block</div></li>
+					
+					<li><div class="ioobjectWrap"><span>leader</span> - <span >String</span> :</div>
+					<div class="iodefWrap">Wallet address of leader that proposed this block if prestaking, otherwise sha256 hash of leader's public bls key</div></li>
+					
+					<li><div class="ioobjectWrap"><span>shardID</span> - <span >Number</span> :</div>
+					<div class="iodefWrap">Shard ID</div></li>
+					
+					<li><div class="ioobjectWrap"><span>timestamp</span> - <span >String</span> :</div>
+					<div class="iodefWrap">Timestamp that the block was finalized</div></li>
+					
+					<li><div class="ioobjectWrap"><span>unixtime</span> - <span >Number</span> :</div>
+					<div class="iodefWrap">Timestamp that the block was finalized in Unix time</div></li>
+					
+					<li><div class="ioobjectWrap"><span>viewID</span> - <span >Number</span> :</div>
+					<div class="iodefWrap">View ID of the block</div></li>
+					
+					<li><div class="ioobjectWrap"><span>vrf</span> - <span >String</span> :</div>
+					<div class="iodefWrap">FIXME</div></li>
+					
+					<li><div class="ioobjectWrap"><span>vrfProof</span> - <span >String</span> :</div>
+					<div class="iodefWrap">FIXME</div></li>
+
+				</ul>
+			</div>
+		</div>
+	</div>
 
 <br />
 
 <?php
-if($validinput == 1){
-	
-	// You can view the raw array here
-	echo "<h2>HARMONY LATEST HEADER ARRAY</h2>";
-	if(isset($phph1->lastjson)){
-		echo "<p style='color:green;'>This JSON RPC Request:<br />".$phph1->lastjson."</p>";
-	}
-	echo "<pre>";
-	print_r($hmyv2_latestHeader_data);
-	echo "</pre>";
-	
+
+/**
+* ends the rpc call check
+*/
 }
+
+require_once('inc/output.php');
 ?>
 

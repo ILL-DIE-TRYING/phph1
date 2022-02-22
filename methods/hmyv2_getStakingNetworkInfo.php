@@ -1,46 +1,71 @@
 <?php
+/**
+* Start debug info display area
+*/
+if($phph1->phph1_debug == 1){
+	echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
+}
 
-
-/*
-Nothing to validate so set this to 1
+/**
+* NO INPUT TO VALIDATE SET TO 1
 */
 $validinput = 1;
 
-
-// unset the boothandle
-unset($phph1_boothandle);
-
 // Get the transactions
-$hmyv2_getStakingNetworkInfo_data = $phph1->hmyv2_getStakingNetworkInfo();
+$hmyv2_data = $phph1->hmyv2_getStakingNetworkInfo();
 
-if($phph1_debug == 1){
-	
-	echo "<p style='color:blue;'>";
-	
-	echo "<br />DO WE HAVE VALID INPUT?: ".$validinput."<br />";
-	
-	echo "</p>";
+/**
+* End debug info display area
+*/
+if($phph1->phph1_debug == 1){
+	echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>";
 }
 
+/**
+* Check if this is a RPC call
+* If not show the html output of the method explorer
+*/
+if($phph1->rpc_call != 1){
 
 ?>
-
-<p>NO INPUTS REQUIRED</p>
-
-<br />
+<div class="info_container" >
+		<div class="infoRow">
+			<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
+			<div id="infoContent" class="infoContent">
+			
+				<h3 class="infoHeader">Parameters</h3>
+				<ul class="infoObjects" >
+					<li class="infoObjectNoBul"><h4>No Parameters Required</h4></li>
+				</ul>
+				
+				<h3 class="infoHeader">Returns</h3>
+				<ul class="infoObjects">
+					<li><div class="ioobjectWrap"><span >total-supply</span> - <span>String</span></div> 
+					<div class="iodefWrap">Total number of pre-mined tokens.</div></li>
+					
+					<li><div class="ioobjectWrap"><span >circulating-supply</span> - <span>String</span></div> 
+					<div class="iodefWrap">Number of tokens available in the network.</div></li>
+					
+					<li><div class="ioobjectWrap"><span >epoch-last-block</span> - <span>Number</span></div> 
+					<div class="iodefWrap">Last block of epoch.</div></li>
+					
+					<li><div class="ioobjectWrap"><span >total-staking</span> - <span>Number</span></div> 
+					<div class="iodefWrap">Total amount staked in Atto.</div></li>
+					
+					<li><div class="ioobjectWrap"><span >median-raw-stake</span> - <span>String</span></div> 
+					<div class="iodefWrap">Effective median stake in Atto.</div></li>
+				</ul>
+			</div>
+		</div>
+	</div>
 
 <?php
-if($validinput == 1){
-	
-	// You can view the raw array here
-	echo "<h2>GET STAKING NETWORK INFO ARRAY</h2>";
-	if(isset($phph1->lastjson)){
-		echo "<p style='color:green;'>This JSON RPC Request:<br />".$phph1->lastjson."</p>";
-	}
-	echo "<pre>";
-	print_r($hmyv2_getStakingNetworkInfo_data);
-	echo "</pre>";
-	
+
+/**
+* ends the rpc call check
+*/
 }
+
+require_once('inc/output.php');
 ?>
 

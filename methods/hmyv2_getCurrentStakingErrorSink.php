@@ -1,46 +1,71 @@
 <?php
+/**
+* Start debug info display area
+*/
+if($phph1->phph1_debug == 1){
+	echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
+}
 
-
-/*
-Nothing to validate here so set this to 1
+/**
+* NO INPUT TO VALIDATE SET TO 1
 */
 $validinput = 1;
 
-
-// unset the boothandle
-unset($phph1_boothandle);
-
 // Get the transactions
-$hmyv2_getCurrentStakingErrorSink_data = $phph1->hmyv2_getCurrentStakingErrorSink();
+$hmyv2_data = $phph1->hmyv2_getCurrentStakingErrorSink();
 
-if($phph1_debug == 1){
-	
-	echo "<p style='color:blue;'>";
-	
-	echo "<br />DO WE HAVE VALID INPUT?: ".$validinput."<br />";
-	
-	echo "</p>";
+/**
+* End debug info display area
+*/
+if($phph1->phph1_debug == 1){
+	echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>";
 }
 
-
+/**
+* Check if this is a RPC call
+* If not show the html output of the method explorer
+*/
+if($phph1->rpc_call != 1){
+	
 ?>
-
-<p>NO INPUTS REQUIRED</p>
-
-<br />
+<div class="info_container" >
+	<div class="infoRow">
+		<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
+		<div id="infoContent" class="infoContent">
+		
+			<h3 class="infoHeader">Parameters</h3>
+			<ul class="infoObjects" >
+				<li class="infoObjectNoBul"><h4>No Parameters Required</h4></li>
+			</ul>
+			
+			<h3 class="infoHeader">Returns</h3>
+			<ul class="infoObjects">
+				
+				<li class="infoObjectNoBul"><h4><span>Array</span> of <span>Object</span></h4></li>
+				
+				<li><div class="ioobjectWrap"><span >tx-hash-id</span> - <span>String</span></div> 
+				<div class="iodefWrap">Staking transaction hash.</div></li>
+				
+				<li><div class="ioobjectWrap"><span >directive-kind</span> - <span>String</span></div> 
+				<div class="iodefWrap">Type of staking transaction.</div></li>
+				
+				<li><div class="ioobjectWrap"><span >time-at-rejection</span> - <span>Number</span></div> 
+				<div class="iodefWrap">Unix time when the staking transaction was rejected from the pool.</div></li>
+				
+				<li><div class="ioobjectWrap"><span >error-message</span> - <span>String</span></div> 
+				<div class="iodefWrap">Reason for staking transaction rejection.</div></li>
+				
+			</ul>
+		</div>
+	</div>
+</div>
 
 <?php
-if($validinput == 1){
-	
-	// You can view the raw array here
-	echo "<h2>GET CURRENT STAKING ERROR SINK ARRAY</h2>";
-	if(isset($phph1->lastjson)){
-		echo "<p style='color:green;'>This JSON RPC Request:<br />".$phph1->lastjson."</p>";
-	}
-	echo "<pre>";
-	print_r($hmyv2_getCurrentStakingErrorSink_data);
-	echo "</pre>";
-	
+/**
+* ends the rpc call check
+*/
 }
+
+require_once('inc/output.php');
 ?>
 

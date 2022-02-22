@@ -1,61 +1,113 @@
 <?php
-/*
-We start with a default of no input is good input
-This way we have to explicitely tell it that it is okay to run the calls (security)
-there are val_ requests at the bottom of the class.
-NEVER remove/comment this line
-ALWAYS wrap your output code in this: if($validoutput ==1){   YOURCODEGOESHERE   };
-*/
-$validinput = 0;
+// Get the transactions
+if(isset($valid_oneaddr) && $valid_oneaddr == 1){
+	if($phph1->phph1_debug == 1){
+		echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
+	}
 
-$phph1 = new phph1($apiaddr, $phph1_debug);
-
-// Check what core information we have. Validate it and set it
-// This one validates the ONE address
-// These items could probably be put in an include to keep this page shorter
-if(isset($_GET['oneaddr']) && $phph1->val_oneaddr($_GET['oneaddr']) && isset($_GET['do']) && $_GET['do'] == 1){
 	$validinput = 1;
-	$phph1->oneaddr = $_GET['oneaddr'];
-	$oneaddr = $phph1->oneaddr;
+	$hmyv2_data = $phph1->hmyv2_getBalance($oneaddr);
+
+	/**
+	* End debug info display area
+	*/
+	if($phph1->phph1_debug == 1){
+			echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>";
+	}
+	
+	/**
+	* Show our errors if we have them
+	*/
+	if ($validinput == 0){
+		echo '<div class="error_div">';
+		echo '<p class="hmyv2_errors">Error:';
+		$errnum = 1;
+		foreach($phph1->errors as $anerror){
+			if($errnum == 1){
+				echo ' <span class="hmyv2_error">'.$anerror.'</span>';
+				$errnum=0;
+			}else{
+				echo '<span class="hmyv2_error">, '.$anerror.'</span>';
+			}
+		}
+		echo '</p></div>';
+	}
+	
+/**
+* Show our errors if we have them
+*/
+}elseif(isset($_GET['do']) && $_GET['do'] == 1 && isset($valid_oneaddr) && $valid_oneaddr == 0){
+		echo '<div class="error_div">';
+		echo '<p class="hmyv2_errors">Error:';
+		$errnum = 1;
+		foreach($phph1->errors as $anerror){
+			if($errnum == 1){
+				echo ' <span class="hmyv2_error">'.$anerror.'</span>';
+				$errnum=0;
+			}else{
+				echo '<span class="hmyv2_error">, '.$anerror.'</span>';
+			}
+		}
+		echo '</p></div>';
 }
 
-// GET THE BALANCE
-if($validinput == 1){
-	$hmyv2_getBalance_data = $phph1->hmyv2_getBalance($oneaddr);
-}elseif(isset($_GET['do']) && $_GET['do'] == 1){
-	$validinput = 0;
-	echo "<p class='alert'>INVALID INPUT</p>";
-}
+/**
+* Check if this is a RPC call
+* If not show the html output of the method explorer
+*/
+if($phph1->rpc_call != 1){
 
 ?>
-<!-- FORM -->
-<form method="GET">
-	<p><label for="oneaddr">Wallet Address: </label><input type="text" id="oneaddr" name="oneaddr"  size="60" maxlength="42" value="<?php if(isset($oneaddr)){ echo $oneaddr; } ?>" /></p>	
-	<p><input type="hidden" id="do" name="do" value="1" />
-	<input type="hidden" id="method" name="method" value="hmyv2_getBalance" />
-	<input type='submit' name='Submit' /></p>
-</form>
+	<div class="info_container" >
+		<div class="infoRow">
+			<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
+			<div id="infoContent" class="infoContent">
+			
+				<h3 class="infoHeader">Parameters</h3>
+				<ul class="infoObjects" >
+					
+					<li><div class="ioobjectWrap"><span >String</span> :</div>
+					<div class="iodefWrap">Wallet address</div></li>
+					
+				</ul>
+				
+				<h3>Returns</h3>
+
+				<ul class="infoObjects">
+					<li><div class="ioobjectWrap"><span >Number</span>:</div> 
+					<div class="iodefWrap">Wallet balance at given block in Atto.</div></li>
+				</ul>
+
+			</div>
+		</div>
+	</div>
+	<div class="form_container">
+		<div id="formcontent">
+		<!-- FORM -->
+		<form method="GET">
+			<div class="row">
+				<div class="col-25">
+					<label for="oneaddr">Wallet Address: </label>
+				</div><div class="col-75">
+					<input style="background: orange;" type="text" id="oneaddr" name="oneaddr" maxlength="42" value="<?php if(isset($oneaddr)){ echo $oneaddr; } ?>" />
+				</div>
+			</div>
+			<div class="row">
+				<input type="hidden" id="do" name="do" value="1" />
+				<input type="hidden" id="method" name="method" value="hmyv2_getBalance" />
+				<input type='submit' name='Submit' class="form_submit" />
+			</div>
+		</form>
+		</div>
+	</div>
 <br />
+
 <?php
-
-// DEBUGGING OUTPUT
-if($phph1_debug == 1){
-	echo "<h3 style='color:red;'>DEBUGGING OUTPUT</h3>";
-	echo "<pre style='color:blue;'><br />GET DATA:<br />";
-	htmlentities(print_r($_GET));
-	echo "<br /></pre>";
+/**
+* ends the rpc call check
+*/
 }
 
-// SHOW THE RESULTS IF WE HAVE VALID INPUT
-if($validinput == 1){
-	
-	if(isset($phph1->lastjson)){
-		echo "<p style='color:green;'>Harmony Node JSON RPC Request:<br />".$phph1->lastjson."</p>";
-	}
-	echo "<pre>";
-	print_r($hmyv2_getBalance_data);
-	echo "</pre>";
-	
-}
+require_once('inc/output.php');
 ?>
 

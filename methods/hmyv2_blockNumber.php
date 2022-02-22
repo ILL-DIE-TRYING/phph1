@@ -1,58 +1,52 @@
 <?php
-
+if($phph1->phph1_debug == 1){
+	echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
+}
 
 /*
-We start with a default of no input is good input
-This way we have to explicitely tell it that it is okay to run the calls (security)
-there are val_ requests at the bottom of the class.
-NEVER remove/comment this line
-ALWAYS wrap your output code in this: if($validoutput ==1){   YOURCODEGOESHERE   };
+There is no input so no validation required
 */
 $validinput = 1;
 
-$phph1 = new phph1($apiaddr, $phph1_debug);
-
-// Show the raw GET request BE CAREFULL!
-// IF DEBUGGING IS TURNED ON IN PRODUCTION 
-// AN ATTACKER COULD POTENTIALLY INJECT CODE INTO THE PAGE
-if($phph1_debug == 1){
-	echo "<pre style='color:blue;'><br />GET DATA:<br />";
-	print_r($_GET);
-	echo "<br /></pre>";
-}
-
-
 // Get the transactions
-$hmyv2_latestHeader_data = $phph1->hmyv2_blockNumber();
+$hmyv2_data = $phph1->hmyv2_blockNumber();
 
-if($phph1_debug == 1){
-	
-	echo "<p style='color:blue;'>";
-	
-	echo "<br />DO WE HAVE VALID INPUT?: ".$validinput."<br />";
-	
-	echo "</p>";
+/**
+* End debug info display area
+*/
+if($phph1->phph1_debug == 1){
+		echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>";
 }
 
-
+/**
+* Check if this is a RPC call
+* If not show the html output of the method explorer
+*/
+if($phph1->rpc_call != 1){
 ?>
-
-<p>NO INPUTS REQUIRED</p>
-
-<br />
+	<div class="info_container" >
+		<div class="infoRow">
+			<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
+			<div id="infoContent" class="infoContent">
+			
+				<h3 class="infoHeader">Parameters</h3>
+				<ul class="infoObjects" >
+					<li class="infoObjectNoBul"><h4>No Parameters Required</h4></li>
+				</ul>
+				
+				<h3 class="infoHeader">Returns</h3>
+				<ul class="infoObjects">
+					<li><div class="ioobjectWrap"><span >Number</span></div> 
+					<div class="iodefWrap">Current block number.</div></li>
+				</ul>
+			</div>
+		</div>
+	</div>
 
 <?php
-if($validinput == 1){
-	
-	// You can view the raw array here
-	echo "<h2>HARMONY CURRENT BLOCK ARRAY</h2>";
-	if(isset($phph1->lastjson)){
-		echo "<p style='color:green;'>This JSON RPC Request:<br />".$phph1->lastjson."</p>";
-	}
-	echo "<pre>";
-	print_r($hmyv2_latestHeader_data);
-	echo "</pre>";
-	
 }
+
+require_once('inc/output.php');
 ?>
+
 

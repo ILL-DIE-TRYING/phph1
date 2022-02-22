@@ -1,0 +1,818 @@
+#wrapper{
+	width:100%;
+	font-size: 0.8em;
+}
+
+#hiddenSticky{
+	height:180px;
+	top: -1px;
+	width: 100%;
+	background: rgb(255, 0, 0, 0);
+	pointer-events:none;
+}
+
+#navbar{
+	width:100%;
+	margin-bottom: 10px;
+	box-shadow: 0px 2px 5px #000;
+	position: relative;
+	z-index: 1;
+	pointer-events:auto;
+}
+
+#bodyWrap{
+		/* background : rgb(255,0,0,0.2); */
+}
+
+#bodyWrap.stuck {
+  margin-top: 180px;
+}
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+	position: fixed;
+	right: 0;
+}
+
+#topbar {
+	height:			80px;
+	background: 	linear-gradient(to bottom right, rgb(0, 134, 233), rgb(105, 250, 189));
+	position:relative;
+	padding-left:0px;
+	margin: 0px;
+	border-radius: 10px 10px 0px 0px;
+	box-shadow: 0px -2px 5px #000;
+	display: inline-block;
+	width: 100%;
+}
+
+.hidetopbar{
+	display: none;
+}
+
+.topbar a:link { text-decoration: none; }
+
+
+.topbar a:visited { text-decoration: none; }
+
+
+.topbar a:hover { text-decoration: none; }
+
+
+.topbar a:active { text-decoration: none; }
+
+.logo {
+	width:	80%;
+	height:	80px;
+	float:	left;
+}
+
+.topphrase {
+	font-family:	courier;
+	font-size:		3.5em;
+	color:			rgb(255, 255, 255);
+	margin: 0px;
+	padding-left:5px;
+}
+
+.tagline{
+	font-family:	courier;
+	color:			rgb(0, 0, 0);
+	padding: 		0px 0px 0px 7px;
+	margin: 		0px;
+	font-size: 1.5em;
+}
+
+.settingsbar {
+	float:right;
+	position:absolute;
+	background:	rgb(30, 65, 95);
+	padding:3px;
+	color:white;
+	font-size:1em;
+	width:150px;
+	right: 10px;
+	margin: 0 auto;
+	box-shadow: 3px 3px 6px #888888;
+	text-align:center;
+	border-radius: 0px 0px 5px 5px;
+}
+
+.dropdown {
+	float:right;
+}
+
+.dropdownUL  {
+    list-style-type:	none;
+	z-index: 0;
+	margin:				0 0 1px 0;
+	padding:			0;
+    /*overflow: 			hidden;*/
+    background:	rgb(67,119,159);
+	background:	linear-gradient(rgb(67,119,159), rgb(76,135,180), rgb(67,119,159));
+}
+
+.dropdownLI  {
+    display: 	inline-block;
+}
+
+.dropdownLI a.active {
+	background: 	rgb(30, 65, 95);
+}
+
+.dropdownLI a, .dropbtn {
+    display:			inline-block;
+    color:				white;
+    text-align:			center;
+    padding:			14px 10px;
+    text-decoration:	none;
+	width:				70px;
+    font-size: initial;
+	background:	rgb(67,119,159);
+	background:	linear-gradient(rgb(67,119,159), rgb(76,135,180), rgb(67,119,159));
+	
+	
+	border: 1px solid #0086E9;
+	border-radius: 4px;
+	box-shadow: 1px 1px 3px #000;
+}
+
+.dropdownLI a:hover, .dropdown:hover .dropbtn {
+    background:	rgb(30, 65, 95);
+	background:	linear-gradient(rgb(30, 65, 95), rgb(47, 93, 131), rgb(30, 65, 95));
+}
+
+.dropdownLI {
+    display:	inline-block;
+	position:	relative;
+	
+}
+
+.dropdown:hover .dropdown-content {
+    display:	block;
+}
+
+.dropdown-header {
+    color: 				black;
+	background:	rgb(30, 65, 95);
+	background:	linear-gradient(rgb(30, 65, 95), rgb(47, 93, 131), rgb(30, 65, 95));
+	background: 	linear-gradient(to bottom right, rgb(0, 134, 233), rgb(105, 250, 189));
+    padding: 			12px 16px;
+    text-decoration: 	none;
+    display: 			block;
+    text-align: 		left;
+	width:				100%;
+	z-index: 			1;
+}
+
+.dropdown-content {
+	display: 			none;
+	position: 			absolute;
+	background-color: #000000;
+	border: 1px solid rgb(30, 65, 95);;
+	border-bottom: 6px solid rgb(30, 65, 95);;
+	border-radius: 15px;
+	left: 99%;
+	transform: translateX(-99%);
+	width: 				300px;
+	z-index: 			1;
+	height: 330px;
+	overflow-y: hidden;
+	overflow-x: hidden;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.dropdown-content a {
+    color: 				white;
+    padding: 			10px;
+    text-decoration: 	none;
+    display: 			block;
+    text-align: 		left;
+	width:				100%;
+	/*min-width:				230px;*/
+	z-index: 			1;
+	border: 1px solid #000000;
+	background:	rgb(67,119,159);
+	background:	linear-gradient(rgb(67,119,159), rgb(76,135,180), rgb(67,119,159));
+}
+
+.dropdown-content a:hover {
+	background:	rgb(30, 65, 95);
+	background:	linear-gradient(rgb(30, 65, 95), rgb(47, 93, 131), rgb(30, 65, 95));
+	color: white;
+}
+
+
+
+.searchbox {
+	width: 90%;
+}
+
+.input_txt {
+	width: 400px;
+}
+
+.dropdown-list {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	height: 280px;
+	z-index: 			1;
+}
+
+.dropdown-list a{
+	overflow-y: scroll;
+	overflow-x: hidden;
+	z-index: 			1;
+	font-size: 0.9em;
+}
+
+/*
+Settings Modal Pop-up box
+*/
+
+.settingsModal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.settingsModal-content {
+	background-color: #444444;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+	color: white;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* Modal Header */
+.modal-header {
+	padding: 2px 16px;
+	background:	rgb(67,119,159);
+	background: linear-gradient(to bottom right, rgb(0, 134, 233), rgb(105, 250, 189));
+	color: white;
+	border-radius: 5px;
+}
+
+/* Modal Body */
+.modal-body {padding: 2px 16px;}
+
+/* Modal Footer */
+.modal-footer {
+	padding: 2px 16px;
+	background:	rgb(0, 134, 233);
+	color: white;
+}
+
+/* Modal Content */
+.modal-content {
+	position: relative;
+	background-color: #eee;
+	margin: auto;
+	padding: 0;
+	border: 1px solid #000;
+	border-radius: 10px;
+	width: 280px;
+	box-shadow: 3px 3px 6px #000;
+	animation-name: animatetop;
+	animation-duration: 0.4s
+}
+
+/* Add Animation */
+@keyframes animatetop {
+	from {top: -300px; opacity: 0}
+	to {top: 0; opacity: 1}
+}
+
+/* SETTINGS FORM */
+/* Style inputs, select elements and textareas */
+input[type=text], select, textarea{
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	resize: vertical;
+}
+
+/* Style the submit button */
+input[type=submit] {
+	background:	rgb(67,119,159);
+	background:	linear-gradient(rgb(67,119,159), rgb(76,135,180), rgb(67,119,159));
+	color: white;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	float: right;
+	width: 100%;
+	margin:20px 0px 20px 0px;
+}
+
+/* Style the submit button */
+input:hover[type=submit] {
+	background:	rgb(30, 65, 95);
+	background:	linear-gradient(rgb(30, 65, 95), rgb(47, 93, 131), rgb(30, 65, 95));
+	color: white;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	float: right;
+}
+
+
+/* SETTINGS FORM */
+/* Style inputs, select elements and textareas */
+input[type=text], select, textarea{
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	resize: vertical;
+}
+
+input.searchbox[type=text]{
+	width: 92%;
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	resize: vertical;
+}
+
+/* Style the label to display next to the inputs */
+/* Style the label to display next to the inputs */
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+/* Style the container */
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+/* Style the container */
+.form_container {
+	background:#eee;
+	width:100%;
+	z-index: 0;
+	overflow: auto;
+	border-radius: 5px;
+	float:left;
+	margin-bottom:10px;
+	padding:20px 0px 0px 0px;
+}
+
+/* Style the container */
+.info_container {
+	background:#eee;
+	width:100%;
+	z-index: 10;
+	overflow: auto;
+	border-radius: 5px;
+	float:left;
+	margin-bottom:10px;
+}
+
+/* Floating column for labels: 25% width */
+.col-25 {
+  float: left;
+  width: 20%;
+  margin-top: 3px;
+}
+
+/* Floating column for inputs: 75% width */
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 3px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.error_div{
+	padding:2px;
+	background: red;
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
+
+/* This is the error header text */
+.hmyv2_errors {
+	color: red;
+	font-size: 1em;
+	padding: 10px;
+	margin: 0px 0px 0px 0px;
+	background: #fff;
+	border-radius: 5px;
+}
+
+/* This is the individual errors */
+.hmyv2_error {
+	color: black;
+	font-size: 1em;
+	padding: 0px;
+	
+}
+
+.hmyv2_debug_notify{
+	color: black;
+	font-size: 1.2em;
+	padding: 0px;
+	margin: 0px;
+}
+
+.form_container {
+	background:#eee;
+	width:100%;
+	z-index: 0;
+	overflow: auto;
+	border-radius: 5px;
+}
+
+
+/*
+.methodText {
+	background:	rgb(30, 65, 95);
+	background:	linear-gradient(rgb(30, 65, 95), rgb(47, 93, 131), rgb(30, 65, 95));
+	color: white;
+	padding: 7px;
+	border-radius: 5px;
+	box-shadow: 3px 3px 6px #000;
+}
+
+
+.methodText:hover {
+	background:	rgb(0, 134, 233);
+	background:	linear-gradient(rgb(0, 134, 233), rgb(0, 110, 200), rgb(0, 134, 233));
+	color: white;
+	padding: 7px;
+	border-radius: 5px;	
+	cursor: pointer;
+	box-shadow: 2px 2px 4px #000;
+}
+*/
+
+/* collapsible container for info */
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsibleInfo, .activeInfo {
+	background:	rgb(67,119,159);
+	background:	linear-gradient(rgb(67,119,159), rgb(76,135,180), rgb(67,119,159));
+	color: white;
+	cursor: pointer;
+	padding: 18px 18px 18px 15px;
+	width: 100%;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 15px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.collapsibleInfo:hover {
+	background:	rgb(30, 65, 95);
+	background:	linear-gradient(rgb(30, 65, 95), rgb(47, 93, 131), rgb(30, 65, 95));
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.activeInfo:hover {
+	background:	rgb(30, 65, 95);
+	background:	linear-gradient(rgb(30, 65, 95), rgb(47, 93, 131), rgb(30, 65, 95));
+	
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.infoContent {
+	padding: 0px 18px 10px 50px;
+	display: none;
+	overflow: hidden;
+	background-color: #eee;
+}
+
+.infoHeader h4 {
+	
+}
+
+.infoRow ul{
+	list-style-type:	none;
+	margin:				0;
+	padding:			0;
+	color:black;
+	background: #eee;
+}
+
+.infoRow li {
+	color:black;
+	margin-bottom: 10px;
+}
+
+.infoObjects span {
+	padding:3px;
+	border: 1px solid #000;
+	border-radius: 5px;
+}
+
+.infoObjects .ioobjectWrap {
+	padding:3px;
+	width:280px;
+	display: inline-block;
+}
+
+.infoObjects .iodefWrap {
+	padding:3px;
+	width:75%;
+	min-width: 280px;
+	display: inline-block;
+}
+
+.infoObjects li {
+	margin-left:50px;
+	list-style-type:disc;
+}
+
+.infoObjects .infoObjectNoBul {
+	list-style-type:none;
+	margin-left: 0px;
+}
+
+
+
+.infoObjects2 span {
+	padding:3px;
+	border: 1px solid #000;
+	border-radius: 5px;
+}
+
+.infoObjects2 .ioobjectWrap {
+	padding:3px;
+	width:250px;
+	display: inline-block;
+}
+
+.infoObjects2 .iodefWrap {
+	padding:3px;
+	width:70%;
+	min-width: 250px;
+	display: inline-block;
+}
+
+.infoObjects2 .infoObjectNoBul {
+	list-style-type:none;
+	margin-left: 0px;
+}
+
+.infoObjects2 li {
+	margin-left:65px;
+	list-style-type:circle;
+}
+
+.infoObjects3 span {
+	padding:3px;
+	border: 1px solid #000;
+	border-radius: 5px;
+}
+
+.infoObjects3 .ioobjectWrap {
+	padding:3px;
+	width:250px;
+	display: inline-block;
+}
+
+.infoObjects3 .iodefWrap {
+	padding:3px;
+	width:70%;
+	min-width: 250px;
+	display: inline-block;
+}
+
+.infoObjects3 .infoObjectNoBul {
+	list-style-type:none;
+	margin-left: 0px;
+}
+
+.infoObjects3 li {
+	margin-left:80px;
+	list-style-type:square;
+}
+
+
+
+.infoObjects4 span {
+	padding:3px;
+	border: 1px solid #000;
+	border-radius: 5px;
+	margin:3px;
+}
+
+.infoObjects4 .ioobjectWrap {
+	padding:3px;
+	width:350px;
+	display: inline-block;
+}
+
+.infoObjects4 .iodefWrap {
+	padding:3px;
+	width:70%;
+	min-width: 300px;
+	display: inline-block;
+}
+
+.infoObjects4 .infoObjectNoBul {
+	list-style-type:none;
+	margin-left: 0px;
+}
+
+.infoObjects4 li {
+	margin-left:95px;
+	list-style-type:square;
+}
+
+
+.infoObjects5 span {
+	padding:3px;
+	border: 1px solid #000;
+	border-radius: 5px;
+}
+
+.infoObjects5 .ioobjectWrap {
+	padding:3px;
+	width:250px;
+	display: inline-block;
+}
+
+.infoObjects5 .iodefWrap {
+	padding:3px;
+	width:70%;
+	min-width: 250px;
+	display: inline-block;
+}
+
+.infoObjects5 .infoObjectNoBul {
+	list-style-type:none;
+	margin-left: 0px;
+}
+
+.infoObjects5 li {
+	margin-left:110px;
+	list-style-type:square;
+}
+
+
+#datadiv {
+	width:100%;
+	z-index: 0;
+	overflow: auto;
+	background: #eee;
+	border-radius: 5px;
+	padding: 5px 0px 5px 0px;
+	right: 0;
+}
+
+#datacontent{
+	width:100%%;
+	z-index: 0;
+	overflow: auto;
+	background: #eee;
+	border-radius: 5px;
+	margin: 10px;
+	right: 0;
+}
+
+#formcontent{
+	width:100%%;
+	z-index: 0;
+	overflow: auto;
+	background: #eee;
+	border-radius: 5px;
+	margin: 5px;
+	left: 0;
+}
+
+input.form_submit[type=submit] {
+	background:	rgb(67,119,159);
+	background:	linear-gradient(rgb(67,119,159), rgb(76,135,180), rgb(67,119,159));
+	color: white;
+	font-size: 1em;
+
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 100%;
+	height: 50px;
+	margin:20px 0px 5px 0px;
+}
+
+/* Style the submit button */
+input.form_submit:hover[type=submit] {
+	
+	background:	rgb(30, 65, 95);
+	background:	linear-gradient(rgb(30, 65, 95), rgb(47, 93, 131), rgb(30, 65, 95));
+	color: white;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	float: right;
+}
+
+
+
+
+/* Create three equal columns that floats next to each other */
+.fp_column {
+  float: left;
+  width: 100%;
+  padding: 0px;
+  margin: 10px 0px 10px 0px;
+  border-radius: 10px;
+  background-color:#eee;
+}
+
+.fp_column2 {
+  float: left;
+  width: 50%;
+  padding: 0px;
+  margin: 10px 0px 10px 0px;
+  height: 300px; /* Should be removed. Only for demonstration */
+  overflow: auto;
+  border-radius: 10px;
+}
+
+/* Clear floats after the columns */
+.fp_row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+.fp_footer {
+  background-color: #eee;
+  padding: 10px;
+  text-align: center;
+}
+
+.fp_content{
+		margin: 5px 5px 5px 5px;
+		padding:20px 5px 5px 5px;
+		border-radius: 5px;
+}
+
+.fp_column h3{
+		background:	rgb(67,119,159);
+		background: linear-gradient(to bottom right, rgb(0, 134, 233), rgb(105, 250, 189));
+		margin: 0px;
+		padding: 5px;
+		float:left;
+		border-radius: 5px;
+		z-index: 0;
+		box-shadow: 3px 3px 6px #888888;
+		color: white;
+		font-size: 1em;
+}
+
+.fp_content_header{
+	width:100%;
+}
+
+/* Clear floats after the columns */
+.fp_content_header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+

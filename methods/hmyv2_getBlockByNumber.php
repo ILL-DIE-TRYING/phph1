@@ -1,19 +1,8 @@
 <?php
-// Validate Block Number
-if(isset($_GET['blocknum']) && $phph1_boothandle->val_blocknum($_GET['blocknum']) && isset($_GET['do']) && $_GET['do'] == 1){
-	$validinput = 1;
-	// This is the handle that actually gets used in the page
-	$phph1 = new phph1($apiaddr,$phph1_debug);
-	$phph1->blocknum = $_GET['blocknum'];
-	$blocknum = $phph1->blocknum;
-}
-
-// unset the boothandle
-unset($phph1_boothandle);
-
-// Get the transactions
-if($validinput == 1){
-	# val_getBlockByNumber($blocknum,$fulltx,$incltx,$inclstaking)
+if(isset($valid_blocknum) && $valid_blocknum == 1){
+	if($phph1->phph1_debug == 1){
+		echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
+	}
 	
 	/*
 	If fulltx isn't set then we will set it to FALSE by default
@@ -60,92 +49,233 @@ if($validinput == 1){
 
 	// Validate the input and run our call if the data is good
 	if($phph1->val_getBlockByNumber($blocknum,$fulltx,$incltx,$withsigners,$inclstaking)){
-		$getBlockByNumber_data = $phph1->hmyv2_getBlockByNumber($blocknum,$fulltx,$incltx,$withsigners,$inclstaking);
+		$validinput = 1;
+		$hmyv2_data = $phph1->hmyv2_getBlockByNumber($blocknum,$fulltx,$incltx,$withsigners,$inclstaking);
 	}else{
 		$validinput = 0;
-		echo '<p class="alert">INVALID INPUT</p>';
 	}
-}elseif(isset($_GET['do']) && $_GET['do'] == 1){
-	$validinput = 0;
-	echo "<p class='alert'>INVALID INPUT</p>";
+	
+	/**
+	* End debug info display area
+	*/
+	if($phph1->phph1_debug == 1){
+			echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>";
+	}
+	
+	/**
+	* Show our errors if we have them
+	*/
+	if ($validinput == 0){
+		echo '<div class="error_div">';
+		echo '<p class="hmyv2_errors">Error:';
+		$errnum = 1;
+		foreach($phph1->errors as $anerror){
+			if($errnum == 1){
+				echo ' <span class="hmyv2_error">'.$anerror.'</span>';
+				$errnum=0;
+			}else{
+				echo '<span class="hmyv2_error">, '.$anerror.'</span>';
+			}
+		}
+		echo '</p></div>';
+	}
+/**
+* Show our errors if we have them
+*/
+}elseif(isset($_GET['do'])){
+		echo '<div class="error_div">';
+		echo '<p class="hmyv2_errors">Error:';
+		$errnum = 1;
+		foreach($phph1->errors as $anerror){
+			if($errnum == 1){
+				echo ' <span class="hmyv2_error">'.$anerror.'</span>';
+				$errnum=0;
+			}else{
+				echo '<span class="hmyv2_error">, '.$anerror.'</span>';
+			}
+		}
+		echo '</p></div>';
 }
 
-if($phph1_debug == 1){
-	
-	echo "<p style='color:blue;'>";
-	
-	echo "<br />DO WE HAVE VALID INPUT?: ".$validinput."<br />";
-	
-	echo "<br />VARIABLE TYPES FOR THIS REQUEST:";
-	echo "<br />fulltx: ".gettype($fulltx);
-	echo "<br />incltx: ".gettype($incltx);
-	echo "<br />inclstaking: ".gettype($inclstaking);
-	echo "<br />withsigners: ".gettype($withsigners)."<br />";
-	
-	echo "<br />VARIABLE VALUES (NOTE: FALSE BOOLEANS WILL SHOW UP EMPTY):";
-	echo "<br />fulltx:".$fulltx;
-	echo "<br />incltx:".$incltx;
-	echo "<br />inclstaking:".$inclstaking;
-	echo "<br />withsigners:".$withsigners;
-	
-	echo "</p>";
-}
-
+/**
+* Check if this is a RPC call
+* If not show the html output of the method explorer
+*/
+if($phph1->rpc_call != 1){
 
 ?>
 
+<div class="info_container" >
+		<div class="infoRow">
+			<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
+			<div id="infoContent" class="infoContent">
+			
+				<h3 class="infoHeader">Parameters</h3>
+				<ul class="infoObjects" >
+
+					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span >Number</span> :</div>
+					<div class="iodefWrap">Block number.</div></li>
+				
+				</ul>
+				
+				<ul class="infoObjects" >
+					<li class="infoObjectNoBul"><span>Object</span></li>
+					
+					<li><div class="ioobjectWrap"><span>fullTx</span> - <span >Bool</span> :</div>
+					<div class="iodefWrap">Include full transaction data</div></li>
+					
+					<li><div class="ioobjectWrap"><span>inclTx</span> - <span >Bool</span> :</div>
+					<div class="iodefWrap">Include regular transactions</div></li>
+					
+					<li><div class="ioobjectWrap"><span>inclStaking</span> - <span >Bool</span> :</div>
+					<div class="iodefWrap">Include staking transactions</div></li>
+					
+				</ul>
+				
+				<ul class="infoObjects" >
+					<h3 class="infoHeader">Returns</h3>
+					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span>Object</span>:</div></li>
+					
+					<li><div class="ioobjectWrap"><span>Difficulty</span> - <span >Number</span> :</div>
+					<div class="iodefWrap">Unused, legacy from Eth</div></li>
+					
+					<li><div class="ioobjectWrap"><span>Epoch</span> - <span >Number</span> :</div>
+					<div class="iodefWrap">Epoch number of block</div></li>
+					
+					<li><div class="ioobjectWrap"><span>extraData</span> - <span >String</span> :</div>
+					<div class="iodefWrap">Hex representation of extra data in the block</div></li>
+					
+					<li><div class="ioobjectWrap"><span>gasLimit</span> - <span >Number</span> :</div>
+					<div class="iodefWrap">Maximum gas that can be used for transactions in the block</div></li>
+					
+					<li><div class="ioobjectWrap"><span>gasUsed</span> - <span >Number</span> :</div>
+					<div class="iodefWrap">Amount of gas used for transactions in the block</div></li>
+					
+					<li><div class="ioobjectWrap"><span>hash</span> - <span >String</span> :</div>
+					<div class="iodefWrap">Block hash</div></li>
+					
+					<li><div class="ioobjectWrap"><span>logsBloom</span> - <span >String</span> :</div>
+					<div class="iodefWrap">Bloom logs</div></li>
+					
+					<li><div class="ioobjectWrap"><span>miner</span> - <span >String</span> :</div>
+					<div class="iodefWrap">Wallet address of the leader that proposed this block</div></li>
+					
+					<li><div class="ioobjectWrap"><span>mixHash</span> - <span >String</span> :</div>
+					<div class="iodefWrap">Unused, legacy from Eth</div></li>
+					
+					<li><div class="ioobjectWrap"><span>nonce</span> - <span >Number</span> :</div>
+					<div class="iodefWrap">Unused, legacy from Eth</div></li>
+					
+					<li><div class="ioobjectWrap"><span>number</span> - <span >Number</span> :</div>
+					<div class="iodefWrap">Block number</div></li>
+					
+					<li><div class="ioobjectWrap"><span>parentHash</span> - <span >String</span> :</div>
+					<div class="iodefWrap">Hash of parent block</div></li>
+					
+					<li><div class="ioobjectWrap"><span>receiptsRoot</span> - <span >String</span> :</div>
+					<div class="iodefWrap">Hash of transaction receipt root</div></li>
+					
+					<li><div class="ioobjectWrap"><span>size</span> - <span >Number</span> :</div>
+					<div class="iodefWrap">Block size in bytes</div></li>
+					
+					<li><div class="ioobjectWrap"><span>stakingTransactions</span> - <span >JSON Array</span> :</div>
+					<div class="iodefWrap">List of staking transactions finalized in this block</div></li>
+					
+					<li><div class="ioobjectWrap"><span>stateRoot</span> - <span >String</span> :</div>
+					<div class="iodefWrap">Hash of state root</div></li>
+					
+					<li><div class="ioobjectWrap"><span>timestamp</span> - <span >Number</span> :</div>
+					<div class="iodefWrap">Unix timestamp of the block</div></li>
+					
+					<li><div class="ioobjectWrap"><span>transactions</span> - <span >JSON Array</span> :</div>
+					<div class="iodefWrap">List of transactions finalized in this block</div></li>
+					
+					<li><div class="ioobjectWrap"><span>transactionsRoot</span> - <span >String</span> :</div>
+					<div class="iodefWrap">Hash of transactions root</div></li>
+					
+					<li><div class="ioobjectWrap"><span>uncles</span> - <span >JSON Array</span> :</div>
+					<div class="iodefWrap">Unused, legacy from Eth</div></li>
+					
+					<li><div class="ioobjectWrap"><span>viewID</span> - <span >Number</span> :</div>
+					<div class="iodefWrap">View ID</div></li>
+
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
 <form method="GET">
-	<p><label for="blocknum">Block Number: </label><input type="text" id="blocknum" name="blocknum"  size="60" maxlength="100" value="<?php if(isset($blocknum)){ echo $blocknum; } ?>" /></p>
 	
-	<p><label for="fulltx">Show Full Transaction Data:</label>
-	<select name="fulltx" id="fulltx" data-bind="booleanValue: state">
-		<option value="">--</option>
-		<option value=1 <?php if($validinput == 1 && $fulltx == 1){ echo 'selected="selected"'; } ?> >TRUE</option>
-		<option value=0 <?php if($validinput == 1 && $fulltx == 0){ echo 'selected="selected"'; } ?> >FALSE</option>
-	</select></p>
-	
-	<p><label for="incltx">Include Regular Transactions (Doesn't do anything?):</label>
-	<select name="incltx" id="incltx">
-		<option value="">--</option>
-		<option value=1 <?php if($validinput == 1 && $incltx == 1){ echo 'selected="selected"'; } ?> >TRUE</option>
-		<option value=0 <?php if($validinput == 1 && $incltx == 0){ echo 'selected="selected"'; } ?> >FALSE</option>
-	</select></p>
-	
-	<p><label for="inclstaking">Include Staking Transactions(Doesn't do anything?):</label>
-	<select name="inclstaking" id="inclstaking">
-		<option value="">--</option>
-		<option value=1 <?php if($validinput == 1 && $inclstaking == 1){ echo 'selected="selected"'; } ?> >TRUE</option>
-		<option value=0 <?php if($validinput == 1 && $inclstaking == 0){ echo 'selected="selected"'; } ?> >FALSE</option>
-	</select></p>
-	
-	<p><label for="withsigners">Include Signer Addresses:</label>
-	<select name="withsigners" id="withsigners">
-		<option value="">--</option>
-		<option value=1 <?php if($validinput == 1 && $withsigners == 1){ echo 'selected="selected"'; } ?> >TRUE</option>
-		<option value=0 <?php if($validinput == 1 && $withsigners == 0){ echo 'selected="selected"'; } ?> >FALSE</option>
-	</select></p>
+<div class="row">
+	<div class="col-25">
+		<label for="blocknum">Block Number: </label>
+	</div><div class="col-75">
+		<input style="background: orange;" type="text" id="blocknum" name="blocknum" maxlength="200" value="<?php if(isset($blocknum)){ echo $blocknum; } ?>" />
+	</div>
+</div>
 	
 
+<div class="row">
+	<div class="col-25">
+		<label for="fulltx">Get Full Transaction Data:</label>
+	</div><div class="col-75">
+		<select name="fulltx" id="fulltx">
+			<option value=1 <?php if($validinput == 1 && $fulltx == 1){ echo 'selected="selected"'; } ?> >TRUE</option>
+			<option value=0 <?php if($validinput == 1 && $fulltx == 0){ echo 'selected="selected"'; }elseif(!isset($fulltx)){ echo 'selected="selected"'; } ?> >FALSE</option>
+		</select>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-25">
+		<label for="incltx">Include Regular Transactions (Doesn't do anything?):</label>
+	</div><div class="col-75">
+		<select name="incltx" id="incltx">
+			<option value=1 <?php if($validinput == 1 && $incltx == 1){ echo 'selected="selected"'; } ?> >TRUE</option>
+			<option value=0 <?php if($validinput == 1 && $incltx == 0){ echo 'selected="selected"'; }elseif(!isset($incltx)){ echo 'selected="selected"'; } ?> >FALSE</option>
+		</select>
+	</div>
+</div>
 	
-	<p><input type="hidden" id="do" name="do" value="1" />
+<div class="row">
+	<div class="col-25">
+		<label for="inclstaking">Include Staking Transactions(Doesn't do anything?):</label>
+	</div><div class="col-75">
+		<select name="inclstaking" id="inclstaking">
+			<option value=1 <?php if($validinput == 1 && $inclstaking == 1){ echo 'selected="selected"'; } ?> >TRUE</option>
+			<option value=0 <?php if($validinput == 1 && $inclstaking == 0){ echo 'selected="selected"'; }elseif(!isset($inclstaking)){ echo 'selected="selected"'; } ?> >FALSE</option>
+		</select>
+	</div>
+</div>
+	
+<div class="row">
+	<div class="col-25">
+		<label for="withsigners">Include Staking Transactions(Doesn't do anything?):</label>
+	</div><div class="col-75">
+		<select name="withsigners" id="withsigners">
+			<option value=1 <?php if($validinput == 1 && $withsigners == 1){ echo 'selected="selected"'; } ?> >TRUE</option>
+			<option value=0 <?php if($validinput == 1 && $withsigners == 0){ echo 'selected="selected"'; }elseif(!isset($withsigners)){ echo 'selected="selected"'; } ?> >FALSE</option>
+		</select>
+	</div>
+</div>
+	
+
+<div class="row">
+	<input type="hidden" id="do" name="do" value="1" />
 	<input type="hidden" id="method" name="method" value="hmyv2_getBlockByNumber" />
-	<input type='submit' name='Submit' /></p>
+	<input type='submit' name='Submit' />
+</div>
+
 </form>
 
 <br />
 
 <?php
-if($validinput == 1){
-	
-	// You can view the raw array here
-	echo "<h2>BLOCK INFORMATION ARRAY</h2>";
-	if(isset($phph1->lastjson)){
-		echo "<p style='color:green;'>This JSON RPC Request:<br />".$phph1->lastjson."</p>";
-	}
-	echo "<pre>";
-	print_r($getBlockByNumber_data);
-	echo "</pre>";
-	
+/**
+* ends the rpc call check
+*/
 }
-?>
 
+require_once('inc/output.php');
+?>
