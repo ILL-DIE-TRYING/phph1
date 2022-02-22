@@ -172,6 +172,20 @@ class phph1{
 		Params:
 		*/
 		$method = "hmyv2_call";
+		
+		$urlparams = [
+				[
+				'to' => $to,
+				'from' => $from,
+				'gas' => $gas,
+				'gasPrice' => $gasprice,
+				'value' => $value,
+				'data' => $data
+				],
+				'blocknum' => $blocknum
+			];
+		$this->genrequesturl($method, $urlparams);
+		
 		$params = [
 				[
 				'to' => $to,
@@ -192,6 +206,20 @@ class phph1{
 		Params:
 		*/
 		$method = "hmyv2_estimateGas";
+		
+		$urlparams = [
+				[
+				'to' => $to,
+				'from' => $from,
+				'gas' => $gas,
+				'gasPrice' => $gasprice,
+				'value' => $value,
+				'data' => $data
+				],
+				'blocknum' => $blocknum
+			];
+		$this->genrequesturl($method, $urlparams);
+		
 		$params = [
 				[
 				'to' => $to,
@@ -212,6 +240,14 @@ class phph1{
 		Params:
 		*/
 		$method = "hmyv2_getCode";
+		
+		$urlparams = [
+				'to' => $to,
+				'blocknum' => $blocknum
+				];
+		$this->genrequesturl($method, $urlparams);
+		
+		
 		$params = [
 				$to,
 				$blocknum
@@ -226,6 +262,14 @@ class phph1{
 		Params:
 		*/
 		$method = "hmyv2_getStorageAt";
+		
+		$urlparams = [
+				'smartaddress' => $smartaddress,
+				'storagehex' => $storagehex,
+				'blocknum' => $blocknum
+				];
+		$this->genrequesturl($method, $urlparams);
+			
 		$params = [
 				$smartaddress,
 				$storagehex,
@@ -264,6 +308,13 @@ class phph1{
 		$deladdr = The delegator's ONE Address		
 		*/
 		$method = "hmyv2_getDelegationsByDelegatorByBlockNumber";
+		
+		$urlparams = [
+					'oneaddr' => $deladdr,
+					'blocknum' => $blocknum
+					];
+		$this->genrequesturl($method, $urlparams);
+		
 		$params = [$deladdr, $blocknum];
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
@@ -291,24 +342,34 @@ class phph1{
 	function hmyv2_getAllValidatorAddresses(){
 		$method = "hmyv2_getAllValidatorAddresses";
 		$params = [];
-		$thisjson = $this->genjsonrequest($method, $params);
+		
 		$this->genrequesturl($method, $params);
+		
+		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
 	
 	function hmyv2_getAllValidatorInformation($page = 0){
 		$method = "hmyv2_getAllValidatorInformation";
-		$params = [$page];
+		
 		$urlparams = ['page' => $page];
-		$thisjson = $this->genjsonrequest($method, $params);
 		$this->genrequesturl($method, $urlparams);
+		
+		$params = [$page];
+		$thisjson = $this->genjsonrequest($method, $params);
+		
 		return $this->docurlrequest($thisjson);
 	}
 	
 	function hmyv2_getAllValidatorInformationByBlockNumber($page = -1, $blocknum){
 		$method = "hmyv2_getAllValidatorInformationByBlockNumber";
+		
+		$urlparams = ['page' => $page, 'blocknum' => $blocknum];
+		$this->genrequesturl($method, $urlparams);
+		
 		$params = [$page, $blocknum];
 		$thisjson = $this->genjsonrequest($method, $params);
+		
 		return $this->docurlrequest($thisjson);
 	}
 	
@@ -345,10 +406,11 @@ class phph1{
 	function hmyv2_getCurrentUtilityMetrics(){
 		// Params:
 		// NONE
-		
 		$method = "hmyv2_getCurrentUtilityMetrics";
 		$params = [];
+		
 		$this->genrequesturl($method, $params);
+		
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
@@ -452,6 +514,9 @@ class phph1{
 	function hmyv2_getPoolStats(){
 		$method = "hmyv2_getPoolStats";
 		$params = [];
+		
+		$this->genrequesturl($method, $params);
+		
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
@@ -459,6 +524,9 @@ class phph1{
 	function hmyv2_pendingStakingTransactions(){
 		$method = "hmyv2_pendingStakingTransactions";
 		$params = [];
+		
+		$this->genrequesturl($method, $params);
+		
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
@@ -466,7 +534,9 @@ class phph1{
 	function hmyv2_pendingTransactions(){
 		$method = "hmyv2_pendingTransactions";
 		$params = [];
+		
 		$this->genrequesturl($method, $params);
+		
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
@@ -486,7 +556,9 @@ class phph1{
 		
 		$method = "hmyv2_getCurrentStakingErrorSink";
 		$params = [];
+		
 		$this->genrequesturl($method, $params);
+		
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
@@ -497,6 +569,11 @@ class phph1{
 		// $stktransindex = The staking transactions index position
 		
 		$method = "hmyv2_getStakingTransactionByBlockNumberAndIndex";
+		
+		//FIXME
+		//$urlparams = ['blockhash' => $ctxhash];
+		//$this->genrequesturl($method, $urlparams);
+		
 		$params = [$stkblockindex,$stktransindex];
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
@@ -508,6 +585,11 @@ class phph1{
 		// $stktransindex = The staking transactions index position
 		
 		$method = "hmyv2_getStakingTransactionByBlockHashAndIndex";
+		
+		//FIXME
+		//$urlparams = ['blockhash' => $ctxhash];
+		//$this->genrequesturl($method, $urlparams);
+		
 		$params = [$stkblockhash,$stktransindex];
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
@@ -551,6 +633,9 @@ class phph1{
 		
 		$method = "hmyv2_getCurrentTransactionErrorSink";
 		$params = [];
+		
+		$this->genrequesturl($method, $params);
+		
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
@@ -562,6 +647,10 @@ class phph1{
 		$txindex = The transaction index number
 		*/
 		$method = "hmyv2_getTransactionByBlockHashAndIndex";
+		
+		$urlparams = ['blockhash' => $blockhash, 'txindex' => $txindex];
+		$this->genrequesturl($method, $urlparams);
+		
 		$params = [$blockhash,$txindex];
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
@@ -574,6 +663,10 @@ class phph1{
 		$txindex = The transaction index number
 		*/
 		$method = "hmyv2_getTransactionByBlockNumberAndIndex";
+		
+		$urlparams = ['blocknum' => $blocknum, 'txindex' => $txindex];
+		$this->genrequesturl($method, $urlparams);
+		
 		$params = [$blocknum,$txindex];
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
@@ -645,8 +738,10 @@ class phph1{
 		*/
 		$method = "hmyv2_blockNumber";
 		$params = [];
-		$thisjson = $this->genjsonrequest($method, $params);
+		
 		$this->genrequesturl($method, $params);
+		
+		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
 	
@@ -656,7 +751,9 @@ class phph1{
 		
 		$method = "hmyv2_getCirculatingSupply";
 		$params = [];
+		
 		$this->genrequesturl($method, $params);
+		
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
@@ -682,6 +779,9 @@ class phph1{
 		*/
 		$method = "hmyv2_getLastCrossLinks";
 		$params = [];
+		
+		$this->genrequesturl($method, $params);
+		
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
@@ -693,6 +793,9 @@ class phph1{
 		*/
 		$method = "hmyv2_getLeader";
 		$params = [];
+		
+		$this->genrequesturl($method, $params);
+		
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
@@ -704,8 +807,10 @@ class phph1{
 		*/
 		$method = "hmyv2_gasPrice";
 		$params = [];
-		$thisjson = $this->genjsonrequest($method, $params);
+		
 		$this->genrequesturl($method, $params);
+		
+		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
 	
@@ -716,6 +821,9 @@ class phph1{
 		*/
 		$method = "hmyv2_getShardingStructure";
 		$params = [];
+		
+		$this->genrequesturl($method, $params);
+		
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
@@ -754,6 +862,10 @@ class phph1{
 		$epoch = 		
 		*/
 		$method = "hmyv2_getValidatorKeys";
+		
+		$urlparams = ['epoch' => $epoch];
+		$this->genrequesturl($method, $urlparams);
+		
 		$params = [$epoch];
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
@@ -785,6 +897,9 @@ class phph1{
 		*/
 		$method = "hmyv2_getNodeMetadata";
 		$params = [];
+		
+		$this->genrequesturl($method, $params);
+		
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
@@ -797,7 +912,9 @@ class phph1{
 		*/
 		$method = "hmyv2_protocolVersion";
 		$params = [];
+		
 		$this->genrequesturl($method, $params);
+		
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
@@ -809,6 +926,9 @@ class phph1{
 		*/
 		$method = "net_peerCount";
 		$params = [];
+		
+		$this->genrequesturl($method, $params);
+		
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
@@ -869,15 +989,6 @@ class phph1{
 		//echo "withsigners:".$withsigners;
 		
 		$method = "hmyv2_getBlockByNumber";
-		$params = [
-				$blocknum,
-				[
-				'fullTx' => $fulltx,
-				'inclTx' => $incltx,
-				'inclStaking' => $inclstaking,
-				'withSigners' => $withsigners
-				]
-				];
 				
 		$urlparams = [
 				'blocknum' => $blocknum,
@@ -891,20 +1002,17 @@ class phph1{
 				
 		$this->genrequesturl($method, $urlparams);
 		
-		if($this->phph1_debug == 1){
-			echo "<pre style='color:blue;'><br />hmyv2_getBlockByNumber PARAMS ARRAY:<br />";
-			print_r($params);
-			echo "</pre>";
-		}
-		
+		$params = [
+				$blocknum,
+				[
+				'fullTx' => $fulltx,
+				'inclTx' => $incltx,
+				'inclStaking' => $inclstaking,
+				'withSigners' => $withsigners
+				]
+				];
+	
 		$thisjson = $this->genjsonrequest($method, $params);
-		
-		if($this->phph1_debug == 1){
-			echo "<pre style='color:blue;'><br />hmyv2_getBlockByNumber JSON REQUEST:<br />";
-			echo $thisjson;
-			echo "</pre>";
-		}
-		
 		return $this->docurlrequest($thisjson);
 	}
 	
@@ -919,15 +1027,7 @@ class phph1{
 		#$xparams = array($fulltxt,$withsigners,$inclstaking);
 		
 		$method = "hmyv2_getBlockByHash";
-		$params = [
-				$blockhash,
-				[
-				'fulltx' => $fulltx,
-				'incltx' => $incltx,
-				'withsigners' => $withsigners,
-				'inclstaking' => $inclstaking
-				]
-				];
+		
 		$urlparams = [
 				'blockhash' => $blockhash,
 				[
@@ -939,6 +1039,18 @@ class phph1{
 				];
 				
 		$this->genrequesturl($method, $urlparams);
+		
+		
+		$params = [
+				$blockhash,
+				[
+				'fulltx' => $fulltx,
+				'incltx' => $incltx,
+				'withsigners' => $withsigners,
+				'inclstaking' => $inclstaking
+				]
+				];
+				
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
@@ -949,14 +1061,13 @@ class phph1{
 		// $endingblocknum = Ending block number
 		
 		$method = "hmyv2_getBlockSigners";
-		$params = [$blocknum];
 		
-		$thisjson = $this->genjsonrequest($method, $params);
-				
 		$urlparams = ['blocknum' => $blocknum];
-		
 		$this->genrequesturl($method, $urlparams);
 		
+		$params = [$blocknum];
+		$thisjson = $this->genjsonrequest($method, $params);
+
 		return $this->docurlrequest($thisjson);
 	}
 	
@@ -967,6 +1078,10 @@ class phph1{
 		// $endingblocknum = Ending block number
 		
 		$method = "hmyv2_getBlockSignersKeys";
+		
+		$urlparams = ['blocknum' => $blocknum];
+		$this->genrequesturl($method, $urlparams);
+		
 		$params = [$blocknum];
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
@@ -1008,6 +1123,10 @@ class phph1{
 		$blocknum = The block number
 		*/
 		$method = "hmyv2_getHeaderByNumber";
+		
+		$urlparams = ['blocknum' => $blocknum];
+		$this->genrequesturl($method, $urlparams);
+		
 		$params = [$blocknum];
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
@@ -1020,6 +1139,9 @@ class phph1{
 		*/
 		$method = "hmyv2_getLatestChainHeaders";
 		$params = [];
+		
+		$this->genrequesturl($method, $params);
+		
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
@@ -1031,7 +1153,9 @@ class phph1{
 		*/
 		$method = "hmyv2_latestHeader";
 		$params = [];
+		
 		$this->genrequesturl($method, $params);
+		
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
@@ -1050,9 +1174,11 @@ class phph1{
 		$oneaddr = The ONE address
 		*/
 		$method = "hmyv2_getBalance";
-		$params = [$oneaddr];
+		
 		$urlparams = ['oneaddr' => $oneaddr];
 		$this->genrequesturl($method, $urlparams);
+		
+		$params = [$oneaddr];
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
@@ -1064,9 +1190,11 @@ class phph1{
 		$blocknum = The block number
 		*/
 		$method = "hmyv2_getBalanceByBlockNumber";
-		$params = [$oneaddr,$blocknum];
+		
 		$urlparams = ['oneaddr' => $oneaddr,'blocknum' => $blocknum];
 		$this->genrequesturl($method, $urlparams);
+		
+		$params = [$oneaddr,$blocknum];
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
@@ -1079,6 +1207,10 @@ class phph1{
 		$txtype = Transaction type ('SENT', 'RECEIVED', 'ALL')
 		*/
 		$method = "hmyv2_getStakingTransactionsCount";
+		
+		$urlparams = ['oneaddr' => $oneaddr, 'txtype' => $txtype];
+		$this->genrequesturl($method, $urlparams);
+		
 		$params = [$oneaddr,$txtype];
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
@@ -1105,10 +1237,10 @@ class phph1{
 					'order' => $order
 					]
 					);
-					#echo "<br />"; 
-					#print_r($params);
+					
+		$this->genrequesturl($method, $params);
+		
 		$thisjson = $this->genjsonrequest($method, $params);
-		#print_r($thisjson);
 		return $this->docurlrequest($thisjson);
 	}
 	
@@ -1139,17 +1271,7 @@ class phph1{
 		settype($fulltx, 'bool');
 		
 		$method = "hmyv2_getTransactionsHistory";
-		$params = array(
-					[
-					'address' => $oneaddr,
-					'pageIndex' => $page-1,
-					'pageSize' => $pagesize,
-					'fullTx' => $fulltx,
-					'txType' => $txtype,
-					'order' => $order
-					]
-					);
-					
+		
 		$urlparams = array(
 					[
 					'oneaddr' => $oneaddr,
@@ -1160,11 +1282,19 @@ class phph1{
 					'order' => $order
 					]
 					);
-					#echo "<br />"; 
-					#print_r($params);
-		$thisjson = $this->genjsonrequest($method, $params);
 		$this->genrequesturl($method, $urlparams);
-		#print_r($thisjson);
+		
+		$params = array(
+					[
+					'address' => $oneaddr,
+					'pageIndex' => $page-1,
+					'pageSize' => $pagesize,
+					'fullTx' => $fulltx,
+					'txType' => $txtype,
+					'order' => $order
+					]
+					);
+		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
 
