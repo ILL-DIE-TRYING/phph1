@@ -7,7 +7,7 @@
   
   There is a TON of work still needing to be done.
   
-  This is not the full list of capabilities yet. We are currently at 37. There a few of these that still need worked on, documentation-wise.
+  This is not the full list of capabilities yet. We are currently at 37 of ~60 methods. There are a few of these that still need worked on, documentation-wise.
   
   Did I mention there is a LOT of work left to do? I'll build a to-do list (roadmap) in the net coming days. 
 
