@@ -2,8 +2,8 @@
   What this means:
   
   Anything before hand is ~99% gone.
-  
-  This is now version 1.0.0
+
+  This is not release worthy yet
   
   There is a TON of work still needing to be done.
   
