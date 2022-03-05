@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+<button type="button" onclick="getEpoch()">Get The Epoch</button>
+<div id="epochdiv"  style="background-color:#ccc;">
+This is our Epoch data div
+</div>
+<br /><br />
+<button type="button" onclick="getAllValidatorAddresses()">Get All Validators</button>
+<div id="validatorsdiv"  style="background-color:#ccc;">
+This is our validators data div
+</div>
+
+<script>
+
+async function getEpoch(){
+
+	objid = document.getElementById("epochdiv");
+	
+	const url = '/phph1_call.php?do=1&&method=hmyv2_getEpoch';
+	
+	let response = await fetch(url);
+	
+	let myStringArray = await response.json();
+	
+	objid.innerHTML = "<p>" + myStringArray['result'] + "</p>";
+
+}
+
+async function getAllValidatorAddresses(){
+
+	objid = document.getElementById("validatorsdiv");
+	
+	const url = '/phph1_call.php?do=1&&method=hmyv2_getAllValidatorAddresses';
+	
+	let response = await fetch(url);
+	
+	let myStringArray = await response.json();
+	
+	//console.log(myStringArray);
+	
+	objid.innerHTML = null;
+	
+	var arrayLength = myStringArray['result'].length;
+	
+	//console.log("Array Length:" + arrayLength);
+	
+	for (var i = 0; i < arrayLength; i++) {
+		objid.innerHTML = objid.innerHTML + "<p>" + myStringArray['result'][i] + "</p>";
+	}
+	
+}
+
+</script>
+
+ </body>
+ </html>
