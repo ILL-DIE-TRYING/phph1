@@ -39,7 +39,7 @@
 					<div class="col-75">
 						<select id="network" name="network">
 							<?php
-							foreach($phph1_apiaddresses as $key => $value){
+							foreach($phph1_apiaddresses as $key => $aNet){
 								//echo $key.':'.$value;
 								echo '<option value="'.$key.'"';
 								if(isset($_SESSION['network']) && $_SESSION['network'] == $key){ 
@@ -51,6 +51,8 @@
 								}
 								echo '>'.$key.'</option>';
 							}
+							unset($key);
+							unset($aNet);
 							?>
 							<!--
 							<option value="mainnet" selected="<?php if(isset($_SESSION['network']) && $_SESSION['network'] == 'mainnet'){ echo "selected='selected'";} ?>" >Mainnet</option>
@@ -66,7 +68,7 @@
 					<div class="col-75">
 						<select id="shard" name="shard">
 							<?php
-							foreach($shard_data as $key => $value){
+							foreach($shard_data as $key => $aShard){
 								//echo $key.':'.$value;
 								echo '<option value="'.$key.'"';
 								if(isset($_SESSION['shard']) && $_SESSION['shard'] == $key){ 
@@ -76,6 +78,7 @@
 								}
 								echo '>'.$key.'</option>';
 							}
+							unset($key);
 							?>
 						</select>
 					</div>

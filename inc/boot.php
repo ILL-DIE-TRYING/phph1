@@ -122,6 +122,20 @@
 			}
 			
 			/*
+			Validate the Smart Contract Address if set
+			The Smart Contract Address must not be empty so as to waste our time here	
+			*/
+			if(isset($_GET['scaddress']) && !empty($_GET['scaddress']) && $phph1->val_scaddress($_GET['scaddress'])){
+				$valid_scaddress = 1;
+				$phph1->scaddress = $_GET['scaddress'];
+				$scaddress = $phph1->scaddress;
+			}elseif(isset($_GET['scaddress'])){
+				$validinput = 0;
+				$valid_scaddress = 0;
+				array_push($phph1->errors, 'Invalid Smart Contract Address');
+			}
+			
+			/*
 			Validate the epoch if set
 			The epoch must not be empty so as to waste our time here	
 			*/

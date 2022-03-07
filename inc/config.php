@@ -107,7 +107,17 @@ $phph1_methods = array(
 	'hmyv2_isBlockSigner',
 	'hmyv2_latestHeader',
 	'hmyv2_pendingTransactions',
-	'hmyv2_resendCx'
+	'hmyv2_resendCx',
+	'hmyv2_call',
+	'hmyv2_getCode',
+	'hmyv2_getStorageAt',
+	'hmyv2_getPoolStats',
+	'hmyv2_pendingStakingTransactions',
+	'hmyv2_getStakingTransactionByBlockNumberAndIndex',
+	'hmyv2_getStakingTransactionByBlockHashAndIndex',
+	'hmyv2_getLastCrossLinks'
+	
+	/* 'hmyv2_estimateGas'  THIS IS BROKEN ON HARMONY SIDE I THINK. SAVE FOR LAST */
 	
 	/*
 	,

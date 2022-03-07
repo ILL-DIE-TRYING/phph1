@@ -7,9 +7,10 @@
 		<?php
 		$method_Count = count($sorted_Methods);
 		echo "<p>PHPH1 Available Method Count: ".$method_Count."</p>";
-		foreach($sorted_Methods as $value){
-			echo "<p><a href='/index.php?method=".$value."' >".$value."</a></p>";
+		foreach($sorted_Methods as $aMethod){
+			echo "<p><a href='/index.php?method=".$aMethod."' >".$aMethod."</a></p>";
 		}
+		unset($aMethod);
 		?>
 		</div>
 	</div>

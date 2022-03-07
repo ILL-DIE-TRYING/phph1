@@ -38,7 +38,7 @@ class phph1{
 	public ?string $blocknum;
 	public ?string $blocknum2;
 	public ?string $blockhash;
-	public ?string $hash;
+	public ?string $scaddress;
 	public ?string $oneaddr;
 	public ?string $lastjson;
 	public ?int $phph1_debug;
@@ -161,21 +161,24 @@ class phph1{
 ######################
 ### SMART CONTRACT ###
 #Needs Finished:
-#hmyv2_call - val needs confirmed
-#hmyv2_estimateGas - needs val confirmed
+#hmyv2_estimateGas - POSSIBLY BROKEN ON THE HARMONY SIDE SAVED FOR LAST
 #hmyv2_getCode
 #hmyv2_getStorageAt
 ######################
 	
+	/**
+	* NEEDS TESTING
+	*/
 	function hmyv2_call($to, $from, $gas, $gasprice, $value, $data, $blocknum){
 		/*
 		Params:
 		*/
+		
 		$method = "hmyv2_call";
 		
 		$urlparams = [
 				[
-				'to' => $to,
+				'scaddress' => $to,
 				'from' => $from,
 				'gas' => $gas,
 				'gasPrice' => $gasprice,
@@ -201,7 +204,27 @@ class phph1{
 		return $this->docurlrequest($thisjson);
 	}
 	
-	function hmyv2_estimateGas($to, $from, $gas, $gasprice, $value, $data, $blocknum){
+	function val_call($to, $from, $gas, $gasprice, $value, $data, $blocknum){
+		$notvalid = 0;
+	
+		if(!is_null($from) && !$this->val_oneaddr($from)){$notvalid = 1; array_push($this->errors, 'from address is invalid');}
+		if(!is_null($gas) && is_numeric($gas) &&  !preg_match( '/^[+-]?([0-9]+\.?[0-9]*|\.[0-9]+)$/', $gas)){$notvalid = 1; array_push($this->errors, 'gas value is invalid');}
+		if(!is_null($gasprice) && is_numeric($gasprice) &&  !preg_match( '/^[+-]?([0-9]+\.?[0-9]*|\.[0-9]+)$/', $gasprice)){$notvalid = 1; array_push($this->errors, 'gasprice value is invalid');}
+		if(!is_null($value) && is_numeric($value) &&  !preg_match( '/^[0-9]+$/', $value)){$notvalid = 1; array_push($this->errors, 'value is invalid');}
+		if(!is_null($data) && !preg_match( '/^[a-z0-9]+$/', $data)){$notvalid = 1; array_push($this->errors, 'data value is invalid');}
+		
+		
+		if($notvalid == 0){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+	
+	/*
+	* FIXME
+	*/
+	function hmyv2_estimateGas($to, $from){
 		/*
 		Params:
 		*/
@@ -209,32 +232,60 @@ class phph1{
 		
 		$urlparams = [
 				[
-				'to' => $to,
-				'from' => $from,
+				'scaddress' => $to,
+				'from' => $from
+				/*,
 				'gas' => $gas,
 				'gasPrice' => $gasprice,
 				'value' => $value,
 				'data' => $data
 				],
 				'blocknum' => $blocknum
+				*/
+				]
 			];
 		$this->genrequesturl($method, $urlparams);
 		
 		$params = [
 				[
-				'to' => $to,
-				'from' => $from,
+				'to' => $to
+				/*,
+				'from' => $from
+				/*
+				,
 				'gas' => $gas,
 				'gasPrice' => $gasprice,
 				'value' => $value,
 				'data' => $data
+				
 				],
-				$blocknum
+				$blocknum*/
+				]
 			];
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
 	
+	function val_estimateGas($to, $from, $gas, $gasprice, $value, $data, $blocknum){
+		$notvalid = 0;
+	
+		if(!is_null($from) && !$this->val_hash($from)){$notvalid = 1; array_push($this->errors, 'from address is invalid');}
+		if(!is_null($gas) && is_numeric($gas) &&  !preg_match( '/^[+-]?([0-9]+\.?[0-9]*|\.[0-9]+)$/', $gas)){$notvalid = 1; array_push($this->errors, 'gas value is invalid');}
+		if(!is_null($gasprice) && is_numeric($gasprice) &&  !preg_match( '/^[+-]?([0-9]+\.?[0-9]*|\.[0-9]+)$/', $gasprice)){$notvalid = 1; array_push($this->errors, 'gasprice value is invalid');}
+		if(!is_null($value) && is_numeric($value) &&  !preg_match( '/^[0-9]+$/', $value)){$notvalid = 1; array_push($this->errors, 'value is invalid');}
+		if(!is_null($data) && !preg_match( '/^[a-z0-9]+$/', $data)){$notvalid = 1; array_push($this->errors, 'data value is invalid');}
+		
+		
+		if($notvalid == 0){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+	
+	/**
+	* DONE
+	*/
 	function hmyv2_getCode($to, $blocknum){
 		/*
 		Params:
@@ -242,7 +293,7 @@ class phph1{
 		$method = "hmyv2_getCode";
 		
 		$urlparams = [
-				'to' => $to,
+				'scaddress' => $to,
 				'blocknum' => $blocknum
 				];
 		$this->genrequesturl($method, $urlparams);
@@ -257,26 +308,39 @@ class phph1{
 	}
 	
 	
-	function hmyv2_getStorageAt($smartaddress, $storagehex, $blocknum){
+	function hmyv2_getStorageAt($scaddress, $stlocation, $blocknum){
 		/*
 		Params:
 		*/
 		$method = "hmyv2_getStorageAt";
 		
 		$urlparams = [
-				'smartaddress' => $smartaddress,
-				'storagehex' => $storagehex,
+				'scaddress' => $scaddress,
+				'stlocation' => $stlocation,
 				'blocknum' => $blocknum
 				];
 		$this->genrequesturl($method, $urlparams);
 			
 		$params = [
-				$smartaddress,
-				$storagehex,
+				$scaddress,
+				$stlocation,
 				$blocknum
 			];
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
+	}
+	
+	function val_getStorageAt($scaddress, $stlocation, $blocknum){
+		$notvalid = 0;
+
+		if(is_null($stlocation) && !preg_match( '/^[a-z0-9]+$/', $stlocation)){$notvalid = 1; array_push($this->errors, 'storage location hex value is invalid');}
+		
+		if($notvalid == 0){
+			return 1;
+		}else{
+			return 0;
+			
+		}
 	}
 
 ###############
@@ -507,7 +571,6 @@ class phph1{
 #######################################
 ### TRANSACTION -> TRANSACTION POOL ###
 #Need Finished:
-#hmyv2_getPoolStats
 #hmyv2_pendingStakingTransactions
 #######################################
 
@@ -521,6 +584,9 @@ class phph1{
 		return $this->docurlrequest($thisjson);
 	}
 	
+	/**
+	* FIXME - RETURNS EMPTY ARRAY
+	*/
 	function hmyv2_pendingStakingTransactions(){
 		$method = "hmyv2_pendingStakingTransactions";
 		$params = [];
@@ -563,36 +629,59 @@ class phph1{
 		return $this->docurlrequest($thisjson);
 	}
 	
-	function hmyv2_getStakingTransactionByBlockNumberAndIndex($stkblockindex,$stktransindex){
-		// Params:
-		// $stkblockindex = The block's index number in the chain
-		// $stktransindex = The staking transactions index position
+	function hmyv2_getStakingTransactionByBlockNumberAndIndex($blocknum,$txindex){
 		
 		$method = "hmyv2_getStakingTransactionByBlockNumberAndIndex";
 		
 		//FIXME
-		//$urlparams = ['blockhash' => $ctxhash];
-		//$this->genrequesturl($method, $urlparams);
+		$urlparams = ['blocknum' => $blocknum, 'txindex' => $txindex];
+		$this->genrequesturl($method, $urlparams);
 		
-		$params = [$stkblockindex,$stktransindex];
+		$params = [$blocknum,$txindex];
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
 	
-	function hmyv2_getStakingTransactionByBlockHashAndIndex($stkblockhash,$stktransindex){
+	function val_getStakingTransactionByBlockNumberAndIndex($blocknum,$txindex){
+		$notvalid = 0;
+
+		if(!preg_match( '/^[0-9]+$/', $txindex)){$notvalid = 1; array_push($this->errors, 'transaction index value is invalid');}
+		
+		if($notvalid == 0){
+			return 1;
+		}else{
+			return 0;
+			
+		}
+	}
+	
+	function hmyv2_getStakingTransactionByBlockHashAndIndex($blockhash,$txindex){
 		// Params:
-		// $stkblockhash = The block hash
-		// $stktransindex = The staking transactions index position
+		// $blockhash = The block hash
+		// $txindex = The staking transactions index position
 		
 		$method = "hmyv2_getStakingTransactionByBlockHashAndIndex";
 		
 		//FIXME
-		//$urlparams = ['blockhash' => $ctxhash];
-		//$this->genrequesturl($method, $urlparams);
+		$urlparams = ['blockhash' => $blockhash, 'txindex' => $txindex];
+		$this->genrequesturl($method, $urlparams);
 		
-		$params = [$stkblockhash,$stktransindex];
+		$params = [$blockhash,$txindex];
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
+	}
+	
+	function val_getStakingTransactionByBlockHashAndIndex($blockhash,$txindex){
+		$notvalid = 0;
+
+		if(!preg_match( '/^[0-9]+$/', $txindex)){$notvalid = 1; array_push($this->errors, 'transaction index value is invalid');}
+		
+		if($notvalid == 0){
+			return 1;
+		}else{
+			return 0;
+			
+		}
 	}
 	
 	function hmyv2_getStakingTransactionByHash($stkhash){
@@ -656,6 +745,17 @@ class phph1{
 		return $this->docurlrequest($thisjson);
 	}
 	
+	function val_getTransactionByBlockHashAndIndex($blockhash,$tindex){
+		$notvalid = 0;
+		if(isset($tindex) && is_numeric($tindex) &&  !preg_match( '/^[0-9]+$/', $tindex)){$notvalid = 1; array_push($this->errors, 'tindex value is invalid');}
+		
+		if($notvalid == 0){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+	
 	function hmyv2_getTransactionByBlockNumberAndIndex($blocknum,$txindex){
 		/*
 		Params:
@@ -670,6 +770,17 @@ class phph1{
 		$params = [$blocknum,$txindex];
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
+	}
+	
+	function val_getTransactionByBlockNumberAndIndex($blocknum,$tindex){
+		$notvalid = 0;
+		if(isset($tindex) && is_numeric($tindex) &&  !preg_match( '/^[0-9]+$/', $tindex)){$notvalid = 1; array_push($this->errors, 'tindex value is invalid');}
+		
+		if($notvalid == 0){
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 	
 	function hmyv2_getTransactionByHash($transhash){
@@ -977,6 +1088,21 @@ class phph1{
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
+	
+	function val_getBlocks($blocknum1,$blocknum2,$fulltx,$withsigners,$inclstaking){
+		$notvalid = 0;
+		//if(isset($blocknum) && !preg_match( '/^[0-9]+$/', $blocknum)){$notvalid = 1; echo '<br />$blocknum:'.$blocknum;}
+		if(isset($fulltx) && $fulltx != TRUE && $fulltx != FALSE && !is_bool($fulltx)){$notvalid = 1; array_push($this->errors, 'fulltx value is invalid');}
+		//if(isset($incltx) && $incltx != TRUE && $incltx != FALSE && !is_bool($incltx)){$notvalid = 1; echo '<br />$incltx:'.$incltx;}
+		if(isset($inclstaking) && $inclstaking != TRUE && $inclstaking != FALSE && !is_bool($inclstaking)){$notvalid = 1; array_push($this->errors, 'inclstaking value is invalid');}
+		if(isset($withsigners) && $withsigners != TRUE && $withsigners != FALSE && !is_bool($withsigners)){$notvalid = 1; array_push($this->errors, 'withsigners value is invalid');}
+		
+		if($notvalid == 0){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
 
 	function hmyv2_getBlockByNumber($blocknum, $fulltx=true, $incltx=false, $withsigners=false, $inclstaking=false){
 		/*
@@ -1016,6 +1142,21 @@ class phph1{
 		return $this->docurlrequest($thisjson);
 	}
 	
+	function val_getBlockByNumber($blocknum,$fulltx,$incltx,$withsigners,$inclstaking){
+		$notvalid = 0;
+		//if(isset($blocknum) && !preg_match( '/^[0-9]+$/', $blocknum)){$notvalid = 1; echo '<br />$blocknum:'.$blocknum;}
+		if(isset($fulltx) && $fulltx != TRUE && $fulltx != FALSE && !is_bool($fulltx)){$notvalid = 1; array_push($this->errors, 'fulltx value is invalid');}
+		if(isset($incltx) && $incltx != TRUE && $incltx != FALSE && !is_bool($incltx)){$notvalid = 1; array_push($this->errors, 'incltx value is invalid');;}
+		if(isset($inclstaking) && $inclstaking != TRUE && $inclstaking != FALSE && !is_bool($inclstaking)){$notvalid = 1; array_push($this->errors, 'inclstaking value is invalid');}
+		if(isset($withsigners) && $withsigners != TRUE && $withsigners != FALSE && !is_bool($withsigners)){$notvalid = 1; array_push($this->errors, 'withsigners value is invalid');}
+		
+		if($notvalid == 0){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+	
 	function hmyv2_getBlockByHash($blockhash,$fulltx = true,$incltx=false,$withsigners = false,$inclstaking = false){
 		/*
 		Params:
@@ -1053,6 +1194,20 @@ class phph1{
 				
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
+	}
+	
+	function val_getBlockByHash($blockhash,$fulltx,$inclTx,$withsigners,$inclstaking){
+		$notvalid = 0;
+		if(isset($fulltx) && $fulltx != TRUE && $fulltx != FALSE && !is_bool($fulltx)){$notvalid = 1; array_push($this->errors, 'fulltx value is invalid');}
+		if(isset($incltx) && $incltx != TRUE && $incltx != FALSE && !is_bool($incltx)){$notvalid = 1; array_push($this->errors, 'incltx value is invalid');}
+		if(isset($inclstaking) && $inclstaking != TRUE && $inclstaking != FALSE && !is_bool($inclstaking)){$notvalid = 1; array_push($this->errors, 'inclstaking value is invalid');}
+		if(isset($withsigners) && $withsigners != TRUE && $withsigners != FALSE && !is_bool($withsigners)){$notvalid = 1; array_push($this->errors, 'withsigners value is invalid');}
+		
+		if($notvalid == 0){
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 	
 	function hmyv2_getBlockSigners($blocknum){
@@ -1260,6 +1415,18 @@ class phph1{
 		return $this->docurlrequest($thisjson);
 	}
 	
+	function val_getTransactionsCount($oneaddr,$txtype){
+		$notvalid = 0;
+
+		if(isset($txtype) && $txtype != 'SENT' && $txtype != 'RECEIVED' && $txtype != 'ALL'){$notvalid = 1; array_push($this->errors, 'Invalid Transaction Type');}
+		
+		if($notvalid == 0){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+	
 	function hmyv2_getTransactionsHistory($oneaddr,?int $page = 1,?int $pagesize = 10, ?bool $fulltx = true, ?string $txtype = 'ALL', ?string $order = 'DESC'){
 		/*
 		Params:
@@ -1296,6 +1463,25 @@ class phph1{
 					);
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
+	}
+	
+	function val_getTransactionsHistory($oneaddr,$page,$pagesize,$fulltx,$txtype,$order){
+		$notvalid = 0;
+
+		if(isset($page) && !preg_match( '/^[0-9]+$/', $page)){$notvalid = 1; array_push($this->errors, 'Invalid Page Number');}
+		if(isset($pagesize) && !preg_match( '/^[0-9]+$/', $pagesize) && $pagesize <= 200){$notvalid = 1; array_push($this->errors, 'Invalid Page Size');}
+		if(isset($txtype) && $txtype != 'SENT' && $txtype != 'RECEIVED' && $txtype != 'ALL'){$notvalid = 1; array_push($this->errors, 'Invalid Transaction Type');}
+		if(isset($order) && $order != 'DESC' && $order != 'ASC'){$notvalid = 1; array_push($this->errors, 'Invalid Order');}
+		if(isset($fulltx) && $fulltx != '1' && $fulltx != '0'){
+			$notvalid = 1;
+			array_push($this->errors, 'Full transaction value is invalid');
+		}
+		
+		if($notvalid == 0){
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 
 ###################################################
@@ -1389,138 +1575,23 @@ class phph1{
 		}
 	}
 	
-	function val_getTransactionsHistory($oneaddr,$page,$pagesize,$fulltx,$txtype,$order){
-		$notvalid = 0;
+	function val_scaddress($scaddress){
+		if(isset($scaddress) && preg_match( '/^[a-zA-Z0-9]+$/', $scaddress) && strlen($scaddress) <= 66){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+	
+	
+	function val_stlocation($stlocation){
+		if(isset($stlocation) && preg_match( '/^[a-zA-Z0-9]+$/', $stlocation) && strlen($stlocation) <= 66){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
 
-		if(isset($page) && !preg_match( '/^[0-9]+$/', $page)){$notvalid = 1; array_push($this->errors, 'Invalid Page Number');}
-		if(isset($pagesize) && !preg_match( '/^[0-9]+$/', $pagesize) && $pagesize <= 200){$notvalid = 1; array_push($this->errors, 'Invalid Page Size');}
-		if(isset($txtype) && $txtype != 'SENT' && $txtype != 'RECEIVED' && $txtype != 'ALL'){$notvalid = 1; array_push($this->errors, 'Invalid Transaction Type');}
-		if(isset($order) && $order != 'DESC' && $order != 'ASC'){$notvalid = 1; array_push($this->errors, 'Invalid Order');}
-		if(isset($fulltx) && $fulltx != '1' && $fulltx != '0'){
-			$notvalid = 1;
-			array_push($this->errors, 'Full transaction value is invalid');
-		}
-		
-		if($notvalid == 0){
-			return 1;
-		}else{
-			return 0;
-		}
-	}
-	
-	function val_getTransactionCount($oneaddr,$txtype){
-		$notvalid = 0;
-
-		if(isset($txtype) && $txtype != 'SENT' && $txtype != 'RECEIVED' && $txtype != 'ALL'){$notvalid = 1; array_push($this->errors, 'Invalid Transaction Type');}
-		
-		if($notvalid == 0){
-			return 1;
-		}else{
-			return 0;
-		}
-	}
-	
-	function val_getBlockByNumber($blocknum,$fulltx,$incltx,$withsigners,$inclstaking){
-		$notvalid = 0;
-		//if(isset($blocknum) && !preg_match( '/^[0-9]+$/', $blocknum)){$notvalid = 1; echo '<br />$blocknum:'.$blocknum;}
-		if(isset($fulltx) && $fulltx != TRUE && $fulltx != FALSE && !is_bool($fulltx)){$notvalid = 1; array_push($this->errors, 'fulltx value is invalid');}
-		if(isset($incltx) && $incltx != TRUE && $incltx != FALSE && !is_bool($incltx)){$notvalid = 1; array_push($this->errors, 'incltx value is invalid');;}
-		if(isset($inclstaking) && $inclstaking != TRUE && $inclstaking != FALSE && !is_bool($inclstaking)){$notvalid = 1; array_push($this->errors, 'inclstaking value is invalid');}
-		if(isset($withsigners) && $withsigners != TRUE && $withsigners != FALSE && !is_bool($withsigners)){$notvalid = 1; array_push($this->errors, 'withsigners value is invalid');}
-		
-		if($notvalid == 0){
-			return 1;
-		}else{
-			return 0;
-		}
-	}
-	
-	function val_getBlocks($blocknum1,$blocknum2,$fulltx,$withsigners,$inclstaking){
-		$notvalid = 0;
-		//if(isset($blocknum) && !preg_match( '/^[0-9]+$/', $blocknum)){$notvalid = 1; echo '<br />$blocknum:'.$blocknum;}
-		if(isset($fulltx) && $fulltx != TRUE && $fulltx != FALSE && !is_bool($fulltx)){$notvalid = 1; array_push($this->errors, 'fulltx value is invalid');}
-		//if(isset($incltx) && $incltx != TRUE && $incltx != FALSE && !is_bool($incltx)){$notvalid = 1; echo '<br />$incltx:'.$incltx;}
-		if(isset($inclstaking) && $inclstaking != TRUE && $inclstaking != FALSE && !is_bool($inclstaking)){$notvalid = 1; array_push($this->errors, 'inclstaking value is invalid');}
-		if(isset($withsigners) && $withsigners != TRUE && $withsigners != FALSE && !is_bool($withsigners)){$notvalid = 1; array_push($this->errors, 'withsigners value is invalid');}
-		
-		if($notvalid == 0){
-			return 1;
-		}else{
-			return 0;
-		}
-	}
-	
-	function val_getBlockByHash($blockhash,$fulltx,$inclTx,$withsigners,$inclstaking){
-		$notvalid = 0;
-		if(isset($fulltx) && $fulltx != TRUE && $fulltx != FALSE && !is_bool($fulltx)){$notvalid = 1; array_push($this->errors, 'fulltx value is invalid');}
-		if(isset($incltx) && $incltx != TRUE && $incltx != FALSE && !is_bool($incltx)){$notvalid = 1; array_push($this->errors, 'incltx value is invalid');}
-		if(isset($inclstaking) && $inclstaking != TRUE && $inclstaking != FALSE && !is_bool($inclstaking)){$notvalid = 1; array_push($this->errors, 'inclstaking value is invalid');}
-		if(isset($withsigners) && $withsigners != TRUE && $withsigners != FALSE && !is_bool($withsigners)){$notvalid = 1; array_push($this->errors, 'withsigners value is invalid');}
-		
-		if($notvalid == 0){
-			return 1;
-		}else{
-			return 0;
-		}
-	}
-	
-	
-	function val_getTransactionByBlockNumberAndIndex($blocknum,$tindex){
-		$notvalid = 0;
-		if(isset($tindex) && is_numeric($tindex) &&  !preg_match( '/^[0-9]+$/', $tindex)){$notvalid = 1; array_push($this->errors, 'tindex value is invalid');}
-		
-		if($notvalid == 0){
-			return 1;
-		}else{
-			return 0;
-		}
-	}
-	
-	function val_getTransactionByBlockHashAndIndex($blockhash,$tindex){
-		$notvalid = 0;
-		if(isset($tindex) && is_numeric($tindex) &&  !preg_match( '/^[0-9]+$/', $tindex)){$notvalid = 1; array_push($this->errors, 'tindex value is invalid');}
-		
-		if($notvalid == 0){
-			return 1;
-		}else{
-			return 0;
-		}
-	}
-	
-	function val_call($to, $from, $gas, $gasprice, $value, $data, $blocknum){
-		$notvalid = 0;
-		
-		if(isset($gas) && !$this->val_oneaddr($from)){$notvalid = 1; array_push($this->errors, 'from address is invalid');}
-		if(isset($gas) && is_numeric($gas) &&  !preg_match( '/^[+-]?([0-9]+\.?[0-9]*|\.[0-9]+)$/', $gas)){$notvalid = 1; array_push($this->errors, 'gas value is invalid');}
-		if(isset($gasprice) && is_numeric($gasprice) &&  !preg_match( '/^[+-]?([0-9]+\.?[0-9]*|\.[0-9]+)$/', $gasprice)){$notvalid = 1; array_push($this->errors, 'gasprice value is invalid');}
-		if(isset($value) && is_numeric($value) &&  !preg_match( '/^[0-9]+$/', $value)){$notvalid = 1; array_push($this->errors, 'value is invalid');}
-		if(isset($data) && !preg_match( '/^[a-z0-9]+$/', $data)){$notvalid = 1; array_push($this->errors, 'data value is invalid');}
-		
-		
-		if($notvalid == 0){
-			return 1;
-		}else{
-			return 0;
-		}
-	}
-	
-	function val_estimateGas($to, $from, $gas, $gasprice, $value, $data, $blocknum){
-		$notvalid = 0;
-		
-		if(isset($gas) && !$this->val_oneaddr($from)){$notvalid = 1; array_push($this->errors, 'from address is invalid');}
-		if(isset($gas) && is_numeric($gas) &&  !preg_match( '/^[+-]?([0-9]+\.?[0-9]*|\.[0-9]+)$/', $gas)){$notvalid = 1; array_push($this->errors, 'gas value is invalid');}
-		if(isset($gasprice) && is_numeric($gasprice) &&  !preg_match( '/^[+-]?([0-9]+\.?[0-9]*|\.[0-9]+)$/', $gasprice)){$notvalid = 1; array_push($this->errors, 'gasprice value is invalid');}
-		if(isset($value) && is_numeric($value) &&  !preg_match( '/^[0-9]+$/', $value)){$notvalid = 1; array_push($this->errors, 'value is invalid');}
-		if(isset($data) && !preg_match( '/^[a-z0-9]+$/', $data)){$notvalid = 1; array_push($this->errors, 'data value is invalid');}
-		
-		
-		if($notvalid == 0){
-			return 1;
-		}else{
-			return 0;
-		}
-	}
-	
 }
 
 ?>

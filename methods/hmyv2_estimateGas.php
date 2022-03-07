@@ -1,6 +1,6 @@
 <?php
 // Get the transactions
-if(isset($valid_scaddress) && $valid_scaddress == 1 && isset($valid_blocknum) && $valid_blocknum == 1){
+if(isset($valid_scaddress) && $valid_scaddress == 1){
 	if($phph1->phph1_debug == 1){
 		echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
 	}
@@ -8,10 +8,10 @@ if(isset($valid_scaddress) && $valid_scaddress == 1 && isset($valid_blocknum) &&
 	/**
 	* Prepare from for validation
 	*/
-	if(isset($_GET['fromaddr'])&& !empty($_GET['fromaddr']) && $phph1->val_oneaddr($_GET['fromaddr'])){
-		$from = $_GET['fromaddr'];
+	if(isset($_GET['fromaddr'])&& !empty($_GET['fromaddr']) && $phph1->val_hash($_GET['fromaddr'])){
+		$fromaddr = $_GET['fromaddr'];
 	}else{
-		$from = null;
+		$fromaddr = null;
 	}
 	
 	/**
@@ -55,9 +55,9 @@ if(isset($valid_scaddress) && $valid_scaddress == 1 && isset($valid_blocknum) &&
 	/**
 	* Validate the input and run our call if the data is good
 	*/
-	if($phph1->val_call($scaddress, $from, $gas, $gasprice, $value, $data, $blocknum)){
+	if($phph1->val_estimateGas($scaddress, $fromaddr, $gas, $gasprice, $value, $data, $blocknum)){
 		$validinput = 1;
-		$hmyv2_data = $phph1->hmyv2_call($scaddress, $from, $gas, $gasprice, $value, $data, $blocknum);
+		$hmyv2_data = $phph1->hmyv2_estimateGas($scaddress, $fromaddr);
 	}else{
 		$validinput = 0;
 	}
@@ -147,7 +147,7 @@ if($phph1->rpc_call != 1){
 				
 				<ul class="infoObjects" >
 				
-					<li class="infoObjectNoBul"><h4><span>String</span> - Return value of the executed smart contract</h4></li>
+					<li class="infoObjectNoBul"><h4><span>String</span> - Hex of estimated gas price of smart contract call</h4></li>
 				</ul>
 
 			</div>
@@ -203,7 +203,7 @@ if($phph1->rpc_call != 1){
 					<input type="text" id="data" name="data" maxlength="10" value="<?php if(isset($data)){ echo $data; } ?>" />
 				</div>
 			</div>
-			
+			<!--
 			<div class="row">
 				<div class="col-25">
 					<label for="blocknum">Block Number: </label>
@@ -211,10 +211,10 @@ if($phph1->rpc_call != 1){
 					<input style="background: orange;" type="text" id="blocknum" name="blocknum" maxlength="200" value="<?php if(isset($blocknum)){ echo $blocknum; } ?>" />
 				</div>
 			</div>
-
+-->
 			<div class="row">
 				<input type="hidden" id="do" name="do" value="1" />
-				<input type="hidden" id="method" name="method" value="hmyv2_call" />
+				<input type="hidden" id="method" name="method" value="hmyv2_estimateGas" />
 				<input type='submit' name='Submit' class="form_submit" />
 			</div>
 		</form>
