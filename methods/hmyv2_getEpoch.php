@@ -1,14 +1,19 @@
 <?php
+/**
+* Start debug info display area
+*/
 if($phph1->phph1_debug == 1){
 	echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
 }
 
-/*
-Nothing to validate here so set this to 1
+/**
+* Nothing to validate here so set this to 1
 */
 $validinput = 1;
 
-// Get the transactions
+/**
+* Get the transactions
+*/
 $hmyv2_data = $phph1->hmyv2_getEpoch();
 
 /**
@@ -26,32 +31,34 @@ if($phph1->rpc_call != 1){
 
 ?>
 
-
-	<div class="info_container" >
-		<div class="infoRow">
-			<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
-			<div id="infoContent" class="infoContent">
+<div class="info_container" >
+	<div class="infoRow">
+		<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
+		<div id="infoContent" class="infoContent">
+		
+			<h3 class="infoHeader">Parameters</h3>
+			<ul class="infoObjects" >
 			
-				<h3 class="infoHeader">Parameters</h3>
-				<ul class="infoObjects" >
-					<li class="infoObjectNoBul"><h4>No Parameters Required</h4></li>
-				</ul>
+				<li class="infoObjectNoBul"><h4>No Parameters Required</h4></li>
 				
-				<h3 class="infoHeader">Returns</h3>
-				<ul class="infoObjects">
-					<li><div class="ioobjectWrap"><span >Number</span></div> 
-					<div class="iodefWrap">Current Epoch.</div></li>
-				</ul>
-			</div>
+			</ul>
+			
+			<h3 class="infoHeader">Returns</h3>
+			<ul class="infoObjects">
+			
+				<li><div class="ioobjectWrap"><span >Number</span>:</div> 
+				<div class="iodefWrap">Current Epoch.</div></li>
+				
+			</ul>
 		</div>
 	</div>
+</div>
 
 <?php
 /**
 * ends the rpc call check
 */
 }
-
 
 require_once('inc/output.php');
 ?>

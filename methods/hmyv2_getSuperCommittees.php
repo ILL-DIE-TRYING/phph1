@@ -1,4 +1,7 @@
 <?php
+/**
+* Start debug info display area
+*/
 if($phph1->phph1_debug == 1){
 	echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
 }
@@ -8,7 +11,9 @@ Nothing to validate so set this to 1
 */
 $validinput = 1;
 
-// Get the transactions
+/**
+* Get the transactions
+*/
 $hmyv2_data = $phph1->hmyv2_getSuperCommittees();
 
 /**
@@ -38,8 +43,96 @@ if($phph1->rpc_call != 1){
 			
 			<h3 class="infoHeader">Returns</h3>
 			<ul class="infoObjects">
-				<li><div class="ioobjectWrap"><span >FIXME</span></div> 
-				<div class="iodefWrap">FIXME.</div></li>
+				
+				<li class="infoObjectNoBul"><span>Array</span> of <span>Object</span>:</li>
+				
+				<li><div class="ioobjectWrap"><span>current</span> - <span>Array</span>:</div>
+				<div class="iodefWrap">Currently elected committee</div></li>
+				
+				<ul class="infoObjects2">
+					
+					<li><div class="ioobjectWrap"><span>epoch</span> - <span>Number</span>:</div>
+					<div class="iodefWrap">Epoch number</div></li>
+					
+					<li><div class="ioobjectWrap"><span>external-slot-count</span> - <span>Number</span>:</div>
+					<div class="iodefWrap">FIXME</div></li>
+					
+					<li><div class="ioobjectWrap"><span>quorum-deciders</span> - <span>Array</span>:</div></li>
+						
+					<ul class="infoObjects3">
+					
+						<li><div class="ioobjectWrap"><span>shard-0</span> - <span>Array</span>:</div>
+						<div class="iodefWrap">Shard of committee</div></li>
+						
+						<ul class="infoObjects4">
+							
+							<li><div class="ioobjectWrap"><span>committee-members</span> - <span>Array</span>:</div></li>
+							
+							<ul class="infoObjects5">
+								<li><div class="ioobjectWrap"><span>Array</span>:</div></li>
+								
+								<ul class="infoObjects6">
+								
+									<li><div class="ioobjectWrap"><span>bls-public-key</span> - <span>String</span>:</div>
+									<div class="iodefWrap">BLS public key</div></li>
+									
+									<li><div class="ioobjectWrap"><span>earning-account</span> - <span>String</span>:</div>
+									<div class="iodefWrap">Wallet address that rewards are being paid to</div></li>
+									
+									<li><div class="ioobjectWrap"><span>is-harmony-slot</span> - <span>Number</span>:</div>
+									<div class="iodefWrap">If slot is Harmony owned</div></li>
+									
+									<li><div class="ioobjectWrap"><span>voting-power-%</span> - <span>Number</span>:</div>
+									<div class="iodefWrap">Normalized voting power of key</div></li>
+									
+									<li><div class="ioobjectWrap"><span>voting-power-unnormalized</span> - <span>Number</span>:</div>
+									<div class="iodefWrap">Voting power of key</div></li>
+								
+								</ul>
+							</ul>
+							
+							<li><div class="ioobjectWrap"><span>count</span> - <span>Number</span>:</div>
+							<div class="iodefWrap">Number of BLS keys on shard</div></li>
+							
+							<li><div class="ioobjectWrap"><span>external-validator-slot-count</span> - <span>Number</span>:</div>
+							<div class="iodefWrap">Number of external BLS keys in committee</div></li>
+							
+							<li><div class="ioobjectWrap"><span>hmy-voting-power</span> - <span>Number</span>:</div>
+							<div class="iodefWrap">FIXME</div></li>
+							
+							<li><div class="ioobjectWrap"><span>policy</span> - <span>Number</span>:</div>
+							<div class="iodefWrap">Current election policy</div></li>
+							
+							<li><div class="ioobjectWrap"><span>staked-voting-power</span> - <span>Number</span>:</div>
+							<div class="iodefWrap">FIXME</div></li>
+							
+							<li><div class="ioobjectWrap"><span>total-effective-stake</span> - <span>Number</span>:</div>
+							<div class="iodefWrap">FIXME</div></li>
+							
+							<li><div class="ioobjectWrap"><span>total-raw-stake</span> - <span>Number</span>:</div>
+							<div class="iodefWrap">FIXME</div></li>
+						
+						</ul>
+						
+						<li><div class="ioobjectWrap"><span>shard-1</span> - See shard-0 output above</div></li>
+						
+						<li><div class="ioobjectWrap"><span>shard-2</span> - See shard-0 output above</div></li>
+						
+						<li><div class="ioobjectWrap"><span>shard-3</span> - See shard-0 output above</div></li>
+						
+					</ul>
+				
+				</ul>
+				
+				<li><div class="ioobjectWrap"><span>previous</span> - <span>Array</span>:</div>
+				<div class="iodefWrap">Previously elected committee</div></li>
+				
+				<ul class="infoObjects2">
+				
+					<li><div class="ioobjectWrap"><strong>See current committee output above</strong></div></li>
+				
+				</ul>
+				
 			</ul>
 		</div>
 	</div>

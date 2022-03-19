@@ -14,7 +14,6 @@ $validinput = 1;
 // Get the transactions
 $hmyv2_data = $phph1->hmyv2_getCirculatingSupply();
 
-
 /**
 * End debug info display area
 */
@@ -36,13 +35,17 @@ if($phph1->rpc_call != 1){
 			
 				<h3 class="infoHeader">Parameters</h3>
 				<ul class="infoObjects" >
+				
 					<li class="infoObjectNoBul"><h4>No Parameters Required</h4></li>
+					
 				</ul>
 				
 				<h3 class="infoHeader">Returns</h3>
 				<ul class="infoObjects">
-					<li><div class="ioobjectWrap"><span >Number</span></div> 
+				
+					<li><div class="ioobjectWrap"><span >Number</span>:</div> 
 					<div class="iodefWrap">Circulation supply of tokens in ONE.</div></li>
+					
 				</ul>
 			</div>
 		</div>
@@ -53,7 +56,6 @@ if($phph1->rpc_call != 1){
 * ends the rpc call check
 */
 }
-
 
 require_once('inc/output.php');
 ?>

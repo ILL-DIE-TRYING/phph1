@@ -11,7 +11,9 @@ if($phph1->phph1_debug == 1){
 */
 $validinput = 1;
 
-// Get the transactions
+/**
+* Get the current utility metrics
+*/
 $hmyv2_data = $phph1->hmyv2_getCurrentUtilityMetrics();
 
 /**
@@ -36,22 +38,26 @@ if($phph1->rpc_call != 1){
 			
 				<h3 class="infoHeader">Parameters</h3>
 				<ul class="infoObjects" >
+				
 					<li class="infoObjectNoBul"><h4>No Parameters Required</h4></li>
+					
 				</ul>
 				
 				<h3 class="infoHeader">Returns</h3>
 				<ul class="infoObjects">
-					<li><div class="ioobjectWrap"><span >AccumulatorSnapshot</span> - <span>Number</span></div> 
-					<div class="iodefWrap">Total block reward given out in Atto.</div></li>
+				
+					<li><div class="ioobjectWrap"><span >AccumulatorSnapshot</span> - <span>Number</span>:</div> 
+					<div class="iodefWrap">Total block reward given out in Atto</div></li>
 					
-					<li><div class="ioobjectWrap"><span >CurrentStakedPercentage</span> - <span>String</span></div> 
-					<div class="iodefWrap">Percent of circulating supply staked.</div></li>
+					<li><div class="ioobjectWrap"><span >CurrentStakedPercentage</span> - <span>String</span>:</div> 
+					<div class="iodefWrap">Percent of circulating supply staked</div></li>
 					
-					<li><div class="ioobjectWrap"><span >Deviation</span> - <span>String</span></div> 
-					<div class="iodefWrap">Change in percent of circulating supply staked.</div></li>
+					<li><div class="ioobjectWrap"><span >Deviation</span> - <span>String</span>:</div> 
+					<div class="iodefWrap">Change in percent of circulating supply staked</div></li>
 					
-					<li><div class="ioobjectWrap"><span >Adjustment</span> - <span>String</span></div> 
-					<div class="iodefWrap">Change in circulating supply staked.</div></li>
+					<li><div class="ioobjectWrap"><span >Adjustment</span> - <span>String</span>:</div> 
+					<div class="iodefWrap">Change in circulating supply staked</div></li>
+					
 				</ul>
 			</div>
 		</div>

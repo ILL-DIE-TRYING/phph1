@@ -69,6 +69,7 @@ $max_pagesize = 50;
 
 /**
 *	Array of available methods
+*   Don't mess with this unless you know what your are doing
 */
 $phph1_methods = array(
 	'hmyv2_getTransactionsHistory',
@@ -115,17 +116,25 @@ $phph1_methods = array(
 	'hmyv2_pendingStakingTransactions',
 	'hmyv2_getStakingTransactionByBlockNumberAndIndex',
 	'hmyv2_getStakingTransactionByBlockHashAndIndex',
-	'hmyv2_getLastCrossLinks'
+	'hmyv2_getLastCrossLinks',
+	'hmyv2_getLeader',
+	'hmyv2_getShardingStructure',
+	'hmyv2_getValidatorKeys',
+	'hmyv2_getCurrentBadBlocks',
+	'hmyv2_getNodeMetadata',
+	'net_peercount',
+	'hmyv2_getBlockSignerKeys',
+	'hmyv2_getHeaderByNumber',
+	'hmyv2_getLatestChainHeaders',
+	'hmyv2_getStakingTransactionsCount',
+	'hmyv2_getStakingTransactionsHistory',
+	'hmyv2_getTransactionByBlockNumberAndIndex',
+	'hmyv2_getTransactionByBlockHashAndIndex'
 	
 	/* 'hmyv2_estimateGas'  THIS IS BROKEN ON HARMONY SIDE I THINK. SAVE FOR LAST */
 	
 	/*
-	,
-	'hmyv2_getTransactionByBlockNumberAndIndex',
-	'hmyv2_getTransactionByBlockHashAndIndex',
-	'hmyv2_getValidatorInformation',
-	'hmyv2_getStakingTransactionByBlockNumberAndIndex',
-	'hmyv2_getStakingTransactionByBlockHashAndIndex'
+
 	*/
 );
 

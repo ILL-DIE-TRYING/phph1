@@ -12,9 +12,9 @@ if($phph1->phph1_debug == 1){
 $validinput = 1;
 
 /**
-* Get the transactions
+* Get the sharding structure
 */
-$hmyv2_data = $phph1->hmyv2_getLastCrossLinks();
+$hmyv2_data = $phph1->hmyv2_getShardingStructure();
 
 /**
 * End debug info display area
@@ -44,26 +44,17 @@ if($phph1->rpc_call != 1){
 				
 					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span>Array</span> of <span>Object</span>:</div></li>
 					
-					<li><div class="ioobjectWrap"><span>block-number</span> - <span>Number</span>:</div>
-					<div class="iodefWrap">Block number</div></li>
+					<li><div class="ioobjectWrap"><span>current</span> - <span>Bool</span>:</div>
+					<div class="iodefWrap">If this node is currently on this shard ID</div></li>
 					
-					<li><div class="ioobjectWrap"><span>epoch-number</span> - <span>Number</span>:</div>
-					<div class="iodefWrap">Block epoch</div></li>
+					<li><div class="ioobjectWrap"><span>http</span> - <span>String</span>:</div>
+					<div class="iodefWrap">HTTPS API endpoint for this shard ID</div></li>
 					
-					<li><div class="ioobjectWrap"><span>hash</span> - <span>String</span>:</div>
-					<div class="iodefWrap">Parent block hash</div></li>
-					
-					<li><div class="ioobjectWrap"><span>shard-id</span> - <span>Number</span>:</div>
+					<li><div class="ioobjectWrap"><span>shardID</span> - <span>Number</span>:</div>
 					<div class="iodefWrap">Shard ID</div></li>
-
-					<li><div class="ioobjectWrap"><span>signature</span> - <span>String</span>:</div>
-					<div class="iodefWrap">Hex representation of aggregated signature</div></li>
 					
-					<li><div class="ioobjectWrap"><span>signature-bitmap</span> - <span>String</span>:</div>
-					<div class="iodefWrap">Hex representation of aggregated signature bitmap</div></li>
-					
-					<li><div class="ioobjectWrap"><span>view-id</span> - <span>Number</span>:</div>
-					<div class="iodefWrap">View ID</div></li>
+					<li><div class="ioobjectWrap"><span>ws</span> - <span>String</span>:</div>
+					<div class="iodefWrap">Websocket API endpoint for this shard ID</div></li>
 
 				</ul>
 			</div>

@@ -11,7 +11,9 @@ if($phph1->phph1_debug == 1){
 */
 $validinput = 1;
 
-// Get the transactions
+/**
+* Get the staking transactions
+*/
 $hmyv2_data = $phph1->hmyv2_pendingStakingTransactions();
 
 /**

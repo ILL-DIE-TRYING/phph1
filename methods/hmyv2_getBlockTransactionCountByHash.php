@@ -1,14 +1,17 @@
 <?php
 if(isset($valid_blockhash) && $valid_blockhash == 1){
+	
+	/**
+	* Start debug info display area
+	*/
 	if($phph1->phph1_debug == 1){
 		echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
 	}
 
-	/*
-	* We are already validated in advance
+	/**
+	* We have validinput if we have a good one address and block number
 	*/
 	$validinput = 1;
-
 	$hmyv2_data = $phph1->hmyv2_getBlockTransactionCountByHash($blockhash);
 
 	
@@ -45,45 +48,51 @@ if($phph1->rpc_call != 1){
 
 ?>
 <div class="info_container" >
-		<div class="infoRow">
-			<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
-			<div id="infoContent" class="infoContent">
-			
-				<h3 class="infoHeader">Parameters</h3>
-				<ul class="infoObjects" >
+	<div class="infoRow">
+		<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
+		<div id="infoContent" class="infoContent">
+		
+			<h3 class="infoHeader">Parameters</h3>
+			<ul class="infoObjects" >
 
-					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span >String</span> :</div>
-					<div class="iodefWrap">Block hash.</div></li>
+				<li class="infoObjectNoBul"><div class="ioobjectWrap"><span >String</span>:</div>
+				<div class="iodefWrap">Block hash.</div></li>
+			
+			</ul>
+			
+			<h3 class="infoHeader">Returns</h3>
+			<ul class="infoObjects" >
 				
-				</ul>
-				<ul class="infoObjects" >
-					<h3 class="infoHeader">Returns</h3>
-					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span>Number</span>:</div> 
-					<div class="iodefWrap">Number of transactions in the block</div></li>
-				</ul>
-			</div>
+				<li class="infoObjectNoBul"><div class="ioobjectWrap"><span>Number</span>:</div> 
+				<div class="iodefWrap">Number of transactions in the block</div></li>
+				
+			</ul>
 		</div>
 	</div>
 </div>
 
-<form method="GET">
-	
-<div class="row">
-	<div class="col-25">
-		<label for="blockhash">Block Hash: </label>
-	</div><div class="col-75">
-		<input style="background: orange;" type="text" id="blockhash" name="blockhash" maxlength="66" value="<?php if(isset($blockhash)){ echo $blockhash; } ?>" />
+
+<div class="form_container">
+	<div id="formcontent">
+		<form method="GET">
+			
+		<div class="row">
+			<div class="col-25">
+				<label for="blockhash">Block Hash: </label>
+			</div><div class="col-75">
+				<input style="background: orange;" type="text" id="blockhash" name="blockhash" maxlength="66" value="<?php if(isset($blockhash)){ echo $blockhash; } ?>" />
+			</div>
+		</div>
+
+		<div class="row">
+			<input type="hidden" id="do" name="do" value="1" />
+			<input type="hidden" id="method" name="method" value="hmyv2_getBlockTransactionCountByHash" />
+			<input type='submit' name='Submit' />
+		</div>
+
+		</form>
 	</div>
 </div>
-
-<div class="row">
-	<input type="hidden" id="do" name="do" value="1" />
-	<input type="hidden" id="method" name="method" value="hmyv2_getBlockTransactionCountByHash" />
-	<input type='submit' name='Submit' />
-</div>
-
-</form>
-
 <?php
 /**
 * ends the rpc call check

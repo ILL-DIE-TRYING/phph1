@@ -47,7 +47,7 @@ if(isset($valid_blockhash) && $valid_blockhash == 1){
 if($phph1->rpc_call != 1){
 
 ?>
-<div class="info_container" >
+	<div class="info_container" >
 		<div class="infoRow">
 			<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
 			<div id="infoContent" class="infoContent">
@@ -67,25 +67,28 @@ if($phph1->rpc_call != 1){
 			</div>
 		</div>
 	</div>
-</div>
 
-<form method="GET">
-	
-<div class="row">
-	<div class="col-25">
-		<label for="blockhash">CX Hash: </label>
-	</div><div class="col-75">
-		<input style="background: orange;" type="text" id="blockhash" name="blockhash" maxlength="66" value="<?php if(isset($blockhash)){ echo $blockhash; } ?>" />
+	<div class="form_container">
+		<div id="formcontent">
+			<form method="GET">
+				
+				<div class="row">
+					<div class="col-25">
+						<label for="blockhash">CX Hash: </label>
+					</div><div class="col-75">
+						<input style="background: orange;" type="text" id="blockhash" name="blockhash" maxlength="66" value="<?php if(isset($blockhash)){ echo $blockhash; } ?>" />
+					</div>
+				</div>
+
+				<div class="row">
+					<input type="hidden" id="do" name="do" value="1" />
+					<input type="hidden" id="method" name="method" value="hmyv2_resendCx" />
+					<input type='submit' name='Submit' />
+				</div>
+
+			</form>
+		</div>
 	</div>
-</div>
-
-<div class="row">
-	<input type="hidden" id="do" name="do" value="1" />
-	<input type="hidden" id="method" name="method" value="hmyv2_resendCx" />
-	<input type='submit' name='Submit' />
-</div>
-
-</form>
 
 <?php
 

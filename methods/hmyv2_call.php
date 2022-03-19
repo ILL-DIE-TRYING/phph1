@@ -1,6 +1,8 @@
 <?php
-// Get the transactions
 if(isset($valid_scaddress) && $valid_scaddress == 1 && isset($valid_blocknum) && $valid_blocknum == 1){
+	/**
+	* Start debug info display area
+	*/
 	if($phph1->phph1_debug == 1){
 		echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
 	}
@@ -119,7 +121,7 @@ if($phph1->rpc_call != 1){
 				<h3 class="infoHeader">Parameters</h3>
 				<ul class="infoObjects" >
 				
-					<li class="infoObjectNoBul"><h4><span>Object</span> - Smart contract call object</h4></li>
+					<li class="infoObjectNoBul"><span>Object</span> - Smart contract call object</li>
 					
 					<li><div class="ioobjectWrap"><span>to</span> - <span >String</span> :</div>
 					<div class="iodefWrap">Smart contract address</div></li>
@@ -139,15 +141,13 @@ if($phph1->rpc_call != 1){
 					<li><div class="ioobjectWrap"><span >data</span> - <span >String</span>:</div>
 					<div class="iodefWrap">Hash of smart contract method and parameters, optional</div></li>
 					
-					<li class="infoObjectNoBul"><h4><span>Number</span> - Block Number</h4></li>
+					<li class="infoObjectNoBul"><span>Number</span> - Block Number</li>
 					
 				</ul>
 				
 				<h3>Returns</h3>
-				
 				<ul class="infoObjects" >
-				
-					<li class="infoObjectNoBul"><h4><span>String</span> - Return value of the executed smart contract</h4></li>
+					<li class="infoObjectNoBul"><span>String</span> - Return value of the executed smart contract</li>
 				</ul>
 
 			</div>
@@ -220,7 +220,6 @@ if($phph1->rpc_call != 1){
 		</form>
 		</div>
 	</div>
-<br />
 
 <?php
 /**

@@ -1,5 +1,8 @@
 <?php
 if(isset($valid_epoch) && $valid_epoch == 1){
+	/**
+	* Start debug info display area
+	*/
 	if($phph1->phph1_debug == 1){
 		echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
 	}
@@ -68,7 +71,7 @@ if($phph1->rpc_call != 1){
 				<h3 class="infoHeader">Parameters</h3>
 				<ul class="infoObjects" >
 					
-					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span >Number</span> :</div>
+					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span>Number</span>:</div>
 					<div class="iodefWrap">Epoch</div></li>
 					
 				</ul>
@@ -76,19 +79,19 @@ if($phph1->rpc_call != 1){
 				<h3>Returns</h3>
 
 				<ul class="infoObjects">
-					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span>Object</span></div></li>
+					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span>Object</span>:</div></li>
 					
-					<li><div class="ioobjectWrap"><span >shardID</span> - <span>Number</span>:</div> 
+					<li><div class="ioobjectWrap"><span>shardID</span> - <span>Number</span>:</div> 
 					<div class="iodefWrap">Shard ID</div></li>
 					
-					<li><div class="ioobjectWrap"><span >validators</span> - <span>Array</span> of <span>Object</span>:</div></li>
+					<li><div class="ioobjectWrap"><span>validators</span> - <span>Array</span> of <span>Object</span>:</div></li>
 					
 					<ul class="infoObjects2">
 					
-						<li><div class="ioobjectWrap"><span >address</span> - <span>String</span>:</div> 
+						<li><div class="ioobjectWrap"><span>address</span> - <span>String</span>:</div> 
 						<div class="iodefWrap">Wallet address</div></li>
 						
-						<li><div class="ioobjectWrap"><span >balance</span> - <span>Number</span>:</div> 
+						<li><div class="ioobjectWrap"><span>balance</span> - <span>Number</span>:</div> 
 						<div class="iodefWrap">Balance of wallet</div></li>
 					
 					</ul>
@@ -100,26 +103,24 @@ if($phph1->rpc_call != 1){
 	
 	<div class="form_container">
 		<div id="formcontent">
-		<form method="get">
-			<div class="row">
-				<div class="col-25">
-					<label for="epoch">Epoch: </label>
-				</div><div class="col-75">
-					<input style="background: orange;" type="text" id="epoch" name="epoch" maxlength="42" value="<?php if(isset($epoch)){ echo $epoch; } ?>" />
+			<form method="get">
+				<div class="row">
+					<div class="col-25">
+						<label for="epoch">Epoch: </label>
+					</div><div class="col-75">
+						<input style="background: orange;" type="text" id="epoch" name="epoch" maxlength="42" value="<?php if(isset($epoch)){ echo $epoch; } ?>" />
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<input type="hidden" id="do" name="do" value="1" />
-				<input type="hidden" id="method" name="method" value="hmyv2_getValidators" />
-				<input type='submit' name='Submit' class="form_submit" />
-			</div>
-		</form>
+				<div class="row">
+					<input type="hidden" id="do" name="do" value="1" />
+					<input type="hidden" id="method" name="method" value="hmyv2_getValidators" />
+					<input type='submit' name='Submit' class="form_submit" />
+				</div>
+			</form>
 		</div>
 	</div>
-<br />
 
 <?php
-
 /**
 * ends the rpc call check
 */

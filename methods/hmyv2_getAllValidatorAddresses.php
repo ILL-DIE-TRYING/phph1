@@ -29,24 +29,24 @@ if($phph1->rpc_call != 1){
 
 ?>
 
-<div class="info_container" >
-	<div class="infoRow">
-		<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
-		<div id="infoContent" class="infoContent">
-		
-			<h3 class="infoHeader">Parameters</h3>
-			<ul class="infoObjects" >
-				<li class="infoObjectNoBul"><h4>No Parameters Required</h4></li>
-			</ul>
+	<div class="info_container" >
+		<div class="infoRow">
+			<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
+			<div id="infoContent" class="infoContent">
 			
-			<h3 class="infoHeader">Returns</h3>
-			<ul class="infoObjects">
-				<li><div class="ioobjectWrap"><span>Array</span> of <span >String</span></div> 
-				<div class="iodefWrap">List of wallet addresses that have created validators on the network.</div></li>
-			</ul>
+				<h3 class="infoHeader">Parameters</h3>
+				<ul class="infoObjects" >
+					<li class="infoObjectNoBul"><h4>No Parameters Required</h4></li>
+				</ul>
+				
+				<h3 class="infoHeader">Returns</h3>
+				<ul class="infoObjects">
+					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span>Array</span> of <span >String</span>:</div> 
+					<div class="iodefWrap">List of wallet addresses that have created validators on the network.</div></li>
+				</ul>
+			</div>
 		</div>
 	</div>
-</div>
 
 <?php
 /**

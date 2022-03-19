@@ -21,7 +21,6 @@
 	<div class="fp_column">
 		<div class="fp_content_header"><h3>Full Package Usage</h3></div>
 		<div class="fp_content">
-			
 		</div>
 	</div>
 </div>
@@ -30,7 +29,6 @@
 	<div class="fp_column">
 		<div class="fp_content_header"><h3>Minimal Package Usage</h3></div>
 		<div class="fp_content">
-			
 		</div>
 	</div>
 </div>
@@ -39,14 +37,10 @@
 	<div class="fp_column">
 		<div class="fp_content_header"><h3>Class Only</h3></div>
 		<div class="fp_content">
-			
 		</div>
 	</div>
 </div>
 
 
 
-<div class="fp_footer">
-  <p>Footer</p>
-</div>
 

@@ -1,5 +1,5 @@
 <?php
-if(isset($valid_scaddress) && $valid_scaddress == 1 && isset($valid_blocknum) && $valid_blocknum == 1){
+if(isset($valid_blocknum) && $valid_blocknum == 1){
 	
 	/**
 	* Start debug info display area
@@ -9,11 +9,10 @@ if(isset($valid_scaddress) && $valid_scaddress == 1 && isset($valid_blocknum) &&
 	}
 
 	/**
-	* Input already validated so just run the method
+	* We have validinput if we have a good one address and block number
 	*/
 	$validinput = 1;
-	$hmyv2_data = $phph1->hmyv2_getCode($scaddress, $blocknum);
-
+	$hmyv2_data = $phph1->hmyv2_getBlockSignerKeys($blocknum);
 	
 	/**
 	* End debug info display area
@@ -21,7 +20,7 @@ if(isset($valid_scaddress) && $valid_scaddress == 1 && isset($valid_blocknum) &&
 	if($phph1->phph1_debug == 1){
 			echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>";
 	}
-	
+
 /**
 * Show our errors if we have them
 */
@@ -45,7 +44,9 @@ if(isset($valid_scaddress) && $valid_scaddress == 1 && isset($valid_blocknum) &&
 * If not show the html output of the method explorer
 */
 if($phph1->rpc_call != 1){
+
 ?>
+
 <div class="info_container" >
 	<div class="infoRow">
 		<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
@@ -53,51 +54,45 @@ if($phph1->rpc_call != 1){
 		
 			<h3 class="infoHeader">Parameters</h3>
 			<ul class="infoObjects" >
+
+				<li class="infoObjectNoBul"><div class="ioobjectWrap"><span >Number</span>:</div>
+				<div class="iodefWrap">Block Number</div></li>
 			
-				<li class="infoObjectNoBul"><span>String</span> - Smart contract address</li>
-				
-				<li class="infoObjectNoBul"><span>Number</span> - Block Number</li>
-				
 			</ul>
 			
-			<h3>Returns</h3>
+			<h3 class="infoHeader">Returns</h3>
 			<ul class="infoObjects" >
 			
-				<li class="infoObjectNoBul"><span>String</span> - Hex return value of the executed smart contract</li>
+				<li class="infoObjectNoBul"><div class="ioobjectWrap"><span>Array</span>:</div> 
+				<div class="iodefWrap">List of block signer public BLS keys</div></li>
 				
 			</ul>
-
 		</div>
 	</div>
 </div>
 
 <div class="form_container">
 	<div id="formcontent">
-		<form method="get">
-			<div class="row">
-				<div class="col-25">
-					<label for="scaddress">Smart Contract Address: </label>
-				</div><div class="col-75">
-					<input style="background: orange;" type="text" id="scaddress" name="scaddress" maxlength="42" value="<?php if(isset($scaddress)){ echo $scaddress; } ?>" />
-				</div>
-			</div>
-			
+		<form method="GET">
+		
 			<div class="row">
 				<div class="col-25">
 					<label for="blocknum">Block Number: </label>
 				</div><div class="col-75">
-					<input style="background: orange;" type="text" id="blocknum" name="blocknum" maxlength="200" value="<?php if(isset($blocknum)){ echo $blocknum; } ?>" />
+					<input style="background: orange;" type="text" id="blocknum" name="blocknum" maxlength="42" value="<?php if(isset($blocknum)){ echo $blocknum; } ?>" />
 				</div>
 			</div>
 
 			<div class="row">
 				<input type="hidden" id="do" name="do" value="1" />
-				<input type="hidden" id="method" name="method" value="hmyv2_getCode" />
-				<input type='submit' name='Submit' class="form_submit" />
+				<input type="hidden" id="method" name="method" value="hmyv2_getBlockSignerKeys" />
+				<input type='submit' name='Submit' />
 			</div>
+
 		</form>
 	</div>
 </div>
+
 <?php
 /**
 * ends the rpc call check
@@ -106,3 +101,4 @@ if($phph1->rpc_call != 1){
 
 require_once('inc/output.php');
 ?>
+

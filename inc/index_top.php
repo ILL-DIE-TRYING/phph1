@@ -5,16 +5,16 @@
 	</div>
 	<div id="navbar">
 		<ul class="dropdownUL" >
-			<li class="dropdownLI"><a href="/">Home</a></li>
-			<li class="dropdownLI"><a href="#" id="settingsBtn">Settings</a></li>
+			<li class="dropdownLI"><a href="/" title="Return To Homepage">Home</a></li>
+			<li class="dropdownLI"><a href="#" id="settingsBtn" title="Open Settings Dialog">Settings</a></li>
 			<li class="dropdown">
-				<a class="dropbtn" href="javascript:void(0)">Methods</a>
+				<a class="dropbtn" href="javascript:void(0)" title="Show Methods Menu">Methods</a>
 				<div class="dropdown-content">
 					<div class="dropdown-header">
 						<input id="LoadMethodInput" type="text" placeholder="Search.." class="searchbox" onkeyup="filterMethodInput()">
 					</div>
 					<div id="LoadMethodDropdown" class="dropdown-list">
-						<?php foreach($sorted_Methods as $amethod){ echo '<a href="/?method='.$amethod.'">'.$amethod.'</a>';}?>
+						<?php foreach($sorted_Methods as $amethod){ echo '<a href="/?method='.$amethod.'" title="'.$amethod.'">'.$amethod.'</a>';}?>
 					</div>
 				</div>
 			</li>

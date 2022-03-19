@@ -1,5 +1,8 @@
 <?php
 if(isset($valid_blockhash) && $valid_blockhash == 1){
+	/**
+	* Start debug info display area
+	*/
 	if($phph1->phph1_debug == 1){
 		echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
 	}
@@ -41,11 +44,9 @@ if(isset($valid_blockhash) && $valid_blockhash == 1){
 * If not show the html output of the method explorer
 */
 if($phph1->rpc_call != 1){
-
 ?>
 
-
-<div class="info_container" >
+	<div class="info_container" >
 		<div class="infoRow">
 			<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
 			<div id="infoContent" class="infoContent">
@@ -84,6 +85,9 @@ if($phph1->rpc_call != 1){
 						<li><div class="ioobjectWrap"><span >logsBloom</span> - <span >String</span>:</div> 
 						<div class="iodefWrap">Bloom logs</div></li>
 						
+						<li><div class="ioobjectWrap"><span >root</span> - <span >String</span>:</div> 
+						<div class="iodefWrap">FIXME</div></li>
+						
 						<li><div class="ioobjectWrap"><span >shardID</span> - <span >Number</span> :</div> 
 						<div class="iodefWrap">Shard ID</div></li>
 						
@@ -104,27 +108,28 @@ if($phph1->rpc_call != 1){
 			</div>
 		</div>
 	</div>
-</div>
 
-<form method="GET">
-	
-<div class="row">
-	<div class="col-25">
-		<label for="blockhash">Hash (NOT Block Hash): </label>
-	</div><div class="col-75">
-		<input style="background: orange;" type="text" id="blockhash" name="blockhash" maxlength="66" value="<?php if(isset($blockhash)){ echo $blockhash; } ?>" />
+	<div class="form_container">
+		<div id="formcontent">
+			<form method="GET">
+				
+			<div class="row">
+				<div class="col-25">
+					<label for="blockhash">Hash (NOT Block Hash): </label>
+				</div><div class="col-75">
+					<input style="background: orange;" type="text" id="blockhash" name="blockhash" maxlength="66" value="<?php if(isset($blockhash)){ echo $blockhash; } ?>" />
+				</div>
+			</div>
+
+			<div class="row">
+				<input type="hidden" id="do" name="do" value="1" />
+				<input type="hidden" id="method" name="method" value="hmyv2_getTransactionReceipt" />
+				<input type='submit' name='Submit' />
+			</div>
+
+			</form>
+		</div>
 	</div>
-</div>
-
-<div class="row">
-	<input type="hidden" id="do" name="do" value="1" />
-	<input type="hidden" id="method" name="method" value="hmyv2_getTransactionReceipt" />
-	<input type='submit' name='Submit' />
-</div>
-
-</form>
-
-<br />
 
 <?php
 /**

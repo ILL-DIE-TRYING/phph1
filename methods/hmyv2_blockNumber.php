@@ -1,4 +1,7 @@
 <?php
+/**
+* Start debug info display area
+*/
 if($phph1->phph1_debug == 1){
 	echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
 }
@@ -36,14 +39,16 @@ if($phph1->rpc_call != 1){
 				
 				<h3 class="infoHeader">Returns</h3>
 				<ul class="infoObjects">
-					<li><div class="ioobjectWrap"><span >Number</span></div> 
-					<div class="iodefWrap">Current block number.</div></li>
+					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span >Number</span>:</div> 
+					<div class="iodefWrap">Current block number</div></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-
 <?php
+/**
+* ends the rpc call check
+*/
 }
 
 require_once('inc/output.php');

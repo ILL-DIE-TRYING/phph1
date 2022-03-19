@@ -1,5 +1,8 @@
 <?php
 if(isset($valid_oneaddr) && $valid_oneaddr == 1){
+	/**
+	* Start debug info display area
+	*/
 	if($phph1->phph1_debug == 1){
 		echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
 	}
@@ -71,7 +74,6 @@ if(isset($valid_oneaddr) && $valid_oneaddr == 1){
 * If not show the html output of the method explorer
 */
 if($phph1->rpc_call != 1){
-
 ?>
 	
 	<div class="info_container" >
@@ -133,7 +135,6 @@ if($phph1->rpc_call != 1){
 			</form>
 		</div>
 	</div>
-<br />
 
 <?php
 /**

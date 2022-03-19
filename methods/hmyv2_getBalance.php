@@ -1,10 +1,17 @@
 <?php
 // Get the transactions
 if(isset($valid_oneaddr) && $valid_oneaddr == 1){
+	
+	/**
+	* Start debug info display area
+	*/
 	if($phph1->phph1_debug == 1){
 		echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
 	}
 
+	/**
+	* ONE address is already validated
+	*/
 	$validinput = 1;
 	$hmyv2_data = $phph1->hmyv2_getBalance($oneaddr);
 
@@ -13,24 +20,6 @@ if(isset($valid_oneaddr) && $valid_oneaddr == 1){
 	*/
 	if($phph1->phph1_debug == 1){
 			echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>";
-	}
-	
-	/**
-	* Show our errors if we have them
-	*/
-	if ($validinput == 0){
-		echo '<div class="error_div">';
-		echo '<p class="hmyv2_errors">Error:';
-		$errnum = 1;
-		foreach($phph1->errors as $anerror){
-			if($errnum == 1){
-				echo ' <span class="hmyv2_error">'.$anerror.'</span>';
-				$errnum=0;
-			}else{
-				echo '<span class="hmyv2_error">, '.$anerror.'</span>';
-			}
-		}
-		echo '</p></div>';
 	}
 	
 /**
@@ -56,7 +45,6 @@ if(isset($valid_oneaddr) && $valid_oneaddr == 1){
 * If not show the html output of the method explorer
 */
 if($phph1->rpc_call != 1){
-
 ?>
 	<div class="info_container" >
 		<div class="infoRow">
@@ -65,17 +53,14 @@ if($phph1->rpc_call != 1){
 			
 				<h3 class="infoHeader">Parameters</h3>
 				<ul class="infoObjects" >
-					
-					<li><div class="ioobjectWrap"><span >String</span> :</div>
+					<li><div class="ioobjectWrap"><span >String</span>:</div>
 					<div class="iodefWrap">Wallet address</div></li>
-					
 				</ul>
 				
 				<h3>Returns</h3>
-
 				<ul class="infoObjects">
 					<li><div class="ioobjectWrap"><span >Number</span>:</div> 
-					<div class="iodefWrap">Wallet balance at given block in Atto.</div></li>
+					<div class="iodefWrap">Wallet balance at given block in Atto</div></li>
 				</ul>
 
 			</div>
@@ -100,7 +85,6 @@ if($phph1->rpc_call != 1){
 		</form>
 		</div>
 	</div>
-<br />
 
 <?php
 /**

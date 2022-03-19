@@ -1,10 +1,16 @@
 <?php
 // Get the transactions
 if(isset($valid_blocknum) && $valid_blocknum == 1){
+	/**
+	* Start debug info display area
+	*/
 	if($phph1->phph1_debug == 1){
 		echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
 	}
 
+	/**
+	* Prepare txindex for validation, ensure it is numeric
+	*/
 	if(isset($_GET['txindex']) && is_numeric($_GET['txindex'])){
 		$txindex = $_GET['txindex'];
 	}else{
@@ -84,7 +90,7 @@ if($phph1->rpc_call != 1){
 				<h3 class="infoHeader">Returns</h3>
 				<ul class="infoObjects" >
 					
-					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span>Object</span></div></li>
+					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span>Object</span>:</div></li>
 
 					<li><div class="ioobjectWrap"><span>blockHash</span> - <span>String</span>:</div>
 					<div class="iodefWrap">Block hash in which transaction was finalized</div></li>
@@ -132,30 +138,30 @@ if($phph1->rpc_call != 1){
 			</div>
 		</div>
 	</div>
-		<div class="form_container">
+	<div class="form_container">
 		<div id="formcontent">
-		<form method="get">
-			<div class="row">
-				<div class="col-25">
-					<label for="blocknum">Block Number: </label>
-				</div><div class="col-75">
-					<input style="background: orange;" type="text" id="blocknum" name="blocknum" maxlength="42" value="<?php if(isset($blocknum)){ echo $blocknum; } ?>" />
+			<form method="get">
+				<div class="row">
+					<div class="col-25">
+						<label for="blocknum">Block Number: </label>
+					</div><div class="col-75">
+						<input style="background: orange;" type="text" id="blocknum" name="blocknum" maxlength="42" value="<?php if(isset($blocknum)){ echo $blocknum; } ?>" />
+					</div>
 				</div>
-			</div>
 
-			<div class="row">
-				<div class="col-25">
-					<label for="txindex">Transaction Index: </label>
-				</div><div class="col-75">	
-					<input style="background: orange;" type="text" id="txindex" name="txindex"  size="20" maxlength="20" value="<?php if(isset($txindex)){ echo $txindex; } ?>" />
+				<div class="row">
+					<div class="col-25">
+						<label for="txindex">Transaction Index: </label>
+					</div><div class="col-75">	
+						<input style="background: orange;" type="text" id="txindex" name="txindex"  size="20" maxlength="20" value="<?php if(isset($txindex)){ echo $txindex; } ?>" />
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<input type="hidden" id="do" name="do" value="1" />
-				<input type="hidden" id="method" name="method" value="hmyv2_getStakingTransactionByBlockNumberAndIndex" />
-				<input type='submit' name='Submit' class="form_submit" />
-			</div>
-		</form>
+				<div class="row">
+					<input type="hidden" id="do" name="do" value="1" />
+					<input type="hidden" id="method" name="method" value="hmyv2_getStakingTransactionByBlockNumberAndIndex" />
+					<input type='submit' name='Submit' class="form_submit" />
+				</div>
+			</form>
 		</div>
 	</div>
 

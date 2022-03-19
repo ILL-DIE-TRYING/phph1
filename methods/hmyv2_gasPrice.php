@@ -26,7 +26,6 @@ if($phph1->phph1_debug == 1){
 * If not show the html output of the method explorer
 */
 if($phph1->rpc_call != 1){
-
 ?>
 
 	<div class="info_container" >
@@ -41,7 +40,7 @@ if($phph1->rpc_call != 1){
 				
 				<h3 class="infoHeader">Returns</h3>
 				<ul class="infoObjects">
-					<li><div class="ioobjectWrap"><span >Number</span></div> 
+					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span >Number</span>:</div> 
 					<div class="iodefWrap">Current average gas price of transactions.</div></li>
 				</ul>
 			</div>

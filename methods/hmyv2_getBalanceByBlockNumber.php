@@ -1,5 +1,9 @@
 <?php
 if(isset($valid_oneaddr) && $valid_oneaddr == 1 && isset($valid_blocknum) && $valid_blocknum == 1){
+	
+	/**
+	* Start debug info display area
+	*/
 	if($phph1->phph1_debug == 1){
 		echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
 	}
@@ -67,18 +71,21 @@ if($phph1->rpc_call != 1){
 			
 				<h3 class="infoHeader">Parameters</h3>
 				<ul class="infoObjects" >
-
-					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span >String</span> :</div>
-					<div class="iodefWrap">Wallet address.</div></li>
-					
-					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span >Number</span> :</div>
-					<div class="iodefWrap">Block to get balance at.</div></li>
 				
+					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span >String</span>:</div>
+					<div class="iodefWrap">Wallet address</div></li>
+					
+					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span >Number</span>:</div>
+					<div class="iodefWrap">Block to get balance at</div></li>
+					
 				</ul>
+				
+				<h3 class="infoHeader">Returns</h3>				
 				<ul class="infoObjects" >
-					<h3 class="infoHeader">Returns</h3>
+				
 					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span>result</span> - <span>Number</span>:</div> 
-					<div class="iodefWrap">Wallet balance at given block in Atto.</div></li>
+					<div class="iodefWrap">Wallet balance at given block in Atto</div></li>
+					
 				</ul>
 			</div>
 		</div>
@@ -86,7 +93,7 @@ if($phph1->rpc_call != 1){
 </div>
 
 <div class="form_container">
-		<div id="formcontent">
+	<div id="formcontent">
 		<form method="get">
 			<div class="row">
 				<div class="col-25">
@@ -108,16 +115,14 @@ if($phph1->rpc_call != 1){
 				<input type='submit' name='Submit' class="form_submit" />
 			</div>
 		</form>
-		</div>
 	</div>
-<br />
+</div>
 
 <?php
 /**
 * ends the rpc call check
 */
 }
-
 
 require_once('inc/output.php');
 ?>

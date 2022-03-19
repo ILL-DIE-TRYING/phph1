@@ -27,7 +27,6 @@ if($phph1->phph1_debug == 1){
 * If not show the html output of the method explorer
 */
 if($phph1->rpc_call != 1){
-
 ?>
 
 	<div class="info_container" >
@@ -43,16 +42,15 @@ if($phph1->rpc_call != 1){
 				</ul>
 				
 				<h3>Returns</h3>
-
 				<ul class="infoObjects">
-					<li><div class="ioobjectWrap"><span>epos-median-stake</span> - <span >String</span> :</div>
+				
+					<li><div class="ioobjectWrap"><span>epos-median-stake</span> - <span >String</span>:</div>
 					<div class="iodefWrap">Effective median stake</div></li>
 					
-					<li><div class="ioobjectWrap"><span>max-external-slots</span> - <span >Number</span> :</div>
+					<li><div class="ioobjectWrap"><span>max-external-slots</span> - <span >Number</span>:</div>
 					<div class="iodefWrap">Number of available committee slots</div></li>
 					
-					<li><div class="ioobjectWrap"><span>epos-slot-winners</span> - <span >Array</span> of <span >Object</span>:</div>
-					<div class="iodefWrap"></div></li>
+					<li><div class="ioobjectWrap"><span>epos-slot-winners</span> - <span >Array</span> of <span >Object</span>:</div></li>
 					
 					<ul class="infoObjects2">
 						<li><div class="ioobjectWrap"><span>slot-owner</span> - <span >String</span>:</div>
@@ -68,8 +66,7 @@ if($phph1->rpc_call != 1){
 						<div class="iodefWrap">Effective stake</div></li>
 					</ul>
 					
-					<li><div class="ioobjectWrap"><span>epos-slot-candidates</span> - <span >Array</span> of <span >Object</span>:</div>
-					<div class="iodefWrap"></div></li>
+					<li><div class="ioobjectWrap"><span>epos-slot-candidates</span> - <span >Array</span> of <span >Object</span>:</div></li>
 					
 					<ul class="infoObjects2">
 						<li><div class="ioobjectWrap"><span>stake</span> - <span >Number</span>:</div>
@@ -94,7 +91,6 @@ if($phph1->rpc_call != 1){
 			</div>
 		</div>
 	</div>
-<br />
 
 <?php
 /**

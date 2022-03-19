@@ -6,21 +6,21 @@ if($phph1->phph1_debug == 1){
 	echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
 }
 
-/**
-* NO INPUT TO VALIDATE SET TO 1
+/*
+Nothing to validate here so set this to 1
 */
 $validinput = 1;
 
 /**
-* Get the pool stats
-**/
-$hmyv2_data = $phph1->hmyv2_getPoolStats();
+* Get the peer count
+*/
+$hmyv2_data = $phph1->net_peercount();
 
 /**
 * End debug info display area
 */
 if($phph1->phph1_debug == 1){
-	echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>";
+		echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>";
 }
 
 /**
@@ -28,7 +28,6 @@ if($phph1->phph1_debug == 1){
 * If not show the html output of the method explorer
 */
 if($phph1->rpc_call != 1){
-
 ?>
 
 	<div class="info_container" >
@@ -38,22 +37,13 @@ if($phph1->rpc_call != 1){
 			
 				<h3 class="infoHeader">Parameters</h3>
 				<ul class="infoObjects" >
-				
 					<li class="infoObjectNoBul"><h4>No Parameters Required</h4></li>
-					
 				</ul>
 				
 				<h3 class="infoHeader">Returns</h3>
 				<ul class="infoObjects">
-				
-					<li class="infoObjectNoBul"><span>Object</span>:</li>
-					
-					<li><div class="ioobjectWrap"><span >executable-count</span> - <span>String</span>:</div> 
-					<div class="iodefWrap">Staking transaction hash</div></li>
-					
-					<li><div class="ioobjectWrap"><span >non-executable-count</span> - <span>String</span>:</div> 
-					<div class="iodefWrap">Type of staking transaction</div></li>
-					
+					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span >String</span>:</div> 
+					<div class="iodefWrap">Number of peers represented as a Hex string</div></li>
 				</ul>
 			</div>
 		</div>
@@ -67,4 +57,3 @@ if($phph1->rpc_call != 1){
 
 require_once('inc/output.php');
 ?>
-

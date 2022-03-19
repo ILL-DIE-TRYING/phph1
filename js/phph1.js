@@ -1,3 +1,9 @@
+// When the user clicks on the top button, scroll to the top of the document
+	function flyToTop() {
+	  document.body.scrollTop = 0; // For Safari
+	  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+	}
+
 document.addEventListener("DOMContentLoaded", function(event) { 
 	// hiddenSticky
 	// When the user scrolls the page, execute stickyNav
@@ -17,15 +23,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			bodyWrap.classList.add("stuck");
 			document.getElementById('topbar').style.display = 'none';
 			document.getElementById("hiddenSticky").style.height = "100px";
+			document.getElementById("toTopBtn").style.display = "block";
 		} else {
 			hiddenSticky.classList.remove("sticky");
 			bodyWrap.classList.remove("stuck");
 			topbar.classList.remove("hidetopbar");
 			document.getElementById('topbar').style.display = 'block';
 			document.getElementById("hiddenSticky").style.height = "180px";
+			document.getElementById("toTopBtn").style.display = "none";
 		}
 	}
-
+	
 	// SETTINGS MODAL BOX
 	// Get the modal
 	var modal = document.getElementById("settingsModal");
@@ -103,3 +111,4 @@ method documentation dropdown
 			}
 		}
 	}
+

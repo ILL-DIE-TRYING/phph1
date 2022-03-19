@@ -1,6 +1,9 @@
 <?php
 // Get the transactions
 if(isset($valid_scaddress) && $valid_scaddress == 1 && isset($valid_blocknum) && $valid_blocknum == 1){
+	/**
+	* Start debug info display area
+	*/
 	if($phph1->phph1_debug == 1){
 		echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
 	}
@@ -82,11 +85,11 @@ if($phph1->rpc_call != 1){
 				<h3 class="infoHeader">Parameters</h3>
 				<ul class="infoObjects" >
 				
-					<li class="infoObjectNoBul"><h4><span>String</span> - Smart contract address</h4></li>
+					<li class="infoObjectNoBul"><span>String</span> - Smart contract address</li>
 					
-					<li class="infoObjectNoBul"><h4><span>String</span> - Hex representation of storage location</h4></li>
+					<li class="infoObjectNoBul"><span>String</span> - Hex representation of storage location</li>
 					
-					<li class="infoObjectNoBul"><h4><span>Number</span> - Block Number</h4></li>
+					<li class="infoObjectNoBul"><span>Number</span> - Block Number</li>
 					
 				</ul>
 				
@@ -94,7 +97,7 @@ if($phph1->rpc_call != 1){
 				
 				<ul class="infoObjects" >
 				
-					<li class="infoObjectNoBul"><h4><span>String</span> - Data stored at the smart contract location</h4></li>
+					<li class="infoObjectNoBul"><span>String</span> - Data stored at the smart contract location</li>
 				</ul>
 
 			</div>
@@ -102,40 +105,39 @@ if($phph1->rpc_call != 1){
 	</div>
 	<div class="form_container">
 		<div id="formcontent">
-		<form method="get">
-			<div class="row">
-				<div class="col-25">
-					<label for="scaddress">Smart Contract Address: </label>
-				</div><div class="col-75">
-					<input style="background: orange;" type="text" id="scaddress" name="scaddress" maxlength="42" value="<?php if(isset($scaddress)){ echo $scaddress; } ?>" />
+			<form method="get">
+				<div class="row">
+					<div class="col-25">
+						<label for="scaddress">Smart Contract Address: </label>
+					</div><div class="col-75">
+						<input style="background: orange;" type="text" id="scaddress" name="scaddress" maxlength="42" value="<?php if(isset($scaddress)){ echo $scaddress; } ?>" />
+					</div>
 				</div>
-			</div>
-			
-			<div class="row">
-				<div class="col-25">
-					<label for="stlocation">Storage Location: </label>
-				</div><div class="col-75">
-					<input style="background: orange;" type="text" id="stlocation" name="stlocation" maxlength="200" value="<?php if(isset($stlocation)){ echo $stlocation; } ?>" />
+				
+				<div class="row">
+					<div class="col-25">
+						<label for="stlocation">Storage Location: </label>
+					</div><div class="col-75">
+						<input style="background: orange;" type="text" id="stlocation" name="stlocation" maxlength="200" value="<?php if(isset($stlocation)){ echo $stlocation; } ?>" />
+					</div>
 				</div>
-			</div>
-			
-			<div class="row">
-				<div class="col-25">
-					<label for="blocknum">Block Number: </label>
-				</div><div class="col-75">
-					<input style="background: orange;" type="text" id="blocknum" name="blocknum" maxlength="200" value="<?php if(isset($blocknum)){ echo $blocknum; } ?>" />
+				
+				<div class="row">
+					<div class="col-25">
+						<label for="blocknum">Block Number: </label>
+					</div><div class="col-75">
+						<input style="background: orange;" type="text" id="blocknum" name="blocknum" maxlength="200" value="<?php if(isset($blocknum)){ echo $blocknum; } ?>" />
+					</div>
 				</div>
-			</div>
 
-			<div class="row">
-				<input type="hidden" id="do" name="do" value="1" />
-				<input type="hidden" id="method" name="method" value="hmyv2_getStorageAt" />
-				<input type='submit' name='Submit' class="form_submit" />
-			</div>
-		</form>
+				<div class="row">
+					<input type="hidden" id="do" name="do" value="1" />
+					<input type="hidden" id="method" name="method" value="hmyv2_getStorageAt" />
+					<input type='submit' name='Submit' class="form_submit" />
+				</div>
+			</form>
 		</div>
 	</div>
-<br />
 
 <?php
 /**

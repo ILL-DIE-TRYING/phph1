@@ -11,7 +11,9 @@ if($phph1->phph1_debug == 1){
 */
 $validinput = 1;
 
-// Get the transactions
+/**
+* Get the error sink data
+*/
 $hmyv2_data = $phph1->hmyv2_getCurrentStakingErrorSink();
 
 /**
@@ -26,39 +28,39 @@ if($phph1->phph1_debug == 1){
 * If not show the html output of the method explorer
 */
 if($phph1->rpc_call != 1){
-	
 ?>
-<div class="info_container" >
-	<div class="infoRow">
-		<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
-		<div id="infoContent" class="infoContent">
-		
-			<h3 class="infoHeader">Parameters</h3>
-			<ul class="infoObjects" >
-				<li class="infoObjectNoBul"><h4>No Parameters Required</h4></li>
-			</ul>
+
+	<div class="info_container" >
+		<div class="infoRow">
+			<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
+			<div id="infoContent" class="infoContent">
 			
-			<h3 class="infoHeader">Returns</h3>
-			<ul class="infoObjects">
+				<h3 class="infoHeader">Parameters</h3>
+				<ul class="infoObjects" >
+					<li class="infoObjectNoBul"><h4>No Parameters Required</h4></li>
+				</ul>
 				
-				<li class="infoObjectNoBul"><h4><span>Array</span> of <span>Object</span></h4></li>
-				
-				<li><div class="ioobjectWrap"><span >tx-hash-id</span> - <span>String</span></div> 
-				<div class="iodefWrap">Staking transaction hash.</div></li>
-				
-				<li><div class="ioobjectWrap"><span >directive-kind</span> - <span>String</span></div> 
-				<div class="iodefWrap">Type of staking transaction.</div></li>
-				
-				<li><div class="ioobjectWrap"><span >time-at-rejection</span> - <span>Number</span></div> 
-				<div class="iodefWrap">Unix time when the staking transaction was rejected from the pool.</div></li>
-				
-				<li><div class="ioobjectWrap"><span >error-message</span> - <span>String</span></div> 
-				<div class="iodefWrap">Reason for staking transaction rejection.</div></li>
-				
-			</ul>
+				<h3 class="infoHeader">Returns</h3>
+				<ul class="infoObjects">
+					
+					<li class="infoObjectNoBul"><span>Array</span> of <span>Object</span>:</li>
+					
+					<li><div class="ioobjectWrap"><span >tx-hash-id</span> - <span>String</span>:</div> 
+					<div class="iodefWrap">Staking transaction hash</div></li>
+					
+					<li><div class="ioobjectWrap"><span >directive-kind</span> - <span>String</span>:</div> 
+					<div class="iodefWrap">Type of staking transaction</div></li>
+					
+					<li><div class="ioobjectWrap"><span >time-at-rejection</span> - <span>Number</span>:</div> 
+					<div class="iodefWrap">Unix time when the staking transaction was rejected from the pool</div></li>
+					
+					<li><div class="ioobjectWrap"><span >error-message</span> - <span>String</span>:</div> 
+					<div class="iodefWrap">Reason for staking transaction rejection</div></li>
+					
+				</ul>
+			</div>
 		</div>
 	</div>
-</div>
 
 <?php
 /**

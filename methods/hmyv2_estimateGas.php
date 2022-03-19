@@ -1,6 +1,9 @@
 <?php
-// Get the transactions
 if(isset($valid_scaddress) && $valid_scaddress == 1){
+	
+	/**
+	* Start debug info display area
+	*/
 	if($phph1->phph1_debug == 1){
 		echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
 	}
@@ -220,8 +223,6 @@ if($phph1->rpc_call != 1){
 		</form>
 		</div>
 	</div>
-<br />
-
 <?php
 /**
 * ends the rpc call check

@@ -1,6 +1,6 @@
 /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
 @media screen and (max-width: 499px) {
-	
+/*	
 	.tagline {
 		font-size: 1em;
 		color:black;
@@ -77,8 +77,6 @@
 		border-radius: 5px;
 	}
 	
-	/* SETTINGS FORM */
-	/* Style inputs, select elements and textareas */
 	input[type=text], select, textarea{
 	  width: 100%;
 	  padding: 8px;
@@ -97,13 +95,11 @@
 	  resize: vertical;
 	}
 
-	/* Style the label to display next to the inputs */
 	label {
 	  padding: 8px 8px 8px 0;
 	  display: inline-block;
 	}
 
-	/* Style the submit button */
 	input[type=submit] {
 	  background:	rgb(67,119,159);
 	  background:	linear-gradient(rgb(67,119,159), rgb(76,135,180), rgb(67,119,159));
@@ -118,7 +114,6 @@
 	  margin:5px 0px 5px 0px;
 	}
 
-	/* Style the submit button */
 	input:hover[type=submit] {
 	  background:	linear-gradient(rgb(30, 65, 95), rgb(47, 93, 131), rgb(30, 65, 95));
 	  color: white;
@@ -128,4 +123,5 @@
 	  cursor: pointer;
 	  float: right;
 	}
+	*/
 }
