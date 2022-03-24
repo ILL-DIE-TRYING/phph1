@@ -1,22 +1,22 @@
 <?php
 /**
+* Method file for hmyv2_blockNumber() in the phph1.php class file
+*/
+
+/**
 * Start debug info display area
 */
 if($phph1->phph1_debug == 1){
 	echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
 }
 
-/*
-There is no input so no validation required
-*/
+// There is no input so no validation required
 $validinput = 1;
 
 // Get the transactions
 $hmyv2_data = $phph1->hmyv2_blockNumber();
 
-/**
-* End debug info display area
-*/
+// End debug info display area
 if($phph1->phph1_debug == 1){
 		echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>";
 }
@@ -46,9 +46,7 @@ if($phph1->rpc_call != 1){
 		</div>
 	</div>
 <?php
-/**
-* ends the rpc call check
-*/
+// ends the rpc call check
 }
 
 require_once('inc/output.php');

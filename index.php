@@ -1,4 +1,8 @@
 <?php
+/**
+* PHPH1 Explorer index.php
+*/
+
 session_start();
 require_once('inc/config.php');
 ?>
@@ -26,47 +30,38 @@ require_once('inc/config.php');
 
 	<div id="wrapper">
 		<?php
-		/**
-		* Include the class
-		*/
+
+// Include the PHPH1 class file. (Required)
 		require_once('inc/phph1.php');
 		
-		/**
-		* Include the boot script. This invokes PHPH1 class
-		* and checks if we have any input for the explorer
-		*/
+// Include the boot.php file. (Required)
 		require_once('inc/boot.php');
 		
-		/**
-		* Include index_top which handles the menu and such
-		* Turned into an include for easier editing
-		*/
+// index_top.php is only required if you are using the API Explorer interface
 		require_once('inc/index_top.php'); 
 		?>
 	</div>
 
 	<div id="bodyWrap">
 		<?php
-		/**
-		* Check is we have a method request
-		* Otherwise, show the home page
-		*/
+
+// Check if we have a method request and include the method file. (required)
+// Otherwise, show the home page 
+// $php_method is set in boot.php
 		if(isset($phph1_method)){
 			include('methods/'.$phph1_method.'.php');
 		}else{
 			require_once('inc/index_body.php');
 		}	
 
-		/**
-		* Include the footer on every page
-		*/
+// Include the footer (required for API Explorer only)
 		require_once('inc/footer.php');
 
 		?>
 	</div>
 	
 	<!--
-	Include the PHPH1 javascript
+	Include the PHPH1 javascript (required for API Explorer only)
 	-->
 	<script src="js/phph1.js"></script>
 

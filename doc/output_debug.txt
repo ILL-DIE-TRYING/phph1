@@ -1,0 +1,19 @@
+
+Box Requirements Checker
+========================
+
+> Using PHP 7.4.3
+> PHP is using the following php.ini file:
+  /etc/php/7.4/cli/php.ini
+
+> Checking Box requirements:
+  .............
+
+                                                                                
+ [OK] Your system is ready to run the application.                              
+                                                                                
+
+phpDocumentor v3.3.0
+
+
+All done in 4 seconds!

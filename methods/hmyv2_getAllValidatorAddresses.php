@@ -1,5 +1,9 @@
 <?php
 /**
+* Method file for hmyv2_getAllValidatorAddresses() in the phph1.php class file
+*/
+
+/**
 * Start debug info display area
 */
 if($phph1->phph1_debug == 1){
