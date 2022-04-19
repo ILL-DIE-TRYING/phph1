@@ -1,11 +1,35 @@
-/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
-@media screen and (max-width: 499px) {
-/*	
+@media screen and (max-width: 600px) {
+	
+	#bodyWrap{
+		font-size: .85em;
+	}
+	
 	.tagline {
 		font-size: 1em;
 		color:black;
 	}
-
+	
+	.form_submit {
+		width: 100%;
+	}
+	
+	.col-25 {
+		width: 65%;
+		margin-top: 0px;
+		padding-left: 3px;
+		}
+	
+	.col-75 {
+		width: 98%;
+		margin-top: 0px;
+		padding: 0px 0px 0px 4px;
+	}
+	
+	input[type=submit] {
+		width: 100%;
+		margin-top: 20px;
+	}
+/*
 	.dropdown-content {
 		display: 			none;
 		position: 			absolute;

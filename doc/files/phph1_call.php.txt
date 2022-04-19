@@ -9,10 +9,10 @@
 	require_once('inc/boot.php');
 
 
-	if(isset($phph1_method)){
-		include('methods/'.$phph1_method.'.php');
+	if($phph1->get_currentmethod()){
+		include('methods/'.$phph1->get_currentmethod().'.php');
 	}else{
-		echo "No Method Defined";
+		echo "Method Not Found";
 	}
 
 ?>

@@ -3,123 +3,67 @@
 * Method file for hmyv2_call() in the phph1.php class file
 */
 
-if(isset($valid_scaddress) && $valid_scaddress == 1 && isset($valid_blocknum) && $valid_blocknum == 1){
-	/**
-	* Start debug info display area
-	*/
-	if($phph1->phph1_debug == 1){
+if($phph1->chk_dorequest()){
+	
+	/** Start debug info display area */
+	if($phph1->get_debugstatus()){
 		echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
+		require_once('inc/debug.php');
 	}
+	
+	/** Prepare scaddress for validation */
+	if(isset($_GET['scaddress'])&& !empty($_GET['scaddress'])){$scaddress = $_GET['scaddress'];}else{$scaddress = null;}
 
-	/**
-	* Prepare from for validation
-	*/
-	if(isset($_GET['fromaddr'])&& !empty($_GET['fromaddr'])){
-		$fromaddr = $_GET['fromaddr'];
-	}else{
-		$fromaddr = null;
-	}
+	/** Prepare from for validation	*/
+	if(isset($_GET['fromaddr'])&& !empty($_GET['fromaddr'])){$fromaddr = $_GET['fromaddr'];}else{$fromaddr = null;}
 	
-	/**
-	* Prepare gas for validation
-	*/
-	if(isset($_GET['gas']) && !empty($_GET['gas'])){
-		$gas = $_GET['gas'];
-	}else{
-		$gas = null;
-	}
+	/** Prepare gas for validation */
+	if(isset($_GET['gas']) && !empty($_GET['gas'])){$gas = $_GET['gas'];}else{$gas = null;}
 
-	/**
-	* Prepare gasprice for validation
-	*/
+	/** Prepare gasprice for validation	*/
+	if(isset($_GET['gasprice']) && !empty($_GET['gasprice'])){$gasprice = $_GET['gasprice'];}else{$gasprice = null;}
 	
-	if(isset($_GET['gasprice']) && !empty($_GET['gasprice'])){
-		$gasprice = $_GET['gasprice'];
-	}else{
-		$gasprice = null;
-	}
+	/** Prepare value for validation */
+	if(isset($_GET['value']) && !empty($_GET['value'])){$value = $_GET['value'];}else{$value = null;}
 	
-	/**
-	* Prepare value for validation
-	*/
-	if(isset($_GET['value']) && !empty($_GET['value'])){
-		$value = htmlentities($_GET['value']);
-	}else{
-		$value = null;
-	}
+	/** Prepare data for validation	*/
+	if(isset($_GET['data']) && !empty($_GET['data'])){$data = $_GET['data'];}else{$data = null;}
 	
-	/**
-	* Prepare data for validation
-	*/
-	if(isset($_GET['data']) && !empty($_GET['data'])){
-		$data = $_GET['data'];
-	}else{
-		$data = null;
-	}
+	/** Prepare blocknum for validation	*/
+	if(isset($_GET['blocknum']) && !empty($_GET['blocknum'])){$blocknum = $_GET['blocknum'];}else{$blocknum = null;}
 	
-	/**
-	* Validate the input and run our call if the data is good
-	*/
-	if($phph1->val_call($scaddress, $fromaddr, $gas, $gasprice, $value, $data, $blocknum) == 1){
-		$validinput = 1;
+	/** Validate the input and run our call if the data is good	*/
+	if($phph1->val_call($scaddress, $fromaddr, $gas, $gasprice, $value, $data, $blocknum)){
 		$hmyv2_data = $phph1->hmyv2_call($scaddress, $fromaddr, $gas, $gasprice, $value, $data, $blocknum);
-	}else{
-		$validinput = 0;
 	}
 	
-	/**
-	* End debug info display area
-	*/
-	if($phph1->phph1_debug == 1){
-			echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>";
-	}
+	/** End debug info display area	*/
+	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>"; }
 	
-	/**
-	* Show our errors if we have them
-	*/
-	if ($validinput == 0){
-		echo '<div class="error_div">';
-		echo '<p class="hmyv2_errors">Error:';
-		$errnum = 1;
-		foreach($phph1->errors as $anerror){
-			if($errnum == 1){
-				echo ' <span class="hmyv2_error">'.$anerror.'</span>';
-				$errnum=0;
-			}else{
-				echo '<span class="hmyv2_error">, '.$anerror.'</span>';
-			}
-		}
-		echo '</p></div>';
-	}
-	
-/**
-* Show our errors if we have them
-*/
-}elseif(isset($_GET['do'])){
-		echo '<div class="error_div">';
-		echo '<p class="hmyv2_errors">Error:';
-		$errnum = 1;
-		foreach($phph1->errors as $anerror){
-			if($errnum == 1){
-				echo ' <span class="hmyv2_error">'.$anerror.'</span>';
-				$errnum=0;
-			}else{
-				echo '<span class="hmyv2_error">, '.$anerror.'</span>';
-			}
-		}
-		echo '</p></div>';
+	require_once('inc/errors.php');
+
 }
 
 /**
 * Check if this is a RPC call
 * If not show the html output of the method explorer
 */
-if($phph1->rpc_call != 1){
+if($phph1->get_rpcstatus() != 1){
 ?>
 	<div class="info_container" >
 		<div class="infoRow">
-			<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
+			<button type="button" class="collapsibleInfo"><?=$phph1->get_currentmethod()?> :: Params/Returns</button>
 			<div id="infoContent" class="infoContent">
+			
+				<h3 class="infoHeader">Description</h3>
+				<ul class="infoObjects" >
+					<li class="infoObjectNoBul">
+						<div>
+							<p>Executes a new message call immediately, without creating a transaction on the block chain. The hmyv2_call method can be used to query internal contract state, to execute validations coded into a contract or even to test what the effect of a transaction would be without running it live.</p>
+							<p>There may be more information in the <a href="./doc/classes/phph1.html#method_hmyv2_call">PHPH1 Class Documentation</a>.</p>
+						</div>
+					</li>
+				</ul>
 			
 				<h3 class="infoHeader">Parameters</h3>
 				<ul class="infoObjects" >
@@ -150,7 +94,8 @@ if($phph1->rpc_call != 1){
 				
 				<h3>Returns</h3>
 				<ul class="infoObjects" >
-					<li class="infoObjectNoBul"><span>String</span> - Return value of the executed smart contract</li>
+					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span >String</span>:</div>
+					<div class="iodefWrap">Return value of the executed smart contract</div></li>
 				</ul>
 
 			</div>
@@ -163,7 +108,7 @@ if($phph1->rpc_call != 1){
 				<div class="col-25">
 					<label for="scaddress">Smart Contract Address: </label>
 				</div><div class="col-75">
-					<input style="background: orange;" type="text" id="scaddress" name="scaddress" maxlength="42" value="<?php if(isset($scaddress)){ echo $scaddress; } ?>" />
+					<input style="background: orange;" type="text" id="scaddress" name="scaddress" maxlength="42" value="<?php if($phph1->chk_goodinput('scaddress')){ echo $phph1->get_goodinput('scaddress'); } ?>" />
 				</div>
 			</div>
 			
@@ -171,7 +116,7 @@ if($phph1->rpc_call != 1){
 				<div class="col-25">
 					<label for="fromaddr">From: </label>
 				</div><div class="col-75">
-					<input type="text" id="fromaddr" name="fromaddr" maxlength="42" value="<?php if(isset($fromaddr)){ echo $fromaddr; } ?>" />
+					<input type="text" id="fromaddr" name="fromaddr" maxlength="42" value="<?php if($phph1->chk_goodinput('fromaddr')){ echo $phph1->get_goodinput('fromaddr'); } ?>" />
 				</div>
 			</div>
 			
@@ -179,7 +124,7 @@ if($phph1->rpc_call != 1){
 				<div class="col-25">
 					<label for="gas">Gas: </label>
 				</div><div class="col-75">
-					<input type="text" id="gas" name="gas" maxlength="10" value="<?php if(isset($gas)){ echo $gas; } ?>" />
+					<input type="text" id="gas" name="gas" maxlength="10" value="<?php if($phph1->chk_goodinput('gas')){ echo $phph1->get_goodinput('gas'); } ?>" />
 				</div>
 			</div>
 			
@@ -187,7 +132,7 @@ if($phph1->rpc_call != 1){
 				<div class="col-25">
 					<label for="gasprice">Gas Price: </label>
 				</div><div class="col-75">
-					<input type="text" id="gasprice" name="gasprice" maxlength="10" value="<?php if(isset($gasprice)){ echo $gasprice; } ?>" />
+					<input type="text" id="gasprice" name="gasprice" maxlength="10" value="<?php if($phph1->chk_goodinput('gasprice')){ echo $phph1->get_goodinput('gasprice'); } ?>" />
 				</div>
 			</div>
 			
@@ -195,7 +140,7 @@ if($phph1->rpc_call != 1){
 				<div class="col-25">
 					<label for="value">Value: </label>
 				</div><div class="col-75">
-					<input type="text" id="value" name="value" maxlength="10" value="<?php if(isset($value)){ echo $value; } ?>" />
+					<input type="text" id="value" name="value" maxlength="10" value="<?php if($phph1->chk_goodinput('value')){ echo $phph1->get_goodinput('value'); } ?>" />
 				</div>
 			</div>
 			
@@ -203,7 +148,7 @@ if($phph1->rpc_call != 1){
 				<div class="col-25">
 					<label for="data">Data: </label>
 				</div><div class="col-75">
-					<input type="text" id="data" name="data" maxlength="10" value="<?php if(isset($data)){ echo $data; } ?>" />
+					<input type="text" id="data" name="data" maxlength="10" value="<?php if($phph1->chk_goodinput('data')){ echo $phph1->get_goodinput('data'); } ?>" />
 				</div>
 			</div>
 			
@@ -211,12 +156,12 @@ if($phph1->rpc_call != 1){
 				<div class="col-25">
 					<label for="blocknum">Block Number: </label>
 				</div><div class="col-75">
-					<input style="background: orange;" type="text" id="blocknum" name="blocknum" maxlength="200" value="<?php if(isset($blocknum)){ echo $blocknum; } ?>" />
+					<input style="background: orange;" type="text" id="blocknum" name="blocknum" maxlength="200" value="<?php if($phph1->chk_goodinput('blocknum')){ echo $phph1->get_goodinput('blocknum'); } ?>" />
 				</div>
 			</div>
 
 			<div class="row">
-				<input type="hidden" id="do" name="do" value="1" />
+				<input type="hidden" id="dorequest" name="dorequest" value="1" />
 				<input type="hidden" id="method" name="method" value="hmyv2_call" />
 				<input type='submit' name='Submit' class="form_submit" />
 			</div>

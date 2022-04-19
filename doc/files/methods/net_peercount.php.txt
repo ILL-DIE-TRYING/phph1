@@ -1,39 +1,43 @@
 <?php
 /**
-* Start debug info display area
+* Method file for net_peercount() in the phph1.php class file
 */
-if($phph1->phph1_debug == 1){
-	echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
-}
 
-/*
-Nothing to validate here so set this to 1
-*/
-$validinput = 1;
+/** Start debug info display area */
+if($phph1->get_debugstatus()){echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";}
 
-/**
-* Get the peer count
-*/
+// There is no input so no validation required
+$phph1->set_validinput(1);
+
+// Get the block number dataset
 $hmyv2_data = $phph1->net_peercount();
 
-/**
-* End debug info display area
-*/
-if($phph1->phph1_debug == 1){
-		echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>";
-}
+require_once('inc/errors.php');
+
+/** End debug info display area	*/
+if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>"; }
 
 /**
 * Check if this is a RPC call
 * If not show the html output of the method explorer
 */
-if($phph1->rpc_call != 1){
+if($phph1->get_rpcstatus() != 1){
 ?>
 
 	<div class="info_container" >
 		<div class="infoRow">
-			<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
+			<button type="button" class="collapsibleInfo"><?=$phph1->get_currentmethod()?>> :: Params/Returns</button>
 			<div id="infoContent" class="infoContent">
+			
+				<h3 class="infoHeader">Description</h3>
+				<ul class="infoObjects" >
+					<li class="infoObjectNoBul">
+						<div>
+							<p>Gets the current number of peers on the network in the form of a hex string.</p>
+							<p>There may be more information in the <a href="./doc/classes/phph1.html#method_net_peercount">PHPH1 Class Documentation</a>.</p>
+						</div>
+					</li>
+				</ul>
 			
 				<h3 class="infoHeader">Parameters</h3>
 				<ul class="infoObjects" >

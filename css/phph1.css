@@ -114,13 +114,19 @@
 
 .dropdownLI  {
     display: 	inline-block;
+	position:	relative;
 }
 
-.dropdownLI a.active {
+.dropdownLI a:active {
 	background: 	rgb(30, 65, 95);
 }
 
-.dropdownLI a, .dropbtn {
+.mdropdown {
+	display: 	inline-block;
+	position:	relative;
+}
+
+.dropdownLI a, .dropbtn, .menudropbtn {
     display:			inline-block;
     color:				white;
     text-align:			center;
@@ -135,17 +141,12 @@
 	border: 1px solid #0086E9;
 	border-radius: 4px;
 	box-shadow: 1px 1px 3px #000;
+	height: 20px;
 }
 
-.dropdownLI a:hover, .dropdown:hover .dropbtn {
+.dropdownLI a:hover, .dropdown:hover .dropbtn, .menudropbtn:hover {
     background:	rgb(30, 65, 95);
 	background:	linear-gradient(rgb(30, 65, 95), rgb(47, 93, 131), rgb(30, 65, 95));
-}
-
-.dropdownLI {
-    display:	inline-block;
-	position:	relative;
-	
 }
 
 .dropdown:hover .dropdown-content {
@@ -169,8 +170,8 @@
 	display: 			none;
 	position: 			absolute;
 	background-color: #000000;
-	border: 1px solid rgb(30, 65, 95);;
-	border-bottom: 6px solid rgb(30, 65, 95);;
+	border: 1px solid rgb(30, 65, 95);
+	border-bottom: 6px solid rgb(30, 65, 95);
 	border-radius: 15px;
 	left: 99%;
 	transform: translateX(-99%);
@@ -202,6 +203,46 @@
 	color: white;
 }
 
+.mdropdown:hover .mdropdown-content {
+    display:	block;
+}
+
+.mdropdown-content {
+	display: 			none;
+	position: 			absolute;
+	background-color: #000000;
+	border: 1px solid rgb(30, 65, 95);
+	border-bottom: 6px solid rgb(30, 65, 95);
+	border-radius: 15px;
+	left: 100px;
+	transform: translateX(-99%);
+	width: 				100px;
+	z-index: 			1;
+	height: 185px;
+	overflow-y: hidden;
+	overflow-x: hidden;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.mdropdown-content a {
+    color: 				white;
+    padding: 			10px;
+    text-decoration: 	none;
+    display: 			block;
+    text-align: 		left;
+	width:				100%;
+	/*min-width:				230px;*/
+	z-index: 			1;
+	border: 1px solid #000000;
+	background:	rgb(67,119,159);
+	background:	linear-gradient(rgb(67,119,159), rgb(76,135,180), rgb(67,119,159));
+}
+
+.mdropdown-content a:hover {
+	background:	rgb(30, 65, 95);
+	background:	linear-gradient(rgb(30, 65, 95), rgb(47, 93, 131), rgb(30, 65, 95));
+	color: white;
+}
 
 
 .searchbox {
@@ -371,6 +412,10 @@ label {
   display: inline-block;
 }
 
+.debugtext {
+	color: blue;
+}
+
 /* Style the container */
 .container {
   border-radius: 5px;
@@ -449,10 +494,10 @@ label {
 }
 
 .hmyv2_debug_notify{
-	color: black;
+	color: red;
 	font-size: 1.2em;
 	padding: 0px;
-	margin: 0px;
+	margin: 0px 0px 10px 0px;
 }
 
 .form_container {
@@ -870,8 +915,8 @@ input.form_submit:hover[type=submit] {
 #toTopBtn {
 	display: none; /* Hidden by default */
 	position: fixed; /* Fixed/sticky position */
-	bottom: 20px; /* Place the button at the bottom of the page */
-	right: 30px; /* Place the button 30px from the right */
+	bottom: 14px; /* Place the button at the bottom of the page */
+	right: 12px; /* Place the button 30px from the right */
 	z-index: 99; /* Make sure it does not overlap */
 	border: none; /* Remove borders */
 	outline: none; /* Remove outline */
@@ -879,13 +924,33 @@ input.form_submit:hover[type=submit] {
 	background:	linear-gradient(rgb(67,119,159), rgb(76,135,180), rgb(67,119,159));
 	color: white; /* Text color */
 	cursor: pointer; /* Add a mouse pointer on hover */
-	padding: 5px 10px 5px 10px; /* Some padding */
+	padding: 3px; /* Some padding */
 	border-radius: 10px; /* Rounded corners */
-	font-size: 1em; /* Increase font size */
-	box-shadow: 0px 2px 5px #000;
+	font-size: 2em; /* Increase font size */
+	box-shadow: 0px 2px 2px #000;
+	opacity: 80%;
 }
 
 #toTopBtn:hover {
 	background:	rgb(30, 65, 95);
 	background:	linear-gradient(rgb(30, 65, 95), rgb(47, 93, 131), rgb(30, 65, 95));
+	opacity: 100%;
+}
+
+#toTopBtn .topBtnImg {
+	width: 30px;
+	margin-top: 7px;
+	opacity: 80%;
+}
+
+#alert_div {
+	border: 1px solid black;
+	margin-bottom:10px;
+	border-radius: 10px; /* Rounded corners */
+	background-color: orange;
+	padding: 0px 0px 0px 5px;
+}
+
+#alert_text{
+	color: black;
 }

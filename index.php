@@ -3,11 +3,18 @@
 * PHPH1 Explorer index.php
 */
 
+// This code is to measure the load time of pages and plave it in the footer, do not remove it
+$time = microtime();
+$time = explode(' ', $time);
+$time = $time[1] + $time[0];
+$phph1_start = $time;
+unset($time);
+
 session_start();
 require_once('inc/config.php');
 ?>
 <!doctype html>
-<html lang="us">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <title>PHPH1 :: <?php if(isset($_GET['method']) && in_array($_GET['method'],$phph1_methods)){ echo $_GET['method']; }else{ echo "A Harmony ONE Node API PHP Class"; } ?></title>
@@ -26,7 +33,7 @@ require_once('inc/config.php');
 </head>
 <body>
 
-	<button onclick="flyToTop()" id="toTopBtn" title="Back To Top">Back To Top</button>
+	<button onclick="flyToTop()" id="toTopBtn" title="Back To Top"><img src="./img/topBtn.png" class="topBtnImg" alt="Back To Top Button Image"/></button>
 
 	<div id="wrapper">
 		<?php
@@ -48,11 +55,11 @@ require_once('inc/config.php');
 // Check if we have a method request and include the method file. (required)
 // Otherwise, show the home page 
 // $php_method is set in boot.php
-		if(isset($phph1_method)){
-			include('methods/'.$phph1_method.'.php');
+		if(!empty($phph1->get_currentmethod())){
+			require_once('methods/'.$phph1->get_currentmethod().'.php');
 		}else{
 			require_once('inc/index_body.php');
-		}	
+		}
 
 // Include the footer (required for API Explorer only)
 		require_once('inc/footer.php');

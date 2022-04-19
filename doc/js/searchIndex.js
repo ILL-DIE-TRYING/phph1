@@ -13,8 +13,98 @@ Search.appendIndex(
         },                {
             "fqsen": "\\phph1\u003A\u003Agetapiaddr\u0028\u0029",
             "name": "getapiaddr",
-            "summary": "getapiaddr\u0028\u0029\u0020is\u0020used\u0020to\u0020set\u0020the\u0020Node\u0020API\u0020host\u0020address\u0020during\u0020__construct.\u0020It\u0020gets\u0020the\u0020address\u0020from\u0020\u0024phph1_apiaddresses\u0020which\u0020is\u0020set\u0020during\u0020__construct\u0020using\u0020settings\u0020from\u0020inc\/config.php\u0020by\u0020using\u0020the\u0020netwrok\u0020name\u0020and\u0020shard",
+            "summary": "getapiaddr\u0028\u0029\u0020is\u0020used\u0020to\u0020set\u0020the\u0020Node\u0020API\u0020host\u0020address\u0020during\u0020__construct.\u0020It\u0020gets\u0020the\u0020address\u0020using\u0020the\u0020netwrok\u0020name\u0020and\u0020shard\u0020from\u0020\u0024phph1_apiaddresses\u0020which\u0020is\u0020also\u0020set\u0020during\u0020__construct\u0020using\u0020settings\u0020from\u0020inc\/config.php",
             "url": "classes/phph1.html#method_getapiaddr"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aset_rpc\u0028\u0029",
+            "name": "set_rpc",
+            "summary": "setrpc\u0028\u0029\u0020is\u0020used\u0020to\u0020set\u0020the\u0020rpc_call\u0020variable\u0020that\u0020determines\u0020whether\u0020we\u0020are\u0020making\u0020a\u0020remote\u0020rpc\u0020call\u0020or\u0020using\u0020the\u0020explorer\u0020interface",
+            "url": "classes/phph1.html#method_set_rpc"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aset_booterrors\u0028\u0029",
+            "name": "set_booterrors",
+            "summary": "set_booterrors\u0028\u0029\u0020is\u0020used\u0020to\u0020import\u0020any\u0020pre\u0020class\u0020instantiation\u0020errors\u0020to\u0020the\u0020class\u0020errors\u0020array",
+            "url": "classes/phph1.html#method_set_booterrors"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aset_validinput\u0028\u0029",
+            "name": "set_validinput",
+            "summary": "set_validinput\u0028\u0029\u0020is\u0020used\u0020to\u0020set\u0020the\u0020validinput\u0020bit\u00201\u0020\u0028valid\u0029\u0020or\u00200\u0028not\u0029\nThis\u0020is\u0020set\u0020after\u0020validating\u0020the\u0020input\u0020data\u0020for\u0020methods\u0020so\u0020the\u0020class\u0020knows\u0020if\u0020it\u0020is\u0020okay\u0020to\u0020make\u0020the\u0020RPC\u0020call",
+            "url": "classes/phph1.html#method_set_validinput"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aget_sessionnetwork\u0028\u0029",
+            "name": "get_sessionnetwork",
+            "summary": "get_sessionnetwork\u0028\u0029\u0020is\u0020used\u0020to\u0020get\u0020the\u0020current\u0020network\u0020we\u0020are\u0020working\u0020on\nThe\u0020network\u0020is\u0020set\u0020when\u0020creating\u0020a\u0020class\u0020handle\u0020in\u0020_construct\u0020and\u0020the\u0020settings\u0020are\u0020found\u0020in\u0020inc\/config.php",
+            "url": "classes/phph1.html#method_get_sessionnetwork"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aget_sessionshard\u0028\u0029",
+            "name": "get_sessionshard",
+            "summary": "get_sessionshard\u0028\u0029\u0020is\u0020used\u0020to\u0020get\u0020the\u0020current\u0020network\u0020shard\u0020we\u0020are\u0020working\u0020on\nThe\u0020network\u0020shard\u0020is\u0020set\u0020when\u0020creating\u0020a\u0020class\u0020handle\u0020in\u0020_construct\u0020and\u0020the\u0020settings\u0020array\u0020is\u0020found\u0020in\u0020inc\/config.php",
+            "url": "classes/phph1.html#method_get_sessionshard"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aget_lastjson\u0028\u0029",
+            "name": "get_lastjson",
+            "summary": "get_lastjson\u0028\u0029\u0020is\u0020used\u0020to\u0020get\u0020the\u0020last\u0020\u0028current\u0029\u0020json\u0020request\u0020generated\u0020for\u0020a\u0020method\nThis\u0020is\u0020used\u0020later\u0020in\u0020the\u0020Method\u0020Explorer\u0020for\u0020educational\u0020output",
+            "url": "classes/phph1.html#method_get_lastjson"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aget_apiaddr\u0028\u0029",
+            "name": "get_apiaddr",
+            "summary": "get_apiaddr\u0028\u0029\u0020is\u0020used\u0020to\u0020get\u0020the\u0020currently\u0020used\u0020Node\u0020API\u0020address\nThe\u0020API\u0020address\u0020is\u0020set\u0020during\u0020_construct\u0020using\u0020the\u0020supplied\u0020network\u0020and\u0020shard\u0020information",
+            "url": "classes/phph1.html#method_get_apiaddr"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aget_errors\u0028\u0029",
+            "name": "get_errors",
+            "summary": "get_errors\u0028\u0029\u0020is\u0020used\u0020to\u0020get\u0020the\u0020current\u0020array\u0020of\u0020errors\u0020from\u0020inc\/boot.php\u0020and\u0020method\u0020requests\nThe\u0020error\u0020array\u0020is\u0020generated\u0020during\u0020the\u0020validation\u0020of\u0020method\u0020inputs",
+            "url": "classes/phph1.html#method_get_errors"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aget_methods\u0028\u0029",
+            "name": "get_methods",
+            "summary": "get_methods\u0028\u0029\u0020is\u0020used\u0020to\u0020get\u0020the\u0020current\u0020array\u0020of\u0020available\u0020methods\u0020which\u0020was\u0020set\u0020during\u0020_construct\nThe\u0020methods\u0020array\u0020is\u0020set\u0020in\u0020inc\/config.php",
+            "url": "classes/phph1.html#method_get_methods"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aget_currentmethod\u0028\u0029",
+            "name": "get_currentmethod",
+            "summary": "get_currentmethod\u0028\u0029\u0020is\u0020used\u0020to\u0020get\u0020the\u0020current\u0020method\nThe\u0020current\u0020method\u0020is\u0020set\u0020during\u0020_contruct\u0020when\u0020creating\u0020a\u0020class\u0020handle",
+            "url": "classes/phph1.html#method_get_currentmethod"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aget_rpcstatus\u0028\u0029",
+            "name": "get_rpcstatus",
+            "summary": "get_rpcstatus\u0028\u0029\u0020is\u0020used\u0020to\u0020check\u0020the\u0020current\u0020rpc\u0020status\u0020bit\u0020which\u0020is\u0020set\u0020when\u0020creating\u0020a\u0020class\u0020handle\nThis\u0020is\u0020used\u0020by\u0020the\u0020Method\u0020Explorer\u0020to\u0020determine\u0020what\u0020output\u0020to\u0020show,\u0020either\u0020graphical\u0020or\u0020raw\u0020json\u0020output\u0020for\nRPC\u0020calls\u0020from\u0020external\u0020scripting\u0020languages",
+            "url": "classes/phph1.html#method_get_rpcstatus"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aget_rpcurl\u0028\u0029",
+            "name": "get_rpcurl",
+            "summary": "",
+            "url": "classes/phph1.html#method_get_rpcurl"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aget_validinput\u0028\u0029",
+            "name": "get_validinput",
+            "summary": "",
+            "url": "classes/phph1.html#method_get_validinput"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aget_debugstatus\u0028\u0029",
+            "name": "get_debugstatus",
+            "summary": "",
+            "url": "classes/phph1.html#method_get_debugstatus"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aget_goodinput\u0028\u0029",
+            "name": "get_goodinput",
+            "summary": "",
+            "url": "classes/phph1.html#method_get_goodinput"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Achk_goodinput\u0028\u0029",
+            "name": "chk_goodinput",
+            "summary": "",
+            "url": "classes/phph1.html#method_chk_goodinput"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Achk_dorequest\u0028\u0029",
+            "name": "chk_dorequest",
+            "summary": "",
+            "url": "classes/phph1.html#method_chk_dorequest"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Achk_request\u0028\u0029",
+            "name": "chk_request",
+            "summary": "",
+            "url": "classes/phph1.html#method_chk_request"
         },                {
             "fqsen": "\\phph1\u003A\u003Adocurlrequest\u0028\u0029",
             "name": "docurlrequest",
@@ -33,7 +123,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_call\u0028\u0029",
             "name": "hmyv2_call",
-            "summary": "hmyv2_call\u0028\u0029\u0020Executes\u0020a\u0020smart\u0020contract\u0020code\u0020without\u0020saving\u0020state",
+            "summary": "hmyv2_call\u0028\u0029\u0020Executes\u0020a\u0020new\u0020message\u0020call\u0020immediately,\u0020without\u0020creating\u0020a\u0020transaction\u0020on\u0020the\u0020block\u0020chain.\u0020The\u0020hmyv2_call\u0020method\u0020can\u0020be\u0020used\u0020to\u0020query\u0020internal\u0020contract\u0020state,\u0020to\u0020execute\u0020validations\u0020coded\u0020into\u0020a\u0020contract\u0020or\u0020even\u0020to\u0020test\u0020what\u0020the\u0020effect\u0020of\u0020a\u0020transaction\u0020would\u0020be\u0020without\u0020running\u0020it\u0020live.",
             "url": "classes/phph1.html#method_hmyv2_call"
         },                {
             "fqsen": "\\phph1\u003A\u003Aval_call\u0028\u0029",
@@ -43,7 +133,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_estimateGas\u0028\u0029",
             "name": "hmyv2_estimateGas",
-            "summary": "hmyv2_estimateGas\u0028\u0029\u0020Executes\u0020a\u0020smart\u0020contract\u0020transaction\u0020without\u0020creating\u0020a\u0020transaction\u0020and\u0020saving\u0020data\u0020and\u0020returns\u0020the\u0020estimated\u0020gas\u0020to\u0020send\u0020the\u0020transaction.",
+            "summary": "hmyv2_estimateGas\u0028\u0029\u0020Generates\u0020and\u0020returns\u0020an\u0020estimate\u0020of\u0020how\u0020much\u0020gas\u0020is\u0020necessary\u0020to\u0020allow\u0020the\u0020transaction\u0020to\u0020complete.\u0020The\u0020transaction\u0020will\u0020not\u0020be\u0020added\u0020to\u0020the\u0020blockchain.\u0020Note\u0020that\u0020the\u0020estimate\u0020may\u0020be\u0020significantly\u0020more\u0020than\u0020the\u0020amount\u0020of\u0020gas\u0020actually\u0020used\u0020by\u0020the\u0020transaction,\u0020for\u0020a\u0020variety\u0020of\u0020reasons\u0020including\u0020EVM\u0020mechanics\u0020and\u0020node\u0020performance.",
             "url": "classes/phph1.html#method_hmyv2_estimateGas"
         },                {
             "fqsen": "\\phph1\u003A\u003Aval_estimateGas\u0028\u0029",
@@ -55,6 +145,11 @@ Search.appendIndex(
             "name": "hmyv2_getCode",
             "summary": "This\u0020method\u0020can\u0020be\u0020used\u0020to\u0020distinguish\u0020between\u0020contract\u0020addresses\u0020and\u0020wallet\u0020addresses.",
             "url": "classes/phph1.html#method_hmyv2_getCode"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aval_getCode\u0028\u0029",
+            "name": "val_getCode",
+            "summary": "Validates\u0020hmyv2_getCode\u0020input",
+            "url": "classes/phph1.html#method_val_getCode"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getStorageAt\u0028\u0029",
             "name": "hmyv2_getStorageAt",
@@ -71,25 +166,45 @@ Search.appendIndex(
             "summary": "Get\u0020delegations\u0020by\u0020delegator\u0020address",
             "url": "classes/phph1.html#method_hmyv2_getDelegationsByDelegator"
         },                {
+            "fqsen": "\\phph1\u003A\u003Aval_getDelegationsByDelegator\u0028\u0029",
+            "name": "val_getDelegationsByDelegator",
+            "summary": "Validation\u0020function\u0020for\u0020hmyv2_getDelegationsByDelegator\u0028\u0029",
+            "url": "classes/phph1.html#method_val_getDelegationsByDelegator"
+        },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getDelegationsByDelegatorByBlockNumber\u0028\u0029",
             "name": "hmyv2_getDelegationsByDelegatorByBlockNumber",
             "summary": "Get\u0020delegations\u0020using\u0020delegator\u0020address\u0020and\u0020block\u0020number",
             "url": "classes/phph1.html#method_hmyv2_getDelegationsByDelegatorByBlockNumber"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aval_getDelegationsByDelegatorByBlockNumber\u0028\u0029",
+            "name": "val_getDelegationsByDelegatorByBlockNumber",
+            "summary": "Validation\u0020function\u0020for\u0020hmyv2_getDelegationsByDelegatorByBlockNumber\u0028\u0029",
+            "url": "classes/phph1.html#method_val_getDelegationsByDelegatorByBlockNumber"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getDelegationsByValidator\u0028\u0029",
             "name": "hmyv2_getDelegationsByValidator",
             "summary": "Get\u0020delegations\u0020using\u0020validator\u0020address",
             "url": "classes/phph1.html#method_hmyv2_getDelegationsByValidator"
         },                {
+            "fqsen": "\\phph1\u003A\u003Aval_getDelegationsByValidator\u0028\u0029",
+            "name": "val_getDelegationsByValidator",
+            "summary": "Validation\u0020function\u0020for\u0020hmyv2_getDelegationsByValidator\u0028\u0029",
+            "url": "classes/phph1.html#method_val_getDelegationsByValidator"
+        },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getAllValidatorAddresses\u0028\u0029",
             "name": "hmyv2_getAllValidatorAddresses",
-            "summary": "Get\u0020all\u0020validator\u0020addresses",
+            "summary": "Gets\u0020a\u0020list\u0020of\u0020wallet\u0020addresses\u0020that\u0020have\u0020created\u0020validators\u0020on\u0020the\u0020network.",
             "url": "classes/phph1.html#method_hmyv2_getAllValidatorAddresses"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getAllValidatorInformation\u0028\u0029",
             "name": "hmyv2_getAllValidatorInformation",
-            "summary": "Get\u0020all\u0020validator\u0020information",
+            "summary": "Gets\u0020all\u0020information\u0020for\u0020all\u0020validators.",
             "url": "classes/phph1.html#method_hmyv2_getAllValidatorInformation"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aval_getAllValidatorInformation\u0028\u0029",
+            "name": "val_getAllValidatorInformation",
+            "summary": "Validation\u0020function\u0020for\u0020hmyv2_getAllValidatorInformation\u0028\u0029",
+            "url": "classes/phph1.html#method_val_getAllValidatorInformation"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getAllValidatorInformationByBlockNumber\u0028\u0029",
             "name": "hmyv2_getAllValidatorInformationByBlockNumber",
@@ -105,6 +220,11 @@ Search.appendIndex(
             "name": "hmyv2_getValidatorInformation",
             "summary": "Get\u0020all\u0020information\u0020for\u0020a\u0020validator",
             "url": "classes/phph1.html#method_hmyv2_getValidatorInformation"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aval_getValidatorInformation\u0028\u0029",
+            "name": "val_getValidatorInformation",
+            "summary": "Validation\u0020function\u0020for\u0020hmyv2_getValidatorInformation",
+            "url": "classes/phph1.html#method_val_getValidatorInformation"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getCurrentUtilityMetrics\u0028\u0029",
             "name": "hmyv2_getCurrentUtilityMetrics",
@@ -131,6 +251,11 @@ Search.appendIndex(
             "summary": "Query\u0020the\u0020CX\u0020receipt\u0020hash\u0020on\u0020the\u0020receiving\u0020shard\u0020endpoint",
             "url": "classes/phph1.html#method_hmyv2_getCXReceiptByHash"
         },                {
+            "fqsen": "\\phph1\u003A\u003Aval_getCXReceiptByHash\u0028\u0029",
+            "name": "val_getCXReceiptByHash",
+            "summary": "Validate\u0020the\u0020CX\u0020receipt\u0020transaction\u0020hash\u0020input\u0020for\u0020hmyv2_getCXReceiptByHash",
+            "url": "classes/phph1.html#method_val_getCXReceiptByHash"
+        },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getPendingCXReceipts\u0028\u0029",
             "name": "hmyv2_getPendingCXReceipts",
             "summary": "Retrieves\u0020a\u0020list\u0020of\u0020currently\u0020pending\u0020cross\u0020shard\u0020transaction\u0020receipts",
@@ -140,6 +265,11 @@ Search.appendIndex(
             "name": "hmyv2_resendCx",
             "summary": "Use\u0020this\u0020API\u0020call\u0020to\u0020resend\u0020the\u0020cross\u0020shard\u0020receipt\u0020to\u0020the\u0020receiving\u0020shard\u0020to\u0020re\u002Dprocess\u0020if\u0020the\u0020transaction\u0020did\u0020not\u0020pay\u0020out",
             "url": "classes/phph1.html#method_hmyv2_resendCx"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aval_resendCx\u0028\u0029",
+            "name": "val_resendCx",
+            "summary": "Validate\u0020the\u0020cross\u0020transaction\u0020receipt\u0020transaction\u0020hash\u0020input\u0020for\u0020hmyv2_resendCx",
+            "url": "classes/phph1.html#method_val_resendCx"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getPoolStats\u0028\u0029",
             "name": "hmyv2_getPoolStats",
@@ -186,6 +316,11 @@ Search.appendIndex(
             "summary": "Use\u0020this\u0020API\u0020call\u0020to\u0020retrieve\u0020a\u0020staking\u0020transaction\u0020info\u0020using\u0020the\u0020staking\u0020transaction\u0020hash\u0020\u0028stkhash\u0020is\u0020validated\u0020in\u0020boot.php\u0029",
             "url": "classes/phph1.html#method_hmyv2_getStakingTransactionByHash"
         },                {
+            "fqsen": "\\phph1\u003A\u003Aval_getStakingTransactionByHash\u0028\u0029",
+            "name": "val_getStakingTransactionByHash",
+            "summary": "",
+            "url": "classes/phph1.html#method_val_getStakingTransactionByHash"
+        },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getCurrentTransactionErrorSink\u0028\u0029",
             "name": "hmyv2_getCurrentTransactionErrorSink",
             "summary": "Retrieves\u0020a\u0020list\u0020of\u0020transaction\u0020errors\u0020currently\u0020in\u0020the\u0020transaction\u0020error\u0020sink",
@@ -216,10 +351,20 @@ Search.appendIndex(
             "summary": "Use\u0020this\u0020API\u0020call\u0020to\u0020retrieve\u0020transaction\u0020info\u0020using\u0020the\u0020transaction\u0020hash",
             "url": "classes/phph1.html#method_hmyv2_getTransactionByHash"
         },                {
+            "fqsen": "\\phph1\u003A\u003Aval_getTransactionByHash\u0028\u0029",
+            "name": "val_getTransactionByHash",
+            "summary": "Validate\u0020input\u0020for\u0020hmyv2_getTransactionByHash",
+            "url": "classes/phph1.html#method_val_getTransactionByHash"
+        },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getTransactionReceipt\u0028\u0029",
             "name": "hmyv2_getTransactionReceipt",
             "summary": "Use\u0020this\u0020API\u0020call\u0020to\u0020retrieve\u0020transaction\u0020info\u0020using\u0020the\u0020transaction\u0020hash",
             "url": "classes/phph1.html#method_hmyv2_getTransactionReceipt"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aval_getTransactionReceipt\u0028\u0029",
+            "name": "val_getTransactionReceipt",
+            "summary": "Validate\u0020input\u0020for\u0020hmyv2_getTransactionReceipt",
+            "url": "classes/phph1.html#method_val_getTransactionReceipt"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_blockNumber\u0028\u0029",
             "name": "hmyv2_blockNumber",
@@ -248,7 +393,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_gasPrice\u0028\u0029",
             "name": "hmyv2_gasPrice",
-            "summary": "Get\u0020the\u0020current\u0020average\u0020gas\u0020price\u0020of\u0020transactions",
+            "summary": "Gets\u0020the\u0020current\u0020average\u0020gas\u0020price\u0020of\u0020transactions",
             "url": "classes/phph1.html#method_hmyv2_gasPrice"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getShardingStructure\u0028\u0029",
@@ -266,240 +411,300 @@ Search.appendIndex(
             "summary": "Get\u0020validator\u0020information\u0020from\u0020epoch\u0020number",
             "url": "classes/phph1.html#method_hmyv2_getValidators"
         },                {
+            "fqsen": "\\phph1\u003A\u003Aval_getValidators\u0028\u0029",
+            "name": "val_getValidators",
+            "summary": "Validate\u0020input\u0020for\u0020hmyv2_getValidators",
+            "url": "classes/phph1.html#method_val_getValidators"
+        },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getValidatorKeys\u0028\u0029",
             "name": "hmyv2_getValidatorKeys",
             "summary": "Get\u0020validator\u0020information\u0020from\u0020epoch\u0020number",
             "url": "classes/phph1.html#method_hmyv2_getValidatorKeys"
         },                {
+            "fqsen": "\\phph1\u003A\u003Aval_getValidatorKeys\u0028\u0029",
+            "name": "val_getValidatorKeys",
+            "summary": "Validate\u0020input\u0020for\u0020hmyv2_getValidatorKeys",
+            "url": "classes/phph1.html#method_val_getValidatorKeys"
+        },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getCurrentBadBlocks\u0028\u0029",
             "name": "hmyv2_getCurrentBadBlocks",
-            "summary": "",
+            "summary": "Gets\u0020a\u0020list\u0020of\u0020bad\u0020blocks\u0020in\u0020node\u0020memory",
             "url": "classes/phph1.html#method_hmyv2_getCurrentBadBlocks"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getNodeMetadata\u0028\u0029",
             "name": "hmyv2_getNodeMetadata",
-            "summary": "",
+            "summary": "Gets\u0020the\u0020current\u0020node\u0020metadata.",
             "url": "classes/phph1.html#method_hmyv2_getNodeMetadata"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_protocolVersion\u0028\u0029",
             "name": "hmyv2_protocolVersion",
-            "summary": "",
+            "summary": "Gets\u0020the\u0020current\u0020network\u0020protocol\u0020version.",
             "url": "classes/phph1.html#method_hmyv2_protocolVersion"
         },                {
             "fqsen": "\\phph1\u003A\u003Anet_peerCount\u0028\u0029",
             "name": "net_peerCount",
-            "summary": "",
+            "summary": "Gets\u0020the\u0020current\u0020number\u0020of\u0020peers\u0020on\u0020the\u0020network\u0020in\u0020the\u0020form\u0020of\u0020a\u0020hex\u0020string.",
             "url": "classes/phph1.html#method_net_peerCount"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getBlocks\u0028\u0029",
             "name": "hmyv2_getBlocks",
-            "summary": "",
+            "summary": "Gets\u0020block\u0020information\u0020on\u0020a\u0020series\u0020of\u0020blocks\u0020between\u0020two\u0020block\u0020numbers.",
             "url": "classes/phph1.html#method_hmyv2_getBlocks"
         },                {
             "fqsen": "\\phph1\u003A\u003Aval_getBlocks\u0028\u0029",
             "name": "val_getBlocks",
-            "summary": "",
+            "summary": "Validates\u0020the\u0020input\u0020for\u0020hmyv2_getBlocks\u0028\u0029.",
             "url": "classes/phph1.html#method_val_getBlocks"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getBlockByNumber\u0028\u0029",
             "name": "hmyv2_getBlockByNumber",
-            "summary": "",
+            "summary": "Gets\u0020block\u0020information\u0020using\u0020the\u0020specified\u0020block\u0020number.",
             "url": "classes/phph1.html#method_hmyv2_getBlockByNumber"
         },                {
             "fqsen": "\\phph1\u003A\u003Aval_getBlockByNumber\u0028\u0029",
             "name": "val_getBlockByNumber",
-            "summary": "",
+            "summary": "Validates\u0020the\u0020input\u0020data\u0020for\u0020hmyv2_getBlockByNumber\u0028\u0029.",
             "url": "classes/phph1.html#method_val_getBlockByNumber"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getBlockByHash\u0028\u0029",
             "name": "hmyv2_getBlockByHash",
-            "summary": "",
+            "summary": "Gets\u0020block\u0020information\u0020using\u0020the\u0020specified\u0020block\u0020hash.",
             "url": "classes/phph1.html#method_hmyv2_getBlockByHash"
         },                {
             "fqsen": "\\phph1\u003A\u003Aval_getBlockByHash\u0028\u0029",
             "name": "val_getBlockByHash",
-            "summary": "",
+            "summary": "Validates\u0020the\u0020input\u0020data\u0020for\u0020hmyv2_getBlockByHash\u0028\u0029",
             "url": "classes/phph1.html#method_val_getBlockByHash"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getBlockSigners\u0028\u0029",
             "name": "hmyv2_getBlockSigners",
-            "summary": "",
+            "summary": "Gets\u0020a\u0020list\u0020of\u0020block\u0020signer\u0020wallet\u0020addresses\u0020using\u0020the\u0020specified\u0020block\u0020number.",
             "url": "classes/phph1.html#method_hmyv2_getBlockSigners"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aval_getBlockSigners\u0028\u0029",
+            "name": "val_getBlockSigners",
+            "summary": "Validates\u0020the\u0020input\u0020data\u0020for\u0020hmyv2_getBlockSigners\u0028\u0029",
+            "url": "classes/phph1.html#method_val_getBlockSigners"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getBlockSignerKeys\u0028\u0029",
             "name": "hmyv2_getBlockSignerKeys",
-            "summary": "",
+            "summary": "Gets\u0020block\u0020signer\u0020BLS\u0020keys\u0020using\u0020the\u0020specified\u0020block\u0020number.",
             "url": "classes/phph1.html#method_hmyv2_getBlockSignerKeys"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aval_getBlockSignerKeys\u0028\u0029",
+            "name": "val_getBlockSignerKeys",
+            "summary": "Validates\u0020the\u0020input\u0020data\u0020for\u0020hmyv2_getBlockSignerKeys\u0028\u0029.",
+            "url": "classes/phph1.html#method_val_getBlockSignerKeys"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getBlockTransactionCountByNumber\u0028\u0029",
             "name": "hmyv2_getBlockTransactionCountByNumber",
-            "summary": "",
+            "summary": "Gets\u0020the\u0020number\u0020of\u0020transactions\u0020in\u0020a\u0020block\u0020using\u0020the\u0020specified\u0020block\u0020number.",
             "url": "classes/phph1.html#method_hmyv2_getBlockTransactionCountByNumber"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aval_getBlockTransactionCountByNumber\u0028\u0029",
+            "name": "val_getBlockTransactionCountByNumber",
+            "summary": "Validates\u0020the\u0020input\u0020data\u0020for\u0020hmyv2_getBlockTransactionCountByNumber\u0028\u0029.",
+            "url": "classes/phph1.html#method_val_getBlockTransactionCountByNumber"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getBlockTransactionCountByHash\u0028\u0029",
             "name": "hmyv2_getBlockTransactionCountByHash",
-            "summary": "",
+            "summary": "Gets\u0020the\u0020number\u0020of\u0020transactions\u0020in\u0020a\u0020block\u0020using\u0020the\u0020specified\u0020block\u0020hash.",
             "url": "classes/phph1.html#method_hmyv2_getBlockTransactionCountByHash"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aval_getBlockTransactionCountByHash\u0028\u0029",
+            "name": "val_getBlockTransactionCountByHash",
+            "summary": "Validates\u0020the\u0020input\u0020data\u0020for\u0020hmyv2_getBlockTransactionCountByHash\u0028\u0029",
+            "url": "classes/phph1.html#method_val_getBlockTransactionCountByHash"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getHeaderByNumber\u0028\u0029",
             "name": "hmyv2_getHeaderByNumber",
-            "summary": "",
+            "summary": "Gets\u0020the\u0020block\u0020header\u0020data\u0020for\u0020the\u0020specified\u0020block\u0020number.",
             "url": "classes/phph1.html#method_hmyv2_getHeaderByNumber"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aval_getHeaderByNumber\u0028\u0029",
+            "name": "val_getHeaderByNumber",
+            "summary": "Validates\u0020the\u0020input\u0020data\u0020for\u0020hmyv2_getHeaderByNumber\u0028\u0029",
+            "url": "classes/phph1.html#method_val_getHeaderByNumber"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getLatestChainHeaders\u0028\u0029",
             "name": "hmyv2_getLatestChainHeaders",
-            "summary": "",
+            "summary": "Gets\u0020a\u0020list\u0020of\u0020the\u0020latest\u0020beacon\u0020chain\u0020headers\u0020and\u0020their\u0020related\u0020information.",
             "url": "classes/phph1.html#method_hmyv2_getLatestChainHeaders"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_latestHeader\u0028\u0029",
             "name": "hmyv2_latestHeader",
-            "summary": "",
+            "summary": "Gets\u0020the\u0020current\u0020blockchain\u0020header\u0020information.",
             "url": "classes/phph1.html#method_hmyv2_latestHeader"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getBalance\u0028\u0029",
             "name": "hmyv2_getBalance",
-            "summary": "",
+            "summary": "Gets\u0020the\u0020current\u0020balance\u0020in\u0020atto\u0020for\u0020the\u0020specified\u0020wallet",
             "url": "classes/phph1.html#method_hmyv2_getBalance"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aval_getBalance\u0028\u0029",
+            "name": "val_getBalance",
+            "summary": "Validate\u0020input\u0020for\u0020hmyv2_getBalance",
+            "url": "classes/phph1.html#method_val_getBalance"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getBalanceByBlockNumber\u0028\u0029",
             "name": "hmyv2_getBalanceByBlockNumber",
-            "summary": "",
+            "summary": "Gets\u0020the\u0020current\u0020balance\u0020in\u0020atto\u0020for\u0020the\u0020specified\u0020wallet\u0020at\u0020the\u0020specified\u0020block\u0020number",
             "url": "classes/phph1.html#method_hmyv2_getBalanceByBlockNumber"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aval_getBalanceByBlockNumber\u0028\u0029",
+            "name": "val_getBalanceByBlockNumber",
+            "summary": "Validate\u0020input\u0020for\u0020hmyv2_getBalanceByBlockNumber",
+            "url": "classes/phph1.html#method_val_getBalanceByBlockNumber"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getStakingTransactionsCount\u0028\u0029",
             "name": "hmyv2_getStakingTransactionsCount",
-            "summary": "",
+            "summary": "Gets\u0020the\u0020number\u0020of\u0020staking\u0020transactions\u0020for\u0020the\u0020specified\u0020ONE\u0020wallet\u0020address.",
             "url": "classes/phph1.html#method_hmyv2_getStakingTransactionsCount"
         },                {
             "fqsen": "\\phph1\u003A\u003Aval_getStakingTransactionsCount\u0028\u0029",
             "name": "val_getStakingTransactionsCount",
-            "summary": "",
+            "summary": "Validates\u0020the\u0020input\u0020for\u0020hmyv2_getStakingTransactionsCount\u0028\u0029.",
             "url": "classes/phph1.html#method_val_getStakingTransactionsCount"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getStakingTransactionsHistory\u0028\u0029",
             "name": "hmyv2_getStakingTransactionsHistory",
-            "summary": "",
+            "summary": "Gets\u0020staking\u0020transactions\u0020history\u0020for\u0020a\u0020specified\u0020ONE\u0020wallet.",
             "url": "classes/phph1.html#method_hmyv2_getStakingTransactionsHistory"
         },                {
             "fqsen": "\\phph1\u003A\u003Aval_getStakingTransactionsHistory\u0028\u0029",
             "name": "val_getStakingTransactionsHistory",
-            "summary": "",
+            "summary": "Validates\u0020the\u0020input\u0020data\u0020for\u0020hmyv2_getStakingTransactionsHistory\u0028\u0029.",
             "url": "classes/phph1.html#method_val_getStakingTransactionsHistory"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getTransactionsCount\u0028\u0029",
             "name": "hmyv2_getTransactionsCount",
-            "summary": "",
+            "summary": "Gets\u0020the\u0020number\u0020of\u0020transactions\u0020for\u0020the\u0020specified\u0020ONE\u0020wallet\u0020address.",
             "url": "classes/phph1.html#method_hmyv2_getTransactionsCount"
         },                {
             "fqsen": "\\phph1\u003A\u003Aval_getTransactionsCount\u0028\u0029",
             "name": "val_getTransactionsCount",
-            "summary": "",
+            "summary": "Validates\u0020the\u0020input\u0020for\u0020hmyv2_getTransactionsCount\u0028\u0029.",
             "url": "classes/phph1.html#method_val_getTransactionsCount"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getTransactionsHistory\u0028\u0029",
             "name": "hmyv2_getTransactionsHistory",
-            "summary": "",
+            "summary": "Gets\u0020transactions\u0020history\u0020for\u0020a\u0020specified\u0020ONE\u0020wallet.",
             "url": "classes/phph1.html#method_hmyv2_getTransactionsHistory"
         },                {
             "fqsen": "\\phph1\u003A\u003Aval_getTransactionsHistory\u0028\u0029",
             "name": "val_getTransactionsHistory",
-            "summary": "",
+            "summary": "Validates\u0020the\u0020input\u0020data\u0020for\u0020hmyv2_getTransactionsHistory\u0028\u0029.",
             "url": "classes/phph1.html#method_val_getTransactionsHistory"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_isBlockSigner\u0028\u0029",
             "name": "hmyv2_isBlockSigner",
-            "summary": "",
+            "summary": "Gets\u0020whether\u0020specified\u0020ONE\u0020address\u0020is\u0020a\u0020block\u0020signer\u0020for\u0020a\u0020specified\u0020block\u0020number.",
             "url": "classes/phph1.html#method_hmyv2_isBlockSigner"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aval_isBlockSigner\u0028\u0029",
+            "name": "val_isBlockSigner",
+            "summary": "Validation\u0020for\u0020hmyv2_isBlockSigner",
+            "url": "classes/phph1.html#method_val_isBlockSigner"
         },                {
             "fqsen": "\\phph1\u003A\u003Aconvert_atto\u0028\u0029",
             "name": "convert_atto",
-            "summary": "",
+            "summary": "Converts\u0020numbers\u0020in\u0020atto\u0020to\u0020decimal",
             "url": "classes/phph1.html#method_convert_atto"
         },                {
             "fqsen": "\\phph1\u003A\u003Aval_oneaddr\u0028\u0029",
             "name": "val_oneaddr",
-            "summary": "",
+            "summary": "Validates\u0020a\u0020ONE\u0020wallet\u0020address",
             "url": "classes/phph1.html#method_val_oneaddr"
         },                {
             "fqsen": "\\phph1\u003A\u003Aval_ethaddr\u0028\u0029",
             "name": "val_ethaddr",
-            "summary": "",
+            "summary": "Validates\u0020an\u0020ETH\u0020wallet\u0020address",
             "url": "classes/phph1.html#method_val_ethaddr"
         },                {
             "fqsen": "\\phph1\u003A\u003Aval_blockaddr\u0028\u0029",
             "name": "val_blockaddr",
-            "summary": "",
+            "summary": "Validates\u0020a\u0020block\u0020address",
             "url": "classes/phph1.html#method_val_blockaddr"
         },                {
             "fqsen": "\\phph1\u003A\u003Aval_blocknum\u0028\u0029",
             "name": "val_blocknum",
-            "summary": "",
+            "summary": "Validates\u0020a\u0020block\u0020number",
             "url": "classes/phph1.html#method_val_blocknum"
         },                {
             "fqsen": "\\phph1\u003A\u003Aval_blockhash\u0028\u0029",
             "name": "val_blockhash",
-            "summary": "",
+            "summary": "Validates\u0020a\u0020block\u0020hash",
             "url": "classes/phph1.html#method_val_blockhash"
         },                {
             "fqsen": "\\phph1\u003A\u003Aval_epoch\u0028\u0029",
             "name": "val_epoch",
-            "summary": "",
+            "summary": "Validates\u0020an\u0020epoch",
             "url": "classes/phph1.html#method_val_epoch"
         },                {
             "fqsen": "\\phph1\u003A\u003Aval_hash\u0028\u0029",
             "name": "val_hash",
-            "summary": "",
+            "summary": "Validates\u0020a\u0020hash",
             "url": "classes/phph1.html#method_val_hash"
         },                {
             "fqsen": "\\phph1\u003A\u003Aval_scaddress\u0028\u0029",
             "name": "val_scaddress",
-            "summary": "",
+            "summary": "Validates\u0020a\u0020smart\u0020contract\u0020address",
             "url": "classes/phph1.html#method_val_scaddress"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aval_cxtxhash\u0028\u0029",
+            "name": "val_cxtxhash",
+            "summary": "Validates\u0020a\u0020cross\u0020shard\u0020transaction\u0020hash",
+            "url": "classes/phph1.html#method_val_cxtxhash"
         },                {
             "fqsen": "\\phph1\u003A\u003Aval_stlocation\u0028\u0029",
             "name": "val_stlocation",
-            "summary": "",
+            "summary": "Validates\u0020storage\u0020location",
             "url": "classes/phph1.html#method_val_stlocation"
+        },                {
+            "fqsen": "\\phph1\u003A\u003A\u0024dorequest",
+            "name": "dorequest",
+            "summary": "",
+            "url": "classes/phph1.html#property_dorequest"
+        },                {
+            "fqsen": "\\phph1\u003A\u003A\u0024lastjson",
+            "name": "lastjson",
+            "summary": "",
+            "url": "classes/phph1.html#property_lastjson"
+        },                {
+            "fqsen": "\\phph1\u003A\u003A\u0024validinput",
+            "name": "validinput",
+            "summary": "",
+            "url": "classes/phph1.html#property_validinput"
         },                {
             "fqsen": "\\phph1\u003A\u003A\u0024apiaddr",
             "name": "apiaddr",
             "summary": "",
             "url": "classes/phph1.html#property_apiaddr"
         },                {
-            "fqsen": "\\phph1\u003A\u003A\u0024blockaddr",
-            "name": "blockaddr",
+            "fqsen": "\\phph1\u003A\u003A\u0024default_pagesize",
+            "name": "default_pagesize",
             "summary": "",
-            "url": "classes/phph1.html#property_blockaddr"
+            "url": "classes/phph1.html#property_default_pagesize"
         },                {
-            "fqsen": "\\phph1\u003A\u003A\u0024blocknum",
-            "name": "blocknum",
+            "fqsen": "\\phph1\u003A\u003A\u0024goodinputs",
+            "name": "goodinputs",
             "summary": "",
-            "url": "classes/phph1.html#property_blocknum"
+            "url": "classes/phph1.html#property_goodinputs"
         },                {
-            "fqsen": "\\phph1\u003A\u003A\u0024blocknum2",
-            "name": "blocknum2",
+            "fqsen": "\\phph1\u003A\u003A\u0024errors",
+            "name": "errors",
             "summary": "",
-            "url": "classes/phph1.html#property_blocknum2"
+            "url": "classes/phph1.html#property_errors"
         },                {
-            "fqsen": "\\phph1\u003A\u003A\u0024blockhash",
-            "name": "blockhash",
+            "fqsen": "\\phph1\u003A\u003A\u0024max_pagesize",
+            "name": "max_pagesize",
             "summary": "",
-            "url": "classes/phph1.html#property_blockhash"
+            "url": "classes/phph1.html#property_max_pagesize"
         },                {
-            "fqsen": "\\phph1\u003A\u003A\u0024scaddress",
-            "name": "scaddress",
+            "fqsen": "\\phph1\u003A\u003A\u0024network",
+            "name": "network",
             "summary": "",
-            "url": "classes/phph1.html#property_scaddress"
-        },                {
-            "fqsen": "\\phph1\u003A\u003A\u0024oneaddr",
-            "name": "oneaddr",
-            "summary": "",
-            "url": "classes/phph1.html#property_oneaddr"
-        },                {
-            "fqsen": "\\phph1\u003A\u003A\u0024lastjson",
-            "name": "lastjson",
-            "summary": "",
-            "url": "classes/phph1.html#property_lastjson"
+            "url": "classes/phph1.html#property_network"
         },                {
             "fqsen": "\\phph1\u003A\u003A\u0024phph1_debug",
             "name": "phph1_debug",
@@ -516,26 +721,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/phph1.html#property_rpc_url"
         },                {
-            "fqsen": "\\phph1\u003A\u003A\u0024errors",
-            "name": "errors",
-            "summary": "",
-            "url": "classes/phph1.html#property_errors"
-        },                {
-            "fqsen": "\\phph1\u003A\u003A\u0024max_pagesize",
-            "name": "max_pagesize",
-            "summary": "",
-            "url": "classes/phph1.html#property_max_pagesize"
-        },                {
-            "fqsen": "\\phph1\u003A\u003A\u0024default_pagesize",
-            "name": "default_pagesize",
-            "summary": "",
-            "url": "classes/phph1.html#property_default_pagesize"
-        },                {
-            "fqsen": "\\phph1\u003A\u003A\u0024network",
-            "name": "network",
-            "summary": "",
-            "url": "classes/phph1.html#property_network"
-        },                {
             "fqsen": "\\phph1\u003A\u003A\u0024shard",
             "name": "shard",
             "summary": "",
@@ -550,6 +735,11 @@ Search.appendIndex(
             "name": "phph1_methods",
             "summary": "",
             "url": "classes/phph1.html#property_phph1_methods"
+        },                {
+            "fqsen": "\\phph1\u003A\u003A\u0024phph1_method",
+            "name": "phph1_method",
+            "summary": "",
+            "url": "classes/phph1.html#property_phph1_method"
         },                {
             "fqsen": "\\",
             "name": "\\",

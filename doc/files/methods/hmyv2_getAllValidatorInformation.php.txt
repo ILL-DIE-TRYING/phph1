@@ -1,46 +1,67 @@
 <?php
 /**
-* Start debug info display area
+* Method file for hmyv2_getAllValidatorInformation() in the phph1.php class file
 */
-if($phph1->phph1_debug == 1){
-	echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
-}
 
-/**
-* No input to validate so we set $validinput to 1
-*/
-$validinput = 1;
+if($phph1->chk_dorequest()){
+	
+	// Setting an empty form value to null MUST happen, otherwise our json request will get borked
+	
+	/** Start debug info display area */
+	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>"; }
 
-/**
-* Get the transactions
-* This return data is large so trying to buffer the output via php
-*/
-ob_start(null, 4048000);
-$hmyv2_data = $phph1->hmyv2_getAllValidatorInformation();
-ob_end_flush();
+	/** Prepare page for validation */
+	if(isset($_GET['page'])&& is_numeric($_GET['page'])){$page = $_GET['page'];}else{$page = null;}
 
-/**
-* End debug info display area
-*/
-if($phph1->phph1_debug == 1){
-	echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>";
+	// alert the user that this method takes a long time to load
+	require_once('inc/alert.php');
+
+	/** Validate the input and run our call if the data is good	*/
+	if($phph1->val_getAllValidatorInformation($page)){
+		/**
+		* Get the transactions
+		* This return data is large so trying to buffer the output via php
+		*/
+		ob_start(null, 64000);
+		$hmyv2_data = $phph1->hmyv2_getAllValidatorInformation($page);
+		ob_flush();
+		ob_end_flush();
+	}
+
+	/** End debug info display area	*/
+	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>"; }
+
+	require_once('inc/errors.php');
+	
 }
 
 /**
 * Check if this is a RPC call
 * If not show the html output of the method explorer
 */
-if($phph1->rpc_call != 1){
+if($phph1->get_rpcstatus() != 1){
 ?>
 
 <div class="info_container" >
 	<div class="infoRow">
-		<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
+		<button type="button" class="collapsibleInfo"><?=$phph1->get_currentmethod()?> :: Params/Returns</button>
 		<div id="infoContent" class="infoContent">
+		
+			<h3 class="infoHeader">Description</h3>
+				<ul class="infoObjects" >
+					<li class="infoObjectNoBul">
+						<div>
+							<p>Gets all information for all validators.</p>
+							<p>There may be more information in the <a href="./doc/classes/phph1.html#method_hmyv2_getAllValidatorInformation">PHPH1 Class Documentation</a>.</p>
+							<p><strong>WARNING!</strong> This method retrieves a large amount of data and is slow to return because of it. Be patient and let the page finish loading.</p>
+						</div>
+					</li>
+				</ul>
 		
 			<h3 class="infoHeader">Parameters</h3>
 			<ul class="infoObjects" >
-				<li class="infoObjectNoBul"><h4>No Parameters Required</h4></li>
+				<li class="infoObjectNoBul"><div class="ioobjectWrap"><span >Number</span>:</div> 
+					<div class="iodefWrap">Page number to retrieve (0 is the first page index, -1 gets everything in a single page).</div></li>
 			</ul>
 			
 			<h3 class="infoHeader">Returns</h3>
@@ -97,7 +118,7 @@ if($phph1->rpc_call != 1){
 					<div class="iodefWrap">Validator wallet address</div></li>
 					
 					<li><div class="ioobjectWrap"><span >delegations</span> - <span >Array</span>:</div> 
-					<div class="iodefWrap">List of delegations</li>
+					<div class="iodefWrap">List of delegations</div></li>
 					
 					<ul class="infoObjects3">
 					
@@ -221,6 +242,24 @@ if($phph1->rpc_call != 1){
 			
 			</ul>
 		</div>
+	</div>
+</div>
+<div class="form_container">
+	<div id="formcontent">
+	<form method="get">
+		<div class="row">
+			<div class="col-25">
+				<label for="page">Page: </label>
+			</div><div class="col-75">
+				<input style="background: orange;" type="text" id="page" name="page" maxlength="42" value="<?php if($phph1->chk_goodinput('page')){ echo $phph1->get_goodinput('page'); }else{ echo '0'; } ?>" />
+			</div>
+		</div>
+		<div class="row">
+			<input type="hidden" id="do" name="dorequest" value="1" />
+			<input type="hidden" id="method" name="method" value="hmyv2_getAllValidatorInformation" />
+			<input type='submit' name='Submit' class="form_submit" />
+		</div>
+	</form>
 	</div>
 </div>
 

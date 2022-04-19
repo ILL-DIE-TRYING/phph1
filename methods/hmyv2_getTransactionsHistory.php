@@ -1,130 +1,84 @@
 <?php
-// Get the transactions
-if(isset($valid_oneaddr) && $valid_oneaddr == 1){
-	/**
-	* Start debug info display area
-	*/
-	if($phph1->phph1_debug == 1){
-		echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
-	}
+/**
+* Method file for hmyv2_getTransactionsHistory() in the phph1.php class file
+*/
+
+if($phph1->chk_dorequest()){
+	
+	/** Start debug info display area */
+	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>"; }
+	
+	/** Prepare oneaddr for validation */
+	if(isset($_GET['oneaddr'])&& !empty($_GET['oneaddr'])){$oneaddr = $_GET['oneaddr'];}else{$oneaddr = null;}
 
 	/**
 	* Prepare the page number for validation
 	*/
-	if(isset($_GET['pagenum'])&& !empty($_GET['pagenum']) && is_numeric($_GET['pagenum'])){
-		$pagenum = htmlentities($_GET['pagenum']);
-	}else{
-		$pagenum = 1;
-	}
+	if(isset($_GET['pagenum'])&& !empty($_GET['pagenum'])){$pagenum = $_GET['pagenum'];}else{$pagenum = 1;}
 	
 	/**
 	* Prepare the page size for validation
 	*/
-	if(isset($_GET['pagesize'])&& !empty($_GET['pagesize'])){
-		$pagesize = $_GET['pagesize'];
-	}else{
-		$pagesize = $def_pagesize;
-	}
+	if(isset($_GET['pagesize'])&& !empty($_GET['pagesize'])){$pagesize = $_GET['pagesize'];}else{$pagesize = $def_pagesize;}
 
 	/**
 	* If txtype isn't set then we will set it to grab all transactions
 	* The choices here are "ALL", "RECEIVED", or "SENT"
 	*/
 	
-	if(isset($_GET['txtype']) && !empty($_GET['txtype'])){
-		$txtype = htmlentities($_GET['txtype']);
-	}else{
-		$txtype = 'ALL';
+	if(isset($_GET['txtype']) && !empty($_GET['txtype'])){$txtype = $_GET['txtype'];}else{$txtype = 'ALL';
 	}
 	
 	/**
 	* If order isn't set then we will set it to ascending by default
 	* The choices here are "ALL", "RECEIVED", or "SENT"
 	*/
-	if(isset($_GET['order']) && !empty($_GET['order'])){
-		$order = htmlentities($_GET['order']);
-	}else{
-		$order = 'ASC';
-	}
+	if(isset($_GET['order']) && !empty($_GET['order'])){$order = $_GET['order'];}else{$order = 'ASC';}
 	
 	/**
 	* If fulltx isn't set then we will set it to FALSE by default
 	* The choices here are TRUE or FALSE
 	*/
-	if(isset($_GET['fulltx']) && !empty($_GET['fulltx'])){
-		$fulltx = $_GET['fulltx'];
-	}else{
-		$fulltx = 0;
-	}
+	if(isset($_GET['fulltx']) && !empty($_GET['fulltx'])){$fulltx = $_GET['fulltx'];}else{$fulltx = 0;}
 	
 
 	/**
 	* Validate the input and run our call if the data is good
 	*/
-	if($phph1->val_getTransactionsHistory($phph1->oneaddr,$pagenum,$pagesize,$fulltx,$txtype,$order)){
-		$validinput = 1;
-		$mytransactioncount = $phph1->hmyv2_getTransactionsCount($phph1->oneaddr,$txtype);
+	if($phph1->val_getTransactionsHistory($oneaddr,$pagenum,$pagesize,$fulltx,$txtype,$order)){
+		$mytransactioncount = $phph1->hmyv2_getTransactionsCount($oneaddr,$txtype);
 		$trcount = $mytransactioncount['result'];
 		$trpages = ceil($trcount / $pagesize);
-		$hmyv2_data = $phph1->hmyv2_getTransactionsHistory($phph1->oneaddr,$pagenum,$pagesize,$fulltx,$txtype,$order);
-	}else{
-		$validinput = 0;
+		$hmyv2_data = $phph1->hmyv2_getTransactionsHistory($oneaddr,$pagenum,$pagesize,$fulltx,$txtype,$order);
 	}
 	
-	/**
-	* End debug info display area
-	*/
-	if($phph1->phph1_debug == 1){
-			echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>";
-	}
-	
-	/**
-	* Show our errors if we have them
-	*/
-	if ($validinput == 0){
-		echo '<div class="error_div">';
-		echo '<p class="hmyv2_errors">Error:';
-		$errnum = 1;
-		foreach($phph1->errors as $anerror){
-			if($errnum == 1){
-				echo ' <span class="hmyv2_error">'.$anerror.'</span>';
-				$errnum=0;
-			}else{
-				echo '<span class="hmyv2_error">, '.$anerror.'</span>';
-			}
-		}
-		echo '</p></div>';
-	}
-	
-/**
-* Show our errors if we have them
-*/
-}elseif(isset($_GET['do'])){
-		echo '<div class="error_div">';
-		echo '<p class="hmyv2_errors">Error:';
-		$errnum = 1;
-		foreach($phph1->errors as $anerror){
-			if($errnum == 1){
-				echo ' <span class="hmyv2_error">'.$anerror.'</span>';
-				$errnum=0;
-			}else{
-				echo '<span class="hmyv2_error">, '.$anerror.'</span>';
-			}
-		}
-		echo '</p></div>';
+/** End debug info display area	*/
+	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>"; }
+
+	require_once('inc/errors.php');
 }
 
 /**
 * Check if this is a RPC call
 * If not show the html output of the method explorer
 */
-if($phph1->rpc_call != 1){
+if($phph1->get_rpcstatus() != 1){
 ?>
 
 	<div class="info_container" >
 		<div class="infoRow">
-			<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
+			<button type="button" class="collapsibleInfo"><?=$phph1->get_currentmethod()?> :: Params/Returns</button>
 			<div id="infoContent" class="infoContent">
+			
+				<h3 class="infoHeader">Description</h3>
+				<ul class="infoObjects" >
+					<li class="infoObjectNoBul">
+						<div>
+							<p>Gets the transaction history for the specified ONE wallet address.</p>
+							<p>There may be more information in the <a href="./doc/classes/phph1.html#method_hmyv2_getTransactionsHistory">PHPH1 Class Documentation</a>.</p>
+						</div>
+					</li>
+				</ul>
 			
 				<h3 class="infoHeader">Parameters</h3>
 				<ul class="infoObjects" >
@@ -225,14 +179,14 @@ if($phph1->rpc_call != 1){
 					<div class="col-25">
 						<label for="oneaddr">Wallet Address: </label>
 					</div><div class="col-75">
-						<input style="background: orange;" type="text" id="oneaddr" name="oneaddr" maxlength="42" value="<?php if(isset($oneaddr)){ echo $oneaddr; } ?>" />
+						<input style="background: orange;" type="text" id="oneaddr" name="oneaddr" maxlength="42" value="<?php if($phph1->chk_goodinput('oneaddr')){ echo $phph1->get_goodinput('oneaddr'); } ?>" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-25">
 						<label for="pagenum">Page Number: </label>
 					</div><div class="col-75">
-						<input type="text" id="pagenum" name="pagenum" maxlength="42" value="<?php if(isset($pagenum)){ echo $pagenum; }else{ echo "1"; } ?>" />
+						<input type="text" id="pagenum" name="pagenum" maxlength="42" value="<?php if($phph1->chk_goodinput('pagenum')){ echo $phph1->get_goodinput('pagenum'); }else{ echo '1';} ?>" />
 					</div>
 				</div>
 				<div class="row">
@@ -248,7 +202,7 @@ if($phph1->rpc_call != 1){
 
 							for($x = $default_pagesize; $x <= $max_pagesize; $x+=10 ){
 								echo '<option value="'.$x.'"';
-								if($validinput == 1 && $x == $pagesize){
+								if($phph1->get_goodinput('pagesize') && $x == $phph1->get_goodinput('pagesize')){
 									echo ' selected="selected" ';
 								}elseif($x == $default_pagesize){
 									echo ' selected="selected" ';
@@ -264,9 +218,9 @@ if($phph1->rpc_call != 1){
 						<label for="txtype">Transaction Type:</label>
 					</div><div class="col-75">
 						<select name="txtype" id="txtype">
-							<option value="ALL" <?php if($validinput == 1 && $txtype == 'ALL'){ echo 'selected="selected"'; }elseif(!isset($txtype)){ echo 'selected="selected"'; } ?> >ALL</option>
-							<option value="SENT" <?php if($validinput == 1 && $txtype == 'SENT'){ echo 'selected="selected"'; } ?> >SENT</option>
-							<option value="RECEIVED" <?php if($validinput == 1 && $txtype == 'RECEIVED'){ echo 'selected="selected"'; } ?> >RECEIVED</option>
+							<option value="ALL" <?php if(($phph1->chk_goodinput('txtype') && $phph1->get_goodinput('txtype') == 'ALL') OR !$phph1->chk_goodinput('txtype')){ echo 'selected="selected"'; } ?> >ALL</option>
+							<option value="SENT" <?php if($phph1->chk_goodinput('txtype') && $phph1->get_goodinput('txtype') == 'SENT'){ echo 'selected="selected"'; } ?> >SENT</option>
+							<option value="RECEIVED" <?php if($phph1->chk_goodinput('txtype') && $phph1->get_goodinput('txtype') == 'RECEIVED'){ echo 'selected="selected"'; } ?> >RECEIVED</option>
 						</select>
 					</div>
 				</div>
@@ -275,8 +229,8 @@ if($phph1->rpc_call != 1){
 						<label for="order">Order (by date):</label>
 					</div><div class="col-75">
 						<select name="order" id="order">
-							<option value="ASC" <?php if($validinput == 1 && $order == 'ASC'){ echo 'selected="selected"'; }elseif(!isset($order)){ echo 'selected="selected"'; } ?> >ASCENDING</option>
-							<option value="DESC" <?php if($validinput == 1 && $order == 'DESC'){ echo 'selected="selected"'; } ?> >DESCENDING</option>
+							<option value="ASC" <?php if(($phph1->chk_goodinput('order') && $phph1->get_goodinput('order') == 'ASC') OR !$phph1->chk_goodinput('order')){ echo 'selected="selected"'; } ?> >ASCENDING</option>
+							<option value="DESC" <?php if($phph1->chk_goodinput('order') && $phph1->get_goodinput('order') == 'DESC'){ echo 'selected="selected"'; } ?> >DESCENDING</option>
 						</select>
 					</div>
 				</div>
@@ -285,13 +239,13 @@ if($phph1->rpc_call != 1){
 						<label for="fulltx">Get Full Transaction Data:</label>
 					</div><div class="col-75">	
 						<select name="fulltx" id="fulltx">
-							<option value="1" <?php if($validinput == 1 && $fulltx == 1){ echo 'selected="selected"'; } ?> >TRUE</option>
-							<option value="0" <?php if($validinput == 1 && $fulltx == 0){ echo 'selected="selected"'; }elseif(!isset($fulltx)){ echo 'selected="selected"'; } ?> >FALSE</option>
+							<option value="1" <?php if($phph1->chk_goodinput('fulltx') && $phph1->get_goodinput('fulltx') == 'TRUE'){ echo 'selected="selected"'; } ?> >TRUE</option>
+							<option value="0" <?php if(($phph1->chk_goodinput('fulltx') && $phph1->get_goodinput('fulltx') == 'FALSE') OR !$phph1->chk_goodinput('fulltx')){ echo 'selected="selected"'; } ?> >FALSE</option>
 						</select>
 					</div>
 				</div>
 				<div class="row">
-					<input type="hidden" id="do" name="do" value="1" />
+					<input type="hidden" id="dorequest" name="dorequest" value="1" />
 					<input type="hidden" id="method" name="method" value="hmyv2_getTransactionsHistory" />
 					<input type='submit' name='Submit' class="form_submit" />
 				</div>

@@ -3,40 +3,42 @@
 * Method file for hmyv2_getAllValidatorAddresses() in the phph1.php class file
 */
 
-/**
-* Start debug info display area
-*/
-if($phph1->phph1_debug == 1){
-	echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
-}
+/** Start debug info display area */
+if($phph1->get_debugstatus()){echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";}
 
-/**
-* NO INPUT TO VALIDATE SET TO 1
-*/
-$validinput = 1;
+// There is no input so no validation required
+$phph1->set_validinput(1);
 
 // Get the transactions
 $hmyv2_data = $phph1->hmyv2_getAllValidatorAddresses();
 
-/**
-* End debug info display area
-*/
-if($phph1->phph1_debug == 1){
-	echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>";
-}
+/** End debug info display area	*/
+if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>"; }
+
+require_once('inc/errors.php');
 
 /**
 * Check if this is a RPC call
 * If not show the html output of the method explorer
 */
-if($phph1->rpc_call != 1){
+if($phph1->get_rpcstatus() != 1){
 
 ?>
-
+	
 	<div class="info_container" >
 		<div class="infoRow">
-			<button type="button" class="collapsibleInfo"><?=$phph1_method?> :: Params/Returns</button>
+			<button type="button" class="collapsibleInfo"><?=$phph1->get_currentmethod()?> :: Params/Returns</button>
 			<div id="infoContent" class="infoContent">
+				
+				<h3 class="infoHeader">Description</h3>
+				<ul class="infoObjects" >
+					<li class="infoObjectNoBul">
+						<div>
+							<p>Gets a list of wallet addresses that have created validators on the network.</p>
+							<p>There may be more information in the <a href="./doc/classes/phph1.html#method_hmyv2_getAllValidatorAddresses">PHPH1 Class Documentation</a>.</p>
+						</div>
+					</li>
+				</ul>
 			
 				<h3 class="infoHeader">Parameters</h3>
 				<ul class="infoObjects" >

@@ -3,6 +3,9 @@
 * index_body.php is included in index.php when there is no method request.
 * This is the "home page"
 */
+
+require_once('inc/errors.php');
+
 ?>
 <div class="fp_row">
 	<div class="fp_column">
