@@ -1,22 +1,11 @@
-# 2022-2-22 IS A FULL NEW UPLOAD!
-  What this means:
-  
-  Anything before hand is ~99% gone.
-
-  This is not release worthy yet
-  
-  There is a TON of work still needing to be done.
-  
-  This is not the full list of capabilities yet. We are currently at 37. There a few of these that still need worked on, documentation-wise.
-  
 # ROADMAP
 
   1.Create a PHP class with every API call in it.
-    a. I have 37 of 63 methods completed
-    b. The remaining methods should take approximately ~7 working days (56 hours) to add to the class
+    a. I have 61 of 63 methods completed
+    b. I am waiting for information from Harmony on the last two
 
   2. Optimize and modernize the class code reassess the PHP code logic and revamp if necessary
-    a. ~3 working days (reduced from 7). Almost complete.
+    a. ~98% complete.
 
   3. Create a MOBILE FRIENDLY Harmony API explorer into the package to assist developers in learning how the API works
     a. The design has already been implemented and just needs to have the new API method forms and API documentation sections created and a few adjustments. It is time consuming. (~5 working days).
