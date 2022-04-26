@@ -2,7 +2,7 @@
 
   1.Create a PHP class with every API call in it.
     a. I have 61 of 63 methods completed
-    b. I am waiting for information from Harmony on the last two
+    b. I am waiting for information from the Harmony team on the last two methods
 
   2. Optimize and modernize the class code reassess the PHP code logic and revamp if necessary
     a. ~98% complete as of 2022-4-6.
