@@ -1,4 +1,4 @@
-# PHPH1 :: A PHP Class to query the Harmony ONE Node API
+# PHPH1 :: A PHP Wrapper Class and explorer interface to query the Harmony ONE Node API V2
 
 NOTE: I'm not a PHP developer by trade, but I have worked in IT for over 20 years. I was a full stack developer that wrote PHP database applications at a nationally known non-profit organization for a living from 2001 to 2012 so my code is currently OLD SCHOOL but very stable and effective. As a matter of fact, much of my code from them days is still being used by the company over 10 years later, which I feel is a testament to my coding practices. I'm trying to catch up as much as possible.
 
