@@ -11,14 +11,14 @@
 	</div>
 	<div id="navbar">
 		<ul class="dropdownUL" >
-			<li class="dropdownLI"><a href="/" title="Return To Homepage">Home</a></li>
+			<li class="dropdownLI"><a href="./" title="Return To Homepage">Home</a></li>
 			<li class="mdropdown">
 				<a class="menudropbtn" href="javascript:void(0)" title="Main Menu"><img src="img/cheeseburger.svg" style="height:12px;margin:2px 0px 0px 0px;padding:0px;"/></a>
 				<div class="mdropdown-content">
 					<div id="LoadMenuDropdown" class="mdropdown-list">
-						<a href="/" title="Return To Homepage">Home</a>
+						<a href="./" title="Return To Homepage">Home</a>
 						<a href="#" id="settingsBtn" title="Open Settings Dialog">Settings</a>
-						<a href="/doc" id="docBtn" title="View PHPH1 Class Documentation" target="_blank">Class Docs</a>
+						<a href="./doc/classes/phph1.html" id="docBtn" title="View PHPH1 Class Documentation" target="_blank">Class Docs</a>
 						<a href="https://talk.harmony.one/t/php-class-api-requests-for-scripting-languages-and-harmony-node-api-explorer/11306" id="docBtn" title="Grant Information" target="_blank">Grant Info</a>
 						<a href="https://github.com/ILL-DIE-TRYING/phph1" id="docBtn" title="Github Repository" target="_blank">Github Repo</a>
 						<a href="https://github.com/ILL-DIE-TRYING/phph1/issues" id="docBtn" title="Report Bug" target="_blank">Report Bug</a>
@@ -36,7 +36,7 @@
 						<?php
 						// These methods are loaded from config.php
 						// It is simply the methods array sorted alphabetically so we don't have to worry about that in the array itself
-						foreach($sorted_Methods as $amethod){ echo '<a href="/?method='.$amethod.'" title="'.$amethod.'">'.$amethod."</a>\n";} 
+						foreach($sorted_Methods as $amethod){ echo '<a href="./?method='.$amethod.'" title="'.$amethod.'">'.$amethod."</a>\n";} 
 						?>
 					</div>
 				</div>

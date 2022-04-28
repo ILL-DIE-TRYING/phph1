@@ -4,10 +4,7 @@
 */
 
 if($phph1->chk_dorequest()){
-	
-	/** Start debug info display area */
-	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>"; }
-	
+
 	/**
 	* Prepare scaddress for validation
 	*/
@@ -30,9 +27,6 @@ if($phph1->chk_dorequest()){
 		$validinput = 1;
 		$hmyv2_data = $phph1->hmyv2_getStorageAt($scaddress, $stlocation, $blocknum);
 	}
-	
-	/** End debug info display area	*/
-	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>"; }
 
 	require_once('inc/errors.php');
 }

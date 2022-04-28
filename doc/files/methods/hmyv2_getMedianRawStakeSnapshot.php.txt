@@ -3,9 +3,6 @@
 * Method file for hmyv2_getMedianRawStakeSnapshot() in the phph1.php class file
 */
 
-/** Start debug info display area */
-if($phph1->get_debugstatus()){echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";}
-
 // There is no input so no validation required
 $phph1->set_validinput(1);
 
@@ -13,9 +10,6 @@ $phph1->set_validinput(1);
 $hmyv2_data = $phph1->hmyv2_getMedianRawStakeSnapshot();
 
 require_once('inc/errors.php');
-
-/** End debug info display area	*/
-if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>"; }
 
 /**
 * Check if this is a RPC call

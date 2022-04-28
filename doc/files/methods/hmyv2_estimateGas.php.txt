@@ -6,9 +6,6 @@
 if($phph1->chk_dorequest()){
 	
 	// Setting an empty form value to null MUST happen, otherwise our json request will get borked
-	
-	/** Start debug info display area */
-	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>"; }
 
 	/** Prepare toaddr for validation */
 	if(isset($_GET['toaddr'])&& !empty($_GET['toaddr'])){$toaddr = $_GET['toaddr'];}else{$toaddr = null;}
@@ -33,9 +30,6 @@ if($phph1->chk_dorequest()){
 	if($phph1->val_estimateGas($toaddr, $fromaddr, $gas, $gasprice, $value, $data)){
 		$hmyv2_data = $phph1->hmyv2_estimateGas($toaddr, $fromaddr, $gas, $gasprice, $value, $data);
 	}
-
-	/** End debug info display area	*/
-	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>"; }
 
 	require_once('inc/errors.php');
 }

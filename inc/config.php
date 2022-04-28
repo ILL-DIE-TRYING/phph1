@@ -1,16 +1,72 @@
 <?php
-/*
+/**
 * This file contains all the settings required to invoke the PHPH1 class
 * The config.php should be included in your project (or the settings in your project's configuration file) before invoking the PHPH1 class
+*
+* Be sure to look below the doc block in the inc/config.php settings for examples.
+*
+* Settings:
+* 
+* $phph1_debug - Variable used to enable (set to 1) or disable (set to 0) API Explorer PHP debugging. Enabling this exposes many things to the client, I highly suggest not using it in a production environment unless it is a last resort. It also puts  big ugly warnng header at the top of the pages so you are aware debugging is enabled.
+*
+* $phph1_blockedaddr - This array is used to block IP addresses if necessary. Just add an IP address to the array like the example and the code will use the $_SERVER['REMOTE_ADDR'] to see if users are blocked. If the $phph1_allowedaddr array is not empty, this array gets ignored
+*
+* $phph1_allowedaddr - This array is used to only allow specific IP Addresses. Just add an IP address to the array like the example and the code will use the $_SERVER['REMOTE_ADDR'] to make sure the request is allowed by the client. If this array has any values in it, the $phph1_blockedaddr is ingored due to redundancy. REMINDER! Usig this blocks all hosts except the hosts listed in this array.
+*
+* $phph1_allowbigdata - Some requests have a page index (page number) option. Included insome of those options is the ability to use -1 as the index page. When using -1 the data set returned could possibly be huge causing a massive load on the server. By default using the -1 option is disabled to prevent this from happening. You can enable -1 page requests here by setting $phph1_allowbigdata to 1
+*
+* $phph1_apiaddresses - This is a multi-dimensional array that holds the node and shard information. By default this array contains the official Harmony nodes but you can comment them out and add your own personal nodes as shown where the array is set. if you do add your own node address, be sure to also set $default_network and $default_shard as well
+*
+* $default_network - Sets the default network (also the network used by the rpc script). It MUST use a network listed in the $phph1_apiaddresses array. For example by default it is set to use "mainnet".
+*
+* $default_shard - Sets the default shard (also the shard used by the rpc script). It MUST use a shard listed in the $phph1_apiaddresses array. For example by default it is set to use "0".
+*
+* $default_pagesize - The default page size for methods that return multiple pages of data
+*
+* $max_pagesize - This is the maximum number of items per page when a method returns multiple pages of data. This prevents a client from reuesting large datasets in a single call which will put a heavy load on the web server.
+*
+* $phph1_methods - An array of the available methods. This is used to prevent a client from requesting a method that doesn'teist. You can use a PHP comment out individual lines to disable a method.
+*
+* $sorted_Methods - This is just the $phph1_methods array that has been sorted alphabetically so the front end dropdown menu makes some sense.
+*
 */
 
-// Enables or disables API Explorer PHP debugging 
+// Turns the PHPH1 debugging on or off
 $phph1_debug = 0;
 
-// Tosses a big ugly warning if debugging is enabled
+// If debugging is on, toss a big ugly warning at the top of the pages
 if($phph1_debug == 1){
-	echo "<h2 style='color:red;'>DEBUGGING IS ON!<br />DO NOT ALLOW PUBLIC ACCESS WHILE DEBUGGING IS ON!!</h2>";
+	echo "<h2 style='color:red;text-align:center;'>DEBUGGING IS ON!<br />DO NOT ALLOW PUBLIC ACCESS WHILE DEBUGGING IS ON!!</h2>";
 }
+
+// This array is used to block IP addresses if necessary
+// Just add an IP address to the array like the example and
+// PHP will use the $_SERVER['REMOTE_ADDR'] to see if users are blocked
+// If $phph1_allowedaddr array is not empty, this array gets ignored
+$phph1_blockedaddr = array(
+			// example blocked ip addresses
+			//'192.168.50.20', // Second address blocked for being a bad guy
+			//'192.168.50.21' // First address blocked for being a bad guy (You can use a comment like this after the entry to comment why)
+		);
+		
+// This array is used to only allow specific IP Addresses
+// Just add an IP address to the array like the example and
+// PHP will use the $_SERVER['REMOTE_ADDR'] to make sure the request is allowed by the client
+// If this array has any values in it, the $phph1_blockedaddr is ingored due to redundancy
+// REMINDER! Usig this blocks all hosts except the hosts in this array
+$phph1_allowedaddr = array(
+			// example allowed ip address
+			// '192.168.50.20', // Allow this host 
+			// '192.168.50.21' // Second host allowed
+		);
+		
+// Some requests have a page index (page number) option
+// Included insome of those options is the ability to use -1 as the index page
+// When using -1 the data set returned could possibly be huge
+// causing a massive load on the server.
+// By default using the -1 option is disabled to prevent this from happening
+// You can enable -1 page requests here by setting $phph1_allowbigdata to 1
+$phph1_allowbigdata = 0;
 
 // ARRAY OF API ADDRESSES
 // This can be extended/shortened to your liking
@@ -119,15 +175,10 @@ $phph1_methods = array(
 	'hmyv2_getTransactionByBlockNumberAndIndex',
 	'hmyv2_getTransactionByBlockHashAndIndex',
 	'hmyv2_getDelegationsByDelegatorByBlockNumber',
-	'hmyv2_estimateGas'
-	
-	/* 
-
-	hmyv2_sendRawTransaction
-	hmyv2_sendRawStakingTransaction
-
-	*/
-
+	'hmyv2_estimateGas',
+	//'hmyv2_sendRawTransaction',  // currently disabled/incomplete, waiting for information from Harmony
+	//'hmyv2_sendRawStakingTransaction',  // currently disabled/incomplete, waiting for information from Harmony
+	'hmyv2_getAllValidatorInformationByBlockNumber' // The last item in this array should not end with a comma
 );
 
 // Sorting methods alphabetically

@@ -73,42 +73,47 @@ Search.appendIndex(
         },                {
             "fqsen": "\\phph1\u003A\u003Aget_rpcurl\u0028\u0029",
             "name": "get_rpcurl",
-            "summary": "",
+            "summary": "get_rpcurl\u0028\u0029\u0020is\u0020used\u0020to\u0020retrieve\u0020the\u0020current\u0020RPC\u0020URL.",
             "url": "classes/phph1.html#method_get_rpcurl"
         },                {
             "fqsen": "\\phph1\u003A\u003Aget_validinput\u0028\u0029",
             "name": "get_validinput",
-            "summary": "",
+            "summary": "get_validinput\u0028\u0029\u0020is\u0020used\u0020to\u0020retrieve\u0020the\u0020current\u0020input\u0020validation\u0020status\nThe\u0020validation\u0020status\u0020bit\u0020is\u0020set\u0020when\u0020validating\u0020user\u0020input",
             "url": "classes/phph1.html#method_get_validinput"
         },                {
             "fqsen": "\\phph1\u003A\u003Aget_debugstatus\u0028\u0029",
             "name": "get_debugstatus",
-            "summary": "",
+            "summary": "get_debugstatus\u0028\u0029\u0020is\u0020used\u0020to\u0020determine\u0020if\u0020the\u0020script\u0020is\u0020running\u0020in\u0020debug\u0020mode\u0020or\u0020not\nThe\u0020debug\u0020bit\u0020in\u0020the\u0020PHPH1\u0020class\u0020is\u0020set\u0020during\u0020_construct\u0020and\u0020can\u0020be\u0020turned\u0020on\u0020and\u0020off\u0020in\u0020inc\/config.php",
             "url": "classes/phph1.html#method_get_debugstatus"
         },                {
             "fqsen": "\\phph1\u003A\u003Aget_goodinput\u0028\u0029",
             "name": "get_goodinput",
-            "summary": "",
+            "summary": "get_goodinput\u0028\u0029\u0020gets\u0020a\u0020validated\u0020value\u0020from\u0020user\u0020input.",
             "url": "classes/phph1.html#method_get_goodinput"
         },                {
             "fqsen": "\\phph1\u003A\u003Achk_goodinput\u0028\u0029",
             "name": "chk_goodinput",
-            "summary": "",
+            "summary": "chk_goodinput\u0028\u0029\u0020checks\u0020if\u0020a\u0020form\u0020field\u0020has\u0020successfully\u0020passed\u0020validation\nby\u0020checking\u0020the\u0020goodinputs\u0020array\u0020which\u0020is\u0020filled\u0020during\u0020validation\u0020methods.",
             "url": "classes/phph1.html#method_chk_goodinput"
         },                {
             "fqsen": "\\phph1\u003A\u003Achk_dorequest\u0028\u0029",
             "name": "chk_dorequest",
-            "summary": "",
+            "summary": "chk_dorequest\u0028\u0029\u0020is\u0020used\u0020to\u0020check\u0020if\u0020we\u0020have\u0020form\u0020data\u0020submitted",
             "url": "classes/phph1.html#method_chk_dorequest"
         },                {
             "fqsen": "\\phph1\u003A\u003Achk_request\u0028\u0029",
             "name": "chk_request",
-            "summary": "",
+            "summary": "Check\u0020if\u0020we\u0020have\u0020a\u0020valid\u0020method\u0020input\u0020and\u0020make\u0020sure\u0020\u0024_GET\u005B\u0027method\u0027\u005D\u0020is\u0020in\u0020\u0024phph1_methods\u0020array\u0020in\u0020the\u0020phph1\u0020class\nThe\u0020methods\u0020array\u0020is\u0020set\u0020in\u0020config.php\u0020and\u0020loaded\u0020to\u0020the\u0020class\u0020in\u0020boot.php\u0020when\u0020the\u0020class\u0020handle\u0020is\u0020created\nTHEN\u0020it\u0020checks\u0020if\u0020\u0024_GET\u005B\u0027dorequest\u0027\u005D\u0020which\u0020is\u0020a\u0020hidden\u0020field\u0020in\u0020every\u0020method\u0020formis\u0020set\u0020and\u0020sets\u0020the\u0020class\nvariable\u0020\u0024dorequest\u0020so\u0020it\u0020is\u0020known\u0020everywhere\u0020that\u0020a\u0020method\u0020form\u0020has\u0020been\u0020submitted",
             "url": "classes/phph1.html#method_chk_request"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Achk_access\u0028\u0029",
+            "name": "chk_access",
+            "summary": "Check\u0020the\u0020client\u0020and\u0020report\u0020whether\u0020they\u0020are\u0020allowed\u0020to\u0020connect\u0020and\u0020make\u0020requests",
+            "url": "classes/phph1.html#method_chk_access"
         },                {
             "fqsen": "\\phph1\u003A\u003Adocurlrequest\u0028\u0029",
             "name": "docurlrequest",
-            "summary": "docurlrequest\u0028\u0029\u0020takes\u0020the\u0020generated\u0020json\u0020request\u0020for\u0020the\u0020current\u0020method\u0020from\u0020genjsonrequest\u0028\u0029\u0020and\u0020makes\u0020the\u0020call\u0020to\u0020the\u0020API\u0020RPC\u0020Node.\u0020If\u0020rpc_call\u0020is\u0020set\u0020to\u00200,\u0020it\u0020generates\u0020a\u0020PHP\u0020array\u0020for\u0020output.\u0020If\u0020rpc_call\u0020is\u0020set\u0020to\u00201,\u0020it\u0020returns\u0020the\u0020raw\u0020json\u0020output\u0020from\u0020API\u0020RPC\u0020Node.",
+            "summary": "docurlrequest\u0028\u0029\u0020takes\u0020the\u0020generated\u0020json\u0020request\u0020for\u0020the\u0020current\u0020method\u0020from\u0020genjsonrequest\u0028\u0029\u0020and\nmakes\u0020the\u0020call\u0020to\u0020the\u0020API\u0020RPC\u0020Node.\u0020If\u0020rpc_call\u0020is\u0020set\u0020to\u00200,\u0020it\u0020generates\u0020a\u0020PHP\u0020array\u0020for\u0020output.",
             "url": "classes/phph1.html#method_docurlrequest"
         },                {
             "fqsen": "\\phph1\u003A\u003Agenjsonrequest\u0028\u0029",
@@ -210,6 +215,11 @@ Search.appendIndex(
             "name": "hmyv2_getAllValidatorInformationByBlockNumber",
             "summary": "Get\u0020all\u0020validator\u0020information\u0020by\u0020block\u0020number",
             "url": "classes/phph1.html#method_hmyv2_getAllValidatorInformationByBlockNumber"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aval_getAllValidatorInformationByBlockNumber\u0028\u0029",
+            "name": "val_getAllValidatorInformationByBlockNumber",
+            "summary": "Validation\u0020function\u0020for\u0020hmyv2_getAllValidatorInformationByBlockNumber",
+            "url": "classes/phph1.html#method_val_getAllValidatorInformationByBlockNumber"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getElectedValidatorAddresses\u0028\u0029",
             "name": "hmyv2_getElectedValidatorAddresses",
@@ -740,6 +750,21 @@ Search.appendIndex(
             "name": "phph1_method",
             "summary": "",
             "url": "classes/phph1.html#property_phph1_method"
+        },                {
+            "fqsen": "\\phph1\u003A\u003A\u0024phph1_blockedaddr",
+            "name": "phph1_blockedaddr",
+            "summary": "",
+            "url": "classes/phph1.html#property_phph1_blockedaddr"
+        },                {
+            "fqsen": "\\phph1\u003A\u003A\u0024phph1_allowedaddr",
+            "name": "phph1_allowedaddr",
+            "summary": "",
+            "url": "classes/phph1.html#property_phph1_allowedaddr"
+        },                {
+            "fqsen": "\\phph1\u003A\u003A\u0024phph1_allowbigdata",
+            "name": "phph1_allowbigdata",
+            "summary": "",
+            "url": "classes/phph1.html#property_phph1_allowbigdata"
         },                {
             "fqsen": "\\",
             "name": "\\",

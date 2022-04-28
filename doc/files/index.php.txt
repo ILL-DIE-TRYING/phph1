@@ -51,13 +51,22 @@ require_once('inc/config.php');
 
 	<div id="bodyWrap">
 		<?php
+		
+		/** Show the standard debugging info */
+		if($phph1->get_debugstatus()){
+			include('inc/debug.php');
+		}
 
 // Check if we have a method request and include the method file. (required)
 // Otherwise, show the home page 
 // $php_method is set in boot.php
-		if(!empty($phph1->get_currentmethod())){
+		if(!empty($phph1->get_currentmethod()) && $phph1->chk_access()){
 			require_once('methods/'.$phph1->get_currentmethod().'.php');
 		}else{
+			if(!$phph1->chk_access()){
+				array_push($boot_errors, "ACCESS DENIED: ".$_SERVER['REMOTE_ADDR']);
+				$phph1->set_booterrors($boot_errors);
+			}
 			require_once('inc/index_body.php');
 		}
 

@@ -2,14 +2,18 @@
 <html>
 <head></head>
 <body>
+<h1 style="text-align:center;">PHPH1 BASIC REMOTE JAVASCRIPT EXAMPLE</h1>
+
 <button type="button" onclick="getEpoch()">Get The Epoch</button>
 <div id="epochdiv"  style="background-color:#ccc;">
-This is our Epoch data div
+<p>This is our Epoch data div</p>
 </div>
+
 <br /><br />
+
 <button type="button" onclick="getAllValidatorAddresses()">Get All Validators</button>
 <div id="validatorsdiv"  style="background-color:#ccc;">
-This is our validators data div
+<p>This is our validators data div</p>
 </div>
 
 <script>
@@ -18,7 +22,7 @@ async function getEpoch(){
 
 	objid = document.getElementById("epochdiv");
 	
-	const url = '/phph1_call.php?do=1&&method=hmyv2_getEpoch';
+	const url = 'phph1_call.php?dorequest=1&method=hmyv2_getEpoch';
 	
 	let response = await fetch(url);
 	
@@ -32,7 +36,7 @@ async function getAllValidatorAddresses(){
 
 	objid = document.getElementById("validatorsdiv");
 	
-	const url = '/phph1_call.php?do=1&&method=hmyv2_getAllValidatorAddresses';
+	const url = 'phph1_call.php?dorequest=1&method=hmyv2_getAllValidatorAddresses';
 	
 	let response = await fetch(url);
 	

@@ -5,9 +5,6 @@
 
 if($phph1->chk_dorequest()){
 	
-	/** Start debug info display area */
-	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>"; }
-	
 	/**
 	* Prepare epoch for validation
 	*/
@@ -19,9 +16,6 @@ if($phph1->chk_dorequest()){
 	if($phph1->val_getValidatorKeys($epoch)){
 		$hmyv2_data = $phph1->hmyv2_getValidatorKeys($epoch);
 	}
-	
-	/** End debug info display area	*/
-	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>"; }
 
 	require_once('inc/errors.php');
 }

@@ -954,3 +954,7 @@ input.form_submit:hover[type=submit] {
 #alert_text{
 	color: black;
 }
+
+.nobullet{
+	list-style-type: none;
+}

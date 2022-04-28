@@ -80,25 +80,10 @@
     </ul>
 
     <article class="phpdocumentor-element -file">
-        <h2 class="phpdocumentor-content__title">config.php</h2>
+        <h2 class="phpdocumentor-content__title">hmyv2_getAllValidatorInformationByBlockNumber.php</h2>
 
-            <p class="phpdocumentor-summary">This file contains all the settings required to invoke the PHPH1 class
-The config.php should be included in your project (or the settings in your project&#039;s configuration file) before invoking the PHPH1 class</p>
+            <p class="phpdocumentor-summary">Method file for hmyv2_getDelegationsByDelegator() in the phph1.php class file</p>
 
-    <section class="phpdocumentor-description"><p>Be sure to look below the doc block in the inc/config.php settings for examples.</p>
-<p>Settings:</p>
-<p>$phph1_debug - Variable used to enable (set to 1) or disable (set to 0) API Explorer PHP debugging. Enabling this exposes many things to the client, I highly suggest not using it in a production environment unless it is a last resort. It also puts  big ugly warnng header at the top of the pages so you are aware debugging is enabled.</p>
-<p>$phph1_blockedaddr - This array is used to block IP addresses if necessary. Just add an IP address to the array like the example and the code will use the $_SERVER['REMOTE_ADDR'] to see if users are blocked. If the $phph1_allowedaddr array is not empty, this array gets ignored</p>
-<p>$phph1_allowedaddr - This array is used to only allow specific IP Addresses. Just add an IP address to the array like the example and the code will use the $_SERVER['REMOTE_ADDR'] to make sure the request is allowed by the client. If this array has any values in it, the $phph1_blockedaddr is ingored due to redundancy. REMINDER! Usig this blocks all hosts except the hosts listed in this array.</p>
-<p>$phph1_allowbigdata - Some requests have a page index (page number) option. Included insome of those options is the ability to use -1 as the index page. When using -1 the data set returned could possibly be huge causing a massive load on the server. By default using the -1 option is disabled to prevent this from happening. You can enable -1 page requests here by setting $phph1_allowbigdata to 1</p>
-<p>$phph1_apiaddresses - This is a multi-dimensional array that holds the node and shard information. By default this array contains the official Harmony nodes but you can comment them out and add your own personal nodes as shown where the array is set. if you do add your own node address, be sure to also set $default_network and $default_shard as well</p>
-<p>$default_network - Sets the default network (also the network used by the rpc script). It MUST use a network listed in the $phph1_apiaddresses array. For example by default it is set to use &quot;mainnet&quot;.</p>
-<p>$default_shard - Sets the default shard (also the shard used by the rpc script). It MUST use a shard listed in the $phph1_apiaddresses array. For example by default it is set to use &quot;0&quot;.</p>
-<p>$default_pagesize - The default page size for methods that return multiple pages of data</p>
-<p>$max_pagesize - This is the maximum number of items per page when a method returns multiple pages of data. This prevents a client from reuesting large datasets in a single call which will put a heavy load on the web server.</p>
-<p>$phph1_methods - An array of the available methods. This is used to prevent a client from requesting a method that doesn'teist. You can use a PHP comment out individual lines to disable a method.</p>
-<p>$sorted_Methods - This is just the $phph1_methods array that has been sorted alphabetically so the front end dropdown menu makes some sense.</p>
-</section>
 
 
 
@@ -127,7 +112,7 @@ The config.php should be included in your project (or the settings in your proje
 </section>
             </div>
         </div>
-        <a href="files/inc-config.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="files/methods-hmyv2-getallvalidatorinformationbyblocknumber.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

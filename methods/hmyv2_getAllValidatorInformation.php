@@ -6,30 +6,24 @@
 if($phph1->chk_dorequest()){
 	
 	// Setting an empty form value to null MUST happen, otherwise our json request will get borked
-	
-	/** Start debug info display area */
-	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>"; }
 
-	/** Prepare page for validation */
-	if(isset($_GET['page'])&& is_numeric($_GET['page'])){$page = $_GET['page'];}else{$page = null;}
+	/** Prepare pagenum for validation */
+	if(isset($_GET['pagenum']) && is_numeric($_GET['pagenum'])){$pagenum = $_GET['pagenum'];}else{$pagenum = 0;}
 
 	// alert the user that this method takes a long time to load
 	require_once('inc/alert.php');
 
 	/** Validate the input and run our call if the data is good	*/
-	if($phph1->val_getAllValidatorInformation($page)){
+	if($phph1->val_getAllValidatorInformation($pagenum)){
 		/**
 		* Get the transactions
 		* This return data is large so trying to buffer the output via php
 		*/
 		ob_start(null, 64000);
-		$hmyv2_data = $phph1->hmyv2_getAllValidatorInformation($page);
+		$hmyv2_data = $phph1->hmyv2_getAllValidatorInformation($pagenum);
 		ob_flush();
 		ob_end_flush();
 	}
-
-	/** End debug info display area	*/
-	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>"; }
 
 	require_once('inc/errors.php');
 	
@@ -61,7 +55,7 @@ if($phph1->get_rpcstatus() != 1){
 			<h3 class="infoHeader">Parameters</h3>
 			<ul class="infoObjects" >
 				<li class="infoObjectNoBul"><div class="ioobjectWrap"><span >Number</span>:</div> 
-					<div class="iodefWrap">Page number to retrieve (0 is the first page index, -1 gets everything in a single page).</div></li>
+					<div class="iodefWrap">Page number to retrieve. Pages start at 1.</div></li>
 			</ul>
 			
 			<h3 class="infoHeader">Returns</h3>
@@ -249,9 +243,9 @@ if($phph1->get_rpcstatus() != 1){
 	<form method="get">
 		<div class="row">
 			<div class="col-25">
-				<label for="page">Page: </label>
+				<label for="pagenum">Page Index: </label>
 			</div><div class="col-75">
-				<input style="background: orange;" type="text" id="page" name="page" maxlength="42" value="<?php if($phph1->chk_goodinput('page')){ echo $phph1->get_goodinput('page'); }else{ echo '0'; } ?>" />
+				<input style="background: orange;" type="text" id="pagenum" name="pagenum" maxlength="42" value="<?php if($phph1->chk_goodinput('pagenum')){ echo $phph1->get_goodinput('pagenum'); }else{ echo '1'; } ?>" />
 			</div>
 		</div>
 		<div class="row">

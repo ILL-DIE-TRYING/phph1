@@ -7,12 +7,20 @@
 	require_once('inc/config.php');
 	require_once('inc/phph1.php');
 	require_once('inc/boot.php');
+	
+	/** Start debug info display area */
+	if($phph1->get_debugstatus()){
+		include('inc/debug.php');
+	}
 
-
-	if($phph1->get_currentmethod()){
-		include('methods/'.$phph1->get_currentmethod().'.php');
+	if(!$phph1->chk_access()){
+		echo "Access Denied";
 	}else{
-		echo "Method Not Found";
+		if($phph1->get_currentmethod()){
+			include('methods/'.$phph1->get_currentmethod().'.php');
+		}else{
+			echo "Method Not Found";
+		}
 	}
 
 ?>

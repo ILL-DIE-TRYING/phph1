@@ -5,12 +5,6 @@
 
 if($phph1->chk_dorequest()){
 	
-	/** Start debug info display area */
-	if($phph1->get_debugstatus()){
-		echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>";
-		require_once('inc/debug.php');
-	}
-	
 	/** Prepare scaddress for validation */
 	if(isset($_GET['scaddress'])&& !empty($_GET['scaddress'])){$scaddress = $_GET['scaddress'];}else{$scaddress = null;}
 
@@ -36,9 +30,6 @@ if($phph1->chk_dorequest()){
 	if($phph1->val_call($scaddress, $fromaddr, $gas, $gasprice, $value, $data, $blocknum)){
 		$hmyv2_data = $phph1->hmyv2_call($scaddress, $fromaddr, $gas, $gasprice, $value, $data, $blocknum);
 	}
-	
-	/** End debug info display area	*/
-	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>"; }
 	
 	require_once('inc/errors.php');
 

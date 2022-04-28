@@ -4,10 +4,7 @@
 */	
 	
 if($phph1->chk_dorequest()){
-	
-	/** Start debug info display area */
-	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>"; }
-	
+
 	/** Prepare txhash for validation */
 	if(isset($_GET['txhash'])&& !empty($_GET['txhash'])){$txhash = $_GET['txhash'];}else{$txhash = null;}
 	
@@ -18,9 +15,6 @@ if($phph1->chk_dorequest()){
 	if($phph1->val_getCXReceiptByHash($txhash)){
 		$hmyv2_data = $phph1->hmyv2_getCXReceiptByHash($txhash);
 	}
-	
-	/** End debug info display area	*/
-	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>"; }
 
 	require_once('inc/errors.php');
 }

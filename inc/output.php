@@ -38,15 +38,17 @@ if($phph1->get_validinput() && !$phph1->get_rpcstatus()){
 	// Using the JSON object data and javascript lowers the server memory load immensly and speeds things up quite a bit for the smaller return data
 	echo "</code></pre>\n";
 	echo "</div>\n</div>\n";
-
+?>
+	<!-- This makes the JSON return data pretty for viewing -->
+	<script>
+		var precontainer = document.getElementById("phph1_pre");
+		var obj = <?= $hmyv2_data ?>;
+		precontainer.innerHTML = JSON.stringify(obj, 'result', 2);
+	</script>
+<?php
 // Otherwise return raw JSON data to the page for remote requests
 }elseif($phph1->get_validinput() && $phph1->get_rpcstatus()){
 	echo $hmyv2_data;	
 }
 ?>
-<!-- This makes the JSON return data pretty for viewing -->
-<script>
-	var precontainer = document.getElementById("phph1_pre");
-	var obj = <?= $hmyv2_data ?>;
-	precontainer.innerHTML = JSON.stringify(obj, 'result', 2);
-</script>
+

@@ -42,9 +42,9 @@
 	// This keeps things safe from clients injection bad RPC nodes and trying to do nasty things
 	if(isset($_SESSION['network']) && isset($_SESSION['shard']) && isset($phph1_apiaddresses[$_SESSION['network']][$_SESSION['shard']]) && !isset($rpc_call)){
 		// Fire up our class handle
-		$phph1 = new phph1($phph1_apiaddresses,$phph1_methods,$phph1_debug,$max_pagesize,$default_pagesize,$_SESSION['network'],$_SESSION['shard']);
+		$phph1 = new phph1($phph1_apiaddresses,$phph1_methods,$phph1_debug,$max_pagesize,$default_pagesize,$_SESSION['network'],$_SESSION['shard'],$phph1_blockedaddr,$phph1_allowedaddr,$phph1_allowbigdata);
 	}else{
-		$phph1 = new phph1($phph1_apiaddresses,$phph1_methods,$phph1_debug,$max_pagesize,$default_pagesize, $default_network, $default_shard);
+		$phph1 = new phph1($phph1_apiaddresses,$phph1_methods,$phph1_debug,$max_pagesize,$default_pagesize, $default_network, $default_shard,$phph1_blockedaddr,$phph1_allowedaddr,$phph1_allowbigdata);
 		// If this is an RPC call, the session information shouldn't be set
 		// $rpc_call is set to 1 in phph1_call.php
 		// Otherwise set the user session variables for network and shard so the user keeps the settings across requests

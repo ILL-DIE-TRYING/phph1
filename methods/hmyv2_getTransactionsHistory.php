@@ -5,16 +5,13 @@
 
 if($phph1->chk_dorequest()){
 	
-	/** Start debug info display area */
-	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>"; }
-	
 	/** Prepare oneaddr for validation */
 	if(isset($_GET['oneaddr'])&& !empty($_GET['oneaddr'])){$oneaddr = $_GET['oneaddr'];}else{$oneaddr = null;}
 
 	/**
 	* Prepare the page number for validation
 	*/
-	if(isset($_GET['pagenum'])&& !empty($_GET['pagenum'])){$pagenum = $_GET['pagenum'];}else{$pagenum = 1;}
+	if(isset($_GET['pagenum'])&& !empty($_GET['pagenum'])){$pagenum = $_GET['pagenum'];}else{$pagenum = 0;}
 	
 	/**
 	* Prepare the page size for validation
@@ -51,9 +48,6 @@ if($phph1->chk_dorequest()){
 		$trpages = ceil($trcount / $pagesize);
 		$hmyv2_data = $phph1->hmyv2_getTransactionsHistory($oneaddr,$pagenum,$pagesize,$fulltx,$txtype,$order);
 	}
-	
-/** End debug info display area	*/
-	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>"; }
 
 	require_once('inc/errors.php');
 }

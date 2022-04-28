@@ -178,7 +178,28 @@
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a href="classes/phph1.html#property_phph1_allowbigdata">$phph1_allowbigdata</a>
+    <span>
+                        &nbsp;: int            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a href="classes/phph1.html#property_phph1_allowedaddr">$phph1_allowedaddr</a>
+    <span>
+                        &nbsp;: array&lt;string|int, mixed&gt;            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/phph1.html#property_phph1_apiaddresses">$phph1_apiaddresses</a>
+    <span>
+                        &nbsp;: array&lt;string|int, mixed&gt;            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a href="classes/phph1.html#property_phph1_blockedaddr">$phph1_blockedaddr</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;            </span>
 </dt>
@@ -241,25 +262,36 @@
 <dd>The __construct function is used to set PHPH1 configurations settings when invoking the class. The parameters are all REQUIRED when invoking the class</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/phph1.html#method_chk_access">chk_access()</a>
+    <span>
+                                &nbsp;: <abbr title="\booleen">booleen</abbr>    </span>
+</dt>
+<dd>Check the client and report whether they are allowed to connect and make requests</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/phph1.html#method_chk_dorequest">chk_dorequest()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: <abbr title="\booleen">booleen</abbr>    </span>
 </dt>
-<dd></dd>
+<dd>chk_dorequest() is used to check if we have form data submitted</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/phph1.html#method_chk_goodinput">chk_goodinput()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: <abbr title="\booleen">booleen</abbr>    </span>
 </dt>
-<dd></dd>
+<dd>chk_goodinput() checks if a form field has successfully passed validation
+by checking the goodinputs array which is filled during validation methods.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/phph1.html#method_chk_request">chk_request()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: <abbr title="\booleen">booleen</abbr>    </span>
 </dt>
-<dd></dd>
+<dd>Check if we have a valid method input and make sure $_GET[&#039;method&#039;] is in $phph1_methods array in the phph1 class
+The methods array is set in config.php and loaded to the class in boot.php when the class handle is created
+THEN it checks if $_GET[&#039;dorequest&#039;] which is a hidden field in every method formis set and sets the class
+variable $dorequest so it is known everywhere that a method form has been submitted</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/phph1.html#method_convert_atto">convert_atto()</a>
@@ -273,7 +305,8 @@
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>docurlrequest() takes the generated json request for the current method from genjsonrequest() and makes the call to the API RPC Node. If rpc_call is set to 0, it generates a PHP array for output. If rpc_call is set to 1, it returns the raw json output from API RPC Node.</dd>
+<dd>docurlrequest() takes the generated json request for the current method from genjsonrequest() and
+makes the call to the API RPC Node. If rpc_call is set to 0, it generates a PHP array for output.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/phph1.html#method_genjsonrequest">genjsonrequest()</a>
@@ -308,9 +341,10 @@ The current method is set during _contruct when creating a class handle</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/phph1.html#method_get_debugstatus">get_debugstatus()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: int    </span>
 </dt>
-<dd></dd>
+<dd>get_debugstatus() is used to determine if the script is running in debug mode or not
+The debug bit in the PHPH1 class is set during _construct and can be turned on and off in inc/config.php</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/phph1.html#method_get_errors">get_errors()</a>
@@ -323,9 +357,9 @@ The error array is generated during the validation of method inputs</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/phph1.html#method_get_goodinput">get_goodinput()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: string    </span>
 </dt>
-<dd></dd>
+<dd>get_goodinput() gets a validated value from user input.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/phph1.html#method_get_lastjson">get_lastjson()</a>
@@ -355,9 +389,9 @@ RPC calls from external scripting languages</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/phph1.html#method_get_rpcurl">get_rpcurl()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: string    </span>
 </dt>
-<dd></dd>
+<dd>get_rpcurl() is used to retrieve the current RPC URL.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/phph1.html#method_get_sessionnetwork">get_sessionnetwork()</a>
@@ -378,9 +412,10 @@ The network shard is set when creating a class handle in _construct and the sett
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/phph1.html#method_get_validinput">get_validinput()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: int    </span>
 </dt>
-<dd></dd>
+<dd>get_validinput() is used to retrieve the current input validation status
+The validation status bit is set when validating user input</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/phph1.html#method_getapiaddr">getapiaddr()</a>
@@ -908,6 +943,13 @@ This is set after validating the input data for methods so the class knows if it
                                 &nbsp;: int    </span>
 </dt>
 <dd>Validation function for hmyv2_getAllValidatorInformation()</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/phph1.html#method_val_getAllValidatorInformationByBlockNumber">val_getAllValidatorInformationByBlockNumber()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Validation function for hmyv2_getAllValidatorInformationByBlockNumber</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/phph1.html#method_val_getBalance">val_getBalance()</a>
@@ -1460,6 +1502,76 @@ This is set after validating the input data for methods so the class knows if it
             -private
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="property_phph1_allowbigdata">
+        $phph1_allowbigdata
+        <a href="classes/phph1.html#property_phph1_allowbigdata" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">82</span>
+
+            <a href="classes/phph1.html#source-view.82"  class="phpdocumentor-element-found-in__source" data-line="82" data-modal="source-view"></a>
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">int</span>
+    <span class="phpdocumentor-signature__name">$phph1_allowbigdata</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>Some requests have a page index (page number) option included in some of those options is the ability to use -1 as the index page. When using -1 the data set returned could possibly be huge causing a massive load on the server. By default using the -1 option is disabled to prevent this from happening. You can enable -1 page requests here by setting $phph1_allowbigdata to 1 in inc/config.php</p>
+</section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_phph1_allowedaddr">
+        $phph1_allowedaddr
+        <a href="classes/phph1.html#property_phph1_allowedaddr" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">79</span>
+
+            <a href="classes/phph1.html#source-view.79"  class="phpdocumentor-element-found-in__source" data-line="79" data-modal="source-view"></a>
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
+    <span class="phpdocumentor-signature__name">$phph1_allowedaddr</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>An array of allowed IP addresses set in inc/config.php This is set during __construct when the class is invoked. When this is set, only the hpst addresses in the array are allowed to retrieve data.</p>
+</section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="property_phph1_apiaddresses">
         $phph1_apiaddresses
         <a href="classes/phph1.html#property_phph1_apiaddresses" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1483,6 +1595,41 @@ This is set after validating the input data for methods so the class knows if it
 
     
         <section class="phpdocumentor-description"><p>This is set during _construct when the class is invoked</p>
+</section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_phph1_blockedaddr">
+        $phph1_blockedaddr
+        <a href="classes/phph1.html#property_phph1_blockedaddr" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">76</span>
+
+            <a href="classes/phph1.html#source-view.76"  class="phpdocumentor-element-found-in__source" data-line="76" data-modal="source-view"></a>
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
+    <span class="phpdocumentor-signature__name">$phph1_blockedaddr</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>An array of blocked IP addresses set in inc/config.php This is set during __construct when the class is invoked. This gets ignored if the $phph1_allowedaddr array is not empty</p>
 </section>
 
     
@@ -1753,16 +1900,16 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">95</span>
+    <span class="phpdocumentor-element-found-in__line">104</span>
 
-            <a href="classes/phph1.html#source-view.95"  class="phpdocumentor-element-found-in__source" data-line="95" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.104"  class="phpdocumentor-element-found-in__source" data-line="104" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">The __construct function is used to set PHPH1 configurations settings when invoking the class. The parameters are all REQUIRED when invoking the class</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$phph1_apiaddresses</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$phph1_methods</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$phph1_debug</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$max_pagesize</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$default_pagesize</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$network</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$shard</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$phph1_apiaddresses</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$phph1_methods</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$phph1_debug</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$max_pagesize</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$default_pagesize</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$network</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$shard</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$phph1_blockedaddr</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$phph1_allowedaddr</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$phph1_allowbigdata</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1830,6 +1977,30 @@ This is set after validating the input data for methods so the class knows if it
 </section>
 
             </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$phph1_blockedaddr</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$phph1_allowedaddr</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$phph1_allowbigdata</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
             </dl>
 
     
@@ -1846,6 +2017,42 @@ This is set after validating the input data for methods so the class knows if it
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_chk_access">
+        chk_access()
+        <a href="classes/phph1.html#method_chk_access" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">422</span>
+
+            <a href="classes/phph1.html#source-view.422"  class="phpdocumentor-element-found-in__source" data-line="422" data-modal="source-view"></a>
+    </aside>
+
+        <p class="phpdocumentor-summary">Check the client and report whether they are allowed to connect and make requests</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">chk_access</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\booleen">booleen</abbr></span></code>
+
+    
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type"><abbr title="\booleen">booleen</abbr></span>
+            &mdash;
+            <section class="phpdocumentor-description"><p>1 = the client is allowed access, 0 = The client is denied access</p>
+</section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_chk_dorequest">
         chk_dorequest()
         <a href="classes/phph1.html#method_chk_dorequest" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1853,25 +2060,27 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">325</span>
+    <span class="phpdocumentor-element-found-in__line">372</span>
 
-            <a href="classes/phph1.html#source-view.325"  class="phpdocumentor-element-found-in__source" data-line="325" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.372"  class="phpdocumentor-element-found-in__source" data-line="372" data-modal="source-view"></a>
     </aside>
 
-    
+        <p class="phpdocumentor-summary">chk_dorequest() is used to check if we have form data submitted</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">chk_dorequest</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">chk_dorequest</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\booleen">booleen</abbr></span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type"><abbr title="\booleen">booleen</abbr></span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>1 = the form has been submitted, 0 = The form has not been submitted</p>
+</section>
+
     
 </article>
                     <article
@@ -1887,17 +2096,20 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">316</span>
+    <span class="phpdocumentor-element-found-in__line">359</span>
 
-            <a href="classes/phph1.html#source-view.316"  class="phpdocumentor-element-found-in__source" data-line="316" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.359"  class="phpdocumentor-element-found-in__source" data-line="359" data-modal="source-view"></a>
     </aside>
 
-    
+        <p class="phpdocumentor-summary">chk_goodinput() checks if a form field has successfully passed validation
+by checking the goodinputs array which is filled during validation methods.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">chk_goodinput</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputname</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">chk_goodinput</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputname</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\booleen">booleen</abbr></span></code>
 
-        <section class="phpdocumentor-description"></section>
+        <section class="phpdocumentor-description"><p>This is used to check before using get_goodinput() to retrieve the data.</p>
+</section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1914,9 +2126,11 @@ This is set after validating the input data for methods so the class knows if it
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type"><abbr title="\booleen">booleen</abbr></span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>1 = the form field data has been validated and is good, 0 = bad input</p>
+</section>
+
     
 </article>
                     <article
@@ -1932,25 +2146,30 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">337</span>
+    <span class="phpdocumentor-element-found-in__line">388</span>
 
-            <a href="classes/phph1.html#source-view.337"  class="phpdocumentor-element-found-in__source" data-line="337" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.388"  class="phpdocumentor-element-found-in__source" data-line="388" data-modal="source-view"></a>
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Check if we have a valid method input and make sure $_GET[&#039;method&#039;] is in $phph1_methods array in the phph1 class
+The methods array is set in config.php and loaded to the class in boot.php when the class handle is created
+THEN it checks if $_GET[&#039;dorequest&#039;] which is a hidden field in every method formis set and sets the class
+variable $dorequest so it is known everywhere that a method form has been submitted</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">chk_request</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">chk_request</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\booleen">booleen</abbr></span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type"><abbr title="\booleen">booleen</abbr></span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>1 = the form has been submitted, 0 = The form has not been submitted</p>
+</section>
+
     
 </article>
                     <article
@@ -1966,9 +2185,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">3088</span>
+    <span class="phpdocumentor-element-found-in__line">3208</span>
 
-            <a href="classes/phph1.html#source-view.3088"  class="phpdocumentor-element-found-in__source" data-line="3088" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.3208"  class="phpdocumentor-element-found-in__source" data-line="3208" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Converts numbers in atto to decimal</p>
@@ -2013,18 +2232,21 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">373</span>
+    <span class="phpdocumentor-element-found-in__line">441</span>
 
-            <a href="classes/phph1.html#source-view.373"  class="phpdocumentor-element-found-in__source" data-line="373" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.441"  class="phpdocumentor-element-found-in__source" data-line="441" data-modal="source-view"></a>
     </aside>
 
-        <p class="phpdocumentor-summary">docurlrequest() takes the generated json request for the current method from genjsonrequest() and makes the call to the API RPC Node. If rpc_call is set to 0, it generates a PHP array for output. If rpc_call is set to 1, it returns the raw json output from API RPC Node.</p>
+        <p class="phpdocumentor-summary">docurlrequest() takes the generated json request for the current method from genjsonrequest() and
+makes the call to the API RPC Node. If rpc_call is set to 0, it generates a PHP array for output.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                 <span class="phpdocumentor-signature__name">docurlrequest</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$thisjson</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
-    
+        <section class="phpdocumentor-description"><p>If rpc_call is set to 1, it returns the raw json output from API RPC Node.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2061,9 +2283,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">412</span>
+    <span class="phpdocumentor-element-found-in__line">480</span>
 
-            <a href="classes/phph1.html#source-view.412"  class="phpdocumentor-element-found-in__source" data-line="412" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.480"  class="phpdocumentor-element-found-in__source" data-line="480" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">genjsonrequest() is used by the method functions to generate the JSON request for the Node API host</p>
@@ -2118,9 +2340,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">458</span>
+    <span class="phpdocumentor-element-found-in__line">526</span>
 
-            <a href="classes/phph1.html#source-view.458"  class="phpdocumentor-element-found-in__source" data-line="458" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.526"  class="phpdocumentor-element-found-in__source" data-line="526" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">genrequesturl() is used by the method functions to generate the PHPH1 request url for a method request</p>
@@ -2175,9 +2397,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">214</span>
+    <span class="phpdocumentor-element-found-in__line">226</span>
 
-            <a href="classes/phph1.html#source-view.214"  class="phpdocumentor-element-found-in__source" data-line="214" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.226"  class="phpdocumentor-element-found-in__source" data-line="226" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">get_apiaddr() is used to get the currently used Node API address
@@ -2212,9 +2434,9 @@ The API address is set during _construct using the supplied network and shard in
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">256</span>
+    <span class="phpdocumentor-element-found-in__line">268</span>
 
-            <a href="classes/phph1.html#source-view.256"  class="phpdocumentor-element-found-in__source" data-line="256" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.268"  class="phpdocumentor-element-found-in__source" data-line="268" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">get_currentmethod() is used to get the current method
@@ -2249,25 +2471,28 @@ The current method is set during _contruct when creating a class handle</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">298</span>
+    <span class="phpdocumentor-element-found-in__line">328</span>
 
-            <a href="classes/phph1.html#source-view.298"  class="phpdocumentor-element-found-in__source" data-line="298" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.328"  class="phpdocumentor-element-found-in__source" data-line="328" data-modal="source-view"></a>
     </aside>
 
-    
+        <p class="phpdocumentor-summary">get_debugstatus() is used to determine if the script is running in debug mode or not
+The debug bit in the PHPH1 class is set during _construct and can be turned on and off in inc/config.php</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">get_debugstatus</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">get_debugstatus</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type">int</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Current input status 1 = debugging on, 0 = debugging off</p>
+</section>
+
     
 </article>
                     <article
@@ -2283,9 +2508,9 @@ The current method is set during _contruct when creating a class handle</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">228</span>
+    <span class="phpdocumentor-element-found-in__line">240</span>
 
-            <a href="classes/phph1.html#source-view.228"  class="phpdocumentor-element-found-in__source" data-line="228" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.240"  class="phpdocumentor-element-found-in__source" data-line="240" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">get_errors() is used to get the current array of errors from inc/boot.php and method requests
@@ -2320,17 +2545,21 @@ The error array is generated during the validation of method inputs</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">307</span>
+    <span class="phpdocumentor-element-found-in__line">344</span>
 
-            <a href="classes/phph1.html#source-view.307"  class="phpdocumentor-element-found-in__source" data-line="307" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.344"  class="phpdocumentor-element-found-in__source" data-line="344" data-modal="source-view"></a>
     </aside>
 
-    
+        <p class="phpdocumentor-summary">get_goodinput() gets a validated value from user input.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">get_goodinput</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputname</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">get_goodinput</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputname</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-        <section class="phpdocumentor-description"></section>
+        <section class="phpdocumentor-description"><p>When user input is being validated, every user form input that passes validation is
+set in the goodinputs array. When repopulating a form after submission
+only fields with valid input will populate from this list</p>
+</section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -2347,9 +2576,11 @@ The error array is generated during the validation of method inputs</p>
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Current value for the requested form field</p>
+</section>
+
     
 </article>
                     <article
@@ -2365,9 +2596,9 @@ The error array is generated during the validation of method inputs</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">200</span>
+    <span class="phpdocumentor-element-found-in__line">212</span>
 
-            <a href="classes/phph1.html#source-view.200"  class="phpdocumentor-element-found-in__source" data-line="200" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.212"  class="phpdocumentor-element-found-in__source" data-line="212" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">get_lastjson() is used to get the last (current) json request generated for a method
@@ -2402,9 +2633,9 @@ This is used later in the Method Explorer for educational output</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">242</span>
+    <span class="phpdocumentor-element-found-in__line">254</span>
 
-            <a href="classes/phph1.html#source-view.242"  class="phpdocumentor-element-found-in__source" data-line="242" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.254"  class="phpdocumentor-element-found-in__source" data-line="254" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">get_methods() is used to get the current array of available methods which was set during _construct
@@ -2439,9 +2670,9 @@ The methods array is set in inc/config.php</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">271</span>
+    <span class="phpdocumentor-element-found-in__line">283</span>
 
-            <a href="classes/phph1.html#source-view.271"  class="phpdocumentor-element-found-in__source" data-line="271" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.283"  class="phpdocumentor-element-found-in__source" data-line="283" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">get_rpcstatus() is used to check the current rpc status bit which is set when creating a class handle
@@ -2477,25 +2708,32 @@ RPC calls from external scripting languages</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">280</span>
+    <span class="phpdocumentor-element-found-in__line">300</span>
 
-            <a href="classes/phph1.html#source-view.280"  class="phpdocumentor-element-found-in__source" data-line="280" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.300"  class="phpdocumentor-element-found-in__source" data-line="300" data-modal="source-view"></a>
     </aside>
 
-    
+        <p class="phpdocumentor-summary">get_rpcurl() is used to retrieve the current RPC URL.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">get_rpcurl</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">get_rpcurl</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-        <section class="phpdocumentor-description"></section>
+        <section class="phpdocumentor-description"><p>The URL is set in _construct when creating the class handle
+and is determined from the $phph1_apiaddresses array using
+the network and hsard settings in inc/config.php unless
+settings have been set in the Method Explorer interface</p>
+</section>
 
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type">string</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Current RPC URL</p>
+</section>
+
     
 </article>
                     <article
@@ -2511,9 +2749,9 @@ RPC calls from external scripting languages</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">172</span>
+    <span class="phpdocumentor-element-found-in__line">184</span>
 
-            <a href="classes/phph1.html#source-view.172"  class="phpdocumentor-element-found-in__source" data-line="172" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.184"  class="phpdocumentor-element-found-in__source" data-line="184" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">get_sessionnetwork() is used to get the current network we are working on
@@ -2548,9 +2786,9 @@ The network is set when creating a class handle in _construct and the settings a
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">186</span>
+    <span class="phpdocumentor-element-found-in__line">198</span>
 
-            <a href="classes/phph1.html#source-view.186"  class="phpdocumentor-element-found-in__source" data-line="186" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.198"  class="phpdocumentor-element-found-in__source" data-line="198" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">get_sessionshard() is used to get the current network shard we are working on
@@ -2585,25 +2823,28 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">289</span>
+    <span class="phpdocumentor-element-found-in__line">314</span>
 
-            <a href="classes/phph1.html#source-view.289"  class="phpdocumentor-element-found-in__source" data-line="289" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.314"  class="phpdocumentor-element-found-in__source" data-line="314" data-modal="source-view"></a>
     </aside>
 
-    
+        <p class="phpdocumentor-summary">get_validinput() is used to retrieve the current input validation status
+The validation status bit is set when validating user input</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">get_validinput</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">get_validinput</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type">int</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Current input status 1 = good input, 0 = bad input</p>
+</section>
+
     
 </article>
                     <article
@@ -2619,9 +2860,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">114</span>
+    <span class="phpdocumentor-element-found-in__line">126</span>
 
-            <a href="classes/phph1.html#source-view.114"  class="phpdocumentor-element-found-in__source" data-line="114" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.126"  class="phpdocumentor-element-found-in__source" data-line="126" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">getapiaddr() is used to set the Node API host address during __construct. It gets the address using the netwrok name and shard from $phph1_apiaddresses which is also set during __construct using settings from inc/config.php</p>
@@ -2684,9 +2925,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1766</span>
+    <span class="phpdocumentor-element-found-in__line">1875</span>
 
-            <a href="classes/phph1.html#source-view.1766"  class="phpdocumentor-element-found-in__source" data-line="1766" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1875"  class="phpdocumentor-element-found-in__source" data-line="1875" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Get the current block number</p>
@@ -2722,9 +2963,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">499</span>
+    <span class="phpdocumentor-element-found-in__line">567</span>
 
-            <a href="classes/phph1.html#source-view.499"  class="phpdocumentor-element-found-in__source" data-line="499" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.567"  class="phpdocumentor-element-found-in__source" data-line="567" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">hmyv2_call() Executes a new message call immediately, without creating a transaction on the block chain. The hmyv2_call method can be used to query internal contract state, to execute validations coded into a contract or even to test what the effect of a transaction would be without running it live.</p>
@@ -2825,9 +3066,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">611</span>
+    <span class="phpdocumentor-element-found-in__line">679</span>
 
-            <a href="classes/phph1.html#source-view.611"  class="phpdocumentor-element-found-in__source" data-line="611" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.679"  class="phpdocumentor-element-found-in__source" data-line="679" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">hmyv2_estimateGas() Generates and returns an estimate of how much gas is necessary to allow the transaction to complete. The transaction will not be added to the blockchain. Note that the estimate may be significantly more than the amount of gas actually used by the transaction, for a variety of reasons including EVM mechanics and node performance.</p>
@@ -2919,9 +3160,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1841</span>
+    <span class="phpdocumentor-element-found-in__line">1950</span>
 
-            <a href="classes/phph1.html#source-view.1841"  class="phpdocumentor-element-found-in__source" data-line="1841" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1950"  class="phpdocumentor-element-found-in__source" data-line="1950" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets the current average gas price of transactions</p>
@@ -2957,9 +3198,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">983</span>
+    <span class="phpdocumentor-element-found-in__line">1051</span>
 
-            <a href="classes/phph1.html#source-view.983"  class="phpdocumentor-element-found-in__source" data-line="983" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1051"  class="phpdocumentor-element-found-in__source" data-line="1051" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets a list of wallet addresses that have created validators on the network.</p>
@@ -2995,16 +3236,16 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1001</span>
+    <span class="phpdocumentor-element-found-in__line">1069</span>
 
-            <a href="classes/phph1.html#source-view.1001"  class="phpdocumentor-element-found-in__source" data-line="1001" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1069"  class="phpdocumentor-element-found-in__source" data-line="1069" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets all information for all validators.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">hmyv2_getAllValidatorInformation</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                <span class="phpdocumentor-signature__name">hmyv2_getAllValidatorInformation</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pagenum</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
         <section class="phpdocumentor-description"><p>See <a href='/index.php?method=hmyv2_getAllValidatorInformation'>Explorer Method Page</a> or <a href='https://api.hmny.io/#df5f1631-7397-48e8-87b4-8dd873235b9c'>Harmony API Documentation</a> for output details.</p>
 </section>
@@ -3012,7 +3253,7 @@ The network shard is set when creating a class handle in _construct and the sett
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$page</span>
+                <span class="phpdocumentor-signature__argument__name">$pagenum</span>
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
@@ -3045,16 +3286,16 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1046</span>
+    <span class="phpdocumentor-element-found-in__line">1120</span>
 
-            <a href="classes/phph1.html#source-view.1046"  class="phpdocumentor-element-found-in__source" data-line="1046" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1120"  class="phpdocumentor-element-found-in__source" data-line="1120" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Get all validator information by block number</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">hmyv2_getAllValidatorInformationByBlockNumber</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">-1</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$blocknum</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                <span class="phpdocumentor-signature__name">hmyv2_getAllValidatorInformationByBlockNumber</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pagenum</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$blocknum</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
         <section class="phpdocumentor-description"><p>See <a href='/index.php?method=hmyv2_getAllValidatorInformationByBlockNumber'>Explorer Method Page</a> or <a href='https://api.hmny.io/#a229253f-ca76-4b9d-88f5-9fd96e40d583'>Harmony API Documentation</a> for output details.</p>
 </section>
@@ -3062,12 +3303,11 @@ The network shard is set when creating a class handle in _construct and the sett
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$page</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr></span>
-                 = <span class="phpdocumentor-signature__argument__default-value">-1</span>            </dt>
+                <span class="phpdocumentor-signature__argument__name">$pagenum</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Page to request (page size is 100), -1 for all validators (needs to be added to explorer)</p>
-</section>
+                    <section class="phpdocumentor-description"></section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
@@ -3104,9 +3344,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2574</span>
+    <span class="phpdocumentor-element-found-in__line">2683</span>
 
-            <a href="classes/phph1.html#source-view.2574"  class="phpdocumentor-element-found-in__source" data-line="2574" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2683"  class="phpdocumentor-element-found-in__source" data-line="2683" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets the current balance in atto for the specified wallet</p>
@@ -3152,9 +3392,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2612</span>
+    <span class="phpdocumentor-element-found-in__line">2721</span>
 
-            <a href="classes/phph1.html#source-view.2612"  class="phpdocumentor-element-found-in__source" data-line="2612" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2721"  class="phpdocumentor-element-found-in__source" data-line="2721" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets the current balance in atto for the specified wallet at the specified block number</p>
@@ -3209,9 +3449,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2242</span>
+    <span class="phpdocumentor-element-found-in__line">2351</span>
 
-            <a href="classes/phph1.html#source-view.2242"  class="phpdocumentor-element-found-in__source" data-line="2242" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2351"  class="phpdocumentor-element-found-in__source" data-line="2351" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets block information using the specified block hash.</p>
@@ -3295,9 +3535,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2144</span>
+    <span class="phpdocumentor-element-found-in__line">2253</span>
 
-            <a href="classes/phph1.html#source-view.2144"  class="phpdocumentor-element-found-in__source" data-line="2144" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2253"  class="phpdocumentor-element-found-in__source" data-line="2253" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets block information using the specified block number.</p>
@@ -3380,9 +3620,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2050</span>
+    <span class="phpdocumentor-element-found-in__line">2159</span>
 
-            <a href="classes/phph1.html#source-view.2050"  class="phpdocumentor-element-found-in__source" data-line="2050" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2159"  class="phpdocumentor-element-found-in__source" data-line="2159" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets block information on a series of blocks between two block numbers.</p>
@@ -3464,9 +3704,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2374</span>
+    <span class="phpdocumentor-element-found-in__line">2483</span>
 
-            <a href="classes/phph1.html#source-view.2374"  class="phpdocumentor-element-found-in__source" data-line="2374" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2483"  class="phpdocumentor-element-found-in__source" data-line="2483" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets block signer BLS keys using the specified block number.</p>
@@ -3514,9 +3754,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2332</span>
+    <span class="phpdocumentor-element-found-in__line">2441</span>
 
-            <a href="classes/phph1.html#source-view.2332"  class="phpdocumentor-element-found-in__source" data-line="2332" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2441"  class="phpdocumentor-element-found-in__source" data-line="2441" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets a list of block signer wallet addresses using the specified block number.</p>
@@ -3563,9 +3803,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2458</span>
+    <span class="phpdocumentor-element-found-in__line">2567</span>
 
-            <a href="classes/phph1.html#source-view.2458"  class="phpdocumentor-element-found-in__source" data-line="2458" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2567"  class="phpdocumentor-element-found-in__source" data-line="2567" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets the number of transactions in a block using the specified block hash.</p>
@@ -3613,9 +3853,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2416</span>
+    <span class="phpdocumentor-element-found-in__line">2525</span>
 
-            <a href="classes/phph1.html#source-view.2416"  class="phpdocumentor-element-found-in__source" data-line="2416" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2525"  class="phpdocumentor-element-found-in__source" data-line="2525" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets the number of transactions in a block using the specified block number.</p>
@@ -3663,9 +3903,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1781</span>
+    <span class="phpdocumentor-element-found-in__line">1890</span>
 
-            <a href="classes/phph1.html#source-view.1781"  class="phpdocumentor-element-found-in__source" data-line="1781" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1890"  class="phpdocumentor-element-found-in__source" data-line="1890" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Get the current circulating supply of tokens in ONE</p>
@@ -3701,9 +3941,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">710</span>
+    <span class="phpdocumentor-element-found-in__line">778</span>
 
-            <a href="classes/phph1.html#source-view.710"  class="phpdocumentor-element-found-in__source" data-line="710" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.778"  class="phpdocumentor-element-found-in__source" data-line="778" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">This method can be used to distinguish between contract addresses and wallet addresses.</p>
@@ -3761,9 +4001,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1974</span>
+    <span class="phpdocumentor-element-found-in__line">2083</span>
 
-            <a href="classes/phph1.html#source-view.1974"  class="phpdocumentor-element-found-in__source" data-line="1974" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2083"  class="phpdocumentor-element-found-in__source" data-line="2083" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets a list of bad blocks in node memory</p>
@@ -3799,9 +4039,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1353</span>
+    <span class="phpdocumentor-element-found-in__line">1462</span>
 
-            <a href="classes/phph1.html#source-view.1353"  class="phpdocumentor-element-found-in__source" data-line="1353" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1462"  class="phpdocumentor-element-found-in__source" data-line="1462" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Retrieves a list of transaction errors currently in the staking error sink</p>
@@ -3837,9 +4077,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1529</span>
+    <span class="phpdocumentor-element-found-in__line">1638</span>
 
-            <a href="classes/phph1.html#source-view.1529"  class="phpdocumentor-element-found-in__source" data-line="1529" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1638"  class="phpdocumentor-element-found-in__source" data-line="1638" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Retrieves a list of transaction errors currently in the transaction error sink</p>
@@ -3875,9 +4115,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1129</span>
+    <span class="phpdocumentor-element-found-in__line">1238</span>
 
-            <a href="classes/phph1.html#source-view.1129"  class="phpdocumentor-element-found-in__source" data-line="1129" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1238"  class="phpdocumentor-element-found-in__source" data-line="1238" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Retrieves the current utility metrics</p>
@@ -3913,9 +4153,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1200</span>
+    <span class="phpdocumentor-element-found-in__line">1309</span>
 
-            <a href="classes/phph1.html#source-view.1200"  class="phpdocumentor-element-found-in__source" data-line="1200" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1309"  class="phpdocumentor-element-found-in__source" data-line="1309" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Query the CX receipt hash on the receiving shard endpoint</p>
@@ -3960,9 +4200,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">840</span>
+    <span class="phpdocumentor-element-found-in__line">908</span>
 
-            <a href="classes/phph1.html#source-view.840"  class="phpdocumentor-element-found-in__source" data-line="840" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.908"  class="phpdocumentor-element-found-in__source" data-line="908" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Get delegations by delegator address</p>
@@ -4008,9 +4248,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">883</span>
+    <span class="phpdocumentor-element-found-in__line">951</span>
 
-            <a href="classes/phph1.html#source-view.883"  class="phpdocumentor-element-found-in__source" data-line="883" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.951"  class="phpdocumentor-element-found-in__source" data-line="951" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Get delegations using delegator address and block number</p>
@@ -4064,9 +4304,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">939</span>
+    <span class="phpdocumentor-element-found-in__line">1007</span>
 
-            <a href="classes/phph1.html#source-view.939"  class="phpdocumentor-element-found-in__source" data-line="939" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1007"  class="phpdocumentor-element-found-in__source" data-line="1007" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Get delegations using validator address</p>
@@ -4113,9 +4353,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1068</span>
+    <span class="phpdocumentor-element-found-in__line">1177</span>
 
-            <a href="classes/phph1.html#source-view.1068"  class="phpdocumentor-element-found-in__source" data-line="1068" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1177"  class="phpdocumentor-element-found-in__source" data-line="1177" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Get all elected Validator addresses</p>
@@ -4151,9 +4391,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1796</span>
+    <span class="phpdocumentor-element-found-in__line">1905</span>
 
-            <a href="classes/phph1.html#source-view.1796"  class="phpdocumentor-element-found-in__source" data-line="1796" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1905"  class="phpdocumentor-element-found-in__source" data-line="1905" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Get the current epoch</p>
@@ -4189,9 +4429,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2500</span>
+    <span class="phpdocumentor-element-found-in__line">2609</span>
 
-            <a href="classes/phph1.html#source-view.2500"  class="phpdocumentor-element-found-in__source" data-line="2500" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2609"  class="phpdocumentor-element-found-in__source" data-line="2609" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets the block header data for the specified block number.</p>
@@ -4239,9 +4479,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1811</span>
+    <span class="phpdocumentor-element-found-in__line">1920</span>
 
-            <a href="classes/phph1.html#source-view.1811"  class="phpdocumentor-element-found-in__source" data-line="1811" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1920"  class="phpdocumentor-element-found-in__source" data-line="1920" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Get the current information on the last crosslinks</p>
@@ -4277,9 +4517,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2540</span>
+    <span class="phpdocumentor-element-found-in__line">2649</span>
 
-            <a href="classes/phph1.html#source-view.2540"  class="phpdocumentor-element-found-in__source" data-line="2540" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2649"  class="phpdocumentor-element-found-in__source" data-line="2649" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets a list of the latest beacon chain headers and their related information.</p>
@@ -4315,9 +4555,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1826</span>
+    <span class="phpdocumentor-element-found-in__line">1935</span>
 
-            <a href="classes/phph1.html#source-view.1826"  class="phpdocumentor-element-found-in__source" data-line="1826" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1935"  class="phpdocumentor-element-found-in__source" data-line="1935" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Get the wallet address of current leader</p>
@@ -4353,9 +4593,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1144</span>
+    <span class="phpdocumentor-element-found-in__line">1253</span>
 
-            <a href="classes/phph1.html#source-view.1144"  class="phpdocumentor-element-found-in__source" data-line="1144" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1253"  class="phpdocumentor-element-found-in__source" data-line="1253" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Retrieves the median raw stake snapshot</p>
@@ -4391,9 +4631,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1988</span>
+    <span class="phpdocumentor-element-found-in__line">2097</span>
 
-            <a href="classes/phph1.html#source-view.1988"  class="phpdocumentor-element-found-in__source" data-line="1988" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2097"  class="phpdocumentor-element-found-in__source" data-line="2097" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets the current node metadata.</p>
@@ -4429,9 +4669,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1240</span>
+    <span class="phpdocumentor-element-found-in__line">1349</span>
 
-            <a href="classes/phph1.html#source-view.1240"  class="phpdocumentor-element-found-in__source" data-line="1240" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1349"  class="phpdocumentor-element-found-in__source" data-line="1349" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Retrieves a list of currently pending cross shard transaction receipts</p>
@@ -4467,9 +4707,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1301</span>
+    <span class="phpdocumentor-element-found-in__line">1410</span>
 
-            <a href="classes/phph1.html#source-view.1301"  class="phpdocumentor-element-found-in__source" data-line="1301" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1410"  class="phpdocumentor-element-found-in__source" data-line="1410" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Retrieves current transaction pool stats</p>
@@ -4505,9 +4745,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1856</span>
+    <span class="phpdocumentor-element-found-in__line">1965</span>
 
-            <a href="classes/phph1.html#source-view.1856"  class="phpdocumentor-element-found-in__source" data-line="1856" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1965"  class="phpdocumentor-element-found-in__source" data-line="1965" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Get a list of all shards and their information</p>
@@ -4543,9 +4783,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1159</span>
+    <span class="phpdocumentor-element-found-in__line">1268</span>
 
-            <a href="classes/phph1.html#source-view.1159"  class="phpdocumentor-element-found-in__source" data-line="1159" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1268"  class="phpdocumentor-element-found-in__source" data-line="1268" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Retrieves current network staking information</p>
@@ -4581,9 +4821,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1431</span>
+    <span class="phpdocumentor-element-found-in__line">1540</span>
 
-            <a href="classes/phph1.html#source-view.1431"  class="phpdocumentor-element-found-in__source" data-line="1431" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1540"  class="phpdocumentor-element-found-in__source" data-line="1540" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Use this API call to retrieve a staking transaction info using block hash and transaction index</p>
@@ -4638,9 +4878,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1372</span>
+    <span class="phpdocumentor-element-found-in__line">1481</span>
 
-            <a href="classes/phph1.html#source-view.1372"  class="phpdocumentor-element-found-in__source" data-line="1372" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1481"  class="phpdocumentor-element-found-in__source" data-line="1481" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Use this API call to retrieve a staking transaction info using block number and transaction index</p>
@@ -4695,9 +4935,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1487</span>
+    <span class="phpdocumentor-element-found-in__line">1596</span>
 
-            <a href="classes/phph1.html#source-view.1487"  class="phpdocumentor-element-found-in__source" data-line="1487" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1596"  class="phpdocumentor-element-found-in__source" data-line="1596" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Use this API call to retrieve a staking transaction info using the staking transaction hash (stkhash is validated in boot.php)</p>
@@ -4743,9 +4983,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2663</span>
+    <span class="phpdocumentor-element-found-in__line">2772</span>
 
-            <a href="classes/phph1.html#source-view.2663"  class="phpdocumentor-element-found-in__source" data-line="2663" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2772"  class="phpdocumentor-element-found-in__source" data-line="2772" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets the number of staking transactions for the specified ONE wallet address.</p>
@@ -4802,16 +5042,16 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2730</span>
+    <span class="phpdocumentor-element-found-in__line">2839</span>
 
-            <a href="classes/phph1.html#source-view.2730"  class="phpdocumentor-element-found-in__source" data-line="2730" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2839"  class="phpdocumentor-element-found-in__source" data-line="2839" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets staking transactions history for a specified ONE wallet.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">hmyv2_getStakingTransactionsHistory</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$oneaddr</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageindex</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pagesize</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\booleen">booleen</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fulltx</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$txtype</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$order</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                <span class="phpdocumentor-signature__name">hmyv2_getStakingTransactionsHistory</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$oneaddr</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pagenum</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pagesize</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\booleen">booleen</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fulltx</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$txtype</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$order</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
         <section class="phpdocumentor-description"><p>See <a href='/index.php?method=hmyv2_getStakingTransactionsHistory'>Explorer Method Page</a> or <a href='https://api.hmny.io/#c5d25b36-57be-4e43-a23b-17ace350e322'>Harmony API Documentation</a> for output details.</p>
 </section>
@@ -4828,7 +5068,7 @@ The network shard is set when creating a class handle in _construct and the sett
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$pageindex</span>
+                <span class="phpdocumentor-signature__argument__name">$pagenum</span>
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
@@ -4897,9 +5137,9 @@ The network shard is set when creating a class handle in _construct and the sett
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">768</span>
+    <span class="phpdocumentor-element-found-in__line">836</span>
 
-            <a href="classes/phph1.html#source-view.768"  class="phpdocumentor-element-found-in__source" data-line="768" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.836"  class="phpdocumentor-element-found-in__source" data-line="836" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Returns the value from a storage position at a given address, or in other words,
@@ -4966,9 +5206,9 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1174</span>
+    <span class="phpdocumentor-element-found-in__line">1283</span>
 
-            <a href="classes/phph1.html#source-view.1174"  class="phpdocumentor-element-found-in__source" data-line="1174" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1283"  class="phpdocumentor-element-found-in__source" data-line="1283" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Retrieves current super committee information</p>
@@ -5004,9 +5244,9 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1871</span>
+    <span class="phpdocumentor-element-found-in__line">1980</span>
 
-            <a href="classes/phph1.html#source-view.1871"  class="phpdocumentor-element-found-in__source" data-line="1871" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1980"  class="phpdocumentor-element-found-in__source" data-line="1980" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Get the total number of pre-mined tokens</p>
@@ -5042,9 +5282,9 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1548</span>
+    <span class="phpdocumentor-element-found-in__line">1657</span>
 
-            <a href="classes/phph1.html#source-view.1548"  class="phpdocumentor-element-found-in__source" data-line="1548" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1657"  class="phpdocumentor-element-found-in__source" data-line="1657" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Use this API call to retrieve transaction info using block hash and transaction index (blockhash is validated in boot.php)</p>
@@ -5098,9 +5338,9 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1606</span>
+    <span class="phpdocumentor-element-found-in__line">1715</span>
 
-            <a href="classes/phph1.html#source-view.1606"  class="phpdocumentor-element-found-in__source" data-line="1606" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1715"  class="phpdocumentor-element-found-in__source" data-line="1715" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Use this API call to retrieve transaction info using block number and transaction index</p>
@@ -5155,9 +5395,9 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1659</span>
+    <span class="phpdocumentor-element-found-in__line">1768</span>
 
-            <a href="classes/phph1.html#source-view.1659"  class="phpdocumentor-element-found-in__source" data-line="1659" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1768"  class="phpdocumentor-element-found-in__source" data-line="1768" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Use this API call to retrieve transaction info using the transaction hash</p>
@@ -5203,9 +5443,9 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1701</span>
+    <span class="phpdocumentor-element-found-in__line">1810</span>
 
-            <a href="classes/phph1.html#source-view.1701"  class="phpdocumentor-element-found-in__source" data-line="1701" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1810"  class="phpdocumentor-element-found-in__source" data-line="1810" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Use this API call to retrieve transaction info using the transaction hash</p>
@@ -5250,9 +5490,9 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2841</span>
+    <span class="phpdocumentor-element-found-in__line">2956</span>
 
-            <a href="classes/phph1.html#source-view.2841"  class="phpdocumentor-element-found-in__source" data-line="2841" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2956"  class="phpdocumentor-element-found-in__source" data-line="2956" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets the number of transactions for the specified ONE wallet address.</p>
@@ -5309,16 +5549,16 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2908</span>
+    <span class="phpdocumentor-element-found-in__line">3023</span>
 
-            <a href="classes/phph1.html#source-view.2908"  class="phpdocumentor-element-found-in__source" data-line="2908" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.3023"  class="phpdocumentor-element-found-in__source" data-line="3023" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets transactions history for a specified ONE wallet.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">hmyv2_getTransactionsHistory</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$oneaddr</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pagesize</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\booleen">booleen</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fulltx</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$txtype</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$order</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                <span class="phpdocumentor-signature__name">hmyv2_getTransactionsHistory</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$oneaddr</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pagenum</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pagesize</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\booleen">booleen</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fulltx</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$txtype</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$order</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
         <section class="phpdocumentor-description"><p>See <a href='/index.php?method=hmyv2_getTransactionsHistory'>Explorer Method Page</a> or <a href='https://api.hmny.io/#2200a088-81b5-4420-a291-312a7c6d880e'>Harmony API Documentation</a> for output details.</p>
 </section>
@@ -5335,7 +5575,7 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$page</span>
+                <span class="phpdocumentor-signature__argument__name">$pagenum</span>
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
@@ -5404,9 +5644,9 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1085</span>
+    <span class="phpdocumentor-element-found-in__line">1194</span>
 
-            <a href="classes/phph1.html#source-view.1085"  class="phpdocumentor-element-found-in__source" data-line="1085" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1194"  class="phpdocumentor-element-found-in__source" data-line="1194" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Get all information for a validator</p>
@@ -5454,9 +5694,9 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1930</span>
+    <span class="phpdocumentor-element-found-in__line">2039</span>
 
-            <a href="classes/phph1.html#source-view.1930"  class="phpdocumentor-element-found-in__source" data-line="1930" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2039"  class="phpdocumentor-element-found-in__source" data-line="2039" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Get validator information from epoch number</p>
@@ -5504,9 +5744,9 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1888</span>
+    <span class="phpdocumentor-element-found-in__line">1997</span>
 
-            <a href="classes/phph1.html#source-view.1888"  class="phpdocumentor-element-found-in__source" data-line="1888" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1997"  class="phpdocumentor-element-found-in__source" data-line="1997" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Get validator information from epoch number</p>
@@ -5554,9 +5794,9 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">3015</span>
+    <span class="phpdocumentor-element-found-in__line">3135</span>
 
-            <a href="classes/phph1.html#source-view.3015"  class="phpdocumentor-element-found-in__source" data-line="3015" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.3135"  class="phpdocumentor-element-found-in__source" data-line="3135" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets whether specified ONE address is a block signer for a specified block number.</p>
@@ -5611,9 +5851,9 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2555</span>
+    <span class="phpdocumentor-element-found-in__line">2664</span>
 
-            <a href="classes/phph1.html#source-view.2555"  class="phpdocumentor-element-found-in__source" data-line="2555" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2664"  class="phpdocumentor-element-found-in__source" data-line="2664" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets the current blockchain header information.</p>
@@ -5649,9 +5889,9 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1317</span>
+    <span class="phpdocumentor-element-found-in__line">1426</span>
 
-            <a href="classes/phph1.html#source-view.1317"  class="phpdocumentor-element-found-in__source" data-line="1317" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1426"  class="phpdocumentor-element-found-in__source" data-line="1426" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Retrieves a list of currently pending staking transactions</p>
@@ -5687,9 +5927,9 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1332</span>
+    <span class="phpdocumentor-element-found-in__line">1441</span>
 
-            <a href="classes/phph1.html#source-view.1332"  class="phpdocumentor-element-found-in__source" data-line="1332" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1441"  class="phpdocumentor-element-found-in__source" data-line="1441" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Retrieves a list of currently pending transactions</p>
@@ -5725,9 +5965,9 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2004</span>
+    <span class="phpdocumentor-element-found-in__line">2113</span>
 
-            <a href="classes/phph1.html#source-view.2004"  class="phpdocumentor-element-found-in__source" data-line="2004" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2113"  class="phpdocumentor-element-found-in__source" data-line="2113" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets the current network protocol version.</p>
@@ -5763,9 +6003,9 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1255</span>
+    <span class="phpdocumentor-element-found-in__line">1364</span>
 
-            <a href="classes/phph1.html#source-view.1255"  class="phpdocumentor-element-found-in__source" data-line="1255" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1364"  class="phpdocumentor-element-found-in__source" data-line="1364" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Use this API call to resend the cross shard receipt to the receiving shard to re-process if the transaction did not pay out</p>
@@ -5812,9 +6052,9 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2019</span>
+    <span class="phpdocumentor-element-found-in__line">2128</span>
 
-            <a href="classes/phph1.html#source-view.2019"  class="phpdocumentor-element-found-in__source" data-line="2019" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2128"  class="phpdocumentor-element-found-in__source" data-line="2128" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Gets the current number of peers on the network in the form of a hex string.</p>
@@ -5850,9 +6090,9 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">141</span>
+    <span class="phpdocumentor-element-found-in__line">153</span>
 
-            <a href="classes/phph1.html#source-view.141"  class="phpdocumentor-element-found-in__source" data-line="141" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.153"  class="phpdocumentor-element-found-in__source" data-line="153" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">set_booterrors() is used to import any pre class instantiation errors to the class errors array</p>
@@ -5898,9 +6138,9 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">125</span>
+    <span class="phpdocumentor-element-found-in__line">137</span>
 
-            <a href="classes/phph1.html#source-view.125"  class="phpdocumentor-element-found-in__source" data-line="125" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.137"  class="phpdocumentor-element-found-in__source" data-line="137" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">setrpc() is used to set the rpc_call variable that determines whether we are making a remote rpc call or using the explorer interface</p>
@@ -5946,9 +6186,9 @@ returns the state of the contract&#039;s storage, which may not be exposed via t
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">158</span>
+    <span class="phpdocumentor-element-found-in__line">170</span>
 
-            <a href="classes/phph1.html#source-view.158"  class="phpdocumentor-element-found-in__source" data-line="158" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.170"  class="phpdocumentor-element-found-in__source" data-line="170" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">set_validinput() is used to set the validinput bit 1 (valid) or 0(not)
@@ -5994,9 +6234,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">3129</span>
+    <span class="phpdocumentor-element-found-in__line">3249</span>
 
-            <a href="classes/phph1.html#source-view.3129"  class="phpdocumentor-element-found-in__source" data-line="3129" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.3249"  class="phpdocumentor-element-found-in__source" data-line="3249" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates a block address</p>
@@ -6041,9 +6281,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">3159</span>
+    <span class="phpdocumentor-element-found-in__line">3279</span>
 
-            <a href="classes/phph1.html#source-view.3159"  class="phpdocumentor-element-found-in__source" data-line="3159" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.3279"  class="phpdocumentor-element-found-in__source" data-line="3279" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates a block hash</p>
@@ -6088,9 +6328,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">3144</span>
+    <span class="phpdocumentor-element-found-in__line">3264</span>
 
-            <a href="classes/phph1.html#source-view.3144"  class="phpdocumentor-element-found-in__source" data-line="3144" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.3264"  class="phpdocumentor-element-found-in__source" data-line="3264" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates a block number</p>
@@ -6135,9 +6375,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">541</span>
+    <span class="phpdocumentor-element-found-in__line">609</span>
 
-            <a href="classes/phph1.html#source-view.541"  class="phpdocumentor-element-found-in__source" data-line="541" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.609"  class="phpdocumentor-element-found-in__source" data-line="609" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">val_call() Validates user input for hmyv2_call()</p>
@@ -6235,9 +6475,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">3219</span>
+    <span class="phpdocumentor-element-found-in__line">3339</span>
 
-            <a href="classes/phph1.html#source-view.3219"  class="phpdocumentor-element-found-in__source" data-line="3219" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.3339"  class="phpdocumentor-element-found-in__source" data-line="3339" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates a cross shard transaction hash</p>
@@ -6283,9 +6523,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">3174</span>
+    <span class="phpdocumentor-element-found-in__line">3294</span>
 
-            <a href="classes/phph1.html#source-view.3174"  class="phpdocumentor-element-found-in__source" data-line="3174" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.3294"  class="phpdocumentor-element-found-in__source" data-line="3294" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates an epoch</p>
@@ -6330,9 +6570,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">650</span>
+    <span class="phpdocumentor-element-found-in__line">718</span>
 
-            <a href="classes/phph1.html#source-view.650"  class="phpdocumentor-element-found-in__source" data-line="650" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.718"  class="phpdocumentor-element-found-in__source" data-line="718" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">val_estimateGas() Validates the user input for hmyv2_estimateGas()</p>
@@ -6421,9 +6661,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">3114</span>
+    <span class="phpdocumentor-element-found-in__line">3234</span>
 
-            <a href="classes/phph1.html#source-view.3114"  class="phpdocumentor-element-found-in__source" data-line="3114" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.3234"  class="phpdocumentor-element-found-in__source" data-line="3234" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates an ETH wallet address</p>
@@ -6468,26 +6708,26 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1017</span>
+    <span class="phpdocumentor-element-found-in__line">1091</span>
 
-            <a href="classes/phph1.html#source-view.1017"  class="phpdocumentor-element-found-in__source" data-line="1017" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1091"  class="phpdocumentor-element-found-in__source" data-line="1091" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validation function for hmyv2_getAllValidatorInformation()</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">val_getAllValidatorInformation</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+                <span class="phpdocumentor-signature__name">val_getAllValidatorInformation</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pagenum</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$page</span>
+                <span class="phpdocumentor-signature__argument__name">$pagenum</span>
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Page number to display or -1 for show all</p>
+                    <section class="phpdocumentor-description"><p>Page number to display</p>
 </section>
 
             </dd>
@@ -6509,6 +6749,62 @@ This is set after validating the input data for methods so the class knows if it
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_val_getAllValidatorInformationByBlockNumber">
+        val_getAllValidatorInformationByBlockNumber()
+        <a href="classes/phph1.html#method_val_getAllValidatorInformationByBlockNumber" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">1147</span>
+
+            <a href="classes/phph1.html#source-view.1147"  class="phpdocumentor-element-found-in__source" data-line="1147" data-modal="source-view"></a>
+    </aside>
+
+        <p class="phpdocumentor-summary">Validation function for hmyv2_getAllValidatorInformationByBlockNumber</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">val_getAllValidatorInformationByBlockNumber</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pagenum</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$blocknum</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$pagenum</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$blocknum</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Block number</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">int</span>
+            &mdash;
+            <section class="phpdocumentor-description"><p>good data =1, bad data = 0</p>
+</section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_val_getBalance">
         val_getBalance()
         <a href="classes/phph1.html#method_val_getBalance" class="headerlink"><i class="fas fa-link"></i></a>
@@ -6516,9 +6812,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2590</span>
+    <span class="phpdocumentor-element-found-in__line">2699</span>
 
-            <a href="classes/phph1.html#source-view.2590"  class="phpdocumentor-element-found-in__source" data-line="2590" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2699"  class="phpdocumentor-element-found-in__source" data-line="2699" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validate input for hmyv2_getBalance</p>
@@ -6564,9 +6860,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2629</span>
+    <span class="phpdocumentor-element-found-in__line">2738</span>
 
-            <a href="classes/phph1.html#source-view.2629"  class="phpdocumentor-element-found-in__source" data-line="2629" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2738"  class="phpdocumentor-element-found-in__source" data-line="2738" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validate input for hmyv2_getBalanceByBlockNumber</p>
@@ -6621,9 +6917,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2282</span>
+    <span class="phpdocumentor-element-found-in__line">2391</span>
 
-            <a href="classes/phph1.html#source-view.2282"  class="phpdocumentor-element-found-in__source" data-line="2282" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2391"  class="phpdocumentor-element-found-in__source" data-line="2391" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates the input data for hmyv2_getBlockByHash()</p>
@@ -6705,9 +7001,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2184</span>
+    <span class="phpdocumentor-element-found-in__line">2293</span>
 
-            <a href="classes/phph1.html#source-view.2184"  class="phpdocumentor-element-found-in__source" data-line="2184" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2293"  class="phpdocumentor-element-found-in__source" data-line="2293" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates the input data for hmyv2_getBlockByNumber().</p>
@@ -6788,9 +7084,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2086</span>
+    <span class="phpdocumentor-element-found-in__line">2195</span>
 
-            <a href="classes/phph1.html#source-view.2086"  class="phpdocumentor-element-found-in__source" data-line="2086" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2195"  class="phpdocumentor-element-found-in__source" data-line="2195" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates the input for hmyv2_getBlocks().</p>
@@ -6870,9 +7166,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2390</span>
+    <span class="phpdocumentor-element-found-in__line">2499</span>
 
-            <a href="classes/phph1.html#source-view.2390"  class="phpdocumentor-element-found-in__source" data-line="2390" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2499"  class="phpdocumentor-element-found-in__source" data-line="2499" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates the input data for hmyv2_getBlockSignerKeys().</p>
@@ -6918,9 +7214,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2348</span>
+    <span class="phpdocumentor-element-found-in__line">2457</span>
 
-            <a href="classes/phph1.html#source-view.2348"  class="phpdocumentor-element-found-in__source" data-line="2348" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2457"  class="phpdocumentor-element-found-in__source" data-line="2457" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates the input data for hmyv2_getBlockSigners()</p>
@@ -6966,9 +7262,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2474</span>
+    <span class="phpdocumentor-element-found-in__line">2583</span>
 
-            <a href="classes/phph1.html#source-view.2474"  class="phpdocumentor-element-found-in__source" data-line="2474" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2583"  class="phpdocumentor-element-found-in__source" data-line="2583" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates the input data for hmyv2_getBlockTransactionCountByHash()</p>
@@ -7014,9 +7310,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2432</span>
+    <span class="phpdocumentor-element-found-in__line">2541</span>
 
-            <a href="classes/phph1.html#source-view.2432"  class="phpdocumentor-element-found-in__source" data-line="2432" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2541"  class="phpdocumentor-element-found-in__source" data-line="2541" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates the input data for hmyv2_getBlockTransactionCountByNumber().</p>
@@ -7062,9 +7358,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">733</span>
+    <span class="phpdocumentor-element-found-in__line">801</span>
 
-            <a href="classes/phph1.html#source-view.733"  class="phpdocumentor-element-found-in__source" data-line="733" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.801"  class="phpdocumentor-element-found-in__source" data-line="801" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates hmyv2_getCode input</p>
@@ -7119,9 +7415,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1216</span>
+    <span class="phpdocumentor-element-found-in__line">1325</span>
 
-            <a href="classes/phph1.html#source-view.1216"  class="phpdocumentor-element-found-in__source" data-line="1216" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1325"  class="phpdocumentor-element-found-in__source" data-line="1325" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validate the CX receipt transaction hash input for hmyv2_getCXReceiptByHash</p>
@@ -7167,9 +7463,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">856</span>
+    <span class="phpdocumentor-element-found-in__line">924</span>
 
-            <a href="classes/phph1.html#source-view.856"  class="phpdocumentor-element-found-in__source" data-line="856" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.924"  class="phpdocumentor-element-found-in__source" data-line="924" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validation function for hmyv2_getDelegationsByDelegator()</p>
@@ -7215,9 +7511,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">907</span>
+    <span class="phpdocumentor-element-found-in__line">975</span>
 
-            <a href="classes/phph1.html#source-view.907"  class="phpdocumentor-element-found-in__source" data-line="907" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.975"  class="phpdocumentor-element-found-in__source" data-line="975" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validation function for hmyv2_getDelegationsByDelegatorByBlockNumber()</p>
@@ -7272,9 +7568,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">955</span>
+    <span class="phpdocumentor-element-found-in__line">1023</span>
 
-            <a href="classes/phph1.html#source-view.955"  class="phpdocumentor-element-found-in__source" data-line="955" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1023"  class="phpdocumentor-element-found-in__source" data-line="1023" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validation function for hmyv2_getDelegationsByValidator()</p>
@@ -7320,9 +7616,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2516</span>
+    <span class="phpdocumentor-element-found-in__line">2625</span>
 
-            <a href="classes/phph1.html#source-view.2516"  class="phpdocumentor-element-found-in__source" data-line="2516" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2625"  class="phpdocumentor-element-found-in__source" data-line="2625" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates the input data for hmyv2_getHeaderByNumber()</p>
@@ -7368,9 +7664,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1455</span>
+    <span class="phpdocumentor-element-found-in__line">1564</span>
 
-            <a href="classes/phph1.html#source-view.1455"  class="phpdocumentor-element-found-in__source" data-line="1455" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1564"  class="phpdocumentor-element-found-in__source" data-line="1564" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validate input for hmyv2_getStakingTransactionByBlockHashAndIndex (blockhash is validated in boot.php)</p>
@@ -7425,9 +7721,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1396</span>
+    <span class="phpdocumentor-element-found-in__line">1505</span>
 
-            <a href="classes/phph1.html#source-view.1396"  class="phpdocumentor-element-found-in__source" data-line="1396" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1505"  class="phpdocumentor-element-found-in__source" data-line="1505" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validate input for val_getStakingTransactionByBlockNumberAndIndex (blocknum is validated in boot.php)</p>
@@ -7482,9 +7778,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1496</span>
+    <span class="phpdocumentor-element-found-in__line">1605</span>
 
-            <a href="classes/phph1.html#source-view.1496"  class="phpdocumentor-element-found-in__source" data-line="1496" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1605"  class="phpdocumentor-element-found-in__source" data-line="1605" data-modal="source-view"></a>
     </aside>
 
     
@@ -7527,9 +7823,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2687</span>
+    <span class="phpdocumentor-element-found-in__line">2796</span>
 
-            <a href="classes/phph1.html#source-view.2687"  class="phpdocumentor-element-found-in__source" data-line="2687" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2796"  class="phpdocumentor-element-found-in__source" data-line="2796" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates the input for hmyv2_getStakingTransactionsCount().</p>
@@ -7584,16 +7880,16 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2775</span>
+    <span class="phpdocumentor-element-found-in__line">2889</span>
 
-            <a href="classes/phph1.html#source-view.2775"  class="phpdocumentor-element-found-in__source" data-line="2775" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2889"  class="phpdocumentor-element-found-in__source" data-line="2889" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates the input data for hmyv2_getStakingTransactionsHistory().</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">val_getStakingTransactionsHistory</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$oneaddr</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageindex</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pagesize</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\booleen">booleen</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fulltx</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$txtype</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$order</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\booleen">booleen</abbr></span></code>
+                <span class="phpdocumentor-signature__name">val_getStakingTransactionsHistory</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$oneaddr</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pagenum</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pagesize</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\booleen">booleen</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fulltx</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$txtype</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$order</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\booleen">booleen</abbr></span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -7608,11 +7904,11 @@ This is set after validating the input data for methods so the class knows if it
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$pageindex</span>
+                <span class="phpdocumentor-signature__argument__name">$pagenum</span>
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Which page of transactions to retrieve</p>
+                    <section class="phpdocumentor-description"><p>Which page number of transactions to retrieve</p>
 </section>
 
             </dd>
@@ -7677,9 +7973,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">794</span>
+    <span class="phpdocumentor-element-found-in__line">862</span>
 
-            <a href="classes/phph1.html#source-view.794"  class="phpdocumentor-element-found-in__source" data-line="794" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.862"  class="phpdocumentor-element-found-in__source" data-line="862" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validation function for hmyv2_getStorageAt()</p>
@@ -7743,9 +8039,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1572</span>
+    <span class="phpdocumentor-element-found-in__line">1681</span>
 
-            <a href="classes/phph1.html#source-view.1572"  class="phpdocumentor-element-found-in__source" data-line="1572" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1681"  class="phpdocumentor-element-found-in__source" data-line="1681" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validate input for val_getTransactionByBlockHashAndIndex (blockhash is validated in boot.php)</p>
@@ -7800,9 +8096,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1627</span>
+    <span class="phpdocumentor-element-found-in__line">1736</span>
 
-            <a href="classes/phph1.html#source-view.1627"  class="phpdocumentor-element-found-in__source" data-line="1627" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1736"  class="phpdocumentor-element-found-in__source" data-line="1736" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validate input for hmyv2_getTransactionByBlockNumberAndIndex (blocknum is validated in boot.php)</p>
@@ -7857,9 +8153,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1675</span>
+    <span class="phpdocumentor-element-found-in__line">1784</span>
 
-            <a href="classes/phph1.html#source-view.1675"  class="phpdocumentor-element-found-in__source" data-line="1675" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1784"  class="phpdocumentor-element-found-in__source" data-line="1784" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validate input for hmyv2_getTransactionByHash</p>
@@ -7905,9 +8201,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1717</span>
+    <span class="phpdocumentor-element-found-in__line">1826</span>
 
-            <a href="classes/phph1.html#source-view.1717"  class="phpdocumentor-element-found-in__source" data-line="1717" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1826"  class="phpdocumentor-element-found-in__source" data-line="1826" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validate input for hmyv2_getTransactionReceipt</p>
@@ -7953,9 +8249,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2865</span>
+    <span class="phpdocumentor-element-found-in__line">2980</span>
 
-            <a href="classes/phph1.html#source-view.2865"  class="phpdocumentor-element-found-in__source" data-line="2865" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2980"  class="phpdocumentor-element-found-in__source" data-line="2980" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates the input for hmyv2_getTransactionsCount().</p>
@@ -8010,16 +8306,16 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2953</span>
+    <span class="phpdocumentor-element-found-in__line">3073</span>
 
-            <a href="classes/phph1.html#source-view.2953"  class="phpdocumentor-element-found-in__source" data-line="2953" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.3073"  class="phpdocumentor-element-found-in__source" data-line="3073" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates the input data for hmyv2_getTransactionsHistory().</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">val_getTransactionsHistory</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$oneaddr</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pagesize</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\booleen">booleen</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fulltx</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$txtype</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$order</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\booleen">booleen</abbr></span></code>
+                <span class="phpdocumentor-signature__name">val_getTransactionsHistory</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$oneaddr</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pagenum</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pagesize</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\booleen">booleen</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fulltx</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$txtype</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$order</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\booleen">booleen</abbr></span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -8034,7 +8330,7 @@ This is set after validating the input data for methods so the class knows if it
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$page</span>
+                <span class="phpdocumentor-signature__argument__name">$pagenum</span>
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\number">number</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
@@ -8103,9 +8399,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1101</span>
+    <span class="phpdocumentor-element-found-in__line">1210</span>
 
-            <a href="classes/phph1.html#source-view.1101"  class="phpdocumentor-element-found-in__source" data-line="1101" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1210"  class="phpdocumentor-element-found-in__source" data-line="1210" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validation function for hmyv2_getValidatorInformation</p>
@@ -8151,9 +8447,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1946</span>
+    <span class="phpdocumentor-element-found-in__line">2055</span>
 
-            <a href="classes/phph1.html#source-view.1946"  class="phpdocumentor-element-found-in__source" data-line="1946" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2055"  class="phpdocumentor-element-found-in__source" data-line="2055" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validate input for hmyv2_getValidatorKeys</p>
@@ -8199,9 +8495,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1904</span>
+    <span class="phpdocumentor-element-found-in__line">2013</span>
 
-            <a href="classes/phph1.html#source-view.1904"  class="phpdocumentor-element-found-in__source" data-line="1904" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.2013"  class="phpdocumentor-element-found-in__source" data-line="2013" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validate input for hmyv2_getValidators</p>
@@ -8247,9 +8543,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">3189</span>
+    <span class="phpdocumentor-element-found-in__line">3309</span>
 
-            <a href="classes/phph1.html#source-view.3189"  class="phpdocumentor-element-found-in__source" data-line="3189" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.3309"  class="phpdocumentor-element-found-in__source" data-line="3309" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates a hash</p>
@@ -8294,9 +8590,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">3039</span>
+    <span class="phpdocumentor-element-found-in__line">3159</span>
 
-            <a href="classes/phph1.html#source-view.3039"  class="phpdocumentor-element-found-in__source" data-line="3039" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.3159"  class="phpdocumentor-element-found-in__source" data-line="3159" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validation for hmyv2_isBlockSigner</p>
@@ -8351,9 +8647,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">3099</span>
+    <span class="phpdocumentor-element-found-in__line">3219</span>
 
-            <a href="classes/phph1.html#source-view.3099"  class="phpdocumentor-element-found-in__source" data-line="3099" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.3219"  class="phpdocumentor-element-found-in__source" data-line="3219" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates a ONE wallet address</p>
@@ -8398,9 +8694,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">1271</span>
+    <span class="phpdocumentor-element-found-in__line">1380</span>
 
-            <a href="classes/phph1.html#source-view.1271"  class="phpdocumentor-element-found-in__source" data-line="1271" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.1380"  class="phpdocumentor-element-found-in__source" data-line="1380" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validate the cross transaction receipt transaction hash input for hmyv2_resendCx</p>
@@ -8446,9 +8742,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">3204</span>
+    <span class="phpdocumentor-element-found-in__line">3324</span>
 
-            <a href="classes/phph1.html#source-view.3204"  class="phpdocumentor-element-found-in__source" data-line="3204" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.3324"  class="phpdocumentor-element-found-in__source" data-line="3324" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates a smart contract address</p>
@@ -8494,9 +8790,9 @@ This is set after validating the input data for methods so the class knows if it
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="inc/phph1.php"><a href="files/inc-phph1.html"><abbr title="inc/phph1.php">phph1.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">3234</span>
+    <span class="phpdocumentor-element-found-in__line">3354</span>
 
-            <a href="classes/phph1.html#source-view.3234"  class="phpdocumentor-element-found-in__source" data-line="3234" data-modal="source-view"></a>
+            <a href="classes/phph1.html#source-view.3354"  class="phpdocumentor-element-found-in__source" data-line="3354" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Validates storage location</p>

@@ -1,4 +1,6 @@
 <?php
+if($phph1->get_debugstatus()){echo "<p class='hmyv2_debug_notify'><strong>### END DEBUGGING INFORMATION ###</strong></p>";}
+
 /** Show our errors if we have invalid input */
 if(($phph1->chk_dorequest() && !$phph1->get_validinput()) OR $phph1->get_errors()){
 	echo '<div class="error_div">';

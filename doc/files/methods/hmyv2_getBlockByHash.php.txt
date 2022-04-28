@@ -4,10 +4,7 @@
 */
 
 if($phph1->chk_dorequest()){
-	
-	/** Start debug info display area */
-	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>"; }
-	
+
 	/** Prepare blockhash for validation */
 	if(isset($_GET['blockhash'])&& !empty($_GET['blockhash'])){$blockhash = $_GET['blockhash'];}else{$blockhash = null;}
 	
@@ -48,9 +45,6 @@ if($phph1->chk_dorequest()){
 	if($phph1->val_getBlockByHash($blockhash,$fulltx,$incltx,$withsigners,$inclstaking)){
 		$hmyv2_data = $phph1->hmyv2_getBlockByHash($blockhash,$fulltx,$incltx,$withsigners,$inclstaking);
 	}
-	
-	/** End debug info display area	*/
-	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>"; }
 
 	require_once('inc/errors.php');
 }

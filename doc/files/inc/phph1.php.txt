@@ -34,7 +34,7 @@ class phph1{
 	/** @var string $apiaddr The API address being used during this session. It is set during __construct by applying the $network and $shard inputs to the function getapiaddr(). It is set during __construct */
 	private string $apiaddr;
 	
-	/** @var integer $max_pagesize Sets the default page size for methods that output multiple pages of data. It is set during __construct */
+	/** @var integer $default_pagesize Sets the default page size for methods that output multiple pages of data. It is set during __construct */
 	private int $default_pagesize;
 	
 	/** @var array $goodinputs An array of validated input generated when validating method inputs. This is later used populate any field forms after the request, if all fields are good, all fields get populated. */
@@ -71,6 +71,15 @@ class phph1{
 	
 	/** @var string $phph1_method The current method being used. It is set while validating input in inc/boot.php */
 	private string $phph1_method;
+	
+	/** @var array $phph1_blockedaddr An array of blocked IP addresses set in inc/config.php This is set during __construct when the class is invoked. This gets ignored if the $phph1_allowedaddr array is not empty */
+	private array $phph1_blockedaddr;
+	
+	/** @var array $phph1_allowedaddr An array of allowed IP addresses set in inc/config.php This is set during __construct when the class is invoked. When this is set, only the hpst addresses in the array are allowed to retrieve data. */
+	private array $phph1_allowedaddr;
+	
+	/** @var phph1_allowbigdata Some requests have a page index (page number) option included in some of those options is the ability to use -1 as the index page. When using -1 the data set returned could possibly be huge causing a massive load on the server. By default using the -1 option is disabled to prevent this from happening. You can enable -1 page requests here by setting $phph1_allowbigdata to 1 in inc/config.php */
+	private int $phph1_allowbigdata;
 									
 	/**
 	* The __construct function is used to set PHPH1 configurations settings when invoking the class. The parameters are all REQUIRED when invoking the class
@@ -92,7 +101,7 @@ class phph1{
 	* @return void
 	*
 	*/
-	function __construct(array $phph1_apiaddresses, array $phph1_methods , int $phph1_debug, int $max_pagesize, int $default_pagesize, string $network, int $shard){
+	function __construct(array $phph1_apiaddresses, array $phph1_methods , int $phph1_debug, int $max_pagesize, int $default_pagesize, string $network, int $shard, ?array $phph1_blockedaddr, ?array $phph1_allowedaddr, int $phph1_allowbigdata){
 		$this->phph1_apiaddresses = $phph1_apiaddresses;
 		$this->apiaddr = $this->getapiaddr($network, $shard, $phph1_apiaddresses);
 		$this->phph1_methods = $phph1_methods;
@@ -101,6 +110,9 @@ class phph1{
 		$this->default_pagesize = $default_pagesize;
 		$this->network = $network;
 		$this->shard = $shard;
+		$this->phph1_blockedaddr = $phph1_blockedaddr;
+		$this->phph1_allowedaddr = $phph1_allowedaddr;
+		$this->phph1_allowbigdata = $phph1_allowbigdata;
 	}
 	
 	/**
@@ -276,7 +288,15 @@ class phph1{
 		}
 	}
 	
-	// FIXME NEEDS DOCBLOCKS
+	/**
+	* get_rpcurl() is used to retrieve the current RPC URL.
+	* The URL is set in _construct when creating the class handle
+	* and is determined from the $phph1_apiaddresses array using 
+	* the network and hsard settings in inc/config.php unless
+	* settings have been set in the Method Explorer interface
+	*
+	* @return string Current RPC URL
+	*/
 	function get_rpcurl(){
 		if(!empty($this->rpc_url)){
 			return $this->rpc_url;
@@ -285,7 +305,12 @@ class phph1{
 		}
 	}
 	
-	// FIXME NEEDS DOCBLOCKS
+	/**
+	* get_validinput() is used to retrieve the current input validation status
+	* The validation status bit is set when validating user input
+	*
+	* @return integer Current input status 1 = good input, 0 = bad input
+	*/
 	function get_validinput(){
 		if(!empty($this->validinput)){
 			return $this->validinput;
@@ -294,7 +319,12 @@ class phph1{
 		}
 	}
 	
-	// FIXME NEEDS DOCBLOCKS
+	/**
+	* get_debugstatus() is used to determine if the script is running in debug mode or not 
+	* The debug bit in the PHPH1 class is set during _construct and can be turned on and off in inc/config.php
+	*
+	* @return integer Current input status 1 = debugging on, 0 = debugging off
+	*/
 	function get_debugstatus(){
 		if(!empty($this->phph1_debug)){
 			return $this->phph1_debug;
@@ -303,7 +333,14 @@ class phph1{
 		}
 	}
 	
-	// FIXME NEEDS DOCBLOCKS
+	/**
+	* get_goodinput() gets a validated value from user input. 
+	* When user input is being validated, every user form input that passes validation is
+	* set in the goodinputs array. When repopulating a form after submission
+	* only fields with valid input will populate from this list
+	*
+	* @return string Current value for the requested form field
+	*/
 	function get_goodinput($inputname){
 		if(isset($this->goodinputs[$inputname])){
 			return $this->goodinputs[$inputname];
@@ -312,7 +349,13 @@ class phph1{
 		}
 	}
 	
-	// FIXME NEEDS DOCBLOCKS
+	/**
+	* chk_goodinput() checks if a form field has successfully passed validation
+	* by checking the goodinputs array which is filled during validation methods.
+	* This is used to check before using get_goodinput() to retrieve the data.
+	*
+	* @return booleen 1 = the form field data has been validated and is good, 0 = bad input
+	*/
 	function chk_goodinput($inputname){
 		if(isset($this->goodinputs[$inputname])){
 			return 1;
@@ -321,7 +364,11 @@ class phph1{
 		}
 	}
 	
-	// FIXME NEEDS DOCBLOCKS
+	/**
+	* chk_dorequest() is used to check if we have form data submitted
+	*
+	* @return booleen 1 = the form has been submitted, 0 = The form has not been submitted
+	*/
 	function chk_dorequest(){
 		if($this->dorequest == 1){
 			return 1;
@@ -330,10 +377,14 @@ class phph1{
 		}
 	}
 	
-	// FIXME NEEDS DOCBLOCKS
-	// Check if we have a method input and make sure $_GET['method'] is in $phph1_methods array in the phph1 class
-	// The methods array is set in config.php and loaded to the class in boot.php when the class handle is created
-	// THEN it checks if $_GET['dorequest'] is set and sets the class variable $dorequest so it is known everywhere that this is a request
+	/** 
+	* Check if we have a valid method input and make sure $_GET['method'] is in $phph1_methods array in the phph1 class
+	* The methods array is set in config.php and loaded to the class in boot.php when the class handle is created
+	* THEN it checks if $_GET['dorequest'] which is a hidden field in every method formis set and sets the class
+	* variable $dorequest so it is known everywhere that a method form has been submitted
+	*
+	* @return booleen 1 = the form has been submitted, 0 = The form has not been submitted
+	*/
 	function chk_request(){
 		// Check if we have a method input and make sure $_GET['method'] is in $phph1_methods array in the phph1 class
 		// The methods array is set in config.php and loaded to the class in boot.php when the class handle is created
@@ -363,8 +414,25 @@ class phph1{
 		}
 	}
 	
+	/** 
+	* Check the client and report whether they are allowed to connect and make requests
+	*
+	* @return booleen 1 = the client is allowed access, 0 = The client is denied access
+	*/
+	function chk_access(){
+		if(!empty($this->phph1_allowedaddr) && !in_array($_SERVER['REMOTE_ADDR'], $this->phph1_allowedaddr)){
+			return 0;
+		}elseif(!empty($this->phph1_blockedaddr) && in_array($_SERVER['REMOTE_ADDR'], $this->phph1_blockedaddr)){
+			return 0;
+		}else{
+			return 1;
+		}
+	}
+	
 	/**
-	* docurlrequest() takes the generated json request for the current method from genjsonrequest() and makes the call to the API RPC Node. If rpc_call is set to 0, it generates a PHP array for output. If rpc_call is set to 1, it returns the raw json output from API RPC Node.
+	* docurlrequest() takes the generated json request for the current method from genjsonrequest() and
+	* makes the call to the API RPC Node. If rpc_call is set to 0, it generates a PHP array for output.
+	* If rpc_call is set to 1, it returns the raw json output from API RPC Node.
 	*
 	* @param string $thisjson The JSON API request generated by genjsonrequest()
 	*
@@ -993,16 +1061,21 @@ class phph1{
 	*
 	* See <a href='/index.php?method=hmyv2_getAllValidatorInformation'>Explorer Method Page</a> or <a href='https://api.hmny.io/#df5f1631-7397-48e8-87b4-8dd873235b9c'>Harmony API Documentation</a> for output details.
 	*
-	* @param number $page Page to request (page size is 100), -1 for all validators (needs to be added to explorer)
+	* @param number $pagenum Page to request (page size is 100), -1 for all validators (needs to be added to explorer)
 	*
 	* @return array List of all validator detailed information. 
 	*/
 	// FIXME This function uses a page variable. When using -1 to get all information, it uses a TON of memory. There is no way of knowing how many pages there are
-	function hmyv2_getAllValidatorInformation(int $page = 0){
+	function hmyv2_getAllValidatorInformation(int $pagenum){
 		$method = "hmyv2_getAllValidatorInformation";
-		$urlparams = ['page' => $page];
+		$urlparams = ['pagenum' => $pagenum];
 		$this->genrequesturl($method, $urlparams);
-		$params = [$page];
+		if($pagenum == -1){
+			$pageindex = $pagenum;
+		}else{
+			$pageindex = $pagenum - 1;
+		}
+		$params = [$pageindex];
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
@@ -1010,17 +1083,18 @@ class phph1{
 	/**
 	* Validation function for hmyv2_getAllValidatorInformation()
 	*
-	* @param integer $page Page number to display or -1 for show all
+	* @param integer $pagenum Page number to display
 	*
 	* @return integer good data = 1, bad data = 0
 	*/
-	function val_getAllValidatorInformation($page){
+	// FIXME -1 is not a valid input according to the node return data
+	function val_getAllValidatorInformation($pagenum){
 		$notvalid = 0;
-		if(!preg_match( '/^[0-9]+$/', $page) && $page != -1){
-			$notvalid = 1; 
-			array_push($this->errors, 'page value is invalid');
+		if(preg_match( '/^[1-9]+[0-9]*$/', $pagenum) OR ($this->phph1_allowbigdata && $pagenum == -1)){
+			$this->goodinputs['pagenum'] = $pagenum;
 		}else{
-			$this->goodinputs['page'] = $page;
+			$notvalid = 1; 
+			array_push($this->errors, 'invalid page number');
 		}
 		if($notvalid == 0){
 			$this->set_validinput(1);;
@@ -1043,19 +1117,54 @@ class phph1{
 	* @return array List of all validator detailed information. 
 	*/
 	// FIXME This function uses a page size variable. When using -1 to get all information, it uses a TON of memory. There is no way of knowing how many pages there are
-	function hmyv2_getAllValidatorInformationByBlockNumber($page = -1, $blocknum){
+	function hmyv2_getAllValidatorInformationByBlockNumber(int $pagenum,int $blocknum){
+		if($pagenum == -1){
+			$pageindex = $pagenum;
+		}else{
+			$pageindex = $pagenum - 1;
+		}
 		$method = "hmyv2_getAllValidatorInformationByBlockNumber";
 		$urlparams = [
-			'page' => $page,
+			'pagenum' => $pagenum,
 			'blocknum' => $blocknum
 			];
 		$this->genrequesturl($method, $urlparams);
 		$params = [
-			$page, 
+			$pageindex, 
 			$blocknum
 			];
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
+	}
+	
+	/**
+	* Validation function for hmyv2_getAllValidatorInformationByBlockNumber
+	*
+	* @param string $blocknum Block number
+	*
+	* @return integer good data =1, bad data = 0 
+	*/
+	function val_getAllValidatorInformationByBlockNumber(int $pagenum, int $blocknum){
+		$notvalid = 0;
+		if(is_null($blocknum) OR !$this->val_blocknum($blocknum)){
+			$notvalid = 1; 
+			array_push($this->errors, 'block number value is invalid');
+		}else{
+			$this->goodinputs['blocknum'] = $blocknum;
+		}
+		if(preg_match( '/^[1-9]+[0-9]*$/', $pagenum) OR ($this->phph1_allowbigdata && $pagenum == -1)){
+			$this->goodinputs['pagenum'] = $pagenum;
+		}else{
+			$notvalid = 1; 
+			array_push($this->errors, 'invalid page number');
+		}
+		if($notvalid == 0){
+			$this->validinput = 1;
+			return 1;
+		}else{
+			$this->validinput = 0;
+			return 0;
+		}
 	}
 	
 	/**
@@ -2715,7 +2824,7 @@ class phph1{
 	*
 	* @param string $oneaddr The ONE address of the wallet
 	*
-	* @param number $pageindex Which page of transactions to retrieve
+	* @param number $pagenum Which page of transactions to retrieve
 	*
 	* @param number $pagesize Number of transactions per page
 	*
@@ -2727,13 +2836,18 @@ class phph1{
 	*
 	* @return string List of transaction hashes
 	*/
-	function hmyv2_getStakingTransactionsHistory(string $oneaddr,int $pageindex,int $pagesize, bool $fulltx, string $txtype, string $order){
+	function hmyv2_getStakingTransactionsHistory(string $oneaddr,int $pagenum,int $pagesize, bool $fulltx, string $txtype, string $order){
 		settype($fulltx, 'bool');
+		if($pagenum == -1){
+			$pageindex = $pagenum;
+		}else{
+			$pageindex = $pagenum - 1;
+		}
 		$method = "hmyv2_getStakingTransactionsHistory";
 		$urlparams = array(
 					[
 					'oneaddr' => $oneaddr,
-					'pageindex' => $pageindex-1,
+					'pagenum' => $pagenum,
 					'pagesize' => $pagesize,
 					'fulltx' => $fulltx,
 					'txtype' => $txtype,
@@ -2744,7 +2858,7 @@ class phph1{
 		$params = array(
 					[
 					'address' => $oneaddr,
-					'pageIndex' => $pageindex-1,
+					'pageIndex' => $pageindex,
 					'pageSize' => $pagesize,
 					'fullTx' => $fulltx,
 					'txType' => $txtype,
@@ -2760,7 +2874,7 @@ class phph1{
 	*
 	* @param string $oneaddr The ONE address of the wallet
 	*
-	* @param number $pageindex Which page of transactions to retrieve
+	* @param number $pagenum Which page number of transactions to retrieve
 	*
 	* @param number $pagesize Number of transactions per page
 	*
@@ -2772,7 +2886,7 @@ class phph1{
 	*
 	* @return booleen 1 = good input, 0 = bad input
 	*/
-	function val_getStakingTransactionsHistory($oneaddr,$pageindex,$pagesize,$fulltx,$txtype,$order){
+	function val_getStakingTransactionsHistory($oneaddr,int $pagenum,int $pagesize,$fulltx,$txtype,$order){
 		$notvalid = 0;
 		$txtypes = array('SENT','RECEIVED','ALL');
 		
@@ -2783,16 +2897,17 @@ class phph1{
 			$this->goodinputs['oneaddr'] = $oneaddr;
 		}
 		
-		if(!preg_match( '/^[0-9]+$/', $pageindex) OR $pageindex == 0){
+		if(preg_match( '/^[1-9]+[0-9]*$/', $pagenum) OR ($this->phph1_allowbigdata && $pagenum == -1)){
+			$this->goodinputs['pagenum'] = $pagenum;
+		}else{
 			$notvalid = 1; 
 			array_push($this->errors, 'invalid page number');
-		}else{
-			$this->goodinputs['pagenum'] = $pageindex;
 		}
 		
-		if(!preg_match( '/^[0-9]+$/', $pagesize) && $pagesize <= $this->max_pagesize){
+		if(!preg_match( '/^[1-9]+[0-9]*$/', $pagesize) OR $pagesize > $this->max_pagesize){
 			$notvalid = 1;
 			array_push($this->errors, 'invalid page size');
+			echo "pagesize:".$pagesize;
 		}else{
 			$this->goodinputs['pagesize'] = $pagesize;
 		}
@@ -2893,7 +3008,7 @@ class phph1{
 	*
 	* @param string $oneaddr The ONE address of the wallet
 	*
-	* @param number $page Which page of transactions to retrieve
+	* @param number $pagenum Which page of transactions to retrieve
 	*
 	* @param number $pagesize Number of transactions per page
 	*
@@ -2905,13 +3020,18 @@ class phph1{
 	*
 	* @return string List of transaction hashes
 	*/
-	function hmyv2_getTransactionsHistory($oneaddr,int $page,int $pagesize,bool $fulltx,string $txtype,string $order){
+	function hmyv2_getTransactionsHistory($oneaddr,int $pagenum,int $pagesize,bool $fulltx,string $txtype,string $order){
 		settype($fulltx, 'bool');
+		if($pagenum == -1){
+			$pageindex = $pagenum;
+		}else{
+			$pageindex = $pagenum - 1;
+		}
 		$method = "hmyv2_getTransactionsHistory";
 		$urlparams = array(
 					[
 					'oneaddr' => $oneaddr,
-					'pageindex' => $page-1,
+					'pagenum' => $pagenum,
 					'pagesize' => $pagesize,
 					'fulltx'=> $fulltx,
 					'txtype' => $txtype,
@@ -2922,7 +3042,7 @@ class phph1{
 		$params = array(
 					[
 					'address' => $oneaddr,
-					'pageIndex' => $page-1,
+					'pageIndex' => $pageindex,
 					'pageSize' => $pagesize,
 					'fullTx' => $fulltx,
 					'txType' => $txtype,
@@ -2938,7 +3058,7 @@ class phph1{
 	*
 	* @param string $oneaddr The ONE address of the wallet
 	*
-	* @param number $page Which page of transactions to retrieve
+	* @param number $pagenum Which page of transactions to retrieve
 	*
 	* @param number $pagesize Number of transactions per page
 	*
@@ -2950,7 +3070,7 @@ class phph1{
 	*
 	* @return booleen 1 = good input, 0 = bad input
 	*/
-	function val_getTransactionsHistory($oneaddr,$page,$pagesize,$fulltx,$txtype,$order){
+	function val_getTransactionsHistory($oneaddr,int $pagenum,int $pagesize,$fulltx,$txtype,$order){
 		$notvalid = 0;
 		$txtypes = array('SENT','RECEIVED','ALL');
 		if(!$this->val_oneaddr($oneaddr)){
@@ -2965,13 +3085,13 @@ class phph1{
 		}else{
 			$this->goodinputs['txtype'] = $txtype;
 		}
-		if(!preg_match( '/^[0-9]+$/', $page)){
-			$notvalid = 1; 
-			array_push($this->errors, 'Invalid Page Number');
+		if(preg_match( '/^[1-9]+[0-9]*$/', $pagenum) OR ($this->phph1_allowbigdata && $pagenum == -1)){
+			$this->goodinputs['pagenum'] = $pagenum;
 		}else{
-			$this->goodinputs['page'] = $page;
+			$notvalid = 1; 
+			array_push($this->errors, 'invalid page number');
 		}
-		if(!preg_match( '/^[0-9]+$/', $pagesize)){
+		if(!preg_match( '/^[0-9]+$/', $pagesize) OR $pagesize > $this->max_pagesize){
 			$notvalid = 1; 
 			array_push($this->errors, 'Invalid Page Size');
 		}else{

@@ -4,10 +4,7 @@
 */
 
 if($phph1->chk_dorequest()){
-	
-	/** Start debug info display area */
-	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### DEBUGGING INFORMATION ###</p>"; }
-	
+
 	/** Prepare blocknum for validation */
 	if(isset($_GET['blocknum'])&& !empty($_GET['blocknum'])){$blocknum = $_GET['blocknum'];}else{$blocknum = null;}
 	
@@ -15,9 +12,6 @@ if($phph1->chk_dorequest()){
 	if($phph1->val_getBlockTransactionCountByNumber($blocknum)){
 		$hmyv2_data = $phph1->hmyv2_getBlockTransactionCountByNumber($blocknum);
 	}
-	
-	/** End debug info display area	*/
-	if($phph1->get_debugstatus()){ echo "<p class='hmyv2_debug_notify'>### END DEBUGGING INFORMATION ###</p>"; }
 
 	require_once('inc/errors.php');
 }
