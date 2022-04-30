@@ -62,14 +62,96 @@ You can use the official Harmony Nodes(already set up in the package) or if you 
 
 # USAGE
 
-All functions within the class use the same naming convention (only difference is PHPH1 does not use capitol letters in the methods and inputs) and input as the Harmony Node Api which you can browse through here: https://api.hmny.io/
+- ### Method Menu
+   - At the right of the top floating menu is the methods dropdown menu. You can also search the methods in the menu.
+   - ![methods_menu_github](https://user-images.githubusercontent.com/92170977/166109549-1dd79399-8f43-40c1-adf5-1d711243b8ef.png)
 
-Download everything, extract the package to your web directory of choice where PHP (with PHP_CURL) is enabled.
+- ### Method Pages
+   - The params/returns section is a clickable dropdown that shows what inputs the method uses as well as explains the method output data that can be expected.
+   - ![params_closed_github](https://user-images.githubusercontent.com/92170977/166109613-f7d1e19f-93b1-4002-ae5e-c5092fbddc66.png)
 
-check out inc/config.php and adjust if necessary, there are comments explaining what everything does.
+- ### Form Section
+   - available when a method requires client input.
+   - The params/returns dropdown will tell you what each form item requires for input.
+   - ![method_form_github](https://user-images.githubusercontent.com/92170977/166109887-d71f6356-d40f-47d6-864a-11e9d9e83b27.png)
 
-Browse to index.php
+- ### Output Section
+   - Contains three sections of its own
+      - **Harmony Node JSON RPC Request**
+         - Displays the actual JSON formatted request sent to the Harmony Node API Server
+      - **PHPH1 request URL for this method**
+         - Displays a link to the phph1_call.php file that would be used by an external scripting language to retrieve results. The URL can be used as a template for making calls for that specific method.
+      - **JSON return data**
+         - Displays the JSON data returned from the test request. Use this to ensure the method returns the data you expect to use in your project.
 
-Have fun!
+- ### Using the PHPH1 Call (phph1_call.php)
+   - There is an example javascript file in the project root directory named jstest.html
+
+   - phph1_call.php is designed to accept a formatted GET request by any language that can read JSON formatted data returns. Refer to the Javascript example to see a VERY basic example how remote calls would work.
+
+# INSTALLING
+
+### 1. Download the package and extract it to a directory
+- You can get the package at the Github project releases page.
+- Extract the package and upload all files to your web host. The package contents can sit in your document root or any sub directory.
+- You will have to handle the archive a little differently depending on whether you downloaded the .zip or the .tar.gz file.
+- The .zip file, if extracted with no directory options will extract all the files to the current directory which can be messy. If using the zip file on a Linux/Unix machine, be sure to extract it into a directory where no other files exist or use the unzip -d option.
+- The tar.gz package will extract within a directory that matches the release name.
+- **It is highly suggested whether using the zip or tar.gz, you extract the package outside of your project and then copy it to where you want it. This will ensure nothing gets accidentally overwritten.**
+
+### 2. Check and adjust the settings to your liking in inc/config.php
+
+- #### $phph1_debug
+   Variable used to enable (set to 1) or disable (set to 0) API Explorer PHP debugging. Enabling this exposes many things to the client, I highly suggest not using it in a production environment unless it is a last resort. It also puts big ugly warnng header at the top of the pages so you are aware debugging is enabled.
+
+- #### $phph1_blockedaddr
+   This array is used to block IP addresses if necessary. Just add an IP address to the array like the example and the code will use the $_SERVER['REMOTE_ADDR'] to see if users are blocked. If the $phph1_allowedaddr array is not empty, this array gets ignored
+
+- #### $phph1_allowedaddr
+   This array is used to only allow specific IP Addresses. Just add an IP address to the array like the example and the code will use the $_SERVER['REMOTE_ADDR'] to make sure the request is allowed by the client. If this array has any values in it, the $phph1_blockedaddr is ingored due to redundancy. REMINDER! Usig this blocks all hosts except the hosts listed in this array.
+
+- #### $phph1_allowbigdata
+   Some requests have a page index (page number) option. Included insome of those options is the ability to use -1 as the index page. When using -1 the data set returned could possibly be huge causing a massive load on the server. By default using the -1 option is disabled to prevent this from happening. You can enable -1 page requests here by setting $phph1_allowbigdata to 1
+
+- #### $phph1_apiaddresses
+   This is a multi-dimensional array that holds the node and shard information. By default this array contains the official Harmony nodes but you can comment them out and add your own personal nodes as shown where the array is set. if you do add your own node address, be sure to also set $default_network and $default_shard as well
+
+- #### $default_network
+   Sets the default network (also the network used by the rpc script). It MUST use a network listed in the $phph1_apiaddresses array. For example by default it is set to use "mainnet".
+
+- #### $default_shard
+   Sets the default shard (also the shard used by the rpc script). It MUST use a shard listed in the $phph1_apiaddresses array. For example by default it is set to use "0".
+
+- #### $default_pagesize
+   The default page size for methods that return multiple pages of data
+
+- #### $max_pagesize
+   This is the maximum number of items per page when a method returns multiple pages of data. This prevents a client from reuesting large datasets in a single call which will put a heavy load on the web server.
+
+- #### $phph1_methods
+   An array of the available methods. This is used to prevent a client from requesting a method that doesn'teist. You can use a PHP comment out individual lines to disable a method.
+
+- #### $sorted_Methods
+   This is just the $phph1_methods array that has been sorted alphabetically so the front end dropdown menu makes some sense.
+
+### 3. Browse to where you uploaded PHPH1 and go!
+
+# Limiting Client Access
+
+Although this is an effective way to manage access to your PHPH1, it is suggested to use it as a second layer of defense with the first layer being limiting access to the directory containing PHPH1 using .htaccess (Apache). There is a good tutorial over at htaccessbook.com (No Affiliation, just a place I found)
+
+### There are two different approaches available
+- You can allow everyone and block specific IP addresses using the $phph1_blockedaddr array in inc/config.php
+- You can block everyone and only allow specific IP addresses using the $phph1_allowedaddr array in inc/config.php.
+
+### Option 1: Allow everyone and block specific IP addresses
+- This option is automatically enabled once the first IP address is added to the $phph1_blockedaddr array
+- Leaving the $phph1_blockedaddr array empty disables this option
+- **NOTE:** This option is disabled if the $phph1_allowedaddr array contains any entries.
+
+### Option 2: Block everyone and only allow specific IP addresses
+- This option is automatically enabled once the first IP address is added to the $phph1_allowedaddr array
+- Leaving the $phph1_allowedaddr array empty disables this option
+- **NOTE:** Adding and IP address to this option disables the $phph1_blockedaddr array if it contains any entries. there is no reason o block if everyone but the allowed IP address[es] is blocked by default
 
 
