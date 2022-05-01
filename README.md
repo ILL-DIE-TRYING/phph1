@@ -154,5 +154,3 @@ Although this is an effective way to manage access to your PHPH1, it is suggeste
 - Leaving the $phph1_allowedaddr array empty disables this option
 - **NOTE:** Adding and IP address to this option disables the $phph1_blockedaddr array if it contains any entries. there is no reason o block if everyone but the allowed IP address[es] is blocked by default
 
-
-Testing a webhook
