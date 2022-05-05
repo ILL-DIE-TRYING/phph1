@@ -176,8 +176,9 @@ $phph1_methods = array(
 	'hmyv2_getTransactionByBlockHashAndIndex',
 	'hmyv2_getDelegationsByDelegatorByBlockNumber',
 	'hmyv2_estimateGas',
-	//'hmyv2_sendRawTransaction',  // currently disabled/incomplete, waiting for information from Harmony
-	//'hmyv2_sendRawStakingTransaction',  // currently disabled/incomplete, waiting for information from Harmony
+	'hmyv2_epochLastBlock',
+	'hmyv2_sendRawTransaction',  // currently untested, waiting for information from Harmony
+	'hmyv2_sendRawStakingTransaction',  // currently untested, waiting for information from Harmony
 	'hmyv2_getAllValidatorInformationByBlockNumber' // The last item in this array should not end with a comma
 );
 

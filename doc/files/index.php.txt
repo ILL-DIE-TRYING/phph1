@@ -22,6 +22,7 @@ require_once('inc/config.php');
 <meta name="description" content="PHPH1 is a PHP class that bridges the Harmony ONE Node API to PHP. Through this, many scripting languages will be able to query the PHP class. The class is designed to validate, insure the request data is in the right format, and return information saving web developers from having to write the code themselves.">
 <meta name="author" content="Jason L Kolpin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="/img/PHPH1_FAVICON_2022-v2-64.png">
 <link rel="stylesheet" href="css/phph1.css">
 <link rel="stylesheet" href="css/phph1_mobile.css">
 <!--

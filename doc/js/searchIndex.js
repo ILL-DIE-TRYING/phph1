@@ -13,7 +13,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\phph1\u003A\u003Agetapiaddr\u0028\u0029",
             "name": "getapiaddr",
-            "summary": "getapiaddr\u0028\u0029\u0020is\u0020used\u0020to\u0020set\u0020the\u0020Node\u0020API\u0020host\u0020address\u0020during\u0020__construct.\u0020It\u0020gets\u0020the\u0020address\u0020using\u0020the\u0020netwrok\u0020name\u0020and\u0020shard\u0020from\u0020\u0024phph1_apiaddresses\u0020which\u0020is\u0020also\u0020set\u0020during\u0020__construct\u0020using\u0020settings\u0020from\u0020inc\/config.php",
+            "summary": "getapiaddr\u0028\u0029\u0020is\u0020used\u0020to\u0020set\u0020the\u0020Node\u0020API\u0020host\u0020address\u0020during\u0020__construct.\u0020It\u0020gets\u0020the\u0020address\u0020using\u0020the\u0020network\u0020name\u0020and\u0020shard\u0020from\u0020\u0024phph1_apiaddresses\u0020which\u0020is\u0020also\u0020set\u0020during\u0020__construct\u0020using\u0020settings\u0020from\u0020inc\/config.php",
             "url": "classes/phph1.html#method_getapiaddr"
         },                {
             "fqsen": "\\phph1\u003A\u003Aset_rpc\u0028\u0029",
@@ -25,6 +25,11 @@ Search.appendIndex(
             "name": "set_booterrors",
             "summary": "set_booterrors\u0028\u0029\u0020is\u0020used\u0020to\u0020import\u0020any\u0020pre\u0020class\u0020instantiation\u0020errors\u0020to\u0020the\u0020class\u0020errors\u0020array",
             "url": "classes/phph1.html#method_set_booterrors"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aphph1_reset\u0028\u0029",
+            "name": "phph1_reset",
+            "summary": "phph1_reset\u0028\u0029\u0020resets\u0020all\u0020dynamic\u0020class\u0020information\u0020after\u0020a\u0020request\u0020has\u0020been\u0020finished.",
+            "url": "classes/phph1.html#method_phph1_reset"
         },                {
             "fqsen": "\\phph1\u003A\u003Aset_validinput\u0028\u0029",
             "name": "set_validinput",
@@ -113,7 +118,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\phph1\u003A\u003Adocurlrequest\u0028\u0029",
             "name": "docurlrequest",
-            "summary": "docurlrequest\u0028\u0029\u0020takes\u0020the\u0020generated\u0020json\u0020request\u0020for\u0020the\u0020current\u0020method\u0020from\u0020genjsonrequest\u0028\u0029\u0020and\nmakes\u0020the\u0020call\u0020to\u0020the\u0020API\u0020RPC\u0020Node.\u0020If\u0020rpc_call\u0020is\u0020set\u0020to\u00200,\u0020it\u0020generates\u0020a\u0020PHP\u0020array\u0020for\u0020output.",
+            "summary": "docurlrequest\u0028\u0029\u0020takes\u0020the\u0020generated\u0020json\u0020request\u0020for\u0020the\u0020current\u0020method\u0020from\u0020genjsonrequest\u0028\u0029\u0020and\nmakes\u0020the\u0020call\u0020to\u0020the\u0020API\u0020RPC\u0020Node.\u0020If\u0020rpc_call\u0020is\u0020set\u0020to\u00200,\u0020it\u0020generates\u0020a\u0020data\u0020object\u0020for\u0020output.",
             "url": "classes/phph1.html#method_docurlrequest"
         },                {
             "fqsen": "\\phph1\u003A\u003Agenjsonrequest\u0028\u0029",
@@ -328,8 +333,18 @@ Search.appendIndex(
         },                {
             "fqsen": "\\phph1\u003A\u003Aval_getStakingTransactionByHash\u0028\u0029",
             "name": "val_getStakingTransactionByHash",
-            "summary": "",
+            "summary": "Validate\u0020input\u0020for\u0020hmyv2_getStakingTransactionByHash",
             "url": "classes/phph1.html#method_val_getStakingTransactionByHash"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Ahmyv2_sendRawStakingTransaction\u0028\u0029",
+            "name": "hmyv2_sendRawStakingTransaction",
+            "summary": "Send\u0020a\u0020raw\u0020staking\u0020transaction\u0020using\u0020the\u0020hex\u0020representation\u0020of\u0020a\u0020signed\u0020staking\u0020transaction",
+            "url": "classes/phph1.html#method_hmyv2_sendRawStakingTransaction"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aval_sendRawStakingTransaction\u0028\u0029",
+            "name": "val_sendRawStakingTransaction",
+            "summary": "Validate\u0020input\u0020for\u0020hmyv2_sendRawStakingTransaction",
+            "url": "classes/phph1.html#method_val_sendRawStakingTransaction"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getCurrentTransactionErrorSink\u0028\u0029",
             "name": "hmyv2_getCurrentTransactionErrorSink",
@@ -376,6 +391,16 @@ Search.appendIndex(
             "summary": "Validate\u0020input\u0020for\u0020hmyv2_getTransactionReceipt",
             "url": "classes/phph1.html#method_val_getTransactionReceipt"
         },                {
+            "fqsen": "\\phph1\u003A\u003Ahmyv2_sendRawTransaction\u0028\u0029",
+            "name": "hmyv2_sendRawTransaction",
+            "summary": "Send\u0020a\u0020raw\u0020transaction\u0020using\u0020the\u0020hex\u0020representation\u0020of\u0020a\u0020signed\u0020transaction",
+            "url": "classes/phph1.html#method_hmyv2_sendRawTransaction"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aval_sendRawTransaction\u0028\u0029",
+            "name": "val_sendRawTransaction",
+            "summary": "Validate\u0020input\u0020for\u0020hmyv2_sendRawTransaction",
+            "url": "classes/phph1.html#method_val_sendRawTransaction"
+        },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_blockNumber\u0028\u0029",
             "name": "hmyv2_blockNumber",
             "summary": "Get\u0020the\u0020current\u0020block\u0020number",
@@ -390,6 +415,16 @@ Search.appendIndex(
             "name": "hmyv2_getEpoch",
             "summary": "Get\u0020the\u0020current\u0020epoch",
             "url": "classes/phph1.html#method_hmyv2_getEpoch"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Ahmyv2_epochLastBlock\u0028\u0029",
+            "name": "hmyv2_epochLastBlock",
+            "summary": "Get\u0020the\u0020last\u0020block\u0020for\u0020a\u0020specified\u0020epoch",
+            "url": "classes/phph1.html#method_hmyv2_epochLastBlock"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aval_epochLastBlock\u0028\u0029",
+            "name": "val_epochLastBlock",
+            "summary": "Validate\u0020input\u0020for\u0020hmyv2_epochLastBlock",
+            "url": "classes/phph1.html#method_val_epochLastBlock"
         },                {
             "fqsen": "\\phph1\u003A\u003Ahmyv2_getLastCrossLinks\u0028\u0029",
             "name": "hmyv2_getLastCrossLinks",
@@ -631,11 +666,6 @@ Search.appendIndex(
             "summary": "Validates\u0020an\u0020ETH\u0020wallet\u0020address",
             "url": "classes/phph1.html#method_val_ethaddr"
         },                {
-            "fqsen": "\\phph1\u003A\u003Aval_blockaddr\u0028\u0029",
-            "name": "val_blockaddr",
-            "summary": "Validates\u0020a\u0020block\u0020address",
-            "url": "classes/phph1.html#method_val_blockaddr"
-        },                {
             "fqsen": "\\phph1\u003A\u003Aval_blocknum\u0028\u0029",
             "name": "val_blocknum",
             "summary": "Validates\u0020a\u0020block\u0020number",
@@ -670,6 +700,11 @@ Search.appendIndex(
             "name": "val_stlocation",
             "summary": "Validates\u0020storage\u0020location",
             "url": "classes/phph1.html#method_val_stlocation"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aval_txindex\u0028\u0029",
+            "name": "val_txindex",
+            "summary": "Validates\u0020transaction\u0020index",
+            "url": "classes/phph1.html#method_val_txindex"
         },                {
             "fqsen": "\\phph1\u003A\u003A\u0024dorequest",
             "name": "dorequest",

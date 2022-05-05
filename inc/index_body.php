@@ -7,17 +7,35 @@
 require_once('inc/errors.php');
 
 ?>
+<div class="fp_row">
+	<div class="fp_column">
+	<div class="fp_content_header"><h3>Currently Available Methods</h3></div>
+		<div class="fp_content">
+		<p>Currently Known Harmony Node API Method Count: 64</p>
+		<?php
+		$method_Count = count($sorted_Methods);
+		echo "<p>PHPH1 Available Method Count: ".$method_Count."</p>";
+		foreach($sorted_Methods as $aMethod){
+			echo "<p><a href='/index.php?method=".$aMethod."' >".$aMethod."</a></p>";
+		}
+		unset($aMethod);
+		?>
+		</div>
+	</div>
+</div>
 
 <div class="fp_row">
 	<div class="fp_column">
 		<div class="fp_content_header"><h3>Welcome To PHPH1</h3></div>
 		<div class="fp_content">
 		<ul>
+			<li class="nobullet" style="text-align:center;"><img src="img/PHPH1_LOGO_2022-2.svg" style="width:90%;max-width:400px;" alt="PHPH1 elephant logo" /></li>
 			<li><h4>What is PHPH1?</h4></li>
 			<li class="nobullet">
 				<ul>
-					<li><p>A learning tool for developers on the Harmony V2 Node API. It allows you to test every API method using real world input and see how a direct JSON request is formatted. It also includes documentation for each method. Just browse to the method you want to learn about using the methods menu at the top right of the page.</p></li>
-					<li><p>A PHP wrapper class that allows other languages to make Harmony V2 Node API calls without worrying about input validation or properly formatting the JSON request.</p></li>
+					<li><p>A learning tool for developers on the Harmony v2 Node API. It allows you to test every API method using real world input and see how a direct JSON request is formatted as well as how the JSON return data is formatted for each request. It also includes built in documentation for each method. Just browse to the method you want to learn about using the methods menu at the top right of the page.</p></li>
+					<li><p>A PHP wrapper class for the Harmony v2 Node API that allows other languages to make Harmony V2 Node API calls without worrying about input validation or properly formatting the JSON request.</p></li>
+					<li><p>A PHP wrapper class for the Harmony v2 Node API that can be used in your own PHP + whatever driven project.</p></li>
 				</ul>
 			</li>
 			
@@ -89,11 +107,31 @@ require_once('inc/errors.php');
 				</ul>
 			</li>
 			
+			<li><h4>Setting Network and Shard</h4></li>
+			<li class="nobullet">
+				<ul>
+					<li>
+					<p>The hamburger menu has a "Settings" link to set the network and shard the client wants to use. The available networks and shards can be set in inc/config.php</p>
+					<p><img src="img/settings_menu.png" style="width:80%;max-width:400px;" /></p>
+					</li>
+					<li>
+					<p>The settings form has a network and shard dropdown. Select the network first and the available shards for that network will appear in the shard dropdown.</p>
+					<p><img src="img/settings_form.png" style="width:80%;max-width:400px;" /></p>
+					</li>
+					<li>
+					<p>You can see what network and shard is being used on the right side of the menu bar.</p>
+					<p><img src="img/settings_status.png" style="width:80%;max-width:400px;" /></p>
+					</li>
+
+				</ul>
+			</li>
+			
 			<li><h4>Using the PHPH1 Call (phph1_call.php)</h4></li>
 			<li class="nobullet">
 				<ul>
 					<li><p>There is an example javascript file in the project root directory named <a href="./jstest.html" target="_blank">jstest.html</a></p></li>
 					<li><p>phph1_call.php is designed to accept a formatted GET request by any language that can read JSON formatted data returns. Refer to the Javascript example to see a VERY basic example how remote calls would work.</p></li>
+					<li><p>The output for each method includes the phph1_call.php formatted URL for that method. You can use that to build your javascript query code.</p></li>
 				</ul>
 			</li>
 		</ul>
@@ -147,22 +185,59 @@ require_once('inc/errors.php');
 				</ul>
 			</li>
 			
-			<li value="3"><h4>Browse to where you uploaded PHPH1 and go!</h4></li>
+			<li><h4>Browse to where you uploaded PHPH1 and go!</h4></li>
 			
 		</ol>
 		</div>
 	</div>
 </div>
 
-<!--
 <div class="fp_row">
 	<div class="fp_column">
-		<div class="fp_content_header"><h3>Minimal Package</h3></div>
+		<div class="fp_content_header"><h3>Limiting Client Requests</h3></div>
+		<div class="fp_content">
+			<ul>
+			
+				<li><p>Although this is an effective way to manage access to your PHPH1, it is suggested to use it as a second layer of defense with the first layer being limiting access to the directory containing PHPH1 using .htaccess (Apache). There is a good tutorial over at <a href="https://htaccessbook.com/access-control-apache-2-4/" target="_blank">htaccessbook.com</a> (No Affiliation, just a place I found)</p></li>
+				
+				<li><h4>There are two different approaches available</h4></li>
+				<li class="nobullet">
+					<ul>
+						<li><p>You can allow everyone and block specific IP addresses using the $phph1_blockedaddr array in inc/config.php</p></li>
+						<li><p>You can block everyone and only allow specific IP addresses using the $phph1_allowedaddr array in inc/config.php.</p></li>
+					</ul>
+				</li>
+				
+				<li value="2"><h4>Option 1: Allow everyone and block specific IP addresses</h4></li>
+				<li class="nobullet">
+					<ul>
+						<li><p>This option is automatically enabled once the first IP address is added to the $phph1_blockedaddr array</p></li>
+						<li><p>Leaving the $phph1_blockedaddr array empty disables this option</p></li>
+						<li><p><strong>NOTE:</strong> This option is disabled if the $phph1_allowedaddr array contains any entries.</p></li>
+					</ul>
+				</li>
+				
+				<li value="2"><h4>Option 2: Block everyone and only allow specific IP addresses</h4></li>
+				<li class="nobullet">
+					<ul>
+						<li><p>This option is automatically enabled once the first IP address is added to the $phph1_allowedaddr array</p></li>
+						<li><p>Leaving the $phph1_allowedaddr array empty disables this option</p></li>
+						<li><p><strong>NOTE:</strong> Adding and IP address to this option disables the $phph1_blockedaddr array if it contains any entries. there is no reason o block if everyone but the allowed IP address[es] is blocked by default</p></li>
+					</ul>
+				</li>
+					
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="fp_row">
+	<div class="fp_column">
+		<div class="fp_content_header"><h3>Class Only</h3></div>
 		<div class="fp_content">
 		</div>
 	</div>
 </div>
--->
 
 
 

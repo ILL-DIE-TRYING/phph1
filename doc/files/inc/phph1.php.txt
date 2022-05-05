@@ -20,15 +20,14 @@
 class phph1{
 	
 	// Try to keep this stuff in alphabetical order so it is easier to find
-	// Most of these top variables are used to track required form fields as they pass through the validation and method functions
 	
-	/** @var integer $dorequest dorequest is a placeholder so the whole class knows the request has passed the first validation step of sending $_GET['request'] in the method request url. This should help filter out some of the dumber bots. It is set to 0 by default and cannot be null */
+	/** @var integer $dorequest dorequest is a placeholder so the whole class knows the request has passed the first validation step of sending $_GET['dorequest'] in the method request url. This should help filter out some of the dumber bots. It is set to 0 by default and cannot be null */
 	private int $dorequest = 0;
 	
 	/** @var string $lastjson lastjson is set while generating a method. It is stored to use later when the explorer displays its method results */
 	private string $lastjson;
 	
-	// FIXME this variable should probably be an internal only variable as well but I need to check how it is used elsewhere. May need to write up a small function to set if valid to keep it private?
+	/** @var integer $validinput is set while validating user input and is used to determine whether the method being used should be run or not. */
 	private int $validinput = 0;	
 
 	/** @var string $apiaddr The API address being used during this session. It is set during __construct by applying the $network and $shard inputs to the function getapiaddr(). It is set during __construct */
@@ -37,36 +36,34 @@ class phph1{
 	/** @var integer $default_pagesize Sets the default page size for methods that output multiple pages of data. It is set during __construct */
 	private int $default_pagesize;
 	
-	/** @var array $goodinputs An array of validated input generated when validating method inputs. This is later used populate any field forms after the request, if all fields are good, all fields get populated. */
+	/** @var array $goodinputs An array of validated input generated when validating method inputs. This is later used to populate any field forms after the request, if all fields are good, all fields get populated. */
 	private array $goodinputs = array();
 	
-	/** @var array $errors An array of errors generated when validating method inputs. This is later used to output any errors to the explorer method output page. */
+	/** @var array $errors An array of errors generated when creating the class handle and validating method inputs. This is later used to output any errors to the explorer method output page. */
 	private array $errors = array();
 	
 	/** @var integer $max_pagesize Sets the maximum page size a multi-paged method output can output. This is mostly used to prevent a call from a user asking for a huge page size which could slow things down due to memory and network usage */
-	// FIXME This can go away now that the output has ben optimized
 	private int $max_pagesize;
 	
 	/** @var string $network This sets the network currently being used for the API calls during __construct and is one from the $phph1_apiaddresses array set in inc/config.php. example "mainnet" */
 	private string $network;
 	
-	/** @var booleen $phph1_debug Detrmines whether debug output is displayed in the explorer when a method is run. It is set during __construct */
+	/** @var booleen $phph1_debug Determines whether debug output is displayed in the explorer when a method is run. It is set during __construct */
 	private int $phph1_debug;
 	
-	/** @var booleen $rpc_call Determines whether whether the current method being called is an rpc call. If set to 1, the explorer knows to not output anything but the raw json output from the API Node. inc/boot.php has the check and set for this varibale in it */
+	/** @var booleen $rpc_call Determines whether whether the current method being called is an rpc call. If set to 1, the explorer knows to not output anything but the raw json output from the API Node. inc/boot.php has the check and set for this varibale in it. The variable is usually set at the top of a page. You can see it inaction in phph1_call.php */
 	private int $rpc_call = 0;
 	
-	//FIXME Thiscould possibly be a private variable
 	/** @var string $rpc_url When a method is called and run, it generates the RPC URL and sets it here for output later on */
 	private string $rpc_url;
 	
 	//* @var integer $shard This is the index number of the shard from the $network array set during __construct. The shard MUST be defined in the <a href='https://one.saddlerockit.com/doc/files/inc-config.html'>inc/config.php</a> $phph1_apiaddresses array. example: If 'mainnet' were selected for $network and we wanted to use shard 0, the value for this would be 0.
 	private int $shard;
 	
-	/** @var array $phph1_apiaddresses This is set during _construct when the class is invoked */
+	/** @var array $phph1_apiaddresses This is set during _construct when the class is invoked and is defined in inc/config.php. This is a multi-dimensional array that holds the node and shard information. */
 	private array $phph1_apiaddresses;
 	
-	/** @var array $phph1_methods This is set during __construct when the class is invoked and holds all available networks and shards in an array */
+	/** @var array $phph1_methods This is set during __construct when the class is invoked and holds all available networks and shards in an array. It is defined in inc/config.php and set when creating the class handle in inc/boot.php */
 	private array $phph1_methods;
 	
 	/** @var string $phph1_method The current method being used. It is set while validating input in inc/boot.php */
@@ -78,7 +75,7 @@ class phph1{
 	/** @var array $phph1_allowedaddr An array of allowed IP addresses set in inc/config.php This is set during __construct when the class is invoked. When this is set, only the hpst addresses in the array are allowed to retrieve data. */
 	private array $phph1_allowedaddr;
 	
-	/** @var phph1_allowbigdata Some requests have a page index (page number) option included in some of those options is the ability to use -1 as the index page. When using -1 the data set returned could possibly be huge causing a massive load on the server. By default using the -1 option is disabled to prevent this from happening. You can enable -1 page requests here by setting $phph1_allowbigdata to 1 in inc/config.php */
+	/** @var phph1_allowbigdata Some requests have a page index (page number) option included in some of those options is the ability to use -1 as the index page. When using -1 the data set returned could possibly be huge causing a massive load on the server. By default using the -1 option is disabled to prevent this from happening. You can enable -1 page requests here by setting $phph1_allowbigdata to 1 in inc/config.php. UPDATE 2022-5-3: When last tested, none of the methods that are supposed to be able to use -1 according to the Harmony doc are not working and return an error. Since discovering this, I have staticly set this to 0 and and changing it in inc/config.php will not change anything. */
 	private int $phph1_allowbigdata;
 									
 	/**
@@ -98,6 +95,12 @@ class phph1{
 	*
 	* @param integer $shard This is the index number of the shard from the $network array. The shard MUST be defined in the <a href='https://one.saddlerockit.com/doc/files/inc-config.html'>inc/config.php</a> $phph1_apiaddresses array. example: If 'mainnet' were selected for $network above and we wanted to use chard 0, the value for this would be 0.
 	*
+	* @param array $phph1_blockedaddr This is a one per line array of IP addresses that should not be allowed to run methods. The array is set in <a href='https://one.saddlerockit.com/doc/files/inc-config.html'>inc/config.php</a> and if left empty will block nobody. This array is ignored if the $phph1_allowedaddr array is not empty.
+	*
+	* @param array $phph1_allowedaddr This is a one per line array of IP addresses that are the only addresses allowed to run methods. The array is set in <a href='https://one.saddlerockit.com/doc/files/inc-config.html'>inc/config.php</a> and if left empty will not be used. If this array is not empty, $phph1_blockedaddr will be ignored (due to redundancy).
+	*
+	* @param integer $phph1_allowbigdata Some requests have a page index (page number) option included in some of those options is the ability to use -1 as the index page. When using -1 the data set returned could possibly be huge causing a massive load on the server. By default using the -1 option is disabled to prevent this from happening. You can enable -1 page requests here by setting $phph1_allowbigdata to 1 in inc/config.php. UPDATE 2022-5-3: When last tested, none of the methods that are supposed to be able to use -1 according to the Harmony doc are not working and return an error. Since discovering this, I have staticly set this to 0 and and changing it in inc/config.php will not change anything.
+	*
 	* @return void
 	*
 	*/
@@ -112,11 +115,13 @@ class phph1{
 		$this->shard = $shard;
 		$this->phph1_blockedaddr = $phph1_blockedaddr;
 		$this->phph1_allowedaddr = $phph1_allowedaddr;
-		$this->phph1_allowbigdata = $phph1_allowbigdata;
+		// Currently disabled because the official nodes currently not allowing the -1 option
+		// $this->phph1_allowbigdata = $phph1_allowbigdata;
+		$this->phph1_allowbigdata = 0;		
 	}
 	
 	/**
-	* getapiaddr() is used to set the Node API host address during __construct. It gets the address using the netwrok name and shard from $phph1_apiaddresses which is also set during __construct using settings from inc/config.php
+	* getapiaddr() is used to set the Node API host address during __construct. It gets the address using the network name and shard from $phph1_apiaddresses which is also set during __construct using settings from inc/config.php
 	*
 	* @param string $network The network name from the $phph1_apiaddresses array, default is mainnet
 	* @param number $shard The network shard for the network we will be using, default is shard 0
@@ -130,13 +135,13 @@ class phph1{
 	/**
 	* setrpc() is used to set the rpc_call variable that determines whether we are making a remote rpc call or using the explorer interface
 	*
-	* @param string $rpccall Accepts a value of 1(yes this is an rpc call) or 0 (data will be used in the explorer interface)
+	* @param integer $rpc_call Accepts a value of 1(yes this is an rpc call) or 0 (data will be used in the explorer interface)
 	*
 	* @return booleen 1 = success, 0 = failure (in this case we should only have success)
 	*/
-	function set_rpc(int $rpccall = 0){
-		if($rpccall == 0 OR $rpccall == 1){
-			$this->rpc_call = $rpccall;
+	function set_rpc(int $rpc_call = 0){
+		if($rpc_call == 0 OR $rpc_call == 1){
+			$this->rpc_call = $rpc_call;
 		}else{
 			$this->rpc_call = 0;
 		}
@@ -160,12 +165,28 @@ class phph1{
 	}
 	
 	/**
+	* phph1_reset() resets all dynamic class information after a request has been finished.
+	* This is intended to be used for custom built applications using the class
+	* so it can make multiple requests using a single class handle for a single page load
+	*
+	* @return booleen 1 = success
+	*/
+	function phph1_reset(){
+		$this->lastjson = null;
+		$this->validinput = 0;
+		$this->goodinputs = array();
+		$this->errors = array();
+		$this->phph1_method = null;
+		return 1;
+	}
+	
+	/**
 	* set_validinput() is used to set the validinput bit 1 (valid) or 0(not)
 	* This is set after validating the input data for methods so the class knows if it is okay to make the RPC call
 	*
-	* @param array $boot_errors An array or boot time errors created in inc/boot.php
+	* @param integer $valid 1 = we have validated input, 0 = we an an invalid userinput in the request
 	*
-	* @return booleen 1 = success, 0 = failure (in this case we should only have success)
+	* @return booleen 1 = all inputs are validated and valid, 0 = there was an invalid input for the requested method
 	*/
 	function set_validinput($valid){
 		if($valid == 1 OR $valid == 0){
@@ -196,11 +217,7 @@ class phph1{
 	* @return string The current network shard the class is using (example: 0)
 	*/
 	function get_sessionshard(){
-		if(!empty($this->shard)){
-			return $this->shard;
-		}else{
-			return 0;
-		}
+		return $this->shard;
 	}
 	
 	/**
@@ -431,12 +448,12 @@ class phph1{
 	
 	/**
 	* docurlrequest() takes the generated json request for the current method from genjsonrequest() and
-	* makes the call to the API RPC Node. If rpc_call is set to 0, it generates a PHP array for output.
+	* makes the call to the API RPC Node. If rpc_call is set to 0, it generates a data object for output.
 	* If rpc_call is set to 1, it returns the raw json output from API RPC Node.
 	*
 	* @param string $thisjson The JSON API request generated by genjsonrequest()
 	*
-	* @return array A PHP array of the returned data converted using PHP's json_decode()
+	* @return object An object containing the output data
 	*/
 	function docurlrequest(string $thisjson){
 		
@@ -457,7 +474,6 @@ class phph1{
 				return 0;
 			}
 		}else{
-			//$output = json_decode($data,true);
 			$output = $data;
 			if(!empty($output)){
 				return $output;
@@ -542,9 +558,6 @@ class phph1{
 		return 1;
 	}
 	
-	
-	
-	
 ######################
 ### SMART CONTRACT ###
 ######################
@@ -554,7 +567,7 @@ class phph1{
 	*
 	* See <a href='/index.php?method=hmyv2_call'>Explorer method page</a> or <a href='https://api.hmny.io/#d34b1f82-9b29-4b68-bac7-52fa0a8884b1'>Harmony API Documentation</a> for output details.
 	*
-	* @param string $to The ETH address the transaction was sent to
+	* @param string $scaddress The ETH address the transaction was sent to
 	* @param string $from The ETH address the transaction was sent from (optional)
 	* @param string $gas Gas to execute the smart contract call (optional)
 	* @param string $gasprice Gas price to execute smart contract call (optional)
@@ -596,7 +609,7 @@ class phph1{
 	/**
 	* val_call() Validates user input for hmyv2_call()
 	*
-	* @param string $to The ETH address the transaction was sent to
+	* @param string $scaddress The ETH address the transaction was sent to
 	* @param string $from The ETH address the transaction was sent from (optional)
 	* @param string $gas Gas to execute the smart contract call (optional)
 	* @param string $gasprice Gas price to execute smart contract call (optional)
@@ -667,7 +680,7 @@ class phph1{
 	*
 	* See <a href='/index.php?method=hmyv2_estimateGas'>Explorer method page</a> or <a href='https://api.hmny.io/#b9bbfe71-8127-4dda-b26c-ff95c4c22abd'>Harmony API Documentation</a> for output details.
 	*
-	* @param string $to The ETH wallet address the transaction would be sent to (required)
+	* @param string $toaddr The ETH wallet address the transaction would be sent to (required)
 	* @param string $from The ETH wallet address the transaction would be sent from (optional)
 	* @param string $gas Gas to execute the transaction (optional)
 	* @param string $gasprice Gas price to execute the transaction (optional)
@@ -706,7 +719,7 @@ class phph1{
 	/**
 	* val_estimateGas() Validates the user input for hmyv2_estimateGas()
 	*
-	* @param string $to The ETH smart contract address the transaction would be sent to
+	* @param string $toaddr The ETH smart contract address the transaction would be sent to
 	* @param string $from The ETH address the transaction would be sent from (optional)
 	* @param string $gas Gas to execute the smart contract call (optional)
 	* @param string $gasprice Gas price to execute smart contract call (optional)
@@ -761,7 +774,6 @@ class phph1{
 			return 0;
 		}
 	}
-	
 	
 	/**
 	* This method can be used to distinguish between contract addresses and wallet addresses.
@@ -1002,7 +1014,7 @@ class phph1{
 	*
 	* @param string $oneaddr Validator wallet address. This is validated in boot.php
 	*
-	* $return array 
+	* $return array List of delegations for the provided validator address
 	*/
 	function hmyv2_getDelegationsByValidator($oneaddr){
 		$method = "hmyv2_getDelegationsByValidator";
@@ -1070,11 +1082,16 @@ class phph1{
 		$method = "hmyv2_getAllValidatorInformation";
 		$urlparams = ['pagenum' => $pagenum];
 		$this->genrequesturl($method, $urlparams);
+		/*
+		-1 is Currently disabled
+		
 		if($pagenum == -1){
 			$pageindex = $pagenum;
 		}else{
 			$pageindex = $pagenum - 1;
 		}
+		*/
+		$pageindex = $pagenum - 1;
 		$params = [$pageindex];
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
@@ -1087,10 +1104,11 @@ class phph1{
 	*
 	* @return integer good data = 1, bad data = 0
 	*/
-	// FIXME -1 is not a valid input according to the node return data
 	function val_getAllValidatorInformation($pagenum){
 		$notvalid = 0;
-		if(preg_match( '/^[1-9]+[0-9]*$/', $pagenum) OR ($this->phph1_allowbigdata && $pagenum == -1)){
+		//if(preg_match( '/^[1-9]+[0-9]*$/', $pagenum) OR ($this->phph1_allowbigdata && $pagenum == -1)){
+		// -1 is disabled on the offical nodes
+		if(preg_match( '/^[1-9]+[0-9]*$/', $pagenum)){
 			$this->goodinputs['pagenum'] = $pagenum;
 		}else{
 			$notvalid = 1; 
@@ -1116,13 +1134,16 @@ class phph1{
 	*
 	* @return array List of all validator detailed information. 
 	*/
-	// FIXME This function uses a page size variable. When using -1 to get all information, it uses a TON of memory. There is no way of knowing how many pages there are
 	function hmyv2_getAllValidatorInformationByBlockNumber(int $pagenum,int $blocknum){
+		// -1 is disabled on the harmony nodes
+		/*
 		if($pagenum == -1){
 			$pageindex = $pagenum;
 		}else{
 			$pageindex = $pagenum - 1;
 		}
+		*/
+		$pageindex = $pagenum - 1;
 		$method = "hmyv2_getAllValidatorInformationByBlockNumber";
 		$urlparams = [
 			'pagenum' => $pagenum,
@@ -1152,7 +1173,9 @@ class phph1{
 		}else{
 			$this->goodinputs['blocknum'] = $blocknum;
 		}
-		if(preg_match( '/^[1-9]+[0-9]*$/', $pagenum) OR ($this->phph1_allowbigdata && $pagenum == -1)){
+		// -1 is currently disabled on Harmony nodes
+		// if(preg_match( '/^[1-9]+[0-9]*$/', $pagenum) OR ($this->phph1_allowbigdata && $pagenum == -1)){
+		if(preg_match( '/^[1-9]+[0-9]*$/', $pagenum)){
 			$this->goodinputs['pagenum'] = $pagenum;
 		}else{
 			$notvalid = 1; 
@@ -1294,7 +1317,6 @@ class phph1{
 
 ##################################
 ### TRANSACTION -> CROSS SHARD ###
-# DONE!
 ##################################
 
 	/**
@@ -1396,8 +1418,6 @@ class phph1{
 
 #######################################
 ### TRANSACTION -> TRANSACTION POOL ###
-#Need Finished:
-#hmyv2_pendingStakingTransactions
 #######################################
 
 	/**
@@ -1422,7 +1442,7 @@ class phph1{
 	*
 	* @return array Array of currently pending staking transactions. 
 	*/
-	//FIXME
+	// FIXME TEST TO SEE WHAT IS WRONG
 	function hmyv2_pendingStakingTransactions(){
 		$method = "hmyv2_pendingStakingTransactions";
 		$params = [];
@@ -1448,8 +1468,6 @@ class phph1{
 
 ##############################
 ### TRANSACTION -> STAKING ###
-#Need Finished:
-#hmyv2_sendRawStakingTransaction
 ##############################
 
 	/**
@@ -1510,7 +1528,7 @@ class phph1{
 		}else{
 			$this->goodinputs['blocknum'] = $blocknum;
 		}
-		if(!preg_match( '/^[0-9]+$/', $txindex)){
+		if(!$this->val_txindex($txindex)){
 			$notvalid = 1; 
 			array_push($this->errors, 'transaction index value is invalid');
 		}else{
@@ -1569,7 +1587,7 @@ class phph1{
 		}else{
 			$this->goodinputs['blockhash'] = $blockhash;
 		}
-		if(!preg_match( '/^[0-9]+$/', $txindex)){
+		if(!$this->val_txindex($txindex)){
 			$notvalid = 1; 
 			array_push($this->errors, 'transaction index value is invalid');
 		}else{
@@ -1602,6 +1620,13 @@ class phph1{
 		return $this->docurlrequest($thisjson);
 	}
 	
+	/**
+	* Validate input for hmyv2_getStakingTransactionByHash
+	*
+	* @param string $hash Staking transaction hash
+	*
+	* @return booleen 1 = good input, 0 = bad input
+	*/
 	function val_getStakingTransactionByHash($hash){
 		if($this->val_hash($hash)){
 			$this->goodinputs['hash'] = $hash;
@@ -1614,15 +1639,43 @@ class phph1{
 		}
 	}
 	
-	/*
-	//FIXME
-	function hmyv2_sendRawStakingTransaction($trcencbyt,$rawtranhash){
+	/**
+	* Send a raw staking transaction using the hex representation of a signed staking transaction
+	*
+	* See <a href='/index.php?method=hmyv2_sendRawStakingTransaction'>Explorer Method Page</a> or <a href='https://api.hmny.io/#e8c17fe9-e730-4c38-95b3-6f1a5b1b9401'>Harmony API Documentation</a> for output details.
+	*
+	* @param string $transhex Hex representation of signed staking transaction
+	*
+	* @return string if successful returns staking transaction hash. If failed it returns an error
+	*/
+	// FIXME Needs tested
+	function hmyv2_sendRawStakingTransaction($transhex){
 		$method = "hmyv2_sendRawStakingTransaction";
-		$params = [$trcencbyt,$rawtranhash];
+		$urlparams = ['transhex' => $transhex];
+		$this->genrequesturl($method, $urlparams);
+		$params = [$transhex];
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
+	
+	/**
+	* Validate input for hmyv2_sendRawStakingTransaction
+	*
+	* @param string $transhex Hex representation of signed staking transaction
+	*
+	* @return booleen 1 = good input, 0 = bad input
 	*/
+	function val_sendRawStakingTransaction($transhex){
+		if(preg_match('/^(0x|0X)?[a-fA-F0-9]+$/',$transhex)){
+			$this->goodinputs['transhex'] = $transhex;
+			$this->validinput = 1;
+			return 1;
+		}else{
+			$this->validinput = 0;
+			array_push($this->errors, 'transaction hex value is invalid');
+			return 0;
+		}
+	}
 
 ###############################
 ### TRANSACTION -> TRANSFER ###
@@ -1678,6 +1731,7 @@ class phph1{
 	*
 	* @return booleen 1 = good input, 0 = bad input
 	*/
+	// FIXME TXINDEX IS HANDLED WRONG
 	function val_getTransactionByBlockHashAndIndex($blockhash,$txindex){
 		$notvalid = 0;
 		if(!$this->val_blockhash($blockhash)){
@@ -1686,7 +1740,7 @@ class phph1{
 		}else{
 			$this->goodinputs['blockhash'] = $blockhash;
 		}
-		if(!is_numeric($txindex) OR !preg_match( '/^[0-9]+$/', $txindex)){
+		if(!$this->val_txindex($txindex)){
 			$notvalid = 1; 
 			array_push($this->errors, 'transaction index value is invalid');
 		}else{
@@ -1741,7 +1795,7 @@ class phph1{
 		}else{
 			$this->goodinputs['blocknum'] = $blocknum;
 		}
-		if(!is_numeric($txindex) OR  !preg_match( '/^[0-9]+$/', $txindex)){
+		if(!$this->val_txindex($txindex)){
 			$notvalid = 1; 
 			array_push($this->errors, 'transaction index input value is invalid');
 		}else{
@@ -1840,20 +1894,43 @@ class phph1{
 		}
 	}
 	
-	// NEED INFO
-	// FIXME
-	/*
-	function hmyv2_sendRawTransaction($trcencbyt,$rawtranhash){
-		// Params:
-		// $trcencbyt = Transaction encoded in bytes
-		// $rawtranhash = Raw transaction's hash
-		
+	/**
+	* Send a raw transaction using the hex representation of a signed transaction
+	*
+	* See <a href='/index.php?method=hmyv2_sendRawTransaction'>Explorer Method Page</a> or <a href='https://api.hmny.io/#f40d124a-b897-4b7c-baf3-e0dedf8f40a0'>Harmony API Documentation</a> for output details.
+	*
+	* @param string $transhex Hex representation of signed staking transaction
+	*
+	* @return string if successful returns staking transaction hash. If failed it returns an error
+	*/
+	// FIXME Needs tested, I don't think the Harmony docs are accurate with this one
+	function hmyv2_sendRawTransaction($transhex){
 		$method = "hmyv2_sendRawTransaction";
-		$params = [$trcencbyt,$rawtranhash];
+		$urlparams = ['transhex' => $transhex];
+		$this->genrequesturl($method, $urlparams);
+		$params = [$transhex];
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
+	
+	/**
+	* Validate input for hmyv2_sendRawTransaction
+	*
+	* @param string $transhex Hex representation of signed staking transaction
+	*
+	* @return booleen 1 = good input, 0 = bad input
 	*/
+	function val_sendRawTransaction($transhex){
+		if(preg_match('/^(0x|0X)?[a-fA-F0-9]+$/',$transhex)){
+			$this->goodinputs['transhex'] = $transhex;
+			$this->validinput = 1;
+			return 1;
+		}else{
+			$this->validinput = 0;
+			array_push($this->errors, 'transaction hex value is invalid');
+			return 0;
+		}
+	}
 
 ##################
 ### BLOCKCHAIN ###
@@ -1908,6 +1985,48 @@ class phph1{
 		$this->genrequesturl($method, $params);
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
+	}
+	
+	/**
+	* Get the last block for a specified epoch
+	*
+	* See <a href='/index.php?method=hmyv2_epochLastBlock'>Explorer Method Page</a> or <a href='https://api.hmny.io/#bd63c3aa-44cb-4f7d-8db2-50fb17e29d05'>Harmony API Documentation</a> for output details.
+	*
+	* @param integer $epoch Epoch number
+	*
+	* @return integer Last block of the given epoch 
+	*/
+	function hmyv2_epochLastBlock(int $epoch){
+		$method = "hmyv2_epochLastBlock";
+		$urlparams = ['epoch' => $epoch];
+		$this->genrequesturl($method, $urlparams);
+		$params = [$epoch];
+		$thisjson = $this->genjsonrequest($method, $params);
+		return $this->docurlrequest($thisjson);
+	}
+	
+	/**
+	* Validate input for hmyv2_epochLastBlock
+	*
+	* @param integer $epoch Epoch number
+	*
+	* @return booleen 1 = good input, 0 = bad input
+	*/
+	function val_epochLastBlock($epoch){
+		$notvalid = 0;
+		if(!$this->val_epoch($epoch)){
+			$notvalid = 1; 
+			array_push($this->errors, 'epoch input value is invalid');
+		}else{
+			$this->goodinputs['epoch'] = $epoch;
+		}
+		if($notvalid == 0){
+			$this->validinput = 1;
+			return 1;
+		}else{
+			$this->validinput = 0;
+			return 0;
+		}
 	}
 	
 	/**
@@ -2102,7 +2221,6 @@ class phph1{
 		return $this->docurlrequest($thisjson);
 	}
 	
-
 	/**
 	* Gets the current network protocol version.
 	*
@@ -2707,7 +2825,6 @@ class phph1{
 			return 1;
 		}
 	}
-
 	
 	/**
 	* Gets the current balance in atto for the specified wallet at the specified block number
@@ -3131,7 +3248,6 @@ class phph1{
 	*
 	* @return booleen Returns 1 if address is a block signer
 	*/
-	// FIXME needs validation written
 	function hmyv2_isBlockSigner($oneaddr,$blocknum){
 		$method = "hmyv2_isBlockSigner";
 		$urlparams = [
@@ -3240,21 +3356,6 @@ class phph1{
 	}
 	
 	/**
-	* Validates a block address
-	*
-	* @param number The block address
-	*
-	* @return booleen 1 = good address, 0 = bad address
-	*/
-	function val_blockaddr($blockaddr){
-		if(isset($blockaddr) && preg_match( '/^[0-9]+$/', $blockaddr) && strlen($blockaddr) <= 20){
-			return 1;
-		}else{
-			return 0;
-		}
-	}
-	
-	/**
 	* Validates a block number
 	*
 	* @param number The block number to validate
@@ -3262,7 +3363,7 @@ class phph1{
 	* @return booleen 1 = good address, 0 = bad address
 	*/
 	function val_blocknum($blocknum){
-		if(!empty($blocknum) && preg_match( '/^[0-9]+$/', $blocknum)){
+		if(preg_match( '/^[1-9]+[0-9]*$/', $blocknum)){
 			return 1;
 		}else{
 			return 0;
@@ -3277,7 +3378,7 @@ class phph1{
 	* @return booleen 1 = good address, 0 = bad address
 	*/
 	function val_blockhash($blockhash){
-		if(isset($blockhash) && preg_match( '/^0x[a-z0-9]{64}+$/', $blockhash)){
+		if(preg_match( '/^0x[a-z0-9]{64}+$/', $blockhash)){
 			return 1;
 		}else{
 			return 0;
@@ -3292,7 +3393,7 @@ class phph1{
 	* @return booleen 1 = good address, 0 = bad address
 	*/
 	function val_epoch($epoch){
-		if(isset($epoch) && preg_match( '/^[0-9]+$/', $epoch)){
+		if(preg_match( '/^[1-9]+[0-9]*$/', $epoch)){
 			return 1;
 		}else{
 			return 0;
@@ -3307,7 +3408,7 @@ class phph1{
 	* @return booleen 1 = good address, 0 = bad address
 	*/
 	function val_hash($hash){
-		if(!empty($hash) && preg_match( '/^0x([A-Fa-f0-9]{64})$/', $hash)){
+		if(preg_match( '/^0x([A-Fa-f0-9]{64})$/', $hash)){
 			return 1;
 		}else{
 			return 0;
@@ -3322,7 +3423,7 @@ class phph1{
 	* @return booleen 1 = good address, 0 = bad address
 	*/
 	function val_scaddress($scaddress){
-		if(!empty($scaddress) && preg_match( '/^0x[a-fA-F0-9]{40}$/', $scaddress)){
+		if(preg_match( '/^0x[a-fA-F0-9]{40}$/', $scaddress)){
 			return 1;
 		}else{
 			return 0;
@@ -3337,7 +3438,7 @@ class phph1{
 	* @return booleen 1 = good address, 0 = bad address
 	*/
 	function val_cxtxhash($trhash){
-		if(!empty($trhash) && preg_match( '/^0x[a-fA-F0-9]{64}$/', $trhash)){
+		if(preg_match( '/^0x[a-fA-F0-9]{64}$/', $trhash)){
 			return 1;
 		}else{
 			return 0;
@@ -3352,7 +3453,23 @@ class phph1{
 	* @return booleen 1 = good address, 0 = bad address
 	*/
 	function val_stlocation($stlocation){
-		if(isset($stlocation) && preg_match( '/^0x[a-zA-Z0-9]+$/', $stlocation) && strlen($stlocation) <= 66){
+		if(preg_match( '/^0x[a-zA-Z0-9]+$/', $stlocation) && strlen($stlocation) <= 66){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+	
+	/**
+	* Validates transaction index
+	*
+	* @param integer $txindex The transaction index
+	*
+	* @return booleen 1 = good transaction index, 0 = bad transaction index
+	*/
+	function val_txindex(int $txindex){
+		$goodinput = 0;
+		if(preg_match( '/^[1-9]+[0-9]*$/', $txindex) OR $txindex == 0){
 			return 1;
 		}else{
 			return 0;

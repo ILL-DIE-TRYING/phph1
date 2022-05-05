@@ -7,7 +7,7 @@
 <!-- Top Menu and Logo Bar -->
 <div id="hiddenSticky">
 	<div id="topbar">
-		<div><h1 class="topphrase">PHPH1</h1><p class="tagline">A Harmony ONE Node API PHP Class</p></div>
+		<div><h1 class="topphrase"><img src="img/PHPH1_LOGO_2022-2.svg" style="max-width:70px;" alt="PHPH1 elephant logo" /><!-- <span class="notagline">A Harmony ONE Node API v2 PHP Class</span>--></div>
 	</div>
 	<div id="navbar">
 		<ul class="dropdownUL" >
@@ -16,11 +16,10 @@
 				<a class="menudropbtn" href="javascript:void(0)" title="Main Menu"><img src="img/cheeseburger.svg" style="height:12px;margin:2px 0px 0px 0px;padding:0px;"/></a>
 				<div class="mdropdown-content">
 					<div id="LoadMenuDropdown" class="mdropdown-list">
-						<a href="./" title="Return To Homepage">Home</a>
 						<a href="#" id="settingsBtn" title="Open Settings Dialog">Settings</a>
 						<a href="./doc/classes/phph1.html" id="docBtn" title="View PHPH1 Class Documentation" target="_blank">Class Docs</a>
 						<a href="https://talk.harmony.one/t/php-class-api-requests-for-scripting-languages-and-harmony-node-api-explorer/11306" id="docBtn" title="Grant Information" target="_blank">Grant Info</a>
-						<a href="https://github.com/ILL-DIE-TRYING/phph1" id="docBtn" title="Github Repository" target="_blank">Github Repo</a>
+						<a href="https://github.com/ILL-DIE-TRYING/phph1" id="docBtn" title="Github Project" target="_blank">Github Project</a>
 						<a href="https://github.com/ILL-DIE-TRYING/phph1/issues" id="docBtn" title="Report Bug" target="_blank">Report Bug</a>
 					</div>
 				</div>
