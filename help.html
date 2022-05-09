@@ -1,30 +1,49 @@
-<?php
-/**
-* index_body.php is included in index.php when there is no method request.
-* This is the "home page"
-*/
 
-require_once('inc/errors.php');
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PHPH1 :: A Harmony ONE Node API PHP Class</title>
+<meta name="keywords" content="PHPH1, Harmony, ONE, Blockchain, Crypto, Currency, Explorer, PHP Class, Harmony Node API">
+<meta name="description" content="PHPH1 is a PHP class that bridges the Harmony ONE Node API to PHP. Through this, many scripting languages will be able to query the PHP class. The class is designed to validate, insure the request data is in the right format, and return information saving web developers from having to write the code themselves.">
+<meta name="author" content="Jason L Kolpin">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="/img/PHPH1_FAVICON_2022-v2-64.png">
+<link rel="stylesheet" href="css/phph1.css">
+<link rel="stylesheet" href="css/phph1_mobile.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
 
-?>
-<!--
-<div class="fp_row">
-	<div class="fp_column">
-	<div class="fp_content_header"><h3>Currently Available Methods</h3></div>
-		<div class="fp_content">
-		<p>Currently Known Harmony Node API Method Count: 64</p>
-		<?php
-		$method_Count = count($sorted_Methods);
-		echo "<p>PHPH1 Available Method Count: ".$method_Count."</p>";
-		foreach($sorted_Methods as $aMethod){
-			echo "<p><a href='/index.php?method=".$aMethod."' >".$aMethod."</a></p>";
-		}
-		unset($aMethod);
-		?>
-		</div>
+	<button onclick="flyToTop()" id="toTopBtn" title="Back To Top"><img src="./img/topBtn.png" class="topBtnImg" alt="Back To Top Button Image"/></button>
+
+	<div id="wrapper">
+		<!-- Top Menu and Logo Bar -->
+<div id="hiddenSticky">
+	<div id="topbar">
+		<div><h1 class="topphrase"><img src="img/PHPH1_LOGO_2022-2.svg" style="max-width:70px;" alt="PHPH1 elephant logo" /><!-- <span class="notagline">A Harmony ONE Node API v2 PHP Class</span>--></div>
 	</div>
-</div>
--->
+	<div id="navbar">
+		<ul class="dropdownUL" >
+			<li class="dropdownLI"><a href="./" title="Return To Homepage">Home</a></li>
+			<li class="mdropdown">
+				<a class="menudropbtn" href="javascript:void(0)" title="Main Menu"><img src="img/cheeseburger.svg" style="height:12px;margin:2px 0px 0px 0px;padding:0px;"/></a>
+				<div class="mdropdown-content">
+					<div id="LoadMenuDropdown" class="mdropdown-list">
+						<a href="./doc/classes/phph1.html" id="docBtn" title="View PHPH1 Class Documentation" target="_blank">Class Docs</a>
+						<a href="https://talk.harmony.one/t/php-class-api-requests-for-scripting-languages-and-harmony-node-api-explorer/11306" id="docBtn" title="Grant Information" target="_blank">Grant Info</a>
+						<a href="https://github.com/ILL-DIE-TRYING/phph1" id="docBtn" title="Github Project" target="_blank">Github Project</a>
+						<a href="https://github.com/ILL-DIE-TRYING/phph1/issues" id="docBtn" title="Report Bug" target="_blank">Report Bug</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>	
+	</div>
+
+	<div id="bodyWrap">
+
 <div class="fp_row">
 	<div class="fp_column">
 		<div class="fp_content_header"><h3>Welcome To PHPH1</h3></div>
@@ -243,3 +262,18 @@ require_once('inc/errors.php');
 
 
 
+	<div class="footer_container">
+		<div class="fp_footer">
+		  <p><h4 style="margin:0px;color:white;">PHPH1 :: A Harmony ONE Node API PHP Class</h4><br />Created 2022 by Jason L Kolpin<br />Released under the <a href="https://github.com/ILL-DIE-TRYING/phph1/blob/main/LICENSE" target="_blank">GNU General Public License v3.0</a><br /> Funded by a <a href="https://talk.harmony.one/t/php-class-api-requests-for-scripting-languages-and-harmony-node-api-explorer/11306" target="_blank">Bounty Grant provided by the Harmony ONE Team</a></p>
+		  <p><a href="https://github.com/ILL-DIE-TRYING/phph1" target="_blank">GitHub Project Page</a> :: <a href="https://github.com/ILL-DIE-TRYING/phph1/issues" target="_blank">Report A Bug</a></p>
+		  <p>Page generated in 0.0047 seconds.</p>
+		</div>
+	</div>	</div>
+	
+	<!--
+	Include the PHPH1 javascript (required for API Explorer only)
+	-->
+	<script src="js/phph1.js"></script>
+
+</body>
+</html>

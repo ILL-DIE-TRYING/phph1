@@ -46,16 +46,19 @@ if($phph1->get_rpcstatus() != 1){
 			<h3 class="infoHeader">Parameters</h3>
 			<ul class="infoObjects" >
 			
-				<li class="infoObjectNoBul"><span>String</span> - Smart contract address</li>
+				<li class="infoObjectNoBul"><div class="ioobjectWrap"><span >String</span>:</div>
+				<div class="iodefWrap">Smart contract address</div></li>
 				
-				<li class="infoObjectNoBul"><span>Number</span> - Block Number</li>
+				<li class="infoObjectNoBul"><div class="ioobjectWrap"><span >Number</span>:</div>
+				<div class="iodefWrap">Block Number</div></li>
 				
 			</ul>
 			
 			<h3>Returns</h3>
 			<ul class="infoObjects" >
 			
-				<li class="infoObjectNoBul"><span>String</span> - Hex value of the executed smart contract</li>
+				<li class="infoObjectNoBul"><div class="ioobjectWrap"><span >String</span>:</div>
+				<div class="iodefWrap">Hex value of the executed smart contract</div></li>
 				
 			</ul>
 

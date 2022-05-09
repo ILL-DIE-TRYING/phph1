@@ -50,7 +50,7 @@ if($phph1->get_rpcstatus() != 1){
 				<div class="iodefWrap">Block number that transaction was finalized. null if the transaction is pending.</div></li>
 				
 				<li><div class="ioobjectWrap"><span >ethHash</span> - <span >String</span>:</div>
-				<div class="iodefWrap">FIXME</div></li>
+				<div class="iodefWrap">ETH hash</div></li>
 				
 				<li><div class="ioobjectWrap"><span >from</span> - <span >String</span>:</div>
 				<div class="iodefWrap">Wallet address</div></li>

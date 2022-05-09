@@ -43,18 +43,18 @@ if($phph1->get_rpcstatus() == 0){
 					
 					<li class="infoObjectNoBul"><span>Array</span> of <span>Object</span>:</li>
 					
-					<li><div class="ioobjectWrap"><span >tx-hash-id</span> - <span>String</span>:</div> 
-					<div class="iodefWrap">Staking transaction hash</div></li>
-					
 					<li><div class="ioobjectWrap"><span >directive-kind</span> - <span>String</span>:</div> 
 					<div class="iodefWrap">Type of staking transaction</div></li>
-					
-					<li><div class="ioobjectWrap"><span >time-at-rejection</span> - <span>Number</span>:</div> 
-					<div class="iodefWrap">Unix time when the staking transaction was rejected from the pool</div></li>
 					
 					<li><div class="ioobjectWrap"><span >error-message</span> - <span>String</span>:</div> 
 					<div class="iodefWrap">Reason for staking transaction rejection</div></li>
 					
+					<li><div class="ioobjectWrap"><span >time-at-rejection</span> - <span>Number</span>:</div> 
+					<div class="iodefWrap">Unix time when the staking transaction was rejected from the pool</div></li>
+					
+					<li><div class="ioobjectWrap"><span >tx-hash-id</span> - <span>String</span>:</div> 
+					<div class="iodefWrap">Staking transaction hash</div></li>
+
 				</ul>
 			</div>
 		</div>

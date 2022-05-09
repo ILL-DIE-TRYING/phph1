@@ -46,25 +46,6 @@ if($phph1->get_rpcstatus() != 1){
 					<li><div class="ioobjectWrap"><span>epos-median-stake</span> - <span >String</span>:</div>
 					<div class="iodefWrap">Effective median stake</div></li>
 					
-					<li><div class="ioobjectWrap"><span>max-external-slots</span> - <span >Number</span>:</div>
-					<div class="iodefWrap">Number of available committee slots</div></li>
-					
-					<li><div class="ioobjectWrap"><span>epos-slot-winners</span> - <span >Array</span> of <span >Object</span>:</div></li>
-					
-					<ul class="infoObjects2">
-						<li><div class="ioobjectWrap"><span>slot-owner</span> - <span >String</span>:</div>
-						<div class="iodefWrap">Wallet address of BLS key</div></li>
-						
-						<li><div class="ioobjectWrap"><span>bls-public-key</span> - <span >String</span>:</div>
-						<div class="iodefWrap">BLS public key</div></li>
-						
-						<li><div class="ioobjectWrap"><span>raw-stake</span> - <span >String</span>:</div>
-						<div class="iodefWrap">Actual stake</div></li>
-						
-						<li><div class="ioobjectWrap"><span>eposed-stake</span> - <span >String</span>:</div>
-						<div class="iodefWrap">Effective stake</div></li>
-					</ul>
-					
 					<li><div class="ioobjectWrap"><span>epos-slot-candidates</span> - <span >Array</span> of <span >Object</span>:</div></li>
 					
 					<ul class="infoObjects2">
@@ -84,6 +65,24 @@ if($phph1->get_rpcstatus() != 1){
 						<div class="iodefWrap">Wallet address of validator</div></li>
 					</ul>
 					
+					<li><div class="ioobjectWrap"><span>epos-slot-winners</span> - <span >Array</span> of <span >Object</span>:</div></li>
+					
+					<ul class="infoObjects2">
+						<li><div class="ioobjectWrap"><span>slot-owner</span> - <span >String</span>:</div>
+						<div class="iodefWrap">Wallet address of BLS key</div></li>
+						
+						<li><div class="ioobjectWrap"><span>bls-public-key</span> - <span >String</span>:</div>
+						<div class="iodefWrap">BLS public key</div></li>
+						
+						<li><div class="ioobjectWrap"><span>raw-stake</span> - <span >String</span>:</div>
+						<div class="iodefWrap">Actual stake</div></li>
+						
+						<li><div class="ioobjectWrap"><span>eposed-stake</span> - <span >String</span>:</div>
+						<div class="iodefWrap">Effective stake</div></li>
+					</ul>
+
+					<li><div class="ioobjectWrap"><span>max-external-slots</span> - <span >Number</span>:</div>
+					<div class="iodefWrap">Number of available committee slots</div></li>
 
 				</ul>
 

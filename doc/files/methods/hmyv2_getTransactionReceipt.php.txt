@@ -76,6 +76,36 @@ if($phph1->get_rpcstatus() != 1){
 						
 						<li><div class="ioobjectWrap"><span >logs</span> - <span >Array</span></div></li>
 						
+						<ul class="infoObjects2">
+							<li><div class="ioobjectWrap"><span>address</span> - <span >String</span>:</div>
+							<div class="iodefWrap"></div></li>
+							
+							<li><div class="ioobjectWrap"><span>blockHash</span> - <span >String</span>:</div>
+							<div class="iodefWrap">Block hash</div></li>
+							
+							<li><div class="ioobjectWrap"><span>blockNumber</span> - <span >Number</span>:</div>
+							<div class="iodefWrap">Block number</div></li>
+							
+							<li><div class="ioobjectWrap"><span>data</span> - <span >String</span>:</div>
+							<div class="iodefWrap">Data in hex</div></li>
+							
+							<li><div class="ioobjectWrap"><span>logIndex</span> - <span >String</span>:</div>
+							<div class="iodefWrap">Log index in hex</div></li>
+							
+							<li><div class="ioobjectWrap"><span>removed</span> - <span >Boolean</span>:</div>
+							<div class="iodefWrap">Yes or no</div></li>
+							
+							<li><div class="ioobjectWrap"><span>topics</span> - <span >Array</span>:</div>
+							<div class="iodefWrap">List of topics in hex</div></li>
+							
+							<li><div class="ioobjectWrap"><span>transactionHash</span> - <span >String</span>:</div>
+							<div class="iodefWrap">Transaction hash</div></li>
+							
+							<li><div class="ioobjectWrap"><span>transactionIndex</span> - <span >String</span>:</div>
+							<div class="iodefWrap">Transaction index in hex</div></li>
+							
+						</ul>
+						
 						<li><div class="ioobjectWrap"><span >logsBloom</span> - <span >String</span>:</div> 
 						<div class="iodefWrap">Bloom logs</div></li>
 						

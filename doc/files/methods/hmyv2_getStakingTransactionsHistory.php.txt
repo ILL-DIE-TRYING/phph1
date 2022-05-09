@@ -143,11 +143,11 @@ if($phph1->get_rpcstatus() != 1){
 					<li><div class="ioobjectWrap"><span>nonce</span> - <span>Number</span>:</div> 
 					<div class="iodefWrap">Wallet nonce for the transaction</div></li>
 					
-					<li><div class="ioobjectWrap"><span>r</span> - <span>String</span>:</div> 
-					<div class="iodefWrap">FIXME</div></li>
+					<li><div class="ioobjectWrap"><span >r</span> - <span >String</span>:</div> 
+					<div class="iodefWrap">First 32 bytes of ECDSA signature</div></li>
 					
-					<li><div class="ioobjectWrap"><span>s</span> - <span>String</span>:</div> 
-					<div class="iodefWrap">FIXME</div></li>
+					<li><div class="ioobjectWrap"><span >s</span> - <span >String</span>:</div> 
+					<div class="iodefWrap">Second 32 bytes of ECDSA signature</div></li>
 					
 					<li><div class="ioobjectWrap"><span>timestamp</span> - <span>Number</span>:</div> 
 					<div class="iodefWrap">Timestamp in Unix time when transaction was finalized</div></li>
@@ -158,8 +158,8 @@ if($phph1->get_rpcstatus() != 1){
 					<li><div class="ioobjectWrap"><span>type</span> - <span>String</span>:</div> 
 					<div class="iodefWrap">FIXME</div></li>
 					
-					<li><div class="ioobjectWrap"><span>v</span> - <span>String</span>:</div> 
-					<div class="iodefWrap">FIXME</div></li>
+					<li><div class="ioobjectWrap"><span >v</span> - <span >String</span>:</div> 
+					<div class="iodefWrap">Final 1 byte of ECDSA signature</div></li>
 					
 				</ul>
 

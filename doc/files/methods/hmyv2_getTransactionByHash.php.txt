@@ -62,7 +62,7 @@ if($phph1->get_rpcstatus() != 1){
 					<div class="iodefWrap">Block number in which transaction was finalized</div></li>
 					
 					<li><div class="ioobjectWrap"><span>ethHash</span> - <span>String</span>:</div>
-					<div class="iodefWrap">FIXME</div></li>
+					<div class="iodefWrap">ETH hash</div></li>
 					
 					<li><div class="ioobjectWrap"><span>from</span> - <span>String</span>:</div>
 					<div class="iodefWrap">Sender wallet address</div></li>
@@ -77,16 +77,16 @@ if($phph1->get_rpcstatus() != 1){
 					<div class="iodefWrap">Transaction hash</div></li>
 					
 					<li><div class="ioobjectWrap"><span>input</span> - <span>String</span>:</div>
-					<div class="iodefWrap">FIXME</div></li>
+					<div class="iodefWrap">Input in hex</div></li>
 					
 					<li><div class="ioobjectWrap"><span>nonce</span> - <span>Number</span>:</div>
 					<div class="iodefWrap">Wallet nonce of transaction</div></li>
 					
-					<li><div class="ioobjectWrap"><span>r</span> - <span>String</span>:</div>
-					<div class="iodefWrap">FIXME</div></li>
+					<li><div class="ioobjectWrap"><span >r</span> - <span >String</span>:</div> 
+					<div class="iodefWrap">First 32 bytes of ECDSA signature</div></li>
 					
-					<li><div class="ioobjectWrap"><span>s</span> - <span>String</span>:</div>
-					<div class="iodefWrap">FIXME</div></li>
+					<li><div class="ioobjectWrap"><span >s</span> - <span >String</span>:</div> 
+					<div class="iodefWrap">Second 32 bytes of ECDSA signature</div></li>
 					
 					<li><div class="ioobjectWrap"><span>shardID</span> - <span>Number</span>:</div>
 					<div class="iodefWrap">Shard ID</div></li>
@@ -95,19 +95,19 @@ if($phph1->get_rpcstatus() != 1){
 					<div class="iodefWrap">Unix time at which transaction was finalized</div></li>
 					
 					<li><div class="ioobjectWrap"><span>to</span> - <span>String</span>:</div>
-					<div class="iodefWrap">FIXME</div></li>
+					<div class="iodefWrap">To wallet address</div></li>
 					
 					<li><div class="ioobjectWrap"><span>toShardID</span> - <span>Number</span>:</div>
-					<div class="iodefWrap">FIXME</div></li>
+					<div class="iodefWrap">What shard the transaction was sent to</div></li>
 
 					<li><div class="ioobjectWrap"><span>transactionIndex</span> - <span>Number</span>:</div>
 					<div class="iodefWrap">Staking transaction index within block</div></li>
 					
-					<li><div class="ioobjectWrap"><span>v</span> - <span>String</span>:</div>
-					<div class="iodefWrap">FIXME</div></li>
+					<li><div class="ioobjectWrap"><span >v</span> - <span >String</span>:</div> 
+					<div class="iodefWrap">Final 1 byte of ECDSA signature</div></li>
 					
 					<li><div class="ioobjectWrap"><span>value</span> - <span>Number</span>:</div>
-					<div class="iodefWrap">FIXME in atto</div></li>
+					<div class="iodefWrap">value in atto</div></li>
 					
 				</ul>
 			</div>

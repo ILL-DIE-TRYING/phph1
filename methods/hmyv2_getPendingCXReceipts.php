@@ -46,28 +46,73 @@ if($phph1->get_rpcstatus() != 1){
 				
 					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span>Array</span> of <span>Object</span>:</div></li>
 					
-					<li><div class="ioobjectWrap"><span>receipts</span> - <span>Array</span> of <span>Object</span>:</div>
+					<li><div class="ioobjectWrap"><span>commigBitmap</span> - <span>String</span>:</div>
+					<div class="iodefWrap">Hex representation of aggregated signature bitmap</div></li>
+					
+					<li><div class="ioobjectWrap"><span>commitSig</span> - <span>String</span>:</div>
+					<div class="iodefWrap">Hex representation of aggregated signature</div></li>
+					
+					<li><div class="ioobjectWrap"><span>header</span> - <span>Object</span>:</div>
 					<div class="iodefWrap"></div></li>
 					
 					<ul class="infoObjects2">
-					
-						<li><div class="ioobjectWrap"><span>txHash</span> - <span>String</span>:</div>
-						<div class="iodefWrap">Transaction hash</div></li>
 						
-						<li><div class="ioobjectWrap"><span>from</span> - <span>String</span>:</div>
-						<div class="iodefWrap">Sender wallet address</div></li>
+						<li><div class="ioobjectWrap"><span>difficulty</span> - <span>String</span>:</div>
+						<div class="iodefWrap">Hex diffculty value</div></li>
 						
-						<li><div class="ioobjectWrap"><span>to</span> - <span>String</span>:</div>
-						<div class="iodefWrap">Receiver wallet address</div></li>
+						<li><div class="ioobjectWrap"><span>epoch</span> - <span>Number</span>:</div>
+						<div class="iodefWrap">Epoch number</div></li>
+						
+						<li><div class="ioobjectWrap"><span>extraData</span> - <span>String</span>:</div>
+						<div class="iodefWrap"></div></li>
+						
+						<li><div class="ioobjectWrap"><span>gasLimit</span> - <span>String</span>:</div>
+						<div class="iodefWrap"></div></li>
+						
+						<li><div class="ioobjectWrap"><span>gasUsed</span> - <span>String</span>:</div>
+						<div class="iodefWrap"></div></li>
+						
+						<li><div class="ioobjectWrap"><span>hash</span> - <span>String</span>:</div>
+						<div class="iodefWrap"></div></li>
+						
+						<li><div class="ioobjectWrap"><span>logsBloom</span> - <span>String</span>:</div>
+						<div class="iodefWrap"></div></li>
+						
+						<li><div class="ioobjectWrap"><span>miner</span> - <span>String</span>:</div>
+						<div class="iodefWrap"></div></li>
+						
+						<li><div class="ioobjectWrap"><span>mixHash</span> - <span>String</span>:</div>
+						<div class="iodefWrap"></div></li>
+						
+						<li><div class="ioobjectWrap"><span>nonce</span> - <span>String</span>:</div>
+						<div class="iodefWrap"></div></li>
+						
+						<li><div class="ioobjectWrap"><span>number</span> - <span>String</span>:</div>
+						<div class="iodefWrap"></div></li>
+						
+						<li><div class="ioobjectWrap"><span>parentHash</span> - <span>String</span>:</div>
+						<div class="iodefWrap">Parent hash</div></li>
+						
+						<li><div class="ioobjectWrap"><span>receiptsRoot</span> - <span>String</span>:</div>
+						<div class="iodefWrap"></div></li>
+						
+						<li><div class="ioobjectWrap"><span>sha3Uncles</span> - <span>String</span>:</div>
+						<div class="iodefWrap"></div></li>
 						
 						<li><div class="ioobjectWrap"><span>shardID</span> - <span>Number</span>:</div>
-						<div class="iodefWrap">From shard</div></li>
+						<div class="iodefWrap">Shard ID</div></li>
 						
-						<li><div class="ioobjectWrap"><span>toShardID</span> - <span>Number</span>:</div>
-						<div class="iodefWrap">To shard</div></li>
+						<li><div class="ioobjectWrap"><span>stateRoot</span> - <span>String</span>:</div>
+						<div class="iodefWrap"></div></li>
 						
-						<li><div class="ioobjectWrap"><span>amount</span> - <span>Number</span>:</div>
-						<div class="iodefWrap">Amount transferred in Atto</div></li>
+						<li><div class="ioobjectWrap"><span>timestamp</span> - <span>String</span>:</div>
+						<div class="iodefWrap"></div></li>
+						
+						<li><div class="ioobjectWrap"><span>transactionsRoot</span> - <span>String</span>:</div>
+						<div class="iodefWrap"></div></li>
+						
+						<li><div class="ioobjectWrap"><span>viewID</span> - <span>Number</span>:</div>
+						<div class="iodefWrap"></div></li>
 						
 					</ul>
 					
@@ -76,56 +121,52 @@ if($phph1->get_rpcstatus() != 1){
 					
 					<ul class="infoObjects2">
 					
-						<li><div class="ioobjectWrap"><span>blockNum</span> - <span>Number</span>:</div>
-						<div class="iodefWrap">Block number</div></li>
-						
 						<li><div class="ioobjectWrap"><span>blockHash</span> - <span>String</span>:</div>
 						<div class="iodefWrap">Block hash</div></li>
 						
-						<li><div class="ioobjectWrap"><span>shardID</span> - <span>Number</span>:</div>
-						<div class="iodefWrap">Shard ID of originating block</div></li>
+						<li><div class="ioobjectWrap"><span>blockNum</span> - <span>Number</span>:</div>
+						<div class="iodefWrap">Block number</div></li>
 						
 						<li><div class="ioobjectWrap"><span>receiptHash</span> - <span>String</span>:</div>
 						<div class="iodefWrap">Transaction receipt hash</div></li>
 						
+						<li><div class="ioobjectWrap"><span>shardHashes</span> - <span>Array</span > of <span>String</span>:</div>
+						<div class="iodefWrap">List of shard hashes</div></li>
+						
+						<li><div class="ioobjectWrap"><span>shardID</span> - <span>Number</span>:</div>
+						<div class="iodefWrap">Shard ID of originating block</div></li>
+
 						<li><div class="ioobjectWrap"><span>shardIDs</span> - <span>Array</span > of <span>Number</span>:</div>
 						<div class="iodefWrap">To shard</div></li>
-						
-						<li><div class="ioobjectWrap"><span>shardHashes</span> - <span>Array</span > of <span>String</span>:</div>
-						<div class="iodefWrap">FIXME</div></li>
-						
+
 					</ul>
-					
-					<li><div class="ioobjectWrap"><span>header</span> - <span>Object</span>:</div>
+
+					<li><div class="ioobjectWrap"><span>receipts</span> - <span>Array</span> of <span>Object</span>:</div>
 					<div class="iodefWrap"></div></li>
 					
 					<ul class="infoObjects2">
-					
-						<li><div class="ioobjectWrap"><span>shard-id</span> - <span>Number</span>:</div>
-						<div class="iodefWrap">Shard ID</div></li>
 						
-						<li><div class="ioobjectWrap"><span>block-header-hash</span> - <span>String</span>:</div>
-						<div class="iodefWrap">Block header hash</div></li>
+						<li><div class="ioobjectWrap"><span>amount</span> - <span>Number</span>:</div>
+						<div class="iodefWrap">Amount transferred in Atto</div></li>
 						
-						<li><div class="ioobjectWrap"><span>blockNumber</span> - <span>Number</span>:</div>
-						<div class="iodefWrap">Block number</div></li>
+						<li><div class="ioobjectWrap"><span>from</span> - <span>String</span>:</div>
+						<div class="iodefWrap">Sender wallet address</div></li>
 						
-						<li><div class="ioobjectWrap"><span>view-id</span> - <span>Number</span>:</div>
-						<div class="iodefWrap">View ID</div></li>
+						<li><div class="ioobjectWrap"><span>shardID</span> - <span>Number</span>:</div>
+						<div class="iodefWrap">From shard</div></li>
 						
-						<li><div class="ioobjectWrap"><span>epoch</span> - <span>Number</span>:</div>
-						<div class="iodefWrap">Epoch number</div></li>
+						<li><div class="ioobjectWrap"><span>to</span> - <span>String</span>:</div>
+						<div class="iodefWrap">Receiver wallet address</div></li>
+
+						<li><div class="ioobjectWrap"><span>toShardID</span> - <span>Number</span>:</div>
+						<div class="iodefWrap">To shard</div></li>
 						
+						<li><div class="ioobjectWrap"><span>txHash</span> - <span>String</span>:</div>
+						<div class="iodefWrap">Transaction hash</div></li>
+
 					</ul>
-
-					<li><div class="ioobjectWrap"><span>commitSig</span> - <span>String</span>:</div>
-					<div class="iodefWrap">Hex representation of aggregated signature</div></li>
-
-					<li><div class="ioobjectWrap"><span>commigBitmap</span> - <span>String</span>:</div>
-					<div class="iodefWrap">Hex representation of aggregated signature bitmap</div></li>
 					
 				</ul>
-
 			</div>
 		</div>
 	</div>

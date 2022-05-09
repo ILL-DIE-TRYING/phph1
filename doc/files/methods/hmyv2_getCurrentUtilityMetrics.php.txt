@@ -46,15 +46,15 @@ if($phph1->get_rpcstatus() == 0){
 					<li><div class="ioobjectWrap"><span >AccumulatorSnapshot</span> - <span>Number</span>:</div> 
 					<div class="iodefWrap">Total block reward given out in Atto</div></li>
 					
+					<li><div class="ioobjectWrap"><span >Adjustment</span> - <span>String</span>:</div> 
+					<div class="iodefWrap">Change in circulating supply staked</div></li>
+					
 					<li><div class="ioobjectWrap"><span >CurrentStakedPercentage</span> - <span>String</span>:</div> 
 					<div class="iodefWrap">Percent of circulating supply staked</div></li>
 					
 					<li><div class="ioobjectWrap"><span >Deviation</span> - <span>String</span>:</div> 
 					<div class="iodefWrap">Change in percent of circulating supply staked</div></li>
-					
-					<li><div class="ioobjectWrap"><span >Adjustment</span> - <span>String</span>:</div> 
-					<div class="iodefWrap">Change in circulating supply staked</div></li>
-					
+
 				</ul>
 			</div>
 		</div>

@@ -5,7 +5,7 @@
 *
 * The PHPH1 class can also be invoked by a single PHP page hosted locally
 * that will use GET data to fetch a result. The output can also be converted to JSON data (see phph1_call.php) with PHP's 
-* json_encode() method and returned to the page for remote queries using scripting languages such as Javascript. This file and inc/config.php must be included in your project before invoking the PHPH1 class, for example, require_once('inc/config.php'); require_once('inc/phph1.php');. Once included the phph1 class can be invoked by setting a handle. In this project, inc/boot.php is included and invokes everything, checks if the Explorer settings have been changed, and validates most major required inputs prior to using any time/cycles to check any other input and sending the API call. You can use boot.php as an example to integrate things into your own custom project.
+* json_encode() method and returned to the page for remote queries using scripting languages such as Javascript. This file, What is in the inc/boot.php file, and inc/config.php must be included in your project before invoking the PHPH1 class, for example, require_once('inc/config.php'); require_once('inc/phph1.php');. Once included the phph1 class can be invoked by setting a handle. In this project, inc/boot.php is included and invokes everything, checks if the Explorer settings have been changed, and validates most major required inputs prior to using any time/cycles to check any other input and sending the API call. You can use boot.php as an example to integrate things into your own custom project.
 *
 * @filesource
 */
@@ -3241,6 +3241,8 @@ class phph1{
 
 	/**
 	* Gets whether specified ONE address is a block signer for a specified block number.
+	*
+	* See <a href='/index.php?method=hmyv2_isBlockSigner'>Explorer Method Page</a> for output details.
 	*
 	* @param string $oneaddr The ONE address of the validator
 	*

@@ -49,22 +49,24 @@ if($phph1->get_rpcstatus() != 1){
 			
 			<h3>Returns</h3>
 			<ul class="infoObjects">
+			
 				<li class="infoObjectNoBul"><div><span >JSON Array</span> of <span>JSON Object</span>:</div></li>
 				
-				<li><div class="ioobjectWrap"><span >validator_address</span> - <span>String</span>:</div> 
-				<div class="iodefWrap">Validator wallet address</div></li>
-				
-				<li><div class="ioobjectWrap"><span >delegator_address</span> - <span>String</span>:</div> 
-				<div class="iodefWrap">Delegator wallet address</div></li>
+				<li><div class="ioobjectWrap"><span >Undelegations</span> - <span>JSON Array</span>:</div> 
+				<div class="iodefWrap">List of pending undelegations</div></li>
 				
 				<li><div class="ioobjectWrap"><span >amount</span> - <span>Number</span>:</div> 
 				<div class="iodefWrap">Amount delegated in atto</div></li>
 				
+				<li><div class="ioobjectWrap"><span >delegator_address</span> - <span>String</span>:</div> 
+				<div class="iodefWrap">Delegator wallet address</div></li>
+				
 				<li><div class="ioobjectWrap"><span >reward</span> - <span>Number</span>:</div> 
 				<div class="iodefWrap">Unclaimed rewards in Atto</div></li>
 				
-				<li><div class="ioobjectWrap"><span >Undelegations</span> - <span>JSON Array</span>:</div> 
-				<div class="iodefWrap">List of pending undelegations</div></li>
+				<li><div class="ioobjectWrap"><span >validator_address</span> - <span>String</span>:</div> 
+				<div class="iodefWrap">Validator wallet address</div></li>
+
 			</ul>
 
 		</div>

@@ -7,6 +7,7 @@
 require_once('inc/errors.php');
 
 ?>
+<!--
 <div class="fp_row">
 	<div class="fp_column">
 	<div class="fp_content_header"><h3>Currently Available Methods</h3></div>
@@ -23,7 +24,7 @@ require_once('inc/errors.php');
 		</div>
 	</div>
 </div>
-
+-->
 <div class="fp_row">
 	<div class="fp_column">
 		<div class="fp_content_header"><h3>Welcome To PHPH1</h3></div>

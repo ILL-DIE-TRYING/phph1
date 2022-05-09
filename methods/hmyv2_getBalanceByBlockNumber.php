@@ -57,7 +57,7 @@ if($phph1->get_rpcstatus() != 1){
 				<h3 class="infoHeader">Returns</h3>				
 				<ul class="infoObjects" >
 				
-					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span>result</span> - <span>Number</span>:</div> 
+					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span>Number</span>:</div> 
 					<div class="iodefWrap">Wallet balance at specified block number in atto</div></li>
 					
 				</ul>

@@ -47,10 +47,10 @@ if($phph1->get_rpcstatus() != 1){
 					<li class="infoObjectNoBul"><span>Object</span>:</li>
 					
 					<li><div class="ioobjectWrap"><span >executable-count</span> - <span>String</span>:</div> 
-					<div class="iodefWrap">Staking transaction hash</div></li>
+					<div class="iodefWrap">Executable count</div></li>
 					
 					<li><div class="ioobjectWrap"><span >non-executable-count</span> - <span>String</span>:</div> 
-					<div class="iodefWrap">Type of staking transaction</div></li>
+					<div class="iodefWrap">Non-executable count</div></li>
 					
 				</ul>
 			</div>

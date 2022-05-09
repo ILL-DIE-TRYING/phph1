@@ -124,10 +124,10 @@ if($phph1->get_rpcstatus() != 1){
 							<div class="iodefWrap">Validator wallet address</div></li>
 							
 							<li><div class="ioobjectWrap"><span >amount</span> - <span >Number</span>:</div> 
-							<div class="iodefWrap">FIXME</div></li>
+							<div class="iodefWrap">The amount staked to the validator</div></li>
 							
 							<li><div class="ioobjectWrap"><span >reward</span> - <span >Number</span>:</div> 
-							<div class="iodefWrap">FIXME</div></li>
+							<div class="iodefWrap">Unclaimed staking reward</div></li>
 							
 							<li><div class="ioobjectWrap"><span >undelegations</span> - <span >Array</span>:</div> 
 							<div class="iodefWrap">List of undelegations</div></li>

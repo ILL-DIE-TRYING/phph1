@@ -33,7 +33,7 @@ if($phph1->get_rpcstatus() != 1){
 				<ul class="infoObjects" >
 					<li class="infoObjectNoBul">
 						<div>
-							<p>Gets the current balance in atto for the specified wallet.</p>
+							<p>Gets the current balance for the specified wallet in atto.</p>
 							<p>There may be more information in the <a href="./doc/classes/phph1.html#method_hmyv2_getBalance">PHPH1 Class Documentation</a>.</p>
 						</div>
 					</li>

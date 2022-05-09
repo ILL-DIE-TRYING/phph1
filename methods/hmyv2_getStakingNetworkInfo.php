@@ -40,21 +40,21 @@ if($phph1->get_rpcstatus() != 1){
 				
 				<h3 class="infoHeader">Returns</h3>
 				<ul class="infoObjects">
-				
-					<li><div class="ioobjectWrap"><span >total-supply</span> - <span>String</span>:</div> 
-					<div class="iodefWrap">Total number of pre-mined tokens</div></li>
 					
 					<li><div class="ioobjectWrap"><span >circulating-supply</span> - <span>String</span>:</div> 
 					<div class="iodefWrap">Number of tokens available in the network</div></li>
 					
 					<li><div class="ioobjectWrap"><span >epoch-last-block</span> - <span>Number</span>:</div> 
 					<div class="iodefWrap">Last block of epoch</div></li>
+
+					<li><div class="ioobjectWrap"><span >median-raw-stake</span> - <span>String</span>:</div> 
+					<div class="iodefWrap">Effective median stake in Atto</div></li>
 					
 					<li><div class="ioobjectWrap"><span >total-staking</span> - <span>Number</span>:</div> 
 					<div class="iodefWrap">Total amount staked in Atto</div></li>
 					
-					<li><div class="ioobjectWrap"><span >median-raw-stake</span> - <span>String</span>:</div> 
-					<div class="iodefWrap">Effective median stake in Atto</div></li>
+					<li><div class="ioobjectWrap"><span >total-supply</span> - <span>String</span>:</div> 
+					<div class="iodefWrap">Total number of pre-mined tokens</div></li>
 					
 				</ul>
 			</div>

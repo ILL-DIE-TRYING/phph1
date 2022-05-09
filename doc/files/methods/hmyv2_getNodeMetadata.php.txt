@@ -210,8 +210,8 @@ if($phph1->get_rpcstatus() != 1){
 					<li><div class="ioobjectWrap"><span>shard-id</span> - <span>Number</span>:</div>
 					<div class="iodefWrap">Shard that the node is on</div></li>
 					
-					<li><div class="ioobjectWrap"><span>sync-peers</span> - <span>FIXME</span>:</div>
-					<div class="iodefWrap">FIXME</div></li>					
+					<!--<li><div class="ioobjectWrap"><span>sync-peers</span> - <span>FIXME</span>:</div>
+					<div class="iodefWrap">FIXME</div></li>-->			
 					
 					<li><div class="ioobjectWrap"><span>version</span> - <span>String</span>:</div>
 					<div class="iodefWrap">Harmony binary version</div></li>

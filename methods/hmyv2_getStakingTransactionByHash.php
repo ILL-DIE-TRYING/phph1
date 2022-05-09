@@ -53,7 +53,6 @@ if($phph1->get_rpcstatus() != 1){
 					<h3 class="infoHeader">Returns</h3>
 					<li class="infoObjectNoBul"><div class="ioobjectWrap"><span>Object</span>:</div></li>
 					
-					
 					<li><div class="ioobjectWrap"><span>blockHash</span> - <span>String</span>:</div>
 					<div class="iodefWrap">Block hash in which transaction was finalized</div></li>
 					
@@ -62,7 +61,6 @@ if($phph1->get_rpcstatus() != 1){
 					
 					<li><div class="ioobjectWrap"><span>from</span> - <span>String</span>:</div>
 					<div class="iodefWrap">Sender wallet address</div></li>
-					
 					
 					<li><div class="ioobjectWrap"><span>timestamp</span> - <span>Number</span>:</div>
 					<div class="iodefWrap">Unix time at which transaction was finalized</div></li>

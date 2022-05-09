@@ -56,6 +56,16 @@ if($phph1->get_rpcstatus() != 1){
 				<li><div class="ioobjectWrap"><span >Undelegations</span> - <span>JSON Array</span>:</div> 
 				<div class="iodefWrap">List of pending undelegations.</div></li>
 				
+					<ul class="infoObjects2">
+						
+						<li><div class="ioobjectWrap"><span >Amount</span> - <span >Number</span>:</div> 
+						<div class="iodefWrap">The amount undelegated in atto</div></li>
+						
+						<li><div class="ioobjectWrap"><span >Epoch</span> - <span >Number</span>:</div> 
+						<div class="iodefWrap">The epoch when undelegated</div></li>
+							
+					</ul>
+				
 				<li><div class="ioobjectWrap"><span >amount</span> - <span>Number</span>:</div> 
 				<div class="iodefWrap">Amount delegated in atto.</div></li>
 				
