@@ -12,27 +12,26 @@ PHPH1 is two tools in one:
 
 # ROADMAP
 
-- [ ] Create a PHP class with every API call in it.
-  1. I have 61 of 63 methods completed
-  2. I am waiting for information from the Harmony team on the last two methods
+- [x] Create a PHP class with every API call in it.
+  1. 63 methods completed
 
-- [ ] Optimize and modernize the class code reassess the PHP code logic and revamp if necessary
-  1. ~98% complete as of 2022-4-6.
+- [x] Optimize and modernize the class code reassess the PHP code logic and revamp if necessary
+  1. 100% complete as of 2022-5-9.
 
-- [ ] Create a MOBILE FRIENDLY Harmony API explorer into the package to assist developers in learning how the API works
-  1. The design has already been implemented and just needs to have the new API method forms and API documentation sections created and a few adjustments. It is time consuming.
-  2. ~98% complete as of 2022-4-6
+- [x] Create a MOBILE FRIENDLY Harmony API explorer into the package to assist developers in learning how the API works
+  1. 100% complete as of 2022-5-9
 
-- [ ] Create documentation on the “homepage” of the explorer package including configuration and simple Javascript/jQuery code examples. This also includes how to extend the network and shards in order to do things like run a local node and get data from it.
-     1. ~10% complete as of 2022-4-6
+- [x] Create documentation on the “homepage” of the explorer package including configuration and simple Javascript/jQuery code examples. This also includes how to extend the network and shards in order to do things like run a local node and get data from it.
+     1. 100% complete as of 2022-5-9
 
 - [ ] Create documentation for the class and explorer using PHP DOC. I have to write in all the doc blocks in the code so it generates everything nicely. Get it generated and then probably a few tweaks to the interface.
-     1. ~90% complete as of 2022-4-6
+     1. ~99% complete
 
-- [ ] Create a package where a developer could drop the package into a directory and safely use it for retrieving data using other scripting languages with minimal input. I plan to provide 3 different download packages: Full with full API explorer, minimal with just the class and remote call script, and class only. As long as I have my stuff properly set up on github, this should be pretty easy.
+- [ ] Create a package where a developer could drop the package into a directory and safely use it for retrieving data using other scripting languages with minimal input. I plan to provide 3 different download packages (only 2 are really necessary): Full with full API explorer and minimal with just the class and remote call script. As long as I have my stuff properly set up on github, this should be pretty easy.
      1. ~20% complete as of 2022-4-6
  
-- [ ] Report API methods that do not react according to the API documentation (this happens as I work throughout entire project as basically an include. As far as time to report and deal with it depends on how fast the line of communication is). I have a few noted already. 1 day
+- [x] Report API methods that do not react according to the API documentation (this happens as I work throughout entire project as basically an include. As far as time to report and deal with it depends on how fast the line of communication is).
+     1. I have reported a few times. If Harmony wants their postman documentation to be proper and accurate, just using the PHPH1 explroer interface for all the details.
 
 - [ ] Maintain the class and project if/when the API changes/expands (depends on how often the API changes, just part of maintenance).
      1. If we have a method explosion like this last time, this could turn into a lot of work to stay up to date with the API. I was looking and I believe the original EVM has like 62 or so methods. If there are plans to expand, please let me know and I will include it in the bounty if that is okay.
@@ -40,17 +39,14 @@ PHPH1 is two tools in one:
 - [ ] Maintain any bug reports etc on Github
      1. ~2 days time over a year then I’ll just do it
 
-# CURRENT STATE
+# CURRENT STATE (2022-5-9)
 
-WARNING! I cannot guarantee that everything is properly validated and sane yet but as of 2022-4-26 I believe the package is in an extremely safe state.
+PHPH1 is VERY usable at this point. If you find anything wrong, please report it here on Github.
 
-Currently this is unoptimized and unfinished. Once it is "finished" (Every call and all documentation have been added) I will break down its use here.
-
-There is currently 61 of 63 available methods available.
-
-Error reporting 95% exists in the app
+There is currently 63 available methods.
 
 Everything should be validated and safe but I need to go back through and validate my own code for safety
+UPDATE 2022-5-9: Everything is validated as best as I can test it. Drive it like you stole it!
 
 # REQUIREMENTS
 
