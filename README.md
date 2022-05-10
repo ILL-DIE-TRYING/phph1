@@ -16,7 +16,7 @@ PHPH1 is two tools in one:
   1. 63 methods completed
   2. All methods can be seen in the [PHPH1 Explorer Interface](https://phph1.saddlerockit.com).
 
-- [x] Optimize and modernize the class code reassess the PHP code logic and revamp if necessary
+- [ ] Optimize and modernize the class code reassess the PHP code logic and revamp if necessary
   1. 95% complete as of 2022-5-9. She runs good.
   2. I have one more adjustment I need to make to all the methods
 
