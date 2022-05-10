@@ -14,24 +14,31 @@ PHPH1 is two tools in one:
 
 - [x] Create a PHP class with every API call in it.
   1. 63 methods completed
+  2. All methods can be seen in the [PHPH1 Explorer Interface](https://phph1.saddlerockit.com).
 
 - [x] Optimize and modernize the class code reassess the PHP code logic and revamp if necessary
-  1. 100% complete as of 2022-5-9.
+  1. 95% complete as of 2022-5-9. She runs good.
+  2. I have one more adjustment I need to make to all the methods
 
 - [x] Create a MOBILE FRIENDLY Harmony API explorer into the package to assist developers in learning how the API works
   1. 100% complete as of 2022-5-9
+  2. Try out the [PHPH1 Explorer](https://phph1.saddlerockit.com) on your phone
 
 - [x] Create documentation on the “homepage” of the explorer package including configuration and simple Javascript/jQuery code examples. This also includes how to extend the network and shards in order to do things like run a local node and get data from it.
      1. 100% complete as of 2022-5-9
+     2. View in the [PHPH1 explorer](https://phph1.saddlerockit.com)
 
 - [ ] Create documentation for the class and explorer using PHP DOC. I have to write in all the doc blocks in the code so it generates everything nicely. Get it generated and then probably a few tweaks to the interface.
-     1. ~99% complete
+     1. ~99% complete (needs one last good pass)
+     2. Remember there are two types of documentation in this project
+     - 1. Check out the [PHPH1 Explorer PHP Class Docs](https://phph1.saddlerockit.com/doc/classes/phph1.html)
+     - 2. Every method page in the [PHPH1 explorer](https://phph1.saddlerockit.com) has built in documentation for the Harmony API Methods
 
 - [ ] Create a package where a developer could drop the package into a directory and safely use it for retrieving data using other scripting languages with minimal input. I plan to provide 3 different download packages (only 2 are really necessary): Full with full API explorer and minimal with just the class and remote call script. As long as I have my stuff properly set up on github, this should be pretty easy.
      1. ~70% complete as of 2022-4-6
  
 - [x] Report API methods that do not react according to the API documentation (this happens as I work throughout entire project as basically an include. As far as time to report and deal with it depends on how fast the line of communication is).
-     1. I have reported a few times. If Harmony wants their postman documentation to be proper and accurate, just using the PHPH1 explroer interface for all the details.
+     1. I have reported a few times. If Harmony wants their postman documentation to be proper and accurate, just use the [PHPH1 explorer](https://phph1.saddlerockit.com) interface for all the details.
 
 - [ ] Maintain the class and project if/when the API changes/expands (depends on how often the API changes, just part of maintenance).
      1. If we have a method explosion like this last time, this could turn into a lot of work to stay up to date with the API. I was looking and I believe the original EVM has like 62 or so methods. If there are plans to expand, please let me know and I will include it in the bounty if that is okay.
