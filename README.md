@@ -28,7 +28,7 @@ PHPH1 is two tools in one:
      1. ~99% complete
 
 - [ ] Create a package where a developer could drop the package into a directory and safely use it for retrieving data using other scripting languages with minimal input. I plan to provide 3 different download packages (only 2 are really necessary): Full with full API explorer and minimal with just the class and remote call script. As long as I have my stuff properly set up on github, this should be pretty easy.
-     1. ~20% complete as of 2022-4-6
+     1. ~70% complete as of 2022-4-6
  
 - [x] Report API methods that do not react according to the API documentation (this happens as I work throughout entire project as basically an include. As far as time to report and deal with it depends on how fast the line of communication is).
      1. I have reported a few times. If Harmony wants their postman documentation to be proper and accurate, just using the PHPH1 explroer interface for all the details.
