@@ -5,38 +5,17 @@
 
 if($phph1->chk_dorequest()){
 
-	/** Prepare blockhash for validation */
-	if(isset($_GET['blockhash'])&& !empty($_GET['blockhash'])){$blockhash = $_GET['blockhash'];}else{$blockhash = null;}
+	$phph1_inputs = array(
+				'blockhash' => 'string',
+				'fulltx' => 'bool',
+				'incltx' => 'bool',
+				'inclstaking' => 'bool',
+				'withsigners' => 'bool'
+	);
 	
-		/*
-	If fulltx isn't set then we will set it to FALSE by default
-	The choices here are 1 (for true) or 0 (for false)
-	*/
-	if(isset($_GET['fulltx']) && $_GET['fulltx'] == '1'){
-		// We have to do this on boolean items to convert the GET data to a PHP boolean value
-		$fulltx = true;
-	}else{
-		$fulltx = false;
+	foreach($phph1_inputs as $aninput => $input_type){
+		$$aninput = $phph1->phph1_prepinput($aninput, $input_type);
 	}
-	
-	/*
-	If incltx isn't set then we will set it to FALSE by default
-	The choices here are TRUE or FALSE
-	*/
-	if(isset($_GET['incltx']) && $_GET['incltx'] == '1'){$incltx = true;}else{$incltx = false;}
-	
-	
-	/*
-	If inclstaking isn't set then we will set it to FALSE by default
-	The choices here are TRUE or FALSE
-	*/
-	if(isset($_GET['inclstaking']) && $_GET['inclstaking'] == 1){$inclstaking = true;}else{$inclstaking = false;}
-	
-	/*
-	If withsigners isn't set then we will set it to FALSE by default
-	The choices here are TRUE or FALSE
-	*/
-	if(isset($_GET['withsigners']) && $_GET['withsigners'] == '1'){$withsigners = true;}else{$withsigners = false;}
 
 	/**
 	* Validate the input and run our call if the data is good
@@ -302,7 +281,7 @@ if($phph1->get_rpcstatus() != 1){
 
 <div class="form_container">
 	<div id="formcontent">
-		<form method="GET">
+		<form action="/?method=hmyv2_getBlockByHash" method="post">
 			
 		<div class="row">
 			<div class="col-25">
@@ -312,7 +291,6 @@ if($phph1->get_rpcstatus() != 1){
 			</div>
 		</div>
 			
-
 		<div class="row">
 			<div class="col-25">
 				<label for="fulltx">Get Full Transaction Data:</label>
@@ -361,7 +339,6 @@ if($phph1->get_rpcstatus() != 1){
 
 		<div class="row">
 			<input type="hidden" id="dorequest" name="dorequest" value="1" />
-			<input type="hidden" id="method" name="method" value="hmyv2_getBlockByHash" />
 			<input type='submit' name='Submit' />
 		</div>
 

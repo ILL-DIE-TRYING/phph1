@@ -57,6 +57,9 @@ class phph1{
 	/** @var string $rpc_url When a method is called and run, it generates the RPC URL and sets it here for output later on */
 	private string $rpc_url;
 	
+	/** @var string $rpc_url When a method is called and run, it generates the RPC URL and sets it here for output later on */
+	private array $rpc_posturl = [];
+	
 	//* @var integer $shard This is the index number of the shard from the $network array set during __construct. The shard MUST be defined in the <a href='https://one.saddlerockit.com/doc/files/inc-config.html'>inc/config.php</a> $phph1_apiaddresses array. example: If 'mainnet' were selected for $network and we wanted to use shard 0, the value for this would be 0.
 	private int $shard;
 	
@@ -323,6 +326,23 @@ class phph1{
 	}
 	
 	/**
+	* get_rpcurl() is used to retrieve the current RPC URL.
+	* The URL is set in _construct when creating the class handle
+	* and is determined from the $phph1_apiaddresses array using 
+	* the network and hsard settings in inc/config.php unless
+	* settings have been set in the Method Explorer interface
+	*
+	* @return string Current RPC URL
+	*/
+	function get_rpcposturl(){
+		if(!empty($this->rpc_posturl)){
+			return $this->rpc_posturl;
+		}else{
+			return 0;
+		}
+	}
+	
+	/**
 	* get_validinput() is used to retrieve the current input validation status
 	* The validation status bit is set when validating user input
 	*
@@ -382,7 +402,7 @@ class phph1{
 	}
 	
 	/**
-	* chk_dorequest() is used to check if we have form data submitted
+	* chk_dorequest() is used to check if we have form data submitted anf the request is valid enough to move forward
 	*
 	* @return booleen 1 = the form has been submitted, 0 = The form has not been submitted
 	*/
@@ -394,10 +414,36 @@ class phph1{
 		}
 	}
 	
+	/**
+	* phph1_prepinput() is used to prepare userinput for validation
+	*
+	* @return string he requested input value
+	*/
+	function phph1_prepinput($forminput, $datatype){
+		if(isset($_POST[$forminput])){
+			$output = $_POST[$forminput];
+		}elseif(isset($_GET[$forminput])){
+			$output = $_GET[$forminput];
+		}else{
+			$output = null;
+		}
+		if($datatype == 'bool'){
+			if($output == 1){
+				$output = true;
+			}elseif($output == 0){
+				$output = false;
+			}else{
+				$output = null;
+			}
+		}
+		//echo "op:".$output;
+		return $output;
+	}
+	
 	/** 
 	* Check if we have a valid method input and make sure $_GET['method'] is in $phph1_methods array in the phph1 class
 	* The methods array is set in config.php and loaded to the class in boot.php when the class handle is created
-	* THEN it checks if $_GET['dorequest'] which is a hidden field in every method formis set and sets the class
+	* THEN it checks if $_POST['dorequest'] which is a hidden field in every method formis set and sets the class
 	* variable $dorequest so it is known everywhere that a method form has been submitted
 	*
 	* @return booleen 1 = the form has been submitted, 0 = The form has not been submitted
@@ -412,16 +458,16 @@ class phph1{
 			$this->dorequest = 0;
 			
 			// See if we have submitted a method form. 
-			// $_GET['dorequest'] will only ever have a single valid setting of 1
+			// $_POST['dorequest'] will only ever have a single valid setting of 1
 			// Otherwise somebody is trying to mess around and we need to kick their whole request immediately
 			// This is mostly to prevent the dumber spam bots and such from loading the webserver down with requests.
 			// dorequest is a hidden field in all method forms
-			if(isset($_GET['dorequest']) && $_GET['dorequest'] == 1){
+			if((isset($_POST['dorequest']) && $_POST['dorequest'] == "1") OR (isset($_GET['dorequest']) && $_GET['dorequest'] == "1")){
 				$this->dorequest = 1;
 				return 1;
-			}elseif(isset($_GET['dorequest']) && $_GET['dorequest'] != 1){
+			}elseif((isset($_POST['dorequest']) && $_POST['dorequest'] != "1") OR (isset($_GET['dorequest']) && $_GET['dorequest'] != "1")){
 				array_push($this->errors, 'Invalid Request');
-				unset($_GET['dorequest']);
+				unset($_POST['dorequest']);
 				$this->dorequest = 0;
 				return 0;
 			}
@@ -541,7 +587,9 @@ class phph1{
 	*/
 	function genrequesturl(string $method, array $paramsarr){
 		
-		$thisrequesturl = '/phph1_call.php?dorequest=1&method='.$method;
+		$thisrequesturl = 'phph1_call.php?dorequest=1&method='.$method;
+		$thispostrequesturl = 'phph1_call.php?method='.$method;
+		
 		if(!empty($paramsarr)){
 			foreach($paramsarr as $key => $value){
 				if(is_array($value)){
@@ -553,7 +601,11 @@ class phph1{
 				}
 			}
 		}
-			
+		
+		$this->rpc_posturl = array(
+								'url' => $thispostrequesturl,
+								'values' => $paramsarr
+						);
 		$this->rpc_url = $thisrequesturl;
 		return 1;
 	}
@@ -580,14 +632,13 @@ class phph1{
 	function hmyv2_call(string $scaddress, $from, $gas, $gasprice, $value, $data, int $blocknum){
 		$method = "hmyv2_call";
 		$urlparams = [
-				[
+				
 				'scaddress' => $scaddress,
 				'from' => $from,
 				'gas' => $gas,
 				'gasPrice' => $gasprice,
 				'value' => $value,
-				'data' => $data
-				],
+				'data' => $data,
 				'blocknum' => $blocknum
 			];
 		$this->genrequesturl($method, $urlparams);
@@ -692,14 +743,14 @@ class phph1{
 	function hmyv2_estimateGas($toaddr, $from, $gas, $gasprice, $value, $data){
 		$method = "hmyv2_estimateGas";
 		$urlparams = [
-				[
+				
 				'toaddr' => $toaddr,
 				'from' => $from,
 				'value' => $value,
 				'gas' => $gas,
 				'gasPrice' => $gasprice,
 				'data' => $data
-				]
+				
 			];
 		$this->genrequesturl($method, $urlparams);
 		$params = [
@@ -733,34 +784,35 @@ class phph1{
 		if(is_null($toaddr) OR !$this->val_ethaddr($toaddr)){
 			$notvalid = 1; 
 			array_push($this->errors, 'to address input is invalid');
+			echo "bad";
 		}else{
 			$this->goodinputs['toaddr'] = $toaddr;
 		}
-		if(!is_null($fromaddr) && !$this->val_ethaddr($fromaddr)){
+		if(!empty($fromaddr) && !$this->val_ethaddr($fromaddr)){
 			$notvalid = 1; 
 			array_push($this->errors, 'from address input is invalid');
 		}else{
 			$this->goodinputs['fromaddr'] = $fromaddr;
 		}
-		if(!is_null($gas) && !preg_match( '/^0x[a-f0-9]+$/', $gas)){
+		if(!empty($gas) && !preg_match( '/^0x[a-f0-9]+$/', $gas)){
 			$notvalid = 1; 
 			array_push($this->errors, 'gas value input is invalid');
 		}else{
 			$this->goodinputs['gas'] = $gas;
 		}
-		if(!is_null($gasprice) && !preg_match( '/^0x[a-f0-9]+$/', $gasprice)){
+		if(!empty($gasprice) && !preg_match( '/^0x[a-f0-9]+$/', $gasprice)){
 			$notvalid = 1; 
 			array_push($this->errors, 'gasprice value input is invalid');
 		}else{
 			$this->goodinputs['gasprice'] = $gasprice;
 		}
-		if(!is_null($value) && !preg_match( '/^0x[a-f0-9]+$/', $value)){
+		if(!empty($value) && !preg_match( '/^0x[a-f0-9]+$/', $value)){
 			$notvalid = 1; 
 			array_push($this->errors, 'value input is invalid');
 		}else{
 			$this->goodinputs['value'] = $value;
 		}
-		if(!is_null($data) && !preg_match( '/^0x[a-f0-9]+$/', $data)){
+		if(!empty($data) && !preg_match( '/^0x[a-f0-9]+$/', $data)){
 			$notvalid = 1; 
 			array_push($this->errors, 'data value input is invalid');
 		}else{
@@ -1556,6 +1608,7 @@ class phph1{
 	*/
 	//FIXME method handler crashed
 	function hmyv2_getStakingTransactionByBlockHashAndIndex($blockhash,$txindex){
+		//echo "txindex_method:".$txindex;
 		$method = "hmyv2_getStakingTransactionByBlockHashAndIndex";
 		$urlparams = [
 			'blockhash' => $blockhash,
@@ -2279,11 +2332,9 @@ class phph1{
 		$urlparams = [
 				'blocknum' => $blocknum,
 				'blocknum2' => $blocknum2,
-				[
 				'fullTx' => $fulltx,
 				'withSigners' => $withsigners,
 				'inclStaking' => $inclstaking
-				]
 			];
 		$this->genrequesturl($method, $urlparams);
 		$params = [
@@ -2372,12 +2423,10 @@ class phph1{
 		$method = "hmyv2_getBlockByNumber";
 		$urlparams = [
 				'blocknum' => $blocknum,
-				[
 				'fulltx' => $fulltx,
 				'incltx' => $incltx,
 				'inclstaking' => $inclstaking,
 				'withsigners' => $withsigners
-				]
 				];
 		$this->genrequesturl($method, $urlparams);
 		$params = [
@@ -2470,12 +2519,10 @@ class phph1{
 		$method = "hmyv2_getBlockByHash";
 		$urlparams = [
 				'blockhash' => $blockhash,
-				[
 				'fulltx' => $fulltx,
 				'incltx' => $incltx,
 				'withsigners' => $withsigners,
 				'inclstaking' => $inclstaking
-				]
 				];
 		$this->genrequesturl($method, $urlparams);
 		$params = [
@@ -2961,16 +3008,14 @@ class phph1{
 			$pageindex = $pagenum - 1;
 		}
 		$method = "hmyv2_getStakingTransactionsHistory";
-		$urlparams = array(
-					[
+		$urlparams = [
 					'oneaddr' => $oneaddr,
 					'pagenum' => $pagenum,
 					'pagesize' => $pagesize,
 					'fulltx' => $fulltx,
 					'txtype' => $txtype,
 					'order' => $order
-					]
-					);
+					];
 		$this->genrequesturl($method, $urlparams);
 		$params = array(
 					[
@@ -3145,16 +3190,14 @@ class phph1{
 			$pageindex = $pagenum - 1;
 		}
 		$method = "hmyv2_getTransactionsHistory";
-		$urlparams = array(
-					[
+		$urlparams = [					
 					'oneaddr' => $oneaddr,
 					'pagenum' => $pagenum,
 					'pagesize' => $pagesize,
 					'fulltx'=> $fulltx,
 					'txtype' => $txtype,
 					'order' => $order
-					]
-					);
+					];
 		$this->genrequesturl($method, $urlparams);
 		$params = array(
 					[
@@ -3469,9 +3512,9 @@ class phph1{
 	*
 	* @return booleen 1 = good transaction index, 0 = bad transaction index
 	*/
-	function val_txindex(int $txindex){
+	function val_txindex($txindex){
 		$goodinput = 0;
-		if(preg_match( '/^[1-9]+[0-9]*$/', $txindex) OR $txindex == 0){
+		if(preg_match( '/^[0-9]+$/', $txindex) OR (!empty($txindex) && $txindex == 0)){
 			return 1;
 		}else{
 			return 0;

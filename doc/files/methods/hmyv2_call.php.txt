@@ -5,26 +5,19 @@
 
 if($phph1->chk_dorequest()){
 	
-	/** Prepare scaddress for validation */
-	if(isset($_GET['scaddress'])&& !empty($_GET['scaddress'])){$scaddress = $_GET['scaddress'];}else{$scaddress = null;}
-
-	/** Prepare from for validation	*/
-	if(isset($_GET['fromaddr'])&& !empty($_GET['fromaddr'])){$fromaddr = $_GET['fromaddr'];}else{$fromaddr = null;}
+	$phph1_inputs = array(
+				'scaddress' => 'string',
+				'fromaddr' => 'string',
+				'gas' => 'int',
+				'gasprice' => 'int',
+				'value' => 'string',
+				'data' => 'string',
+				'blocknum' => 'int'
+	);
 	
-	/** Prepare gas for validation */
-	if(isset($_GET['gas']) && !empty($_GET['gas'])){$gas = $_GET['gas'];}else{$gas = null;}
-
-	/** Prepare gasprice for validation	*/
-	if(isset($_GET['gasprice']) && !empty($_GET['gasprice'])){$gasprice = $_GET['gasprice'];}else{$gasprice = null;}
-	
-	/** Prepare value for validation */
-	if(isset($_GET['value']) && !empty($_GET['value'])){$value = $_GET['value'];}else{$value = null;}
-	
-	/** Prepare data for validation	*/
-	if(isset($_GET['data']) && !empty($_GET['data'])){$data = $_GET['data'];}else{$data = null;}
-	
-	/** Prepare blocknum for validation	*/
-	if(isset($_GET['blocknum']) && !empty($_GET['blocknum'])){$blocknum = $_GET['blocknum'];}else{$blocknum = null;}
+	foreach($phph1_inputs as $aninput => $input_type){
+		$$aninput = $phph1->phph1_prepinput($aninput, $input_type);
+	}
 	
 	/** Validate the input and run our call if the data is good	*/
 	if($phph1->val_call($scaddress, $fromaddr, $gas, $gasprice, $value, $data, $blocknum)){
@@ -94,7 +87,7 @@ if($phph1->get_rpcstatus() != 1){
 	</div>
 	<div class="form_container">
 		<div id="formcontent">
-		<form method="get">
+		<form action="/?method=hmyv2_call" method="post">
 			<div class="row">
 				<div class="col-25">
 					<label for="scaddress">Smart Contract Address: </label>

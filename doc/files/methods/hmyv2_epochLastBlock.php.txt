@@ -5,10 +5,7 @@
 
 if($phph1->chk_dorequest()){
 	
-	/**
-	* Prepare epoch for validation
-	*/
-	if(isset($_GET['epoch']) && !empty($_GET['epoch'])){$epoch = $_GET['epoch'];}else{$epoch = null;}
+	$epoch = $phph1->phph1_prepinput('epoch', 'int');
 	
 	/**
 	* Validate the input and run our call if the data is good
@@ -65,7 +62,7 @@ if($phph1->get_rpcstatus() != 1){
 	
 	<div class="form_container">
 		<div id="formcontent">
-			<form method="get">
+			<form action="/?method=hmyv2_epochLastBlock" method="post">
 				<div class="row">
 					<div class="col-25">
 						<label for="epoch">Epoch: </label>
@@ -75,7 +72,6 @@ if($phph1->get_rpcstatus() != 1){
 				</div>
 				<div class="row">
 					<input type="hidden" id="dorequest" name="dorequest" value="1" />
-					<input type="hidden" id="method" name="method" value="hmyv2_epochLastBlock" />
 					<input type='submit' name='Submit' class="form_submit" />
 				</div>
 			</form>

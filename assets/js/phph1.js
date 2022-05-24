@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		if (event.target == modal) {
 			modal.style.display = "none";
 		}
-	}	
+	}
 });
 
 /*

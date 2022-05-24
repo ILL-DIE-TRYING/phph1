@@ -5,15 +5,13 @@
 
 if($phph1->chk_dorequest()){
 
-	/**
-	* Prepare blocknum for validation
-	*/
-	if(isset($_GET['blocknum']) && !empty($_GET['blocknum'])){$blocknum = $_GET['blocknum'];}else{$blocknum = null;}
+	$phph1_inputs = array(
+				'blocknum' => 'int',
+				'txindex' => 'int'
+	);
 	
-	/**
-	* Prepare txindex for validation, ensure it is numeric
-	*/
-	if(isset($_GET['txindex']) && !is_null($_GET['txindex'])){$txindex = $_GET['txindex'];}else{$txindex = null;
+	foreach($phph1_inputs as $aninput => $input_type){
+		$$aninput = $phph1->phph1_prepinput($aninput, $input_type);
 	}
 
 	/**
@@ -105,7 +103,7 @@ if($phph1->get_rpcstatus() != 1){
 	</div>
 	<div class="form_container">
 		<div id="formcontent">
-			<form method="get">
+			<form action="/?method=hmyv2_getStakingTransactionByBlockNumberAndIndex" method="post">
 				<div class="row">
 					<div class="col-25">
 						<label for="blocknum">Block Number: </label>
@@ -123,7 +121,6 @@ if($phph1->get_rpcstatus() != 1){
 				</div>
 				<div class="row">
 					<input type="hidden" id="dorequest" name="dorequest" value="1" />
-					<input type="hidden" id="method" name="method" value="hmyv2_getStakingTransactionByBlockNumberAndIndex" />
 					<input type='submit' name='Submit' class="form_submit" />
 				</div>
 			</form>

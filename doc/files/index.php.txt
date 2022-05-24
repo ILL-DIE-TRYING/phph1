@@ -23,14 +23,19 @@ require_once('inc/config.php');
 <meta name="author" content="Jason L Kolpin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/x-icon" href="/img/PHPH1_FAVICON_2022-v2-64.png">
-<link rel="stylesheet" href="css/phph1.css">
-<link rel="stylesheet" href="css/phph1_mobile.css">
+
+
+<link rel="stylesheet" href="assets/css/phph1.css" />
+<link rel="stylesheet" href="assets/css/phph1_mobile.css" />
+<link rel="stylesheet" href="assets/prism/prism.css" />
 <!--
 <link rel="stylesheet" href="phph1_desktop.css">
-
+<link rel="stylesheet" href="highlight_js/styles/default.min.css">
 <link rel="stylesheet" href="phph1_landscape.css">
+<script src="highlight_js/highlight.min.js"></script>
 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 <body>
 
@@ -80,7 +85,7 @@ require_once('inc/config.php');
 	<!--
 	Include the PHPH1 javascript (required for API Explorer only)
 	-->
-	<script src="js/phph1.js"></script>
-
+	<script src="assets/js/phph1.js"></script>
+	<script src="assets/prism/prism.js"></script>
 </body>
 </html>

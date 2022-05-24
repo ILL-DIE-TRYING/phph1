@@ -5,27 +5,19 @@
 
 if($phph1->chk_dorequest()){
 	
-	// Setting an empty form value to null MUST happen, otherwise our json request will get borked
-
-	/** Prepare toaddr for validation */
-	if(isset($_GET['toaddr'])&& !empty($_GET['toaddr'])){$toaddr = $_GET['toaddr'];}else{$toaddr = null;}
-
-	/** Prepare fromaddr for validation */
-	if(isset($_GET['fromaddr'])&& !empty($_GET['fromaddr'])){$fromaddr = $_GET['fromaddr'];}else{$fromaddr = null;}
-
-	/** Prepare gas for validation */
-	if(isset($_GET['gas'])&& !empty($_GET['gas'])){$gas = $_GET['gas'];}else{$gas = null;}
-
-	/** Prepare gasprice for validation */
-
-	if(isset($_GET['gasprice']) && !empty($_GET['gasprice'])){$gasprice = $_GET['gasprice'];}else{$gasprice = null;}
-
-	/** Prepare value for validation */
-	if(isset($_GET['value']) && !empty($_GET['value'])){$value = $_GET['value'];}else{$value = null;}
-
-	/** Prepare data for validation	*/
-	if(isset($_GET['data']) && !empty($_GET['data'])){$data = $_GET['data'];}else{$data = null;}
-
+	$phph1_inputs = array(
+				'toaddr' => 'string',
+				'fromaddr' => 'string',
+				'gas' => 'int',
+				'gasprice' => 'int',
+				'value' => 'int',
+				'data' => 'string'
+	);
+	
+	foreach($phph1_inputs as $aninput => $input_type){
+		$$aninput = $phph1->phph1_prepinput($aninput, $input_type);
+	}
+	
 	/** Validate the input and run our call if the data is good	*/
 	if($phph1->val_estimateGas($toaddr, $fromaddr, $gas, $gasprice, $value, $data)){
 		$hmyv2_data = $phph1->hmyv2_estimateGas($toaddr, $fromaddr, $gas, $gasprice, $value, $data);
@@ -64,7 +56,7 @@ if($phph1->get_rpcstatus() != 1){
 					<div class="iodefWrap">Wallet address sending to (ETH address, not ONE)</div></li>
 					
 					<li><div class="ioobjectWrap"><span >from</span> - <span >String</span> :</div>
-					<div class="iodefWrap">Wallet address sending from (ETH address, not ONE), optional</div></li>
+					<div class="iodefWrap">Wallet address sending from (ETH address, not ONE)</div></li>
 					
 					<li><div class="ioobjectWrap"><span >gas</span> - <span >Number</span> :</div>
 					<div class="iodefWrap">Gas to execute the smart contract call in hex, optional</div></li>
@@ -92,7 +84,7 @@ if($phph1->get_rpcstatus() != 1){
 	</div>
 	<div class="form_container">
 		<div id="formcontent">
-		<form method="get">
+		<form action="/?method=hmyv2_estimateGas" method="post">
 			<div class="row">
 				<div class="col-25">
 					<label for="toaddr">To Address: </label>
@@ -105,7 +97,7 @@ if($phph1->get_rpcstatus() != 1){
 				<div class="col-25">
 					<label for="fromaddr">From Address: </label>
 				</div><div class="col-75">
-					<input type="text" id="fromaddr" name="fromaddr" maxlength="42" value="<?php if($phph1->chk_goodinput('fromaddr')){ echo $phph1->get_goodinput('fromaddr'); } ?>" />
+					<input style="background: orange;" type="text" id="fromaddr" name="fromaddr" maxlength="42" value="<?php if($phph1->chk_goodinput('fromaddr')){ echo $phph1->get_goodinput('fromaddr'); } ?>" />
 				</div>
 			</div>
 			

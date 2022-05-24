@@ -6,7 +6,7 @@
 if($phph1->chk_dorequest()){
 
 	/** Prepare txhash for validation */
-	if(isset($_GET['txhash'])&& !empty($_GET['txhash'])){$txhash = $_GET['txhash'];}else{$txhash = null;}
+	$txhash = $phph1->phph1_prepinput('txhash', 'string');
 	
 	/**
 	* Validate the input and run our call if the data is good
@@ -87,7 +87,7 @@ if($phph1->get_rpcstatus() != 1){
 
 <div class="form_container">
 	<div id="formcontent">
-		<form method="GET">
+		<form action="/?method=hmyv2_getCXReceiptByHash" method="post">
 			
 		<div class="row">
 			<div class="col-25">
@@ -99,7 +99,6 @@ if($phph1->get_rpcstatus() != 1){
 
 		<div class="row">
 			<input type="hidden" id="dorequest" name="dorequest" value="1" />
-			<input type="hidden" id="method" name="method" value="hmyv2_getCXReceiptByHash" />
 			<input type='submit' name='Submit' />
 		</div>
 

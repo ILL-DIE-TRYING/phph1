@@ -5,15 +5,13 @@
 	
 if($phph1->chk_dorequest()){
 	
-	/**
-	* Prepare oneaddr for validation
-	*/
-	if(isset($_GET['oneaddr']) && !empty($_GET['oneaddr'])){$oneaddr = $_GET['oneaddr'];}else{$oneaddr = null;}
+	$phph1_inputs = array(
+				'oneaddr' => 'string',
+				'blocknum' => 'int'
+	);
 	
-	/**
-	* Prepare blocknum for validation
-	*/
-	if(isset($_GET['blocknum']) && !is_null($_GET['blocknum'])){$blocknum = $_GET['blocknum'];}else{$blocknum = null;
+	foreach($phph1_inputs as $aninput => $input_type){
+		$$aninput = $phph1->phph1_prepinput($aninput, $input_type);
 	}
 
 	/**

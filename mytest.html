@@ -1,0 +1,47 @@
+<html>
+<head></head><body>
+
+
+
+<script>
+// You can reuse this function with multiple methods
+// In a production environment this function should probably be expanded with security checks etc.
+async function getPHPH1Data(url, formdata){
+  let response = await fetch(url, {
+    method: "POST",
+    body: formdata,
+    headers: { "Content-type": "application/x-www-form-urlencoded" }
+  });
+
+  let mydata = await response.json();
+
+  // Check the console for output
+  console.log("method data:" + JSON.stringify(mydata));
+  // What you do with the returned data after this is up to you
+}
+
+// This is the call URL. It will always require the method being used to be sent in the URL
+var url = "/phph1_call.php?method=hmyv2_blockNumber"
+
+// The formdata variable is always set
+// Even if there is no form data we need the dorequest sent
+var formdata = "dorequest=1";
+
+// Run the getPHPH1Data function
+getPHPH1Data(url, formdata);
+
+
+// This is the call URL. It will always require the method being used to be sent in the URL
+var url2 = "/phph1_call.php?method=hmyv2_gasPrice"
+
+// The formdata variable is always set
+// Even if there is no form data we need the dorequest sent
+var formdata2 = "dorequest=1";
+
+// Run the getPHPH1Data function
+getPHPH1Data(url2, formdata2);
+</script>
+
+
+</body>
+</html>

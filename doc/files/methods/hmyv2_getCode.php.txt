@@ -5,15 +5,14 @@
 
 if($phph1->chk_dorequest()){
 
-	/*
-	Prepare scaddress for validation
-	*/
-	if(isset($_GET['scaddress']) && !empty($_GET['scaddress'])){$scaddress = $_GET['scaddress'];}else{$scaddress = null;}
+	$phph1_inputs = array(
+				'scaddress' => 'string',
+				'blocknum' => 'int'
+	);
 	
-	/*
-	Prepare blocknum for validation
-	*/
-	if(isset($_GET['blocknum']) && !empty($_GET['blocknum'])){$blocknum = $_GET['blocknum'];}else{$blocknum = null;}
+	foreach($phph1_inputs as $aninput => $input_type){
+		$$aninput = $phph1->phph1_prepinput($aninput, $input_type);
+	}
 
 	if($phph1->val_getCode($scaddress, $blocknum)){
 		$hmyv2_data = $phph1->hmyv2_getCode($scaddress, $blocknum);
@@ -68,7 +67,7 @@ if($phph1->get_rpcstatus() != 1){
 
 <div class="form_container">
 	<div id="formcontent">
-		<form method="get">
+		<form action="/?method=hmyv2_getCode" method="post">
 			<div class="row">
 				<div class="col-25">
 					<label for="scaddress">Smart Contract Address: </label>
@@ -87,7 +86,6 @@ if($phph1->get_rpcstatus() != 1){
 
 			<div class="row">
 				<input type="hidden" id="dorequest" name="dorequest" value="1" />
-				<input type="hidden" id="method" name="method" value="hmyv2_getCode" />
 				<input type='submit' name='Submit' class="form_submit" />
 			</div>
 		</form>

@@ -1,26 +1,49 @@
 <!DOCTYPE html>
 <html>
-<head></head>
+<head>
+
+<!-- This CSS makes the loading indicators blink -->
+<style>
+.blinker {
+  animation: blink 1s linear infinite;
+}
+
+@keyframes blink {  
+  100% { opacity: 0; }
+}
+</style>
+
+
+</head>
 <body>
 <h1 style="text-align:center;">PHPH1 BASIC REMOTE JAVASCRIPT EXAMPLE</h1>
+<p>There are three examples here. Two that use GET requests becuse they send no personal information. The other uses POST data which is inherently moresecure to use.</p>
+<h3>Lets Talk Security</h3>
+<p>In all reality, it makes no difference whether we send GET or POST data over an SSL (https) request. BUT there is one big difference that has a definite impact on security. When sending GET data to a web server with standard logging, the GET request with wallet address and all would be logged on the server as the request URL. Using POST data, none of the user input would be logged. In additon, if a user were browsing and GET data was used, their wallet address and more could be viewed in the browsing history links. These two things make using POST data inherently more secure. Just keep this in mind while using PHPH1 as it will accept both GET and POST data. Choose wisely.</p>
+<p>Secondly, it is highly recommended, if possible, to limit access to PHPH1 on your server. There is a way to whitelist ip addressess built into inc/config.php as well as a way to block specific addresses.</p>
+
+<p>Just toss this file in your favorite html or text (Notepad++ is free and works well) editor to see the example code.</p>
+
+
+
+
+<!-- START GET EPOCH CODE -->
+<h3>### Get Epoch Example ###</h3>
+<p>This example loads when the page loads and also loads when the button is clicked.</p>
 
 <button type="button" onclick="getEpoch()">Get The Epoch</button>
+
 <div id="epochdiv"  style="background-color:#ccc;">
-<p>This is our Epoch data div</p>
-</div>
-
-<br /><br />
-
-<button type="button" onclick="getAllValidatorAddresses()">Get All Validators</button>
-<div id="validatorsdiv"  style="background-color:#ccc;">
-<p>This is our validators data div</p>
+	<p>This is the Epoch data div</p>
 </div>
 
 <script>
 
 async function getEpoch(){
 
-	objid = document.getElementById("epochdiv");
+	epochdiv = document.getElementById("epochdiv");
+	
+	epochdiv.innerHTML = "<p class='blinker'>Loading...</p>";
 	
 	const url = 'phph1_call.php?dorequest=1&method=hmyv2_getEpoch';
 	
@@ -28,35 +51,180 @@ async function getEpoch(){
 	
 	let myStringArray = await response.json();
 	
-	objid.innerHTML = "<p>" + myStringArray['result'] + "</p>";
+	epochdiv.innerHTML = "<p>" + myStringArray['result'] + "</p>";
 
 }
 
-async function getAllValidatorAddresses(){
+document.addEventListener("DOMContentLoaded", function() { 
+	getEpoch();
+});
 
-	objid = document.getElementById("validatorsdiv");
+</script>
+
+<h3>### END Get Epoch Example ###</h3>
+<!-- END GET EPOCH CODE -->
+
+
+
+
+<br /><br />
+
+
+
+
+<!-- START GET CURRENT BLOCK NUMBER CODE -->
+<h3>### Get Current Block Number Example ###</h3>
+<p>This example loads when the page loads and also loads when the button is clicked.</p>
+
+<button type="button" onclick="getCurrentBlock()">Get Current Block Number</button>
+
+<div id="currentblockdiv"  style="background-color:#ccc;">
+	<p>This is the block number data div</p>
+</div>
+
+<script>
+async function getCurrentBlock(){
+
+	currentblockdiv = document.getElementById("currentblockdiv");
 	
-	const url = 'phph1_call.php?dorequest=1&method=hmyv2_getAllValidatorAddresses';
+	currentblockdiv.innerHTML = "<p class='blinker'>Loading...</p>";
+	
+	const url = 'phph1_call.php?dorequest=1&method=hmyv2_blockNumber';
 	
 	let response = await fetch(url);
 	
 	let myStringArray = await response.json();
 	
-	//console.log(myStringArray);
-	
-	objid.innerHTML = null;
-	
-	var arrayLength = myStringArray['result'].length;
-	
-	//console.log("Array Length:" + arrayLength);
-	
-	for (var i = 0; i < arrayLength; i++) {
-		objid.innerHTML = objid.innerHTML + "<p>" + myStringArray['result'][i] + "</p>";
-	}
+	currentblockdiv.innerHTML = "<p>" + myStringArray['result'] + "</p>";
 	
 }
 
+
+document.addEventListener("DOMContentLoaded", function() { 
+	getCurrentBlock();
+	getEpoch();
+});
 </script>
 
- </body>
- </html>
+<h3>### END Get Current Block Number Example ###</h3>
+<!-- END GET CURRENT BLOCK NUMBER CODE -->
+
+
+
+
+<br /><br />
+
+
+
+
+<!-- START TRANSACTIONS HISTORY CODE -->
+<h3>### Transactions History Example ###</h3>
+<p>This example requires user input and only loads after submitting the form.</p>
+
+ONE Wallet Address: <input id="oneaddr" type="text" size="44" />
+<button type="button" onclick="hmyv2_getTransactionsHistory()">Get Transactions history</button>
+
+<div id="youruniqueelementid" style="background-color:#ccc;overflow:auto;margin-top:5px;">
+<p>This is the transaction history data div</p>
+</div>
+
+<script>
+
+// First a general function that can be reused by multiple requests to create a POST request
+async function phph1_getMethodData(url,formdata){
+	// Create our fetch() request
+	let response = await fetch(url, {
+		method: "POST",
+		body: formdata,
+		headers: { "Content-type": "application/x-www-form-urlencoded" }
+	});
+	// Check if we have a 200 response
+	if (response.status == 200) {
+		let myStringArray = await response.json();
+		if(myStringArray){
+			var output = myStringArray;
+		}else{
+			var output = {'jsonrpc':'2.0','id':1,'errors':{'data':['An unknown error has occurred']}};
+		}
+	} else {
+		// look in the console log for errors if things don't work
+		console.log("HTTP-Error: " + response.status);
+		var output = {'jsonrpc':'2.0','id':1,'errors':{'data':['HTTP-Error: ' + response.status]}};
+	}
+	return output;
+}
+
+// This is the function that fills the transaction form data
+async function hmyv2_getTransactionsHistory(){
+
+	// You can pull form data from form elements if needed like so
+	let oneaddr = document.getElementById("oneaddr").value;
+	
+	// set all the data required by this method to be sent to the POST request
+	// you can get what is required by every method using the Method Explorer built into PHPH1
+	// Every request requires dorequest to be set
+	// All of these variables can be dynamic, it just depends on what you are doing with the request
+	// Standard POST form data is sent in a string just like GET data, see above in phph1_getMethodData(url,formdata)
+	var formdata = 'dorequest=1';
+	formdata += '&pagenum=1';
+	formdata += '&pagesize=100';
+	formdata += '&fulltx=1';
+	formdata += '&txtype=ALL';
+	formdata += '&order=ASC';
+	formdata += '&oneaddr=' + oneaddr;
+	
+	// this is the element where you will be placing the output from this function
+	youruniqueelementid = document.getElementById("youruniqueelementid");
+	
+	// let the user know the data is loading
+	youruniqueelementid.innerHTML = "<p class='blinker'>Loading...</p>";
+
+	// This is the call URL. It will always require the method being used to be sent in the URL
+	const url = 'phph1_call.php?method=hmyv2_getTransactionsHistory';
+	
+	// Call our generalized request function
+	mydata = await phph1_getMethodData(url,formdata);
+	
+	//you can use this for debugging
+	 console.log("method data:" + JSON.stringify(mydata));
+	
+	// defining the output variable
+	var output = '';
+	
+	// This handles any error responses if there are any
+	if(mydata['errors']){
+	
+		arrayLength = mydata['errors']['data'].length;
+	
+		//console.log("array length:" + arrayLength);
+		
+		// Make sure
+		for (i = 0; i < arrayLength; i++) {
+			output = output + "<pre><code>Error: " + JSON.stringify(mydata['errors']['data'][i], 'result', 2) + "</code></pre>";
+		}
+	
+	// This one handles good response data
+	}else if(mydata['result']){
+		
+		arrayLength = mydata['result']['transactions'].length;
+	
+		//console.log("array length:" + arrayLength);
+		//console.log("Data:" + JSON.stringify(mydata['result']['transactions']));
+		
+		for (i = 0; i < arrayLength; i++) {
+			output = output + "<pre><code>" + JSON.stringify(mydata['result']['transactions'][i], 'result', 2) + "</code></pre>";
+		}
+	}
+	
+	// Fill the object with the data
+	youruniqueelementid.innerHTML = output;
+}
+</script>
+<h3>### END Transactions History Example ###</h3>
+<!-- END TRANSACTIONS HISTORY CODE -->
+
+
+<div style="height:300px;";></div>
+
+</body>
+</html>

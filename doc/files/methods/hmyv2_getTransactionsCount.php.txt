@@ -4,17 +4,15 @@
 */
 
 if($phph1->chk_dorequest()){
-
-	/**
-	* Prepare oneaddr for validation
-	*/
-	if(isset($_GET['oneaddr']) && !empty($_GET['oneaddr'])){$oneaddr = $_GET['oneaddr'];}else{$oneaddr = null;}
 	
-	/**
-	* If txtype isn't set then we will set it to grab all transactions
-	* The choices here are "ALL", "RECEIVED", or "SENT"
-	*/
-	if(isset($_GET['txtype']) && !empty($_GET['txtype'])){$txtype = $_GET['txtype'];}else{$txtype = 'ALL';}
+	$phph1_inputs = array(
+				'oneaddr' => 'string',
+				'txtype' => 'string'
+	);
+	
+	foreach($phph1_inputs as $aninput => $input_type){
+		$$aninput = $phph1->phph1_prepinput($aninput, $input_type);
+	}
 	
 	/**
 	* Validate the input and run our call if the data is good

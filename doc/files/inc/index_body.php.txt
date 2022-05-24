@@ -101,7 +101,8 @@ require_once('inc/errors.php');
 					<p>The output section contains three sections of its own.</p>
 						<ul>
 							<li><p>Harmony Node JSON RPC Request: Displays the actual JSON formatted request sent to the Harmony Node API Server</p></li>
-							<li><p>PHPH1 request URL for this method: Displays a link to the phph1_call.php file that would be used by an external scripting language to retrieve results. The URL can be used as a template for making calls for that specific method.</p></li>
+							<li><p>PHPH1 POST request URL for this method: Displays a link to the phph1_call.php file that would be used by an external scripting language to retrieve results. The URL can be used as a template for making calls for that specific method.</p></li>
+							<li><p>PHPH1 GET request URL for this method: Displays a link to the phph1_call.php file that would be used by an external scripting language to retrieve results. The URL can be used as a template for making calls for that specific method.</p></li>
 							<li><p>JSON return data: Displays the JSON data returned from the test request. Use this to ensure the method returns the data you expect to use in your project.</p></li>
 						</ul>
 					</li>
@@ -198,8 +199,6 @@ require_once('inc/errors.php');
 		<div class="fp_content_header"><h3>Limiting Client Requests</h3></div>
 		<div class="fp_content">
 			<ul>
-			
-				<li><p>Although this is an effective way to manage access to your PHPH1, it is suggested to use it as a second layer of defense with the first layer being limiting access to the directory containing PHPH1 using .htaccess (Apache). There is a good tutorial over at <a href="https://htaccessbook.com/access-control-apache-2-4/" target="_blank">htaccessbook.com</a> (No Affiliation, just a place I found)</p></li>
 				
 				<li><h4>There are two different approaches available</h4></li>
 				<li class="nobullet">
@@ -223,7 +222,7 @@ require_once('inc/errors.php');
 					<ul>
 						<li><p>This option is automatically enabled once the first IP address is added to the $phph1_allowedaddr array</p></li>
 						<li><p>Leaving the $phph1_allowedaddr array empty disables this option</p></li>
-						<li><p><strong>NOTE:</strong> Adding and IP address to this option disables the $phph1_blockedaddr array if it contains any entries. there is no reason o block if everyone but the allowed IP address[es] is blocked by default</p></li>
+						<li><p><strong>NOTE:</strong> Adding and IP address to this option disables the $phph1_blockedaddr array if it contains any entries. there is no reason to block if everyone but the allowed IP address[es] is blocked by default</p></li>
 					</ul>
 				</li>
 					
@@ -236,6 +235,26 @@ require_once('inc/errors.php');
 	<div class="fp_column">
 		<div class="fp_content_header"><h3>Class Only</h3></div>
 		<div class="fp_content">
+			<ul>
+				
+				<li><h4>You can also just use this PHP class in your own PHP project</h4></li>
+				<li class="nobullet">
+					<ul>
+						<li><p>Stuff here</p></li>
+						<li><p>Stuff here</p></li>
+					</ul>
+				</li>
+				
+				<li value="2"><h4>More coming soon</h4></li>
+				<li class="nobullet">
+					<ul>
+						<li><p>Stuff here</p></li>
+						<li><p>Stuff here</p></li>
+						<li><p>Stuff here</p></li>
+					</ul>
+				</li>
+					
+			</ul>
 		</div>
 	</div>
 </div>

@@ -81,6 +81,11 @@ Search.appendIndex(
             "summary": "get_rpcurl\u0028\u0029\u0020is\u0020used\u0020to\u0020retrieve\u0020the\u0020current\u0020RPC\u0020URL.",
             "url": "classes/phph1.html#method_get_rpcurl"
         },                {
+            "fqsen": "\\phph1\u003A\u003Aget_rpcposturl\u0028\u0029",
+            "name": "get_rpcposturl",
+            "summary": "get_rpcurl\u0028\u0029\u0020is\u0020used\u0020to\u0020retrieve\u0020the\u0020current\u0020RPC\u0020URL.",
+            "url": "classes/phph1.html#method_get_rpcposturl"
+        },                {
             "fqsen": "\\phph1\u003A\u003Aget_validinput\u0028\u0029",
             "name": "get_validinput",
             "summary": "get_validinput\u0028\u0029\u0020is\u0020used\u0020to\u0020retrieve\u0020the\u0020current\u0020input\u0020validation\u0020status\nThe\u0020validation\u0020status\u0020bit\u0020is\u0020set\u0020when\u0020validating\u0020user\u0020input",
@@ -103,12 +108,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\phph1\u003A\u003Achk_dorequest\u0028\u0029",
             "name": "chk_dorequest",
-            "summary": "chk_dorequest\u0028\u0029\u0020is\u0020used\u0020to\u0020check\u0020if\u0020we\u0020have\u0020form\u0020data\u0020submitted",
+            "summary": "chk_dorequest\u0028\u0029\u0020is\u0020used\u0020to\u0020check\u0020if\u0020we\u0020have\u0020form\u0020data\u0020submitted\u0020anf\u0020the\u0020request\u0020is\u0020valid\u0020enough\u0020to\u0020move\u0020forward",
             "url": "classes/phph1.html#method_chk_dorequest"
+        },                {
+            "fqsen": "\\phph1\u003A\u003Aphph1_prepinput\u0028\u0029",
+            "name": "phph1_prepinput",
+            "summary": "phph1_prepinput\u0028\u0029\u0020is\u0020used\u0020to\u0020prepare\u0020userinput\u0020for\u0020validation",
+            "url": "classes/phph1.html#method_phph1_prepinput"
         },                {
             "fqsen": "\\phph1\u003A\u003Achk_request\u0028\u0029",
             "name": "chk_request",
-            "summary": "Check\u0020if\u0020we\u0020have\u0020a\u0020valid\u0020method\u0020input\u0020and\u0020make\u0020sure\u0020\u0024_GET\u005B\u0027method\u0027\u005D\u0020is\u0020in\u0020\u0024phph1_methods\u0020array\u0020in\u0020the\u0020phph1\u0020class\nThe\u0020methods\u0020array\u0020is\u0020set\u0020in\u0020config.php\u0020and\u0020loaded\u0020to\u0020the\u0020class\u0020in\u0020boot.php\u0020when\u0020the\u0020class\u0020handle\u0020is\u0020created\nTHEN\u0020it\u0020checks\u0020if\u0020\u0024_GET\u005B\u0027dorequest\u0027\u005D\u0020which\u0020is\u0020a\u0020hidden\u0020field\u0020in\u0020every\u0020method\u0020formis\u0020set\u0020and\u0020sets\u0020the\u0020class\nvariable\u0020\u0024dorequest\u0020so\u0020it\u0020is\u0020known\u0020everywhere\u0020that\u0020a\u0020method\u0020form\u0020has\u0020been\u0020submitted",
+            "summary": "Check\u0020if\u0020we\u0020have\u0020a\u0020valid\u0020method\u0020input\u0020and\u0020make\u0020sure\u0020\u0024_GET\u005B\u0027method\u0027\u005D\u0020is\u0020in\u0020\u0024phph1_methods\u0020array\u0020in\u0020the\u0020phph1\u0020class\nThe\u0020methods\u0020array\u0020is\u0020set\u0020in\u0020config.php\u0020and\u0020loaded\u0020to\u0020the\u0020class\u0020in\u0020boot.php\u0020when\u0020the\u0020class\u0020handle\u0020is\u0020created\nTHEN\u0020it\u0020checks\u0020if\u0020\u0024_POST\u005B\u0027dorequest\u0027\u005D\u0020which\u0020is\u0020a\u0020hidden\u0020field\u0020in\u0020every\u0020method\u0020formis\u0020set\u0020and\u0020sets\u0020the\u0020class\nvariable\u0020\u0024dorequest\u0020so\u0020it\u0020is\u0020known\u0020everywhere\u0020that\u0020a\u0020method\u0020form\u0020has\u0020been\u0020submitted",
             "url": "classes/phph1.html#method_chk_request"
         },                {
             "fqsen": "\\phph1\u003A\u003Achk_access\u0028\u0029",
@@ -765,6 +775,11 @@ Search.appendIndex(
             "name": "rpc_url",
             "summary": "",
             "url": "classes/phph1.html#property_rpc_url"
+        },                {
+            "fqsen": "\\phph1\u003A\u003A\u0024rpc_posturl",
+            "name": "rpc_posturl",
+            "summary": "",
+            "url": "classes/phph1.html#property_rpc_posturl"
         },                {
             "fqsen": "\\phph1\u003A\u003A\u0024shard",
             "name": "shard",

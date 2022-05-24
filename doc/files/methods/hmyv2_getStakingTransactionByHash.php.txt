@@ -8,7 +8,7 @@ if($phph1->chk_dorequest()){
 	/**
 	* Prepare hash for validation
 	*/
-	if(isset($_GET['hash']) && !empty($_GET['hash'])){$hash = $_GET['hash'];}else{$hash = null;}
+	$hash = $phph1->phph1_prepinput('hash', 'string');
 
 	/**
 	* Validate the input and run our call if the data is good

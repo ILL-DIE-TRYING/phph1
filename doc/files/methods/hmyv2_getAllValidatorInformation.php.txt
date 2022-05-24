@@ -4,11 +4,8 @@
 */
 
 if($phph1->chk_dorequest()){
-	
-	// Setting an empty form value to null MUST happen, otherwise our json request will get borked
 
-	/** Prepare pagenum for validation */
-	if(isset($_GET['pagenum']) && is_numeric($_GET['pagenum'])){$pagenum = $_GET['pagenum'];}else{$pagenum = 0;}
+	$pagenum = $phph1->phph1_prepinput('pagenum', 'int');
 
 	// alert the user that this method takes a long time to load
 	require_once('inc/alert.php');
@@ -240,17 +237,16 @@ if($phph1->get_rpcstatus() != 1){
 </div>
 <div class="form_container">
 	<div id="formcontent">
-	<form method="get">
+	<form action="/?method=hmyv2_getAllValidatorInformation" method="post">
 		<div class="row">
 			<div class="col-25">
-				<label for="pagenum">Page Index: </label>
+				<label for="pagenum">Page Number: </label>
 			</div><div class="col-75">
 				<input style="background: orange;" type="text" id="pagenum" name="pagenum" maxlength="42" value="<?php if($phph1->chk_goodinput('pagenum')){ echo $phph1->get_goodinput('pagenum'); }else{ echo '1'; } ?>" />
 			</div>
 		</div>
 		<div class="row">
 			<input type="hidden" id="do" name="dorequest" value="1" />
-			<input type="hidden" id="method" name="method" value="hmyv2_getAllValidatorInformation" />
 			<input type='submit' name='Submit' class="form_submit" />
 		</div>
 	</form>

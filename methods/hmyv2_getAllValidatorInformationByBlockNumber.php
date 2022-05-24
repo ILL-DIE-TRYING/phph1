@@ -5,11 +5,14 @@
 
 if($phph1->chk_dorequest()){
 	
-	/** Prepare pagenum for validation */
-	if(isset($_GET['pagenum'])&& !empty($_GET['pagenum'])){$pagenum = $_GET['pagenum'];}else{$pagenum = 0;}
+	$phph1_inputs = array(
+				'pagenum' => 'int',
+				'blocknum' => 'int'
+	);
 	
-	/** Prepare blocknum for validation	*/
-	if(isset($_GET['blocknum']) && !empty($_GET['blocknum'])){$blocknum = $_GET['blocknum'];}else{$blocknum = null;}
+	foreach($phph1_inputs as $aninput => $input_type){
+		$$aninput = $phph1->phph1_prepinput($aninput, $input_type);
+	}
 	
 	// alert the user that this method takes a long time to load
 	require_once('inc/alert.php');
@@ -242,7 +245,7 @@ if($phph1->get_rpcstatus() != 1){
 <div class="form_container">
 	<div id="formcontent">
 	<!-- FORM -->
-	<form method="GET">
+	<form action="/?method=hmyv2_getAllValidatorInformationByBlockNumber" method="post">
 		
 		<div class="row">
 			<div class="col-25">

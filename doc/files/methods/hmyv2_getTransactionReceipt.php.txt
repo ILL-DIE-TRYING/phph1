@@ -5,10 +5,7 @@
 
 if($phph1->chk_dorequest()){
 
-	/**
-	* Prepare hash for validation
-	*/
-	if(isset($_GET['hash']) && !empty($_GET['hash'])){$hash = $_GET['hash'];}else{$hash = null;}
+	$hash = $phph1->phph1_prepinput('hash', 'string');
 
 	/**
 	* Validate the input and run our call if the data is good
@@ -135,7 +132,7 @@ if($phph1->get_rpcstatus() != 1){
 
 	<div class="form_container">
 		<div id="formcontent">
-			<form method="GET">
+			<form action="/?method=hmyv2_getTransactionReceipt" method="post">
 				
 			<div class="row">
 				<div class="col-25">

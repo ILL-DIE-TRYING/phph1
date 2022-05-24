@@ -6,7 +6,7 @@
 if($phph1->chk_dorequest()){
 
 	/** Prepare blocknum for validation */
-	if(isset($_GET['blocknum'])&& !empty($_GET['blocknum'])){$blocknum = $_GET['blocknum'];}else{$blocknum = null;}
+	$blocknum = $phph1->phph1_prepinput('blocknum', 'int');
 	
 	// Validate the input and run our call if the data is good
 	if($phph1->val_getBlockTransactionCountByNumber($blocknum)){
@@ -59,7 +59,7 @@ if($phph1->get_rpcstatus() != 1){
 
 <div class="form_container">
 	<div id="formcontent">
-		<form method="GET">
+		<form action="/?method=hmyv2_getBlockTransactionCountByNumber" method="post">
 			
 		<div class="row">
 			<div class="col-25">
@@ -71,7 +71,6 @@ if($phph1->get_rpcstatus() != 1){
 
 		<div class="row">
 			<input type="hidden" id="dorequest" name="dorequest" value="1" />
-			<input type="hidden" id="method" name="method" value="hmyv2_getBlockTransactionCountByNumber" />
 			<input type='submit' name='Submit' />
 		</div>
 

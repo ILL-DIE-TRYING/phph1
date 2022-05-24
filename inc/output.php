@@ -9,46 +9,109 @@
 * Show the explorer output if this is not an rpc call
 */
 if($phph1->get_validinput() && !$phph1->get_rpcstatus()){
-	echo "<div id='datadiv'>\n";
-	echo "<div id='datacontent'>\n";
-	
-	// FIXME Move style to CSS AND INTERNALIZE $trpages
+	echo "\n<div id='datadiv'>\n";
+	echo "<div id='datacontent'>\n\n";
+
 	// If this method has multiple page output, show how many pages are available
 	if(isset($trpages)){
-		echo "<p style='padding:5px;margin:0px 0px 10px 0px;background-color:#ccc;border-radius: 5px;'>Number of Pages: <span style='color:#000;padding:0px;margin:0px 0px 15px 0px;'>".$trpages."</span></p>\n";
+		echo "	<div class='output_label'><h4>Number of Pages:</h4></div>\n";
+		echo "	<div class='pages_div'>\n";
+		echo "		<p>".$trpages."</p>\n";
+		echo "	</div>\n";
 	}
-	
-	// FIXME Move style to CSS
+
 	// This is the current API JSON request that was sent to the Harmony Node API host
 	if($phph1->get_lastjson()){
-		echo "<p style='padding:5px;margin:0px 0px 10px 0px;background-color:#ccc;border-radius: 5px;'>Harmony Node JSON RPC Request:</p>\n<p style='color:green;padding:0px;margin:0px 0px 15px 0px;'>".$phph1->get_lastjson()."</p>\n";
+		echo "<div class='output_label'><h4>Harmony Node RPC JSON Request:</h4></div>\n";
+		echo "<div class='code_div'>\n";
+		echo "	<pre><code class='language-json'>";
+		echo $phph1->get_lastjson()."";
+		echo "</code></pre>\n";
+		echo "</div>\n\n";
 	}
-	
-	// FIXME Move style to CSS
+
 	// This is what you would send to phph1_call.php to get the same results for a remote call
 	if($phph1->get_rpcurl()){
-		echo "<p style='padding:5px;margin:0px 0px 10px 0px;background-color:#ccc;border-radius: 5px;'>PHPH1 request URL for this method:</p>\n<p style='color:green;padding:0px;margin:0px 0px 15px 0px;'><a href='".$phph1->get_rpcurl()."' target='_blank'>".$phph1->get_rpcurl()."</a></p>\n";
+		echo "<div class='output_label'><h4>PHPH1 GET request URL for this method:</h4></div>\n";
+		echo "<div class='get_div'>\n";
+		echo "	<p class='language-none'>\n";
+		echo "	<a class='geturl' href='".$phph1->get_rpcurl()."' target='_blank'>".$phph1->get_rpcurl()."</a>\n";
+		echo "	</p>\n";
+		echo "</div>\n\n";
 	}
-	
-	// FIXME Move style to CSS
-	echo "<p style='padding:5px;margin:0px 0px 10px 0px;background-color:#ccc;border-radius: 5px;'>JSON return data:</p>\n";
-	echo "<pre id='phph1_pre'><code>";
+
+	// This is what you would send to phph1_call.php to get the same results for a remote call
+	if($phph1->get_rpcposturl()){
+
+		$rpcpostdata = $phph1->get_rpcposturl();
+
+		echo "<div class='output_label'><h4>A <u><em>BASIC</em></u> PHPH1 POST request using Javascript:</h4></div>\n";
+		echo "<div class='code_div'>\n";
+		echo "	<pre class='line-numbers'><code class='language-javascript'>\n";
+
+		$numvalues = count($rpcpostdata['values']);
+
+		echo "&lt;script&gt;\n";
+		echo "// You can reuse this function with multiple methods\n";
+		echo "// In a production environment this function should probably be expanded with security checks etc.\n";
+		echo "async function getPHPH1Data(url, formdata){\n";
+		echo "  let response = await fetch(url, {\n";
+		echo "    method: &quot;POST&quot;,\n";
+		echo "    body: formdata,\n";
+		echo "    headers: { &quot;Content-type&quot;: &quot;application/x-www-form-urlencoded&quot; }\n";
+		echo "  });\n\n";
+
+		echo "  let mydata = await response.json();\n\n";
+
+		echo "  // Check the console for output\n";
+		echo "  console.log(&quot;method data:&quot; + JSON.stringify(mydata));\n";
+		echo "  // What you do with the returned data after this is up to you\n";
+		echo "}\n\n";
+
+		echo "// This is the call URL. It will always require the method being used to be sent in the URL\n";
+		echo "// Depending on your setup, you may need to adjust the path to this url\n";
+		echo "// For example: /your/path/to/phph1/".$rpcpostdata['url']."\n";
+		echo "var url = &quot;".$rpcpostdata['url']."&quot;;\n\n";
+
+		echo "// The formdata variable is always set\n";
+		echo "// Even if there is no form data we need the dorequest sent\n";
+		echo "var formdata = &quot;dorequest=1&quot;;\n";
+		
+		foreach($rpcpostdata['values'] as $item => $value){
+			echo "formdata += &quot;&amp;".$item."=".$value."&quot;;\n";
+		}
+
+		
+		echo "\n// Run the getPHPH1Data function\n";
+		echo "getPHPH1Data(url, formdata);\n";
+		echo "&lt;/script&gt;\n";
+
+		echo "	</code></pre>\n";
+		echo "</div>\n\n";
+	}
+
+	echo "<div class='output_label'><h4>JSON return data:</h4></div>\n";
+	echo "<div id='code_div' class='code_div'>";
+
 	// This is where the JSON Object is pretty displayed for viewing using the javascript at the bottom of this file
 	// This was done because converting a JSON object to an array using json_decode uses a LOT of server memory
 	// Using the JSON object data and javascript lowers the server memory load immensly and speeds things up quite a bit for the smaller return data
-	echo "</code></pre>\n";
+	echo "</div>\n\n";
 	echo "</div>\n</div>\n";
 ?>
+	
 	<!-- This makes the JSON return data pretty for viewing -->
+
 	<script>
-		var precontainer = document.getElementById("phph1_pre");
-		var obj = <?= $hmyv2_data ?>;
-		precontainer.innerHTML = JSON.stringify(obj, 'result', 2);
+		var precontainer = document.getElementById("code_div");
+		var obj = <?=$hmyv2_data?>;
+		precontainer.innerHTML = "<pre class='no-line-numbers'><code class='language-json'>" + JSON.stringify(obj, 'result', 2) + "</code></pre>";
 	</script>
+	</code></pre>
+
 <?php
 // Otherwise return raw JSON data to the page for remote requests
 }elseif($phph1->get_validinput() && $phph1->get_rpcstatus()){
 	echo $hmyv2_data;	
 }
 ?>
-

@@ -5,34 +5,17 @@
 
 if($phph1->chk_dorequest()){
 
-	/** Prepare blocknum for validation */
-	if(isset($_GET['blocknum'])&& !empty($_GET['blocknum'])){$blocknum1 = $_GET['blocknum'];}else{$blocknum1 = null;}
+	$phph1_inputs = array(
+				'blocknum1' => 'int',
+				'blocknum2' => 'int',
+				'fulltx' => 'bool',
+				'inclstaking' => 'bool',
+				'withsigners' => 'bool'
+	);
 	
-	/** Prepare blocknum for validation */
-	if(isset($_GET['blocknum2'])&& !empty($_GET['blocknum2'])){$blocknum2 = $_GET['blocknum2'];}else{$blocknum2 = null;}
-	
-		/*
-	If fulltx isn't set then we will set it to FALSE by default
-	The choices here are 1 (for true) or 0 (for false)
-	*/
-	if(isset($_GET['fulltx']) && $_GET['fulltx'] == '1'){
-		// We have to do this on boolean items to convert the GET data to a PHP boolean value
-		$fulltx = true;
-	}else{
-		$fulltx = false;
+	foreach($phph1_inputs as $aninput => $input_type){
+		$$aninput = $phph1->phph1_prepinput($aninput, $input_type);
 	}
-	
-	/*
-	If inclstaking isn't set then we will set it to FALSE by default
-	The choices here are TRUE or FALSE
-	*/
-	if(isset($_GET['inclstaking']) && $_GET['inclstaking'] == 1){$inclstaking = true;}else{$inclstaking = false;}
-	
-	/*
-	If withsigners isn't set then we will set it to FALSE by default
-	The choices here are TRUE or FALSE
-	*/
-	if(isset($_GET['withsigners']) && $_GET['withsigners'] == '1'){$withsigners = true;}else{$withsigners = false;}
 
 	/**
 	* Validate the input and run our call if the data is good
@@ -297,12 +280,12 @@ if($phph1->get_rpcstatus() != 1){
 
 <div class="form_container">
 	<div id="formcontent">
-		<form method="GET">
+		<form action="/?method=hmyv2_getBlocks" method="post">
 			<div class="row">
 				<div class="col-25">
-					<label for="blocknum">Starting Block Number: </label>
+					<label for="blocknum1">Starting Block Number: </label>
 				</div><div class="col-75">
-					<input style="background: orange;" type="text" id="blocknum" name="blocknum" value="<?php if($phph1->chk_goodinput('blocknum')){ echo $phph1->get_goodinput('blocknum'); } ?>" />
+					<input style="background: orange;" type="text" id="blocknum1" name="blocknum1" value="<?php if($phph1->chk_goodinput('blocknum')){ echo $phph1->get_goodinput('blocknum'); } ?>" />
 				</div>
 			</div>
 			
@@ -350,7 +333,6 @@ if($phph1->get_rpcstatus() != 1){
 
 		<div class="row">
 			<input type="hidden" id="dorequest" name="dorequest" value="1" />
-			<input type="hidden" id="method" name="method" value="hmyv2_getBlocks" />
 			<input type='submit' name='Submit' />
 		</div>
 

@@ -44,9 +44,11 @@ if($phph1_debug == 1){
 // PHP will use the $_SERVER['REMOTE_ADDR'] to see if users are blocked
 // If $phph1_allowedaddr array is not empty, this array gets ignored
 $phph1_blockedaddr = array(
-			// example blocked ip addresses
+			// example blocked ip addresses. Always add to the bottom of the list first
+			// so the array doesn't have an extra comma at he end if the last item
+			
 			//'192.168.50.20', // Second address blocked for being a bad guy
-			//'192.168.50.21' // First address blocked for being a bad guy (You can use a comment like this after the entry to comment why)
+			// '192.168.50.21' // First address blocked for being a bad guy (You can use a comment like this after the entry to comment why)
 		);
 		
 // This array is used to only allow specific IP Addresses
@@ -55,7 +57,9 @@ $phph1_blockedaddr = array(
 // If this array has any values in it, the $phph1_blockedaddr is ingored due to redundancy
 // REMINDER! Usig this blocks all hosts except the hosts in this array
 $phph1_allowedaddr = array(
-			// example allowed ip address
+			// example allowed ip address. Always add to the bottom of the list first
+			// so the array doesn't have an extra comma at he end if the last item
+			
 			// '192.168.50.20', // Allow this host 
 			// '192.168.50.21' // Second host allowed
 		);
@@ -111,7 +115,7 @@ $default_pagesize = 10;
 
 // Maximum number of results per page
 // Limits the number of results per page
-$max_pagesize = 50;
+$max_pagesize = 100;
 
 // Array of available methods
 // Don't mess with this unless you know what your are doing

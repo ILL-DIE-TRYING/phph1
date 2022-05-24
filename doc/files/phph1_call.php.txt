@@ -14,13 +14,14 @@
 	}
 
 	if(!$phph1->chk_access()){
-		echo "Access Denied";
+		echo '{"jsonrpc":"2.0","id":1,"errors":{"data":["Access Denied"]}}';
 	}else{
 		if($phph1->get_currentmethod()){
 			include('methods/'.$phph1->get_currentmethod().'.php');
 		}else{
-			echo "Method Not Found";
+			echo '{"jsonrpc":"2.0","id":1,"errors":{"data":["Method not found"]}}';
 		}
 	}
+
 
 ?>
