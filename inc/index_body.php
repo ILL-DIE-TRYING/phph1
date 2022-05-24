@@ -82,7 +82,7 @@ require_once('inc/errors.php');
 			<li><h4>Method Menu</h4></li>
 			<li class="nobullet">
 				<ul>
-					<li><p>At the right of the top floating menu is the methods dropdown menu. You can also search the methods in the menu.</p><p><img src="img/methods_menu.png" style="width:80%;max-width:400px;" /></p></li>
+					<li><p>At the right of the top floating menu is the methods dropdown menu. You can also search the methods in the menu.</p><p><img src="img/methods_menu.png" style="width:80%;max-width:400px;" alt="Methods Menu" /></p></li>
 				</ul>
 			</li>
 			
@@ -91,11 +91,11 @@ require_once('inc/errors.php');
 				<ul>
 					<li>
 					<p>The params/returns section is a clickable dropdown that shows what inputs the method uses as well as explains the method output data that can be expected.</p>
-					<p><img src="img/params_closed.png" style="width:80%;max-width:400px;" /></p>
+					<p><img src="img/params_closed.png" style="width:80%;max-width:400px;" alt="Params Click Bar" /></p>
 					</li>
 					<li>
 					<p>The form section is available when a method requires client input. The params/returns dropdown will tell you what each form item requires for input.</p>
-					<p><img src="img/method_form.png" style="width:80%;max-width:400px;" /></p>
+					<p><img src="img/method_form.png" style="width:80%;max-width:400px;" alt="Method form" /></p>
 					</li>
 					<li>
 					<p>The output section contains five sections of its own. Each section is clickable to view the output.</p>
@@ -115,15 +115,15 @@ require_once('inc/errors.php');
 				<ul>
 					<li>
 					<p>The hamburger menu has a "Settings" link to set the network and shard the client wants to use. The available networks and shards can be set in inc/config.php</p>
-					<p><img src="img/settings_menu.png" style="width:80%;max-width:400px;" /></p>
+					<p><img src="img/settings_menu.png" style="width:80%;max-width:400px;" alt="Settings Menu" /></p>
 					</li>
 					<li>
 					<p>The settings form has a network and shard dropdown. Select the network first and the available shards for that network will appear in the shard dropdown.</p>
-					<p><img src="img/settings_form.png" style="width:80%;max-width:400px;" /></p>
+					<p><img src="img/settings_form.png" style="width:80%;max-width:400px;" alt="Settings Form" /></p>
 					</li>
 					<li>
 					<p>You can see what network and shard is being used on the right side of the menu bar.</p>
-					<p><img src="img/settings_status.png" style="width:80%;max-width:400px;" /></p>
+					<p><img src="img/settings_status.png" style="width:80%;max-width:400px;" alt="Settings Status" /></p>
 					</li>
 
 				</ul>
@@ -146,7 +146,7 @@ require_once('inc/errors.php');
 	<div class="fp_column">
 		<div class="fp_content_header"><h3>Full Package Setup</h3></div>
 		<div class="fp_content">
-		<ol>
+		<ul>
 			<li><h4>Download the package and extract it to a directory</h4></li>
 			
 			<li class="nobullet">
@@ -160,7 +160,7 @@ require_once('inc/errors.php');
 				</ul>
 			</li>
 			
-			<li value="2"><h4>Check and adjust the settings to your liking in inc/config.php</h4></li>
+			<li><h4>Check and adjust the settings to your liking in inc/config.php</h4></li>
 			
 			<li class="nobullet">
 				<ul>
@@ -190,7 +190,7 @@ require_once('inc/errors.php');
 			
 			<li><h4>Browse to where you uploaded PHPH1 and go!</h4></li>
 			
-		</ol>
+		</ul>
 		</div>
 	</div>
 </div>
@@ -209,7 +209,7 @@ require_once('inc/errors.php');
 					</ul>
 				</li>
 				
-				<li value="2"><h4>Option 1: Allow everyone and block specific IP addresses</h4></li>
+				<li><h4>Option 1: Allow everyone and block specific IP addresses</h4></li>
 				<li class="nobullet">
 					<ul>
 						<li><p>This option is automatically enabled once the first IP address is added to the $phph1_blockedaddr array</p></li>
@@ -218,7 +218,7 @@ require_once('inc/errors.php');
 					</ul>
 				</li>
 				
-				<li value="2"><h4>Option 2: Block everyone and only allow specific IP addresses</h4></li>
+				<li><h4>Option 2: Block everyone and only allow specific IP addresses</h4></li>
 				<li class="nobullet">
 					<ul>
 						<li><p>This option is automatically enabled once the first IP address is added to the $phph1_allowedaddr array</p></li>
@@ -236,7 +236,7 @@ require_once('inc/errors.php');
 	<div class="fp_column">
 		<div class="fp_content_header"><h3>Class Only</h3></div>
 		<div class="fp_content">
-			<ol>
+			<ul>
 			<li><h4>Download the package and extract it to a directory</h4></li>
 			
 			<li class="nobullet">
@@ -250,7 +250,7 @@ require_once('inc/errors.php');
 				</ul>
 			</li>
 			
-			<li value="2"><h4>Check and adjust the settings to your liking in inc/config.php</h4></li>
+			<li><h4>Check and adjust the settings to your liking in inc/config.php</h4></li>
 			
 			<li class="nobullet">
 				<ul>
@@ -297,7 +297,7 @@ require_once('inc/errors.php');
 			<li class="nobullet">
 				<ul>
 					<li><p>Each method has a validation method that starts with <em>val_</em> and the actual method that starts with <em>hmyv2_</em></p>
-					<pre style="text-align:left;"><code style="language-php">
+					<pre style="text-align:left;"><code class="language-php">
 						&lt;php?
 
 
@@ -314,7 +314,7 @@ require_once('inc/errors.php');
 				</ul>
 			</li>
 			
-		</ol>
+		</ul>
 		</div>
 	</div>
 </div>

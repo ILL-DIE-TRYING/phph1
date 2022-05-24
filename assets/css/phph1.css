@@ -61,6 +61,10 @@
 
 .topbar a:active { text-decoration: none; }
 
+.logodiv{
+	padding:3px;
+}
+
 .logo {
 	width:	80%;
 	height:	80px;

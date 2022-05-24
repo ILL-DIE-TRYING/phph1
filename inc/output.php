@@ -27,7 +27,7 @@ if($phph1->get_validinput() && !$phph1->get_rpcstatus()){
 		echo "	<div class='info_container'>\n";
 		echo "		<div class='infoRow'>\n";
 		echo "			<button type='button' class='collapsibleInfo'></button>\n";
-		echo "			<div id='infoContent' class='infoContent'>\n";
+		echo "			<div id='pagesContent' class='infoContent'>\n";
 		echo "			<div class='pages_div'>\n";
 		echo "				<p>".$trpages."</p>\n";
 		echo "			</div>\n";
@@ -41,7 +41,7 @@ if($phph1->get_validinput() && !$phph1->get_rpcstatus()){
 		echo "	<div class='info_container'>\n";
 		echo "		<div class='infoRow'>\n";
 		echo "			<button type='button' class='collapsibleInfo'>Harmony Node API JSON Formatted Request:</button>\n";
-		echo "			<div id='infoContent' class='infoContent'>\n";
+		echo "			<div id='jsonContent' class='infoContent'>\n";
 		echo "			<pre><code class='language-json'>";
 		echo $phph1->get_lastjson()."";
 		echo "			</code></pre>\n";
@@ -58,7 +58,7 @@ if($phph1->get_validinput() && !$phph1->get_rpcstatus()){
 		echo "	<div class='info_container'>\n";
 		echo "		<div class='infoRow'>\n";
 		echo "			<button type='button' class='collapsibleInfo'>A <u><em>BASIC</em></u> Harmony Node API POST request using Javascript:</button>\n";
-		echo "			<div id='infoContent' class='infoContent'>\n";
+		echo "			<div id='postContent' class='infoContent'>\n";
 		echo "	<pre class='line-numbers'><code class='language-javascript'>\n";
 
 		$numvalues = count($rpcpostdata['values']);
@@ -95,7 +95,7 @@ if($phph1->get_validinput() && !$phph1->get_rpcstatus()){
 		echo "	<div class='info_container'>\n";
 		echo "		<div class='infoRow'>\n";
 		echo "			<button type='button' class='collapsibleInfo'>PHPH1 GET request URL for this method:</button>\n";
-		echo "			<div id='infoContent' class='infoContent'>\n";
+		echo "			<div id='rpcGetContent' class='infoContent'>\n";
 		echo "			<div class='get_div'>\n";
 		echo "			<p class='language-none'>\n";
 		echo "			<a class='geturl' href='".$phph1->get_rpcurl()."' target='_blank'>".$phph1->get_rpcurl()."</a>\n";
@@ -114,7 +114,7 @@ if($phph1->get_validinput() && !$phph1->get_rpcstatus()){
 		echo "	<div class='info_container'>\n";
 		echo "		<div class='infoRow'>\n";
 		echo "			<button type='button' class='collapsibleInfo'>A <u><em>BASIC</em></u> PHPH1 POST request using Javascript:</button>\n";
-		echo "			<div id='infoContent' class='infoContent'>\n";
+		echo "			<div id='rpcPostContent' class='infoContent'>\n";
 		echo "	<pre class='line-numbers'><code class='language-javascript'>\n";
 
 		$numvalues = count($rpcpostdata['values']);
@@ -163,7 +163,7 @@ if($phph1->get_validinput() && !$phph1->get_rpcstatus()){
 	echo "	<div class='info_container'>\n";
 	echo "		<div class='infoRow'>\n";
 	echo "			<button type='button' class='collapsibleInfo'>JSON return data:</button>\n";
-	echo "			<div id='infoContent' class='infoContent'>\n";
+	echo "			<div id='outputContent' class='infoContent'>\n";
 	echo "			<div id='code_div' class='code_div'>";
 
 	// This is where the JSON Object is pretty displayed for viewing using the javascript at the bottom of this file
@@ -172,7 +172,7 @@ if($phph1->get_validinput() && !$phph1->get_rpcstatus()){
 	echo "			</div>\n\n";
 	echo "			</div>\n";
 	echo "		</div>\n";
-	echo "	</div>\n";
+	echo "	</div></div></div>\n";
 ?>
 	
 	<!-- This makes the JSON return data pretty for viewing -->
@@ -182,7 +182,7 @@ if($phph1->get_validinput() && !$phph1->get_rpcstatus()){
 		var obj = <?=$hmyv2_data?>;
 		precontainer.innerHTML = "<pre class='no-line-numbers'><code class='language-json'>" + JSON.stringify(obj, 'result', 2) + "</code></pre>";
 	</script>
-	</code></pre>
+
 
 <?php
 // Otherwise return raw JSON data to the page for remote requests
