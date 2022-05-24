@@ -587,8 +587,8 @@ class phph1{
 	*/
 	function genrequesturl(string $method, array $paramsarr){
 		
-		$thisrequesturl = '/phph1_call.php?dorequest=1&method='.$method;
-		$thispostrequesturl = '/phph1_call.php?method='.$method;
+		$thisrequesturl = 'phph1_call.php?dorequest=1&method='.$method;
+		$thispostrequesturl = 'phph1_call.php?method='.$method;
 		
 		if(!empty($paramsarr)){
 			foreach($paramsarr as $key => $value){

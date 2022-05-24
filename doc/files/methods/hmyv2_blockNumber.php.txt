@@ -40,6 +40,7 @@ if($phph1->get_rpcstatus() == 0){
 			</div>
 		</div>
 	</div>
+
 <?php
 // ends the rpc call check
 }

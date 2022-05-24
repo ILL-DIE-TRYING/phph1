@@ -98,11 +98,12 @@ require_once('inc/errors.php');
 					<p><img src="img/method_form.png" style="width:80%;max-width:400px;" /></p>
 					</li>
 					<li>
-					<p>The output section contains three sections of its own.</p>
+					<p>The output section contains five sections of its own. Each section is clickable to view the output.</p>
 						<ul>
 							<li><p>Harmony Node JSON RPC Request: Displays the actual JSON formatted request sent to the Harmony Node API Server</p></li>
-							<li><p>PHPH1 POST request URL for this method: Displays a link to the phph1_call.php file that would be used by an external scripting language to retrieve results. The URL can be used as a template for making calls for that specific method.</p></li>
+							<li><p>A <em>BASIC</em> javascript example of a Harmony Node JSON RPC Request using POST</p></li>
 							<li><p>PHPH1 GET request URL for this method: Displays a link to the phph1_call.php file that would be used by an external scripting language to retrieve results. The URL can be used as a template for making calls for that specific method.</p></li>
+							<li><p>A <em>BASIC</em> javascript example of a PHPH1 POST request</p></li>
 							<li><p>JSON return data: Displays the JSON data returned from the test request. Use this to ensure the method returns the data you expect to use in your project.</p></li>
 						</ul>
 					</li>
@@ -131,9 +132,9 @@ require_once('inc/errors.php');
 			<li><h4>Using the PHPH1 Call (phph1_call.php)</h4></li>
 			<li class="nobullet">
 				<ul>
-					<li><p>There is an example javascript file in the project root directory named <a href="./jstest.html" target="_blank">jstest.html</a></p></li>
-					<li><p>phph1_call.php is designed to accept a formatted GET request by any language that can read JSON formatted data returns. Refer to the Javascript example to see a VERY basic example how remote calls would work.</p></li>
-					<li><p>The output for each method includes the phph1_call.php formatted URL for that method. You can use that to build your javascript query code.</p></li>
+					<li><p>phph1_call.php is designed to accept formatted GET and POST requests by any language that can read JSON formatted data returns.</p></li>
+					<li><p>The explorer shows you an extremely basic sample javascript code for a POST request.</p></li>
+					<li><p>To see a little more robust example refer to <a href='jstest.html' target='_blank'>jstest.html</a>.</p></li>
 				</ul>
 			</li>
 		</ul>
@@ -235,26 +236,85 @@ require_once('inc/errors.php');
 	<div class="fp_column">
 		<div class="fp_content_header"><h3>Class Only</h3></div>
 		<div class="fp_content">
-			<ul>
-				
-				<li><h4>You can also just use this PHP class in your own PHP project</h4></li>
-				<li class="nobullet">
-					<ul>
-						<li><p>Stuff here</p></li>
-						<li><p>Stuff here</p></li>
-					</ul>
-				</li>
-				
-				<li value="2"><h4>More coming soon</h4></li>
-				<li class="nobullet">
-					<ul>
-						<li><p>Stuff here</p></li>
-						<li><p>Stuff here</p></li>
-						<li><p>Stuff here</p></li>
-					</ul>
-				</li>
-					
-			</ul>
+			<ol>
+			<li><h4>Download the package and extract it to a directory</h4></li>
+			
+			<li class="nobullet">
+				<ul>
+					<li>You can get the package at <a href="https://github.com/ILL-DIE-TRYING/phph1/releases" target="_blank">the Github project releases page</a>.</li>
+					<li><p>Extract the package and upload all files to your web host. The package contents can sit in your document root or any sub directory.</p></li>
+					<li><p>You will have to handle the archive a little differently depending on whether you downloaded the .zip or the .tar.gz file.</p></li>
+					<li><p>The .zip file, if extracted with no directory options will extract all the files to the current directory which can be messy. If using the zip file on a Linux/Unix machine, be sure to extract it into a directory where no other files exist or use the unzip -d option.</p></li>
+					<li><p>The tar.gz package will extract within a directory that matches the release name.</p></li>
+					<li><p><strong><em>It is highly suggested whether using the zip or tar.gz, you extract the package outside of your project and then copy it to where you want it. This will ensure nothing gets accidentally overwritten.</em></strong></p></li>
+				</ul>
+			</li>
+			
+			<li value="2"><h4>Check and adjust the settings to your liking in inc/config.php</h4></li>
+			
+			<li class="nobullet">
+				<ul>
+					<li><p><strong>$phph1_debug</strong></p><p>Variable used to enable (set to 1) or disable (set to 0) API Explorer PHP debugging. Enabling this exposes many things to the client, I highly suggest not using it in a production environment unless it is a last resort. It also puts  big ugly warnng header at the top of the pages so you are aware debugging is enabled.</p></li>
+
+					<li><p><strong>$phph1_blockedaddr</strong></p><p>This array is used to block IP addresses if necessary. Just add an IP address to the array like the example and the code will use the $_SERVER['REMOTE_ADDR'] to see if users are blocked. If the $phph1_allowedaddr array is not empty, this array gets ignored</p></li>
+
+					<li><p><strong>$phph1_allowedaddr</strong></p><p>This array is used to only allow specific IP Addresses. Just add an IP address to the array like the example and the code will use the $_SERVER['REMOTE_ADDR'] to make sure the request is allowed by the client. If this array has any values in it, the $phph1_blockedaddr is ingored due to redundancy. REMINDER! Usig this blocks all hosts except the hosts listed in this array.</p></li>
+
+					<li><p><strong>$phph1_allowbigdata</strong></p><p>This option is disabled at the moment and should be left set to 0;</p></li>
+
+					<li><p><strong>$phph1_apiaddresses</strong></p><p>This is a multi-dimensional array that holds the node and shard information. By default this array contains the official Harmony nodes but you can comment them out and add your own personal nodes as shown where the array is set. if you do add your own node address, be sure to also set $default_network and $default_shard as well</p></li>
+
+					<li><p><strong>$default_network</strong></p><p>Sets the default network (also the network used by the rpc script). It MUST use a network listed in the $phph1_apiaddresses array. For example by default it is set to use "mainnet".</p></li>
+
+					<li><p><strong>$default_shard</strong></p><p>Sets the default shard (also the shard used by the rpc script). It MUST use a shard listed in the $phph1_apiaddresses array. For example by default it is set to use "0".</p></li>
+
+					<li><p><strong>$default_pagesize</strong></p><p>The default page size for methods that return multiple pages of data</p></li>
+
+					<li><p><strong>$max_pagesize</strong></p><p>This is the maximum number of items per page when a method returns multiple pages of data. This prevents a client from reuesting large datasets in a single call which will put a heavy load on the web server.</p></li>
+
+					<li><p><strong>$phph1_methods</strong></p><p>An array of the available methods. This is used to prevent a client from requesting a method that doesn'teist. You can use a PHP comment out individual lines to disable a method.</p></li>
+
+					<li><p><strong>$sorted_Methods</strong></p><p>This is just the $phph1_methods array that has been sorted alphabetically so the front end dropdown menu makes some sense.</p></li>
+				</ul>
+			</li>
+			
+			<li><h4>Include the required files in your page (There is an example index.php for reference)</h4></li>
+			<li class="nobullet">
+				<ul>
+					<li>Include <em>inc/config.php</em> first.</li>
+					<li>Include <em>inc/phph1.php</em> second.</li>
+				</ul>
+			</li>
+
+			<li><h4>Create a PHPH1 class handle</h4></li>
+			<li class="nobullet">
+				<ul>
+					<li>$phph1 = new phph1($phph1_apiaddresses,$phph1_methods,$phph1_debug,$max_pagesize,$default_pagesize, $default_network, $default_shard,$phph1_blockedaddr,$phph1_allowedaddr,$phph1_allowbigdata);</li>
+				</ul>
+			</li>
+
+			<li><h4>Refer to the <a href="doc/classes/phph1.html" target="_blank">documentation</a> for all of the methods and their required inputs.</h4></li>
+			<li class="nobullet">
+				<ul>
+					<li><p>Each method has a validation method that starts with <em>val_</em> and the actual method that starts with <em>hmyv2_</em></p>
+					<pre style="text-align:left;"><code style="language-php">
+						&lt;php?
+
+
+					</code></pre></li>
+					<li>When running the validation methods, if there are errors they are stored in the class array variable <em>errors</em>, you can retrieve them as an array using $phph1->get_errors()</li>
+				</ul>
+			</li>
+			
+			<li><h4>When running the hmyv2_ methods, data is returned in a JSON encoded format.</h4></li>
+			<li class="nobullet">
+				<ul>
+					<li>You can decode the data by passing the PHP object off to javascript. This is the recommended way and performs seemingly well with large data returns.</li>
+					<li>You can decode the data using PHP's json_decode() but be warned, converting large data with PHP can put a heavy memory load on the server</li>
+				</ul>
+			</li>
+			
+		</ol>
 		</div>
 	</div>
 </div>

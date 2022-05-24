@@ -98,11 +98,12 @@ require_once('inc/errors.php');
 					<p><img src="img/method_form.png" style="width:80%;max-width:400px;" /></p>
 					</li>
 					<li>
-					<p>The output section contains three sections of its own.</p>
+					<p>The output section contains five sections of its own. Each section is clickable to view the output.</p>
 						<ul>
 							<li><p>Harmony Node JSON RPC Request: Displays the actual JSON formatted request sent to the Harmony Node API Server</p></li>
-							<li><p>PHPH1 POST request URL for this method: Displays a link to the phph1_call.php file that would be used by an external scripting language to retrieve results. The URL can be used as a template for making calls for that specific method.</p></li>
+							<li><p>A <em>BASIC</em> javascript example of a Harmony Node JSON RPC Request using POST</p></li>
 							<li><p>PHPH1 GET request URL for this method: Displays a link to the phph1_call.php file that would be used by an external scripting language to retrieve results. The URL can be used as a template for making calls for that specific method.</p></li>
+							<li><p>A <em>BASIC</em> javascript example of a PHPH1 POST request</p></li>
 							<li><p>JSON return data: Displays the JSON data returned from the test request. Use this to ensure the method returns the data you expect to use in your project.</p></li>
 						</ul>
 					</li>
@@ -131,9 +132,9 @@ require_once('inc/errors.php');
 			<li><h4>Using the PHPH1 Call (phph1_call.php)</h4></li>
 			<li class="nobullet">
 				<ul>
-					<li><p>There is an example javascript file in the project root directory named <a href="./jstest.html" target="_blank">jstest.html</a></p></li>
-					<li><p>phph1_call.php is designed to accept formatted GET and POST requests by any language that can read JSON formatted data returns. The explorer shows you an extremly basic sample javascript code for a POST request. Refer to the Javascript example to see a little more robust example how a POST call would work.</p></li>
-					<li><p>The output for each method includes the phph1_call.php formatted GET URL for that method. U build your javascript query code.</p></li>
+					<li><p>phph1_call.php is designed to accept formatted GET and POST requests by any language that can read JSON formatted data returns.</p></li>
+					<li><p>The explorer shows you an extremely basic sample javascript code for a POST request.</p></li>
+					<li><p>To see a little more robust example refer to <a href='jstest.html' target='_blank'>jstest.html</a>.</p></li>
 				</ul>
 			</li>
 		</ul>
