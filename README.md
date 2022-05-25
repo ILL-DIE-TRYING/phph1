@@ -1,6 +1,6 @@
 # PHPH1 :: A PHP Wrapper Class and explorer interface to query the Harmony ONE Node API V2
 
-NOTE: I'm not a PHP developer by trade, but I have worked in IT for over 20 years. I was a full stack developer that wrote PHP database applications at a nationally known non-profit organization for a living from 2001 to 2012 so my code is currently OLD SCHOOL but very stable and effective. As a matter of fact, much of my code from them days is still being used by the company over 10 years later, which I feel is a testament to my coding practices. I'm trying to catch up as much as possible.
+NOTE: I'm not a PHP developer by trade, but I have worked in IT for over 20 years. I was a full stack developer that wrote PHP database applications at a nationally known non-profit organization for a living from 2008 to 2012 with 7 years of solo work before that so my code is currently OLD SCHOOL but very stable and effective. As a matter of fact, much of my code from them days is still being used by the company over 10 years later, which I feel is a testament to my coding practices. I'm trying to catch up as much as possible.
 
 # WHAT IS PHPH1?
 
@@ -16,12 +16,11 @@ PHPH1 is two tools in one:
   1. 63 methods completed
   2. All methods can be seen in the [PHPH1 Explorer Interface](https://phph1.saddlerockit.com).
 
-- [ ] Optimize and modernize the class code reassess the PHP code logic and revamp if necessary
-  1. 95% complete as of 2022-5-9. She runs good.
-  2. I have one more adjustment I need to make to all the methods
+- [x] Optimize and modernize the class code reassess the PHP code logic and revamp if necessary
+  1. 100% complete as of 2022-5-25. She runs good.
 
 - [x] Create a MOBILE FRIENDLY Harmony API explorer into the package to assist developers in learning how the API works
-  1. 100% complete as of 2022-5-9
+  1. 100% complete as of 2022-5-25
   2. Try out the [PHPH1 Explorer](https://phph1.saddlerockit.com) on your phone
 
 - [x] Create documentation on the “homepage” of the explorer package including configuration and simple Javascript/jQuery code examples. This also includes how to extend the network and shards in order to do things like run a local node and get data from it.
@@ -34,8 +33,8 @@ PHPH1 is two tools in one:
      - 1. Check out the [PHPH1 Explorer PHP Class Docs](https://phph1.saddlerockit.com/doc/classes/phph1.html)
      - 2. Every method page in the [PHPH1 explorer](https://phph1.saddlerockit.com) has built in documentation for the Harmony API Methods
 
-- [ ] Create a package where a developer could drop the package into a directory and safely use it for retrieving data using other scripting languages with minimal input. I plan to provide 3 different download packages (only 2 are really necessary): Full with full API explorer and minimal with just the class and remote call script. As long as I have my stuff properly set up on github, this should be pretty easy.
-     1. ~70% complete as of 2022-4-6
+- [ ] Create a package where a developer could drop the package into a directory and safely use it for retrieving data using other scripting languages with minimal input. I planned to provide 3 different download packages (only 2 were necessary): Full with full API explorer and minimal with just the class and remote call script. As long as I have my stuff properly set up on github, this should be pretty easy.
+     1. ~95% complete as of 2022-4-25
  
 - [x] Report API methods that do not react according to the API documentation (this happens as I work throughout entire project as basically an include. As far as time to report and deal with it depends on how fast the line of communication is).
      1. I have reported a few times. If Harmony wants their postman documentation to be proper and accurate, just use the [PHPH1 explorer](https://phph1.saddlerockit.com) interface for all the details.
@@ -52,8 +51,7 @@ PHPH1 is VERY usable at this point. If you find anything wrong, please report it
 
 There is currently 63 available methods.
 
-Everything should be validated and safe but I need to go back through and validate my own code for safety
-UPDATE 2022-5-9: Everything is validated as best as I can test it. Drive it like you stole it!
+UPDATE 2022-5-25: Everything is validated as best as I can test it. Drive it like you stole it!
 
 # REQUIREMENTS
 
@@ -82,15 +80,19 @@ You can use the official Harmony Nodes(already set up in the package) or if you 
    - Contains three sections of its own
       - **Harmony Node JSON RPC Request**
          - Displays the actual JSON formatted request sent to the Harmony Node API Server
-      - **PHPH1 request URL for this method**
-         - Displays a link to the phph1_call.php file that would be used by an external scripting language to retrieve results. The URL can be used as a template for making calls for that specific method.
+      - **Harmony Node Javascript Request Example**
+         - Displays some BASIC but working Javascript code example to make the request directly to a Harmony node
+      - **PHPH1 GET request URL for this method**
+         - Displays a link to the phph1_call.php file that would be used by an external scripting language to retrieve results. The URL can be used as a template for making calls for that specific method using GET.
+      - **PHPH1 Javascript Request Example**
+         - Displays some BASIC but working Javascript code example to make the request to the PHPH1 RPC script using POST.
       - **JSON return data**
          - Displays the JSON data returned from the test request. Use this to ensure the method returns the data you expect to use in your project.
 
 - ### Using the PHPH1 Call (phph1_call.php)
    - There is an example javascript file in the project root directory named jstest.html
 
-   - phph1_call.php is designed to accept a formatted GET request by any language that can read JSON formatted data returns. Refer to the Javascript example to see a VERY basic example how remote calls would work.
+   - phph1_call.php is designed to accept a formatted GET or POST request by any language that can read JSON formatted data returns. Refer to the Javascript examples to see a VERY basic example how remote calls would work.
 
 # INSTALLING
 
