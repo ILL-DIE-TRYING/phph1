@@ -26,7 +26,7 @@ if($phph1->get_validinput() && !$phph1->get_rpcstatus()){
 	if(isset($trpages)){
 		echo "	<div class='info_container'>\n";
 		echo "		<div class='infoRow'>\n";
-		echo "			<button type='button' class='collapsibleInfo'></button>\n";
+		echo "			<button type='button' class='collapsibleInfo'>Number of pages:</button>\n";
 		echo "			<div id='pagesContent' class='infoContent'>\n";
 		echo "			<div class='pages_div'>\n";
 		echo "				<p>".$trpages."</p>\n";

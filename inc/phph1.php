@@ -420,6 +420,7 @@ class phph1{
 	* @return string he requested input value
 	*/
 	function phph1_prepinput($forminput, $datatype){
+
 		if(isset($_POST[$forminput])){
 			$output = $_POST[$forminput];
 		}elseif(isset($_GET[$forminput])){
@@ -428,15 +429,13 @@ class phph1{
 			$output = null;
 		}
 		if($datatype == 'bool'){
-			if($output == 1){
+			if($output == '1'){
 				$output = true;
-			}elseif($output == 0){
-				$output = false;
-			}else{
-				$output = null;
+			}elseif($output == '0' OR empty($output)){
+				$output = (bool)false;
 			}
 		}
-		//echo "op:".$output;
+		//echo $forminput.":".$_GET[$forminput].":".$output."<br />";
 		return $output;
 	}
 	
@@ -2330,11 +2329,11 @@ class phph1{
 	function hmyv2_getBlocks($blocknum,$blocknum2,$fulltx,$withsigners,$inclstaking){
 		$method = "hmyv2_getBlocks";
 		$urlparams = [
-				'blocknum' => $blocknum,
+				'blocknum1' => $blocknum,
 				'blocknum2' => $blocknum2,
-				'fullTx' => $fulltx,
-				'withSigners' => $withsigners,
-				'inclStaking' => $inclstaking
+				'fulltx' => $fulltx,
+				'withsigners' => $withsigners,
+				'inclstaking' => $inclstaking
 			];
 		$this->genrequesturl($method, $urlparams);
 		$params = [
@@ -2375,19 +2374,19 @@ class phph1{
 		}else{
 			$this->goodinputs['blocknum2'] = $blocknum2;
 		}
-		if($fulltx != TRUE && $fulltx != FALSE && !is_bool($fulltx)){
+		if($fulltx != 'TRUE' && $fulltx != FALSE){
 			$notvalid = 1; 
 			array_push($this->errors, 'fulltx value is invalid');
 		}else{
 			$this->goodinputs['fulltx'] = $fulltx;
 		}
-		if(isset($inclstaking) && $inclstaking != TRUE && $inclstaking != FALSE && !is_bool($inclstaking)){
+		if($inclstaking != 'TRUE' && $inclstaking != FALSE){
 			$notvalid = 1; 
 			array_push($this->errors, 'inclstaking value is invalid');
 		}else{
 			$this->goodinputs['inclstaking'] = $inclstaking;
 		}
-		if(isset($withsigners) && $withsigners != TRUE && $withsigners != FALSE && !is_bool($withsigners)){
+		if($withsigners != 'TRUE' && $withsigners != FALSE){
 			$notvalid = 1; 
 			array_push($this->errors, 'withsigners value is invalid');
 		}else{
@@ -2465,25 +2464,25 @@ class phph1{
 		}else{
 			$this->goodinputs['blocknum'] = $blocknum;
 		}
-		if($fulltx != TRUE && $fulltx != FALSE){
+		if($fulltx != 'TRUE' && $fulltx != FALSE){
 			$notvalid = 1; 
 			array_push($this->errors, 'fulltx value is invalid');
 		}else{
 			$this->goodinputs['fulltx'] = $fulltx;
 		}
-		if($incltx != TRUE && $incltx != FALSE){
+		if($incltx != 'TRUE' && $incltx != FALSE){
 			$notvalid = 1; 
 			array_push($this->errors, 'incltx value is invalid');
 		}else{
 			$this->goodinputs['incltx'] = $incltx;
 		}
-		if($inclstaking != TRUE && $inclstaking != FALSE){
+		if($inclstaking != 'TRUE' && $inclstaking != FALSE){
 			$notvalid = 1; 
 			array_push($this->errors, 'inclstaking value is invalid');
 		}else{
 			$this->goodinputs['inclstaking'] = $inclstaking;
 		}
-		if($withsigners != TRUE && $withsigners != FALSE){
+		if($withsigners != 'TRUE' && $withsigners != FALSE){
 			$notvalid = 1; 
 			array_push($this->errors, 'withsigners value is invalid');
 		}else{
@@ -2561,25 +2560,25 @@ class phph1{
 		}else{
 			$this->goodinputs['blockhash'] = $blockhash;
 		}
-		if($fulltx != true && $fulltx != false && !is_bool($fulltx)){
+		if($fulltx != 'true' && $fulltx != false){
 			$notvalid = 1; 
 			array_push($this->errors, 'fulltx value is invalid');
 		}else{
 			$this->goodinputs['fulltx'] = $fulltx;
 		}
-		if($incltx != true && $incltx != false && !is_bool($incltx)){
+		if($incltx != 'true' && $incltx != false){
 			$notvalid = 1; 
 			array_push($this->errors, 'incltx value is invalid');
 		}else{
 			$this->goodinputs['incltx'] = $incltx;
 		}
-		if($withsigners != true && $withsigners != false && !is_bool($withsigners)){
+		if($withsigners != 'true' && $withsigners != false){
 			$notvalid = 1; 
 			array_push($this->errors, 'withsigners value is invalid');
 		}else{
 			$this->goodinputs['withsigners'] = $withsigners;
 		}
-		if($inclstaking != true && $inclstaking != false && !is_bool($inclstaking)){
+		if($inclstaking != 'true' && $inclstaking != false){
 			$notvalid = 1; 
 			array_push($this->errors, 'inclstaking value is invalid');
 		}else{

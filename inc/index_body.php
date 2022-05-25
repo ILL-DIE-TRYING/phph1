@@ -34,7 +34,7 @@ require_once('inc/errors.php');
 			<li><h4>What is PHPH1?</h4></li>
 			<li class="nobullet">
 				<ul>
-					<li><p>A learning tool for developers on the Harmony v2 Node API. It allows you to test every API method using real world input and see how a direct JSON request is formatted as well as how the JSON return data is formatted for each request. It also includes built in documentation for each method. Just browse to the method you want to learn about using the methods menu at the top right of the page.</p></li>
+					<li><p>A learning tool for developers on the Harmony v2 Node API. It allows you to test every API method using real world input and see how a direct JSON request is formatted as well as how the JSON return data is formatted for each request. One top of this, it provides simplified javascript examples of how to make API requests and retrieve data. It also includes built in documentation for each method describing their input variables and output data. Just browse to the method you want to learn about using the methods menu at the top right of the page. I would suggest taking a look below at how to use the entire explorer first.</p></li>
 					<li><p>A PHP wrapper class for the Harmony v2 Node API that allows other languages to make Harmony V2 Node API calls without worrying about input validation or properly formatting the JSON request.</p></li>
 					<li><p>A PHP wrapper class for the Harmony v2 Node API that can be used in your own PHP + whatever driven project.</p></li>
 				</ul>
@@ -52,7 +52,8 @@ require_once('inc/errors.php');
 			<li class="nobullet">
 				<ul>
 					<li><p>First suggestion is to start by using the full class package with the API explorer interface (what you are looking at now) included. It will guide you in sending requests to the class wrapper interface.</p></li>
-					<li><p>The full package is designed to be called by any language that can pull data from a web request. Checkout the Javascript example below.</p></li>
+					<li><p>The full package is designed to be called by any language that can pull data from a web request using POST or GET. Check out the Javascript examples provided in the method output pages.</p></li>
+					<li><p>If you are a PHP developer, there is a mini PHPH1 package that strips all the extraneous stuff from the Explorer out of the PHPH1 class and allows for an interface to validate and make calls to a Harmony API node.</p></li>
 				</ul>
 			</li>
 			
@@ -254,14 +255,6 @@ require_once('inc/errors.php');
 			
 			<li class="nobullet">
 				<ul>
-					<li><p><strong>$phph1_debug</strong></p><p>Variable used to enable (set to 1) or disable (set to 0) API Explorer PHP debugging. Enabling this exposes many things to the client, I highly suggest not using it in a production environment unless it is a last resort. It also puts  big ugly warnng header at the top of the pages so you are aware debugging is enabled.</p></li>
-
-					<li><p><strong>$phph1_blockedaddr</strong></p><p>This array is used to block IP addresses if necessary. Just add an IP address to the array like the example and the code will use the $_SERVER['REMOTE_ADDR'] to see if users are blocked. If the $phph1_allowedaddr array is not empty, this array gets ignored</p></li>
-
-					<li><p><strong>$phph1_allowedaddr</strong></p><p>This array is used to only allow specific IP Addresses. Just add an IP address to the array like the example and the code will use the $_SERVER['REMOTE_ADDR'] to make sure the request is allowed by the client. If this array has any values in it, the $phph1_blockedaddr is ingored due to redundancy. REMINDER! Usig this blocks all hosts except the hosts listed in this array.</p></li>
-
-					<li><p><strong>$phph1_allowbigdata</strong></p><p>This option is disabled at the moment and should be left set to 0;</p></li>
-
 					<li><p><strong>$phph1_apiaddresses</strong></p><p>This is a multi-dimensional array that holds the node and shard information. By default this array contains the official Harmony nodes but you can comment them out and add your own personal nodes as shown where the array is set. if you do add your own node address, be sure to also set $default_network and $default_shard as well</p></li>
 
 					<li><p><strong>$default_network</strong></p><p>Sets the default network (also the network used by the rpc script). It MUST use a network listed in the $phph1_apiaddresses array. For example by default it is set to use "mainnet".</p></li>
@@ -271,25 +264,26 @@ require_once('inc/errors.php');
 					<li><p><strong>$default_pagesize</strong></p><p>The default page size for methods that return multiple pages of data</p></li>
 
 					<li><p><strong>$max_pagesize</strong></p><p>This is the maximum number of items per page when a method returns multiple pages of data. This prevents a client from reuesting large datasets in a single call which will put a heavy load on the web server.</p></li>
-
-					<li><p><strong>$phph1_methods</strong></p><p>An array of the available methods. This is used to prevent a client from requesting a method that doesn'teist. You can use a PHP comment out individual lines to disable a method.</p></li>
-
-					<li><p><strong>$sorted_Methods</strong></p><p>This is just the $phph1_methods array that has been sorted alphabetically so the front end dropdown menu makes some sense.</p></li>
 				</ul>
 			</li>
 			
 			<li><h4>Include the required files in your page (There is an example index.php for reference)</h4></li>
 			<li class="nobullet">
 				<ul>
-					<li>Include <em>inc/config.php</em> first.</li>
-					<li>Include <em>inc/phph1.php</em> second.</li>
+					<li class="nobullet">
+<pre style="text-align:left;"><code class="language-php">include('config.php');
+include('phph1.php');
+</code></pre>
+</li>
 				</ul>
 			</li>
 
 			<li><h4>Create a PHPH1 class handle</h4></li>
 			<li class="nobullet">
 				<ul>
-					<li>$phph1 = new phph1($phph1_apiaddresses,$phph1_methods,$phph1_debug,$max_pagesize,$default_pagesize, $default_network, $default_shard,$phph1_blockedaddr,$phph1_allowedaddr,$phph1_allowbigdata);</li>
+					<li class="nobullet">
+					<pre style="text-align:left;"><code class="language-php">$phph1 = new phph1($phph1_apiaddresses,$max_pagesize,$default_pagesize, $default_network, $default_shard);</code></pre>
+					</li>
 				</ul>
 			</li>
 
@@ -297,12 +291,16 @@ require_once('inc/errors.php');
 			<li class="nobullet">
 				<ul>
 					<li><p>Each method has a validation method that starts with <em>val_</em> and the actual method that starts with <em>hmyv2_</em></p>
-					<pre style="text-align:left;"><code class="language-php">
-						&lt;php?
-
-
-					</code></pre></li>
 					<li>When running the validation methods, if there are errors they are stored in the class array variable <em>errors</em>, you can retrieve them as an array using $phph1->get_errors()</li>
+<li><pre style="text-align:left;"><code class="language-php">if($phph1->val_getBlockByNumber('26974649',TRUE,FALSE,TRUE,TRUE)){
+	$blockdata = $phph1->hmyv2_getBlockByNumber('26974649',TRUE,FALSE,TRUE,TRUE);
+	// This is just here to show you what output is available
+	print_r($blockdata);
+}else{
+	// This is just here to show you what errors exist
+	print_r($phph1->get_errors());
+}</code></pre></li>
+					
 				</ul>
 			</li>
 			

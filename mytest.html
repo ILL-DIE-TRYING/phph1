@@ -1,0 +1,31 @@
+<html>
+<head></head><body>
+
+
+
+	
+
+
+</body>
+</html>
+
+<script>
+// In a production environment this function should probably be expanded with response and error checks etc.
+async function getHMYV2Data(){
+	// This URL is for mainnet shard 0
+  let response = await fetch('https://a.api.s0.t.hmny.io/', {
+    method: "POST",
+    body: '{"jsonrpc":"2.0","id":1,"method":"hmyv2_getBlockByNumber","params":["26936875",{"fullTx":true,"inclTx":true,"inclStaking":true,"withSigners":true}]}',
+    headers: { "Content-type": "application/json" }
+  });
+
+  let mydata = await response.json();
+
+  // Check the console for output
+  console.log("method data:" + JSON.stringify(mydata));
+  // What you do with the returned data after this is up to you
+}
+
+// Run the getHMYV2Data function
+getHMYV2Data();
+</script>
