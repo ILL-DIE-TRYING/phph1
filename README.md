@@ -45,11 +45,9 @@ PHPH1 is two tools in one:
 - [ ] Maintain any bug reports etc on Github
      1. ~2 days time over a year then I’ll just do it
 
-# CURRENT STATE (2022-5-9)
+# CURRENT STATE (2022-5-26)
 
-PHPH1 is VERY usable at this point. If you find anything wrong, please report it here on Github.
-
-There is currently 63 available methods.
+PHPH1 v1.0.0.1 is READY!
 
 UPDATE 2022-5-25: Everything is validated as best as I can test it. Drive it like you stole it!
 
