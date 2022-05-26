@@ -2254,6 +2254,7 @@ class phph1{
 	function hmyv2_getCurrentBadBlocks(){
 		$method = "hmyv2_getCurrentBadBlocks";
 		$params = [];
+		$this->genrequesturl($method, $params);
 		$thisjson = $this->genjsonrequest($method, $params);
 		return $this->docurlrequest($thisjson);
 	}
@@ -2798,8 +2799,8 @@ class phph1{
 			$this->validinput = 1;
 			return 1;
 		}else{
-			return 0;
 			$this->validinput = 0;
+			return 0;
 		}
 	}
 
@@ -3068,7 +3069,6 @@ class phph1{
 		if(!preg_match( '/^[1-9]+[0-9]*$/', $pagesize) OR $pagesize > $this->max_pagesize){
 			$notvalid = 1;
 			array_push($this->errors, 'invalid page size');
-			echo "pagesize:".$pagesize;
 		}else{
 			$this->goodinputs['pagesize'] = $pagesize;
 		}

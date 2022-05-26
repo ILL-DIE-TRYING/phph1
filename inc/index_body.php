@@ -34,7 +34,7 @@ require_once('inc/errors.php');
 			<li><h4>What is PHPH1?</h4></li>
 			<li class="nobullet">
 				<ul>
-					<li><p>A learning tool for developers on the Harmony v2 Node API. It allows you to test every API method using real world input and see how a direct JSON request is formatted as well as how the JSON return data is formatted for each request. One top of this, it provides simplified javascript examples of how to make API requests and retrieve data. It also includes built in documentation for each method describing their input variables and output data. Just browse to the method you want to learn about using the methods menu at the top right of the page. I would suggest taking a look below at how to use the entire explorer first.</p></li>
+					<li><p>A learning tool for developers on the Harmony v2 Node API. It allows you to test every API method using real world input and see how a direct JSON request is formatted as well as how the JSON return data is formatted for each request. On top of this, it provides simplified javascript examples of how to make API requests and retrieve data. It also includes built in documentation for each method describing their input variables and output data. Just browse to the method you want to learn about using the methods menu at the top right of the page. I would suggest taking a look below at how to use the entire explorer first.</p></li>
 					<li><p>A PHP wrapper class for the Harmony v2 Node API that allows other languages to make Harmony V2 Node API calls without worrying about input validation or properly formatting the JSON request.</p></li>
 					<li><p>A PHP wrapper class for the Harmony v2 Node API that can be used in your own PHP + whatever driven project.</p></li>
 				</ul>
@@ -108,6 +108,7 @@ require_once('inc/errors.php');
 							<li><p>JSON return data: Displays the JSON data returned from the test request. Use this to ensure the method returns the data you expect to use in your project.</p></li>
 						</ul>
 					</li>
+					<li class="nobullet"><p><img src="img/click_bars.png" style="width:80%;max-width:400px;" alt="Output Bars" /></p></li>
 				</ul>
 			</li>
 			
@@ -292,7 +293,7 @@ include('phph1.php');
 				<ul>
 					<li><p>Each method has a validation method that starts with <em>val_</em> and the actual method that starts with <em>hmyv2_</em></p>
 					<li>When running the validation methods, if there are errors they are stored in the class array variable <em>errors</em>, you can retrieve them as an array using $phph1->get_errors()</li>
-<li><pre style="text-align:left;"><code class="language-php">if($phph1->val_getBlockByNumber('26974649',TRUE,FALSE,TRUE,TRUE)){
+<li class="nobullet"><pre style="text-align:left;"><code class="language-php">if($phph1->val_getBlockByNumber('26974649',TRUE,FALSE,TRUE,TRUE)){
 	$blockdata = $phph1->hmyv2_getBlockByNumber('26974649',TRUE,FALSE,TRUE,TRUE);
 	// This is just here to show you what output is available
 	print_r($blockdata);
@@ -307,8 +308,61 @@ include('phph1.php');
 			<li><h4>When running the hmyv2_ methods, data is returned in a JSON encoded format.</h4></li>
 			<li class="nobullet">
 				<ul>
-					<li>You can decode the data by passing the PHP object off to javascript. This is the recommended way and performs seemingly well with large data returns.</li>
-					<li>You can decode the data using PHP's json_decode() but be warned, converting large data with PHP can put a heavy memory load on the server</li>
+					<li><p>You can decode the data using PHP's <a href="https://www.php.net/manual/en/function.json-decode.php" target="_blank">json_decode()</a>, but be warned, converting large data with PHP can put a heavy memory load on the server</p></li>
+					<li><p>You can decode the data by passing the PHP object off to javascript. This is the recommended way and performs seemingly well with large data returns.</p></li>
+					<li class="nobullet">
+					
+<pre style="text-align:left;"><code class="language-html">&lt;p&gt;Epoch: &lt;span id=&quot;block_epoch&quot;&gt;Loading&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Hash: &lt;span id=&quot;block_hash&quot;&gt;Loading&lt;/span&gt;&lt;/p&gt;</code></pre>
+
+<pre style="text-align:left;"><code class="language-php">&lt;?php
+// Include the config and class
+include('config.php');
+include('phph1.php');
+
+// Create the phph1 class handle
+$phph1 = new phph1($phph1_apiaddresses,$max_pagesize,$default_pagesize, $default_network, $default_shard);
+
+// Using hmyv2_getBlockByNumber with block number 26974649 as an example
+if($phph1->val_getBlockByNumber('26974649',TRUE,FALSE,TRUE,TRUE)){
+	
+	// Make the API call
+	$blockdata = $phph1->hmyv2_getBlockByNumber('26974649',TRUE,FALSE,TRUE,TRUE);
+	
+	// This line below is for debugging. Uncomment the line to see it
+	// print_r($blockdata);
+}else{
+	// This line below is for debugging. Uncomment the line to see it
+	// print_r($phph1->get_errors());
+	
+	// Iterate through the errors
+	foreach($phph1-&gt;get_errors() as $anError){
+		echo &quot;&lt;p&gt;&quot;.$anError.&quot;&lt;p&gt;&quot;;
+	}
+}
+?&gt;
+</code></pre>
+
+<pre style="text-align:left;"><code class="language-javascript">&lt;script&gt;
+// Notice I used the "block_hash" id so the text goes into the proper container defined above
+var hash_id = document.getElementById(&quot;block_hash&quot;);
+
+// Notice I used the "block_epoch" id so the text goes into the proper container defined above
+var epoch_id = document.getElementById(&quot;block_epoch&quot;);
+
+// This is where the PHP object gets injected into Javascript
+var obj = &lt;?=$blockdata?&gt;;
+
+// Put the block's hash data in the &lt;p&gt container we defined above
+hash_id.innerHTML = obj[&apos;result&apos;][&apos;hash&apos;];
+
+// Put the block's epoch data in the &lt;p&gt container we defined above
+epoch_id.innerHTML = obj[&apos;result&apos;][&apos;epoch&apos;];
+
+&lt;/script&gt;</code></pre>
+
+					</li>
 				</ul>
 			</li>
 			
