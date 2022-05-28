@@ -27,17 +27,16 @@ PHPH1 is two tools in one:
      1. 100% complete as of 2022-5-9
      2. View in the [PHPH1 explorer](https://phph1.saddlerockit.com)
 
-- [ ] Create documentation for the class and explorer using PHP DOC. I have to write in all the doc blocks in the code so it generates everything nicely. Get it generated and then probably a few tweaks to the interface.
-     1. ~99% complete (needs one last good pass)
-     2. Remember there are two types of documentation in this project
+- [x] Create documentation for the class and explorer using PHP DOC. I have to write in all the doc blocks in the code so it generates everything nicely. Get it generated and then probably a few tweaks to the interface.
+     1. Remember there are two types of documentation in this project
      - 1. Check out the [PHPH1 Explorer PHP Class Docs](https://phph1.saddlerockit.com/doc/classes/phph1.html)
      - 2. Every method page in the [PHPH1 explorer](https://phph1.saddlerockit.com) has built in documentation for the Harmony API Methods
 
-- [ ] Create a package where a developer could drop the package into a directory and safely use it for retrieving data using other scripting languages with minimal input. I planned to provide 3 different download packages (only 2 were necessary): Full with full API explorer and minimal with just the class and remote call script. As long as I have my stuff properly set up on github, this should be pretty easy.
-     1. ~95% complete as of 2022-4-25
+- [x] Create a package where a developer could drop the package into a directory and safely use it for retrieving data using other scripting languages with minimal input. I planned to provide 3 different download packages (only 2 were necessary): Full with full API explorer and minimal with just the class. As long as I have my stuff properly set up on github, this should be pretty easy.
+     1. 100% complete as of 2022-4-28
  
 - [x] Report API methods that do not react according to the API documentation (this happens as I work throughout entire project as basically an include. As far as time to report and deal with it depends on how fast the line of communication is).
-     1. I have reported a few times. If Harmony wants their postman documentation to be proper and accurate, just use the [PHPH1 explorer](https://phph1.saddlerockit.com) interface for all the details.
+     1. I have reported a few times. If Harmony wants their postman documentation to be proper and accurate, just use the [PHPH1 explorer](https://phph1.app) interface for all the details.
 
 - [ ] Maintain the class and project if/when the API changes/expands (depends on how often the API changes, just part of maintenance).
      1. If we have a method explosion like this last time, this could turn into a lot of work to stay up to date with the API. I was looking and I believe the original EVM has like 62 or so methods. If there are plans to expand, please let me know and I will include it in the bounty if that is okay.
@@ -47,9 +46,7 @@ PHPH1 is two tools in one:
 
 # CURRENT STATE (2022-5-26)
 
-PHPH1 v1.0.0.1 is READY!
-
-UPDATE 2022-5-25: Everything is validated as best as I can test it. Drive it like you stole it!
+PHPH1 v1.0.0.2 is READY!
 
 # REQUIREMENTS
 
@@ -75,7 +72,7 @@ You can use the official Harmony Nodes(already set up in the package) or if you 
    - ![method_form_github](https://user-images.githubusercontent.com/92170977/166109887-d71f6356-d40f-47d6-864a-11e9d9e83b27.png)
 
 - ### Output Section
-   - Contains three sections of its own
+   - Contains five sections of its own
       - **Harmony Node JSON RPC Request**
          - Displays the actual JSON formatted request sent to the Harmony Node API Server
       - **Harmony Node Javascript Request Example**
