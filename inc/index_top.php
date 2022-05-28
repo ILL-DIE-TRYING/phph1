@@ -18,7 +18,7 @@
 					<div id="LoadMenuDropdown" class="mdropdown-list">
 						<a href="#" id="settingsBtn" title="Open Settings Dialog">Settings</a>
 						<a href="./doc/classes/phph1.html" id="docBtn" title="View PHPH1 Class Documentation" target="_blank">PHPH1 Docs</a>
-						<a href="./min-doc/classes/phph1.html" id="docBtn" title="View PHPH1 Minimal Class Documentation" target="_blank">PHPH1MIN Docs</a>
+						<a href="./doc-min/classes/phph1.html" id="docBtn" title="View PHPH1 Minimal Class Documentation" target="_blank">PHPH1MIN Docs</a>
 						<a href="https://talk.harmony.one/t/php-class-api-requests-for-scripting-languages-and-harmony-node-api-explorer/11306" id="grantBtn" title="Grant Information" target="_blank">Grant Info</a>
 						<a href="https://github.com/ILL-DIE-TRYING/phph1" id="gitBtn" title="Github Project" target="_blank">Github Project</a>
 						<a href="https://github.com/ILL-DIE-TRYING/phph1/issues" id="reportBtn" title="Report Bug" target="_blank">Report Bug</a>
