@@ -14,8 +14,8 @@
 /**
 * The PHPH1 wrapper class.
 *
-* <p>When invoking the class there are certain variables that must be passed to the class for operation. All variables are required and are located in <a href='https://one.saddlerockit.com/doc/files/inc-config.html'>inc/config.php</a> which means before invoking the class you will most likely want to require_once() the config file or set the configurations in your project somehow.</p>
-* <p>See the <a href='https://one.saddlerockit.com/doc/classes/phph1.html#method___construct'>__construct()</a> function for more information.</p>
+* <p>When invoking the class there are certain variables that must be passed to the class for operation. All variables are required and are located in <a href='https://phph1.app/doc/files/inc-config.html'>inc/config.php</a> which means before invoking the class you will most likely want to require_once() the config file or set the configurations in your project somehow.</p>
+* <p>See the <a href='https://phph1.app/doc/classes/phph1.html#method___construct'>__construct()</a> function for more information.</p>
 */
 class phph1{
 	
@@ -60,7 +60,7 @@ class phph1{
 	/** @var string $rpc_url When a method is called and run, it generates the RPC URL and sets it here for output later on */
 	private array $rpc_posturl = [];
 	
-	//* @var integer $shard This is the index number of the shard from the $network array set during __construct. The shard MUST be defined in the <a href='https://one.saddlerockit.com/doc/files/inc-config.html'>inc/config.php</a> $phph1_apiaddresses array. example: If 'mainnet' were selected for $network and we wanted to use shard 0, the value for this would be 0.
+	//* @var integer $shard This is the index number of the shard from the $network array set during __construct. The shard MUST be defined in the <a href='https://phph1.app/doc/files/inc-config.html'>inc/config.php</a> $phph1_apiaddresses array. example: If 'mainnet' were selected for $network and we wanted to use shard 0, the value for this would be 0.
 	private int $shard;
 	
 	/** @var array $phph1_apiaddresses This is set during _construct when the class is invoked and is defined in inc/config.php. This is a multi-dimensional array that holds the node and shard information. */
@@ -84,11 +84,11 @@ class phph1{
 	/**
 	* The __construct function is used to set PHPH1 configurations settings when invoking the class. The parameters are all REQUIRED when invoking the class
 	*
-	* @param array $phph1_apiaddresses This is set in <a href='https://one.saddlerockit.com/doc/files/inc-config.html'>inc/config.php</a> and is an array of arrays, each array item is the network "name" such as "mainnet" and is an array itself of addresses used as shards for that network. For example $phph1_apiaddresses['mainnet'][0] would be an address for shard 0 on the mainnet network.
+	* @param array $phph1_apiaddresses This is set in <a href='https://phph1.app/doc/files/inc-config.html'>inc/config.php</a> and is an array of arrays, each array item is the network "name" such as "mainnet" and is an array itself of addresses used as shards for that network. For example $phph1_apiaddresses['mainnet'][0] would be an address for shard 0 on the mainnet network.
 	*
-	* @param array $phph1_methods This is set in <a href='https://one.saddlerockit.com/doc/files/inc-config.html'>inc/config.php</a> and is an array of available methods by name. The array is used to verify that the method being called upon is a valid method. If the method is not in the array, all actions can be stopped before any input is used. You can also comment out methods in the <a href='https://one.saddlerockit.com/doc/files/inc-config.html'>inc/config.php</a> to limit which methods are used in your project. This can also be extended with custom methods added to the phph1 class.
+	* @param array $phph1_methods This is set in <a href='https://phph1.app/doc/files/inc-config.html'>inc/config.php</a> and is an array of available methods by name. The array is used to verify that the method being called upon is a valid method. If the method is not in the array, all actions can be stopped before any input is used. You can also comment out methods in the <a href='https://phph1.app/doc/files/inc-config.html'>inc/config.php</a> to limit which methods are used in your project. This can also be extended with custom methods added to the phph1 class.
 	*
-	* @param integer $phph1_debug Set in <a href='https://one.saddlerockit.com/doc/files/inc-config.html'>inc/config.php</a> and sets whether debugging output is on or off. Debugging output will present information concerning how the JSON call is being created through the process to aid in development. In most cases, this should be set to 0 to diable debugging.
+	* @param integer $phph1_debug Set in <a href='https://phph1.app/doc/files/inc-config.html'>inc/config.php</a> and sets whether debugging output is on or off. Debugging output will present information concerning how the JSON call is being created through the process to aid in development. In most cases, this should be set to 0 to diable debugging.
 	*
 	* @param integer $max_pagesize This sets the maximum number of return items per page on API calls that return multiple pages of data in the explorer or your project. This is helpful in preventing huge return data sets which could present a heavy load on the web server or the web servers data throughput.
 	*
@@ -96,11 +96,11 @@ class phph1{
 	*
 	* @param string $network This sets the network currently being used for the API calls and is one from the $phph1_apiaddresses array set in inc/config.php. example "mainnet"
 	*
-	* @param integer $shard This is the index number of the shard from the $network array. The shard MUST be defined in the <a href='https://one.saddlerockit.com/doc/files/inc-config.html'>inc/config.php</a> $phph1_apiaddresses array. example: If 'mainnet' were selected for $network above and we wanted to use chard 0, the value for this would be 0.
+	* @param integer $shard This is the index number of the shard from the $network array. The shard MUST be defined in the <a href='https://phph1.app/doc/files/inc-config.html'>inc/config.php</a> $phph1_apiaddresses array. example: If 'mainnet' were selected for $network above and we wanted to use chard 0, the value for this would be 0.
 	*
-	* @param array $phph1_blockedaddr This is a one per line array of IP addresses that should not be allowed to run methods. The array is set in <a href='https://one.saddlerockit.com/doc/files/inc-config.html'>inc/config.php</a> and if left empty will block nobody. This array is ignored if the $phph1_allowedaddr array is not empty.
+	* @param array $phph1_blockedaddr This is a one per line array of IP addresses that should not be allowed to run methods. The array is set in <a href='https://phph1.app/doc/files/inc-config.html'>inc/config.php</a> and if left empty will block nobody. This array is ignored if the $phph1_allowedaddr array is not empty.
 	*
-	* @param array $phph1_allowedaddr This is a one per line array of IP addresses that are the only addresses allowed to run methods. The array is set in <a href='https://one.saddlerockit.com/doc/files/inc-config.html'>inc/config.php</a> and if left empty will not be used. If this array is not empty, $phph1_blockedaddr will be ignored (due to redundancy).
+	* @param array $phph1_allowedaddr This is a one per line array of IP addresses that are the only addresses allowed to run methods. The array is set in <a href='https://phph1.app/doc/files/inc-config.html'>inc/config.php</a> and if left empty will not be used. If this array is not empty, $phph1_blockedaddr will be ignored (due to redundancy).
 	*
 	* @param integer $phph1_allowbigdata Some requests have a page index (page number) option included in some of those options is the ability to use -1 as the index page. When using -1 the data set returned could possibly be huge causing a massive load on the server. By default using the -1 option is disabled to prevent this from happening. You can enable -1 page requests here by setting $phph1_allowbigdata to 1 in inc/config.php. UPDATE 2022-5-3: When last tested, none of the methods that are supposed to be able to use -1 according to the Harmony doc are not working and return an error. Since discovering this, I have staticly set this to 0 and and changing it in inc/config.php will not change anything.
 	*
